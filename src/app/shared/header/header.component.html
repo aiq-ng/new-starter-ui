@@ -1,0 +1,52 @@
+<div class="flex relative  justify-between items-center py-4 bg-[#F8F9FA]  shadow-md px-16">
+  <!-- logo -->
+  <div class="text-lg font-semibold flex gap-4 items-center cursor-pointer text-gray-700">
+      <img src="assets/logo.png"  class="" alt="">
+      <span class="hidden md:block lg:block sm:hidden">Starters Events Management Ltd</span>
+  </div>
+
+  <!-- menu -->
+  <div class="flex items-center gap-8 cursor-pointer">
+   <ng-container *ngFor="let row of menu">
+    <nav (click)="route(row.route)" class="whitespace-nowrap lg:flex md:hidden hidden gap-1 text-sm text-gray-500 hover:text-secondary active:scale-95">
+      <img src={{row.icon}} class="w-5" alt="">
+      {{row.name}}
+    </nav>
+   </ng-container>
+  </div>
+
+  <div class="flex items-center gap-4" >
+     <ng-container *ngFor=" let row of ['assets/icons/settings.png', 'assets/icons/bell.png']" >
+      <span>
+        <img src={{row}} class="w-6 active:scale-95" alt="">
+      </span>
+     </ng-container>
+
+     <span>
+      <div class=" flex flex-col w-full relative ">
+        <button  enterActiveClass="fadein"   id="hs-dropdown-example" type="button">
+        <img src="assets/icons/avater.png" class="w-6 active:scale-95" alt="">lkkjkj
+        </button>
+
+        <div *ngIf="dropDown" (click)="route('/auth/login')" class="absolute top-7 px-4 py-1 bg-white border cursor-pointer shadow-sm">
+          logout
+        </div>
+      </div>
+     </span>
+
+     <span (click)="toggleMobileMenu()" class="block md:block lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+      </svg>
+     </span>
+  </div>
+</div>
+
+
+
+<!-- mobile menu -->
+<div *ngIf="showMobileMenu" class="absolute top-[70px] z-[1000]">
+  <app-mobile-menu (toggleMenu)="toggleMobileMenu()"></app-mobile-menu>
+</div>
+
+

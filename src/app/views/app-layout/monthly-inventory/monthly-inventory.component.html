@@ -1,0 +1,241 @@
+<p-toast/>
+<div class="section px-16">
+  <app-sub-menu currentURL="NOV Inventory - Warehouse A" previouseRoute="Inventory Plans" (navigateTo)="route()"></app-sub-menu>
+
+  <div class="section ">
+    <app-sub-header
+    [pageTitle]="currentMonthName + ' Inventory -' + warehouseInventory?.location"
+    action3Name="Complete Inventory"
+    icon='assets/icons/add.png'
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action3)="completeInventory()" ></app-sub-header>
+  </div>
+
+
+
+    <!-- Layout section -->
+    <div class="section border flex bg-gray-100">
+      <div class="layout1 border px-8 py-6 basis-[30%] min-w-0 flex-shrink-0">
+        <div class="title flex gap-2 items-center">
+          <span class="text-lg ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+            </svg>
+          </span>
+          <h4 class="text-base font-bold text-gray-800">Basic information</h4>
+        </div>
+
+        <div class="update-details w-full mt-4">
+          <div class="flex flex-col gap-4 w-full ">
+            <ng-container *ngFor="let item of updatedQuantityData">
+              <div class="flex justify-between pr-12 text-sm">
+                <div class="label text-gray-800 font-semibold">{{item?.label}}</div>
+                <div class="value text-gray-600 font-normal">{{item?.value}}</div>
+              </div>
+            </ng-container>
+
+            <div *ngIf="warehouseInventory?.length <=0 && loadingwarehouseInventory" class="w-full flex justify-center items-center h-[50vh]">
+              <app-spinner></app-spinner>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div class="label text-gray-800 font-semibold">Account</div>
+              <div class="value text-gray-600 font-normal p-2 bg-white flex items-center gap-2 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+                Janet Haruna
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress p-4 px-6 mt-8 bg-white">
+          <div class="title text-gray-800">Progress</div>
+
+          <div class="status mt-6">
+            <div class="w-full ">
+              <div class="flex w-full h-1.5 bg-accent overflow-hidden" role="progressbar"
+                  [attr.aria-valuenow]="warehouseInventory?.progress"
+                  aria-valuemin="0" aria-valuemax="100">
+                <div class="flex flex-col justify-center overflow-hidden bg-primary text-xs text-white text-center whitespace-nowrap transition duration-500"
+                    [style.width]="warehouseInventory?.progress + '%'">
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center mt-2 text-gray-500 text-sm justify-between gap-2">
+              <span>25/50 products</span>
+              <span class="p-1 bg-gray-100 rounded-full">50%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layout2 border px-8 py-6 basis-[70%] min-w-0 flex-shrink-0">
+        <div class="heading flex justify-between items-start">
+          <div class="title flex gap-2 items-center">
+            <span class="text-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+              </svg>
+            </span>
+            <h4 class="text-base font-bold text-gray-800">Product list</h4>
+          </div>
+
+          <div class="search bg-transparent border rounded-md px-4 py-1 flex justify-start gap-2 items-center">
+            <span class="text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </span>
+            <input type="text" placeholder="search" class="w-full md:w-full lg:w-[250px] bg-transparent p-1 capitalize outline-none">
+          </div>
+        </div>
+
+        <!-- Table section -->
+        <div class="flex flex-col mt-4 w-full">
+          <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+              <div class="overflow-hidden w-full">
+                <table class="min-w-full border divide-y divide-gray-200">
+                  <thead>
+                    <tr>
+                      <ng-container *ngFor="let menu of tableHeader">
+                        <th scope="col" class="px-6  py-4 text-start text-xs font-medium text-gray-800 uppercase whitespace-nowrap">{{menu}}</th>
+                      </ng-container>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white">
+                    <ng-container *ngFor="let product of warehouseInventory?.product_list">
+                      <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                          <div class="w-full flex gap-4 items-center">
+                            <div class="flex flex-col gap-1 text-gray-800">
+                              {{ product.no }}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <img src="{{ product.image[0] }}" class="w-10 h-10" alt="">
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ product.product_name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ product.on_hand }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                          <div class="p-1 px-2 text-gray-800">
+                            <input type="number" [(ngModel)]="product.counted" class="w-[50px] border py-1 px-2" (input)="updateDifference(product)">
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                          <div class="p-1 px-2 text-gray-800">
+                            {{ product.difference }}
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                          <button (click)="confirmUpdate(product.no)" class="p-1 px-2 text-xs border rounded-sm active:scale-95 text-gray-500">
+                            Update count
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+
+                </table>
+
+                <div *ngIf="warehouseInventory?.length <=0 && loadingwarehouseInventory" class="w-full flex justify-center items-center h-[50vh]">
+                  <app-spinner></app-spinner>
+                </div>
+
+                <div *ngIf="warehouseInventory.length<=0 && !loadingwarehouseInventory ">
+                  <app-empty-list></app-empty-list>
+                 </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="iscompleteInventry"  class="hs-overlay size-full fixed inset-0 bg-gray-900/45  z-[999] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-bg-gray-on-hover-cards-label">
+      <div class="hs-overlay-open:mt-0 hs-overlay-open:duration-500 mt-0 ease-out transition-all w-full lg:max-w-[737px] mx-auto">
+        <div class="h-full w-full flex flex-col mt-[60px] mb-[60px]  bg-gray-100 border shadow-sm pointer-events-auto">
+          <div class="flex justify-end items-center py-3 px-4 border-b">
+
+            <button (click)="toggleCompleteInventry()" type="button" class="size-8 inline-flex justify-center items-center gap-x-2  border border-transparent  text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none" aria-label="Close" data-hs-overlay="#hs-bg-gray-on-hover-cards">
+              <span class="sr-only">Close</span>
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>
+
+          <div class="p-4 w-full gap-8 flex px-12">
+
+            <div class="w-full flex gap-6 flex-col items-center">
+              <img src="assets/images/check-inventory.png" alt="">
+
+             <div class=" flex gap-2 flex-col items-center">
+              <div class="title capitalize font-bold text-2xl text-gray-800"> Complete Inventory</div>
+
+              <div class="product text-lg font-bold text-gray-800">[Monthly] August Inventory - {{completeInventoryData[0].location}}</div>
+             </div>
+
+             <div class="update-details text-sm bg-white px-12 py-4 w-full">
+
+               <div class="flex flex-col gap-4">
+                  <ng-container>
+
+                    <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Location</div>
+                    <div class="value text-gray-600 font-normal">{{completeInventoryData[0].location}}</div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Inventory Date</div>
+                    <div class="value text-gray-600 font-normal">{{completeInventoryData[0].value}}</div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Duration of Inventory</div>
+                    <div class="value text-gray-600 font-normal">{{completeInventoryData[0].value}}</div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Product</div>
+                    <div class="value text-gray-600 font-normal">{{completeInventoryData[0].total_products}}</div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Total Items Counted</div>
+                    <div class="value text-gray-600 font-normal">{{completeInventoryData[0].total_items_counted}}</div>
+                  </div>
+                  </ng-container>
+
+                  <div class="flex justify-between">
+                    <div class="label text-gray-800 font-semibold">Descripancies</div>
+                    <div class="value text-gray-600  font-normal">
+                      <ng-container *ngFor="let row of completeInventoryData[0].total_discrepancies" >
+                        {{row.discrepancy}} {{row.product_name}} <br>
+                      </ng-container>
+                    </div>
+                  </div>
+
+               </div>
+
+             </div>
+
+            </div>
+          </div>
+
+          <div class=" flex w-full justify-center items-center gap-x-2 py-6 px-4 border-t">
+
+            <button class="active:bg-gray-600 p-2 bg-primary text-white text-gray-400 text-sm">
+              <span class=" hover:text-white">Generate Inventory Report</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,14 @@
+<div class="flex flex-col md:flex-row lg:flex-row justify-start md:justify-between lg:justify-between py-6">
+  <h1 class="font-bold items-center text-2xl uppercase text-gray-800">{{pageTitle}}</h1>
+
+  <div class="action-button cursor-pointer text-gray-500 flex flex-col mt-2 md:mt-0 lg:mt-0 md:flex-row lg:flex-row items-start md:items-center lg:items-center gap-2 lg:gap-8">
+    <div *ngIf="action1Name" (click)="action1Click()" class="active:scale-95 hover:text-gray-800 text-start md:text-start lg:text-start">{{action1Name}}</div>
+    <div *ngIf="action2Name" (click)="action2Click()" class="active:scale-95 hover:text-gray-800 text-start md:text-start lg:text-start">{{action2Name}}</div>
+    <div *ngIf="action3Name" (click)="action3Click()" class={{buttonStyle}}>
+      <span class="flex items-center  gap-1">
+        <img src='{{icon}}' class="h-5" alt="">
+        {{action3Name}}
+      </span>
+    </div>
+  </div>
+</div>

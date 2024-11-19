@@ -1,0 +1,91 @@
+
+<p-toast/>
+<!-- create product modal -->
+ <div class="hs-overlay size-full fixed inset-0 bg-gray-900/45  z-[999] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-bg-gray-on-hover-cards-label">
+  <div class="hs-overlay-open:mt-0 hs-overlay-open:duration-500 mt-0 ease-out transition-all w-full lg:max-w-[700px] mx-auto">
+    <div class="h-full w-full flex flex-col mt-0 md:mt-0 lg:mt-[60px]  mb-[60px]  bg-white border shadow-sm rounded-xl pointer-events-auto">
+      <div class="flex justify-between items-center py-3 px-4 border-b">
+        <h3 id="hs-bg-gray-on-hover-cards-label" class="font-bold text-gray-800">
+          Create New Plan
+        </h3>
+        <button (click)="toggleCreatePlan()" type="button" class="size-8 inline-flex justify-center items-center gap-x-2  border border-transparent  text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none" aria-label="Close" data-hs-overlay="#hs-bg-gray-on-hover-cards">
+          <span class="sr-only">Close</span>
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <form [formGroup]="createPlanForm" (ngSubmit)="save()">
+        <div class="p-4 overflow-y-auto">
+
+          <div>
+            <div class="section-title font-bold ">Basic information</div>
+
+            <div>
+              <!-- Basic information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 border-b py-2 pb-8">
+
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Product Name
+                  <span class="text-red-500">*</span>
+                </label>
+                <input formControlName="name" type="text" [ngClass]="{'border-red-400': isSubmitted && f.name.errors}" class="block w-full border px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Product Name">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Date
+                  <span class="text-red-500">*</span>
+                </label>
+                <input formControlName="plan_date" [ngClass]="{'border-red-400': isSubmitted && f.plan_date.errors}" type="date" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Sale Date">
+              </div>
+
+
+
+            </div>
+
+            <div class="flex gap-4 items-end w-full">
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Product
+                  <span class="text-red-500">*</span>
+                </label>
+                <select [ngClass]="{'border-red-400': isSubmitted && f.products.errors}" formControlName="products" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                  <option value="">Select product</option>
+                  <!-- dynamically fetched categories -->
+                  <ng-container *ngFor="let product of products">
+                    <option value={{product.id}} >{{product.name}}</option>
+                  </ng-container>
+                </select>
+              </div>
+
+              <div (click)="addPlanProduct()" class="px-4 py-2 bg-primary text-sm text-white">Add</div>
+
+              <div *ngFor="let row of planProducts">
+                <span class="px-4 py-1 rounded-full bg-gray-100">{{row.id}}</span>
+              </div>
+            </div>
+          </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+        <div class=" flex w-full justify-between items-center gap-x-2 py-3 px-4 border-t">
+
+          <div>
+            <span class="text-gray-500 text-sm">Advance settings</span>
+          </div>
+          <button type="submit" >
+            <p-button class="p-2 px-4 bg-primary text-white text-sm" [loading]="loading"  label="Save" ></p-button>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

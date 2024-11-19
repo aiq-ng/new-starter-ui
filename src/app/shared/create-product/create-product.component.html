@@ -1,0 +1,209 @@
+
+<p-toast/>
+<!-- create product modal -->
+ <div class="hs-overlay size-full fixed inset-0 bg-gray-900/45  z-[999] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-bg-gray-on-hover-cards-label">
+  <div class="hs-overlay-open:mt-0 hs-overlay-open:duration-500 mt-0 ease-out transition-all w-full lg:max-w-[700px] mx-auto">
+    <div class="h-full w-full flex flex-col mt-0 md:mt-0 lg:mt-[60px]  mb-[60px]  bg-white border shadow-sm rounded-xl pointer-events-auto">
+      <div class="flex justify-between items-center py-3 px-4 border-b">
+        <h3 id="hs-bg-gray-on-hover-cards-label" class="font-bold text-gray-800">
+          Create New Product
+        </h3>
+        <button (click)="toggleCreateProduct()" type="button" class="size-8 inline-flex justify-center items-center gap-x-2  border border-transparent  text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none" aria-label="Close" data-hs-overlay="#hs-bg-gray-on-hover-cards">
+          <span class="sr-only">Close</span>
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <form [formGroup]="createProductForm" (ngSubmit)="save()">
+        <div class="p-4 overflow-y-auto">
+
+          <div>
+            <div class="section-title font-bold ">Basic information</div>
+
+            <div>
+              <!-- Basic information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 border-b py-2 pb-8">
+
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Product Name
+                  <span class="text-red-500">*</span>
+                </label>
+                <input formControlName="productName" type="text" [ngClass]="{'border-red-400': isSubmitted && f.productName.errors}" class="block w-full border px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Product Name">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Location
+                  <span class="text-red-500">*</span>
+                </label>
+                <select [ngClass]="{'border-red-400': isSubmitted && f.warehouse.errors}" formControlName="warehouse" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                  <option value="">Select Warehouse</option>
+                  <!-- dynamically fetched categories -->
+                  <ng-container *ngFor="let warehouse of wareHouses">
+                    <option value={{warehouse.id}} >{{warehouse.name}}</option>
+                  </ng-container>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Vendor
+                  <span class="text-red-500">*</span>
+                </label>
+                <select formControlName="vendor" [ngClass]="{'border-red-400': isSubmitted && f.vendor.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                  <option value="">Select Vendor</option>
+                  <!-- dynamically fetched categories -->
+                   <ng-container *ngFor="let vendor of vendors?.data">
+                     <option value={{vendor.id}} >{{vendor.name}}</option>
+                   </ng-container>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Code
+                </label>
+                <p class="text-red-700 mt-2 text-sm" *ngIf="isSubmitted && f.code.errors " >field required </p>
+                <input formControlName="code" [ngClass]="{'border-red-400': isSubmitted && f.code.errors}" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Code">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  SKU
+                  <span class="text-red-500">*</span>
+                </label>
+                <input  formControlName="sku" [ngClass]="{'border-red-400': isSubmitted && f.sku.errors}" formControlName="sku" type="text" class="block border w-full px-3 py-2 bg-gray-100  focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter SKU">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Barcode
+                </label>
+                <input [ngClass]="{'border-red-400': isSubmitted && f.barcode.errors}" formControlName="barcode" type="text" class="block border w-full px-3 py-2 bg-gray-100 bg-gray-200focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter or Scan Barcode">
+              </div>
+
+
+            </div>
+          </div>
+
+          <!-- Upload Media section -->
+          <div class="py-4 mt-4 border-b pb-8">
+            <div class="section-title font-bold">Media  <span class="text-sm">(Images, video)</span></div>
+
+            <div class="mt-4 flex gap-4">
+              <div [ngClass]="{'border-red-400': isSubmitted && f.image.errors}" class="p-6 w-[150px] border border-dashed ">
+                <img *ngIf="!imageSrc" src="assets/images/image.png" alt="">
+                <img *ngIf="imageSrc" src={{imageSrc}} class="h-[60px]" alt="">
+              </div>
+
+              <label  for="productImage" class="p-4 w-[120px] border border-dashed flex items-center justify-center">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                  </svg>
+                </span>
+              </label>
+            </div>
+
+            <input formControlName="image" id="productImage" type="file"  (change)="onFileSelected($event)" class="hidden">
+
+          </div>
+
+          <!-- Sales Information section -->
+          <div class="py-4 mt-4">
+            <div class="section-title font-bold">Sale information</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 border-b py-2 pb-8">
+
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Price
+                  <span class="text-red-500">*</span>
+                </label>
+                  <input formControlName="price" [ngClass]="{'border-red-400': isSubmitted && f.price.errors}" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Price">
+              </div>
+
+              <div class="flex gap-4">
+
+                <!-- <div class="">
+                  <label class="block text-gray-600 text-sm font-medium">
+                    Profit
+                    <span class="text-red-500">*</span>
+                  </label>
+
+                    <input formControlName="profit" [ngClass]="{'border-red-400': isSubmitted && f.profit.errors}" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Profit">
+                </div> -->
+
+                <!-- <div>
+                  <label class="block text-gray-600 text-sm font-medium">
+                    Margin
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input formControlName="margin" [ngClass]="{'border-red-400': isSubmitted && f.margin.errors}" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Margin">
+                </div> -->
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Inventory section -->
+          <div class="py-4">
+            <div class="section-title font-bold">Inventory</div>
+
+            <div class="grid grid-cols-2 gap-4 py-2 pb-4">
+
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Quantity
+                  <span class="text-red-500">*</span>
+                </label>
+                  <input formControlName="quantity" [ngClass]="{'border-red-400': isSubmitted && f.quantity.errors}" type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Quantity">
+              </div>
+
+              <div>
+
+                <div>
+                  <label class="block text-gray-600 text-sm font-medium">
+                    Unit
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <select formControlName="unit" [ngClass]="{'border-red-400': isSubmitted && f.image.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                    <option value="">Select Unit</option>
+                    <!-- dynamically fetched categories -->
+                     <ng-container *ngFor="let unit of units?.data">
+                       <option value={{unit.id}} >{{unit.name}}</option>
+                     </ng-container>
+                  </select>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class=" flex w-full justify-between items-center gap-x-2 py-3 px-4 border-t">
+
+          <div>
+            <span class="text-gray-500 text-sm">Advance settings</span>
+          </div>
+          <button type="submit" >
+            <p-button class="p-2 px-4 bg-primary text-white text-sm" [loading]="loading"  label="Save" ></p-button>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

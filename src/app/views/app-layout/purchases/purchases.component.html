@@ -1,0 +1,220 @@
+<p-toast/>
+
+<div class="section px-4 lg:px-16">
+  <app-sub-header
+    pageTitle="Purchases"
+    action3Name="Add new purchase"
+    icon='assets/icons/add.png'
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action3)="  toggleAddPurchase()"></app-sub-header>
+
+<!-- search section -->
+ <div class="mt-1">
+  <app-search-upload-header></app-search-upload-header>
+ </div>
+
+ <div class="div mt-8 h-2"></div>
+
+ <!-- warehouse product section -->
+ <ng-container >
+  <div class="warehouses-section h-full mb-4 bg-gray-100/65   flex flex-col">
+
+
+    <!-- products -->
+     <div class=" gap-4 ">
+      <div class="flex flex-col w-full">
+              <div class="-m-1.5 overflow-x-auto">
+                <div class="p-1.5 min-w-full inline-block align-middle">
+                  <div class="overflow-hidden w-full">
+                    <table class="min-w-full border divide-y divide-gray-200">
+                      <thead>
+                        <tr>
+                          <ng-container *ngFor="let menu of tableHeader">
+                            <th scope="col" class="px-6 py-6 text-start text-xs font-medium text-gray-800 uppercase">{{menu}}</th>
+                          </ng-container>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200 bg-white w-full">
+                        <ng-container *ngFor="let purchase of purchases.data; let i = index">
+                          <tr class="hover:bg-gray-100" (click)="toggleExpand(i)">
+                            <td class="px-6 py-4 whitespace-nowrap cursor-pointer text-sm text-gray-800">{{purchase.purchase_date}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap cursor-pointer text-sm text-gray-500">{{purchase.supplier}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap cursor-pointer text-start text-sm font-medium text-gray-500">{{purchase.items}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap cursor-pointer text-start text-sm font-medium text-gray-500">{{purchase.total_cost}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap cursor-pointer text-start text-sm font-medium text-gray-500">
+                              <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+                                </svg>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr *ngIf="expandedPurchases.has(i)">
+                            <td colspan="4">
+                              <div class="w-full bg-white p-4">
+                                <table class="min-w-full border divide-y divide-gray-200">
+                                  <thead>
+                                    <tr>
+                                      <th class="px-6 py-4 text-start text-xs font-medium text-gray-800">Product</th>
+                                      <th class="px-6 py-4 text-start text-xs font-medium text-gray-800">Quantity</th>
+                                      <th class="px-6 py-4 text-start text-xs font-medium text-gray-800">Price Per Unit</th>
+                                      <th class="px-6 py-4 text-start text-xs font-medium text-gray-800">Total Price</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <ng-container *ngFor="let item of purchase.products">
+                                      <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{item.product}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{item.quantity}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₦{{item.price_per_unit}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₦{{item.total_price}}</td>
+                                      </tr>
+                                    </ng-container>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+
+
+                    </table>
+
+                    <div *ngIf="purchases?.data?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+                      <app-spinner></app-spinner>
+                    </div>
+
+                    <div *ngIf="purchases?.data?.length<=0 && !pageLoading ">
+                     <app-empty-list></app-empty-list>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+      <div class="flex w-full justify-end mt-8">
+        <app-pagination [currentPage]="this.purchases?.meta?.current_page" [lastPage]="this.purchases?.meta?.last_page"></app-pagination>
+      </div>
+     </div>
+
+   </div>
+ </ng-container>
+
+
+ <!-- Create Purchase Modal -->
+<div *ngIf="isCreatePurchase"  class="hs-overlay size-full fixed inset-0 bg-gray-900/45 z-[999] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="create-purchase-modal-label">
+  <div class="hs-overlay-open:mt-0 hs-overlay-open:duration-500 mt-0 ease-out transition-all w-full lg:max-w-[700px] mx-auto">
+    <div class="h-full w-full flex flex-col lg:mt-[60px] mb-[60px] bg-white border shadow-sm rounded-xl pointer-events-auto">
+      <div class="flex justify-between items-center py-3 px-4 border-b">
+        <h3 id="create-purchase-modal-label" class="font-bold text-gray-800">
+          Add New Purchase
+        </h3>
+        <button (click)="toggleAddPurchase()" type="button" class="size-8 inline-flex justify-center items-center gap-x-2 border border-transparent text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none" aria-label="Close">
+          <span class="sr-only">Close</span>
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div (ngSubmit)="savePurchase()">
+        <div class="p-4 overflow-y-auto">
+          <!-- Purchase Information -->
+          <div>
+            <div class="section-title font-bold">Purchase Information</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 border-b py-2 pb-8">
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Purchase Date
+                  <span class="text-red-500">*</span>
+                </label>
+                <input [(ngModel)]="purchaseForm.date" name="date" [ngClass]="{'border-red-400': isSubmitted && purchaseForm.date == '' }" type="date" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Purchase Date">
+              </div>
+
+              <div>
+                <label  class="block text-gray-600 text-sm font-medium">
+                  Supplier
+                  <span class="text-red-500">*</span>
+                </label>
+                <select [(ngModel)]="purchaseForm.supplier" name="supplier"   [ngClass]="{'border-red-400': isSubmitted && purchaseForm.supplier== '' }" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                  <option value="">Select Unit</option>
+
+                  <ng-container *ngFor="let supplier of suppliers?.data">
+                    <option value={{supplier.id}}>{{supplier.name}}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Items Section -->
+          <div class="py-4 mt-4">
+            <div class="section-title font-bold">Items</div>
+
+            <div *ngFor="let item of purchaseItems; let i = index" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-b py-2 pb-4">
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Product
+                  <span class="text-red-500">*</span>
+                </label>
+
+                <input [(ngModel)]="item.product" [ngClass]="{'border-red-400': isSubmitted && purchaseItems[0].product == '' }" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Product Name">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Quantity
+                  <span class="text-red-500">*</span>
+                </label>
+                <input  [(ngModel)]="item.quantity" [ngClass]="{'border-red-400': isSubmitted && purchaseItems[0].quantity == null }" type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Quantity">
+              </div>
+
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Price Per Unit
+                  <span class="text-red-500">*</span>
+                </label>
+                <input [(ngModel)]="item.price_per_unit" [ngClass]="{'border-red-400': isSubmitted && purchaseItems[0].price_per_unit == null }" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Price">
+              </div>
+            </div>
+
+            <button (click)="addItem()" class="mt-2 p-2 bg-gray-700 text-white text-sm">
+              Add Item
+            </button>
+          </div>
+
+          <!-- Total Cost Section -->
+          <div class="py-4">
+            <div class="section-title font-bold">Total Cost</div>
+            <div class="grid grid-cols-2 gap-4 py-2 pb-4">
+              <div>
+                <label class="block text-gray-600 text-sm font-medium">
+                  Total
+                </label>
+
+                <input value="{{calculateTotalCost()}}" type="text" class="block w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Total Cost" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex w-full justify-between items-center gap-x-2 py-3 px-4 border-t">
+          <div>
+            <span class="text-gray-500 text-sm">Advanced settings</span>
+          </div>
+          <button type="submit" (click)="savePurchase()">
+            <p-button class="p-2 px-4 bg-primary text-white text-sm" label="Save" [loading]="loading"></p-button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
