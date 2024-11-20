@@ -16,6 +16,7 @@ export class DashboardComponent {
     TopSellingProduct: any=null;
     warehouseDetail: any=null;
     pageLoading:boolean=false;
+    calender:boolean=false;
     chartData:any[]=[]
     products = [
       {
@@ -38,47 +39,58 @@ export class DashboardComponent {
 
     constructor(private api:HttpServiceService, private messageService:MessageService){}
 
-    async ngOnInit() {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        this.getMetrics()
-        this.getTopSellingProducts()
+    ngOnInit() {
+      const documentStyle = getComputedStyle(document.documentElement);
+      const textColor = documentStyle.getPropertyValue('--text-color');
+      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
+      this.data = {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          datasets: [
 
-        this.api.get('dashboard/warehouses/details').subscribe(
-          res=>{
-            this.warehouseDetail = res;
-            console.log(this.warehouseDetail)
-            this.chartData = [this.warehouseDetail?.data.cold_room, this.warehouseDetail?.data.kitchen]
+              {
+                  label: 'Cash Flow',
+                  data: [12, 51, 62, 33, 21, 62, 45],
+                  fill: false,
+                  borderColor: documentStyle.getPropertyValue('--orange-500'),
+                  tension: 0.4,
+                  backgroundColor: 'rgba(255,167,38,0.2)'
+              }
+          ]
+      };
 
-            console.log('chartData', this.chartData)
-            this.data = {
-              datasets: [
-                  {
-                      data: this.chartData,
-                      backgroundColor: [
-                          documentStyle.getPropertyValue('--red-700'),
-                          documentStyle.getPropertyValue('--gray-400')
-                      ]
-                  }
-              ]
-          };
-          },
-          err=>{
-            this.showError('Error fetching metrics');
-          })
-
-        this.options = {
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
-                    }
+      this.options = {
+        maintainAspectRatio: false,
+        aspectRatio: 0.8,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
                 }
             }
-        };
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                  display: false,
+                }
+            },
+            y: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                  display: false,
+                }
+            }
+        }
+    };
     }
+
 
     getTopSellingProducts(){
       this.pageLoading = true;
@@ -118,6 +130,10 @@ export class DashboardComponent {
       )
 
       return this.chartData
+    }
+
+    toggleCalender(){
+      this.calender = !this.calender;
     }
 
     showError(message:string) {
