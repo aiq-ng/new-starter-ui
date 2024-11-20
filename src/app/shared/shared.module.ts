@@ -17,6 +17,7 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CreateNewInventoryPlanComponent } from './create-new-inventory-plan/create-new-inventory-plan.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -37,6 +38,7 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     SpinnerComponent,
     CreateNewInventoryPlanComponent,
     MobileMenuComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,9 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     CreateProductComponent,
     EmptyListComponent,
     SpinnerComponent,
-    CreateNewInventoryPlanComponent
+    CreateNewInventoryPlanComponent,
+    SidebarComponent,
+
   ]
 })
 export class SharedModule {

@@ -16,6 +16,8 @@ export class SubHeaderComponent {
  @Output() action2= new EventEmitter()
  @Output() action3= new EventEmitter()
 
+ calender:boolean = false;
+
 
  action1Click() {
    this.action1.emit();
@@ -27,6 +29,10 @@ export class SubHeaderComponent {
 
  action3Click() {
    this.action3.emit();
+ }
+
+ toggleCalender(){
+  this.calender = !this.calender;
  }
 
 }

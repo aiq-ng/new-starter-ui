@@ -15,6 +15,14 @@ import { MonthlyInventoryComponent } from './monthly-inventory/monthly-inventory
 import { SalesComponent } from './sales/sales.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AccountingComponent } from './accounting/accounting.component';
+import { ProcurementComponent } from './procurement/procurement.component';
+import { CustomersComponent } from './customers/customers.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { HumanResourcesComponent } from './human-resources/human-resources.component';
+import { ReportsComponent } from './reports/reports.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { QouteComponent } from './qoute/qoute.component';
 
 
 @NgModule({
@@ -27,6 +35,14 @@ import { QRCodeModule } from 'angularx-qrcode';
     MonthlyInventoryComponent,
     SalesComponent,
     PurchasesComponent,
+    AccountingComponent,
+    ProcurementComponent,
+    CustomersComponent,
+    ExpensesComponent,
+    HumanResourcesComponent,
+    ReportsComponent,
+    InvoiceComponent,
+    QouteComponent,
 
   ],
   imports: [

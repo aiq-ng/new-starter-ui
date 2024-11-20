@@ -1,0 +1,42 @@
+<div id="hs-application-sidebar" class="hs-overlay  [--auto-close:lg]
+  hs-overlay-open:translate-x-0
+  -translate-x-full transition-all duration-300 transform
+  w-[260px] h-full
+  hidden
+  fixed inset-y-0 start-0 z-[60]
+  bg-white border-e border-red-100
+  lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+ " role="dialog" tabindex="-1" aria-label="Sidebar">
+  <div class="relative flex flex-col h-full max-h-full">
+    <div class="px-6 pt-4">
+      <!-- Logo -->
+      <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80" href="#" aria-label="Preline">
+        <div class="w-full flex gap-4 items-center">
+          <img src="/assets/logo.png" alt="">
+          <span class="text-xl">Starters</span>
+        </div>
+
+      </a>
+      <!-- End Logo -->
+    </div>
+
+    <!-- Content -->
+    <div class="h-full py-4 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+      <nav class="hs-accordion-group p-2.5 px-4 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+        <ul class="flex flex-col space-y-1" *ngFor="let row of menu">
+          <li class="flex justify-between items-center pr-4 hover:border-l-2  hover:border-primary hover:bg-accent focus:outline-none focus:bg-gray-100">
+            <a class="flex items-center gap-x-3.5 py-4 px-2.5 hover:text-primary text-sm text-gray-500 " (click)="route(row.route)">
+              <img class="shrink-0 size-4" src={{row.icon}} width="24" height="24" alt="grid">
+              {{row.name}}
+            </a>
+
+            <span>
+              <img src={{row.dropdown}} alt="">
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- End Content -->
+  </div>
+</div>

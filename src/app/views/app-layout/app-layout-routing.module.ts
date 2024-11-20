@@ -8,6 +8,14 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { InventoryTrackerComponent } from './inventory-tracker/inventory-tracker.component';
 import { MonthlyInventoryComponent } from './monthly-inventory/monthly-inventory.component';
 import { PurchasesComponent } from './purchases/purchases.component';
+import { AccountingComponent } from './accounting/accounting.component';
+import { ProcurementComponent } from './procurement/procurement.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { CustomersComponent } from './customers/customers.component';
+import { HumanResourcesComponent } from './human-resources/human-resources.component';
+import { ReportsComponent } from './reports/reports.component';
+import { QouteComponent } from './qoute/qoute.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 const routes: Routes = [
@@ -15,16 +23,20 @@ const routes: Routes = [
     path: 'app',
     component: AppLayoutComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent },
-      {path: 'products', component: ProductsComponent },
-      {path: 'product/:id', component: ProductDetailComponent },
-      {path: 'inventory-tracker', component: InventoryTrackerComponent },
-      {path: 'monthly-inventory/:id', component: MonthlyInventoryComponent },
-      {path: 'sales', component: SalesComponent },
-      {path: 'purchases', component: PurchasesComponent },
-    ]
-  }
-];
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'purchases', component: PurchasesComponent },
+      { path: 'sales', component: SalesComponent },
+      { path: 'inventory', component: InventoryTrackerComponent },
+      { path: 'accounting', component: AccountingComponent },
+      { path: 'procurement', component: ProcurementComponent },
+      { path: 'expenses', component: ExpensesComponent },
+      { path: 'customers', component: CustomersComponent },
+      { path: 'human-resources', component: HumanResourcesComponent },
+      { path: 'qoute', component: QouteComponent },
+      { path: 'invoice', component: InvoiceComponent },
+      { path: 'reports', component: ReportsComponent },
+    ]}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
