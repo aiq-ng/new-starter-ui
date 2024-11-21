@@ -16,16 +16,10 @@ export class InventoryTrackerComponent {
   isCreatePlan: boolean = false;
   products:any = []
   wareHouses:any;
-  isChooseWareHouse:boolean = false;
   pageLoading:any = false;
 
-  inventoryPlans:any =[];
-  available:any;
-  unavailable:any;
-  KIV:any;
 
-  itemType:any;
-  tableHeader = ['Name', 'Location', 'Inventory date', 'status', 'progress bar']
+  tableHeader = ['Name', 'BuyingPrice', 'Quantity', 'Threshold Value', 'Expiry Date', 'SKU', 'Availability']
 
 
   constructor(private messageService: MessageService,
@@ -44,44 +38,9 @@ export class InventoryTrackerComponent {
     this.pageLoading= true;
     return this.api.get('inventory/plans').subscribe(
       res =>{
-        this.inventoryPlans=res
-        this.inventoryPlans = this.inventoryPlans.data
 
-        console.log('inventoryPlans', this.inventoryPlans)
 
-        this.available = this.inventoryPlans?.filter((item:any) => item.status === "available");
-        this.unavailable = this.inventoryPlans?.filter((item:any) => item.status === "unavailable");
-        this.KIV = this.inventoryPlans?.filter((item:any) => item.status === "kiv");
 
-        console.log("Available:", this.available);
-        console.log("Unavailable:", this.unavailable);
-        console.log("KIV:", this.KIV);
-        this.pageLoading=false;
-
-        this.itemType =[
-          {
-            "id": "1",
-            "name": "Unavailable Items",
-            "product": this.unavailable,
-          },
-
-          {
-            "id": "2",
-            "name": "Deleteing Items",
-            "product": [],
-          },
-
-          {
-            "id": "3",
-            "name": "Available Items",
-            "product": this.available,
-          },
-          {
-            "id": "4",
-            "name": "KIV",
-            "product": this.KIV,
-          }
-        ]
       }
     )
 
@@ -106,9 +65,9 @@ export class InventoryTrackerComponent {
     this.getInventoryPlan()
   }
 
-  toggleChooseWareHouse(){
-    this.isChooseWareHouse =!this.isChooseWareHouse;
-  }
+  // toggleChooseWareHouse(){
+  //   this.isChooseWareHouse =!this.isChooseWareHouse;
+  // }
 
   route(page:string){
     this.router.navigateByUrl(page);

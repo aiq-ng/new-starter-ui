@@ -1,229 +1,149 @@
-
-<p-toast/>
-
-<div class="section px-4 lg:px-16">
+<div class="section relative">
   <app-sub-header
-    pageTitle="Sales"
-    action3Name="Add Sale"
-    icon='assets/icons/add.png'
-    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action3)="toggleAddSale()"></app-sub-header>
-
-<!-- search section -->
- <div class="mt-1">
-  <app-search-upload-header></app-search-upload-header>
- </div>
-
- <div class="div mt-8 h-2"></div>
-
- <!-- warehouse product section -->
- <ng-container >
-  <div class="warehouses-section h-full mb-4 bg-gray-100/65   flex flex-col">
+    pageTitle="All Items"
+    action1Name="Export"
+    icon='assets/icons/export.svg'
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" ></app-sub-header>
 
 
-    <!-- products -->
-     <div class=" gap-4 ">
-      <div class="flex flex-col w-full">
-        <div class="-m-1.5 overflow-x-auto">
-          <div class="p-1.5 min-w-full inline-block align-middle">
-            <div class="overflow-hidden w-full">
-              <table class="min-w-full border divide-y divide-gray-200">
-                <thead>
-                  <tr>
-                    <ng-container *ngFor="let menu of tableHeader">
-                      <th scope="col" class="px-6 py-6 text-start text-xs font-medium text-gray-800 uppercase">{{menu}}</th>
-                    </ng-container>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 bg-white">
-                  <ng-container *ngFor="let sale of sales?.data; let i = index">
-                    <!-- Main Row -->
-                    <tr class="hover:bg-gray-100" (click)="toggleExpand(i)">
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{sale.date}}</td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                        <div class="w-full flex gap-4 items-center">
-                          <div class="flex flex-col gap-1 text-gray-500">
-                            <span class="text-gray-500">{{sale.sales}} sale</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-6 py-4 text-sm text-gray-500">{{sale.revenue}}</td>
-                      <!-- <td class="px-6 py-4 text-center text-sm font-medium text-gray-500">{{sale.profit}}</td>
-                      <td class="px-6 py-4 text-center text-sm font-medium text-gray-500">{{sale.expenses}}</td>
-                      <td class="px-6 py-4 text-center text-sm font-medium text-gray-500">{{sale.customers}}</td>
-                      <td class="px-6 py-4 text-start whitespace-nowrap text-sm font-medium text-gray-500">
-                        <ng-container *ngFor="let product of sale.topSellers">
-                          {{product}}
-                        </ng-container>
-                      </td> -->
-                      <td class="px-6 py-4 text-start text-sm font-medium text-gray-500">{{sale.notes}}</td>
-                      <td class="px-6 py-4 text-start text-sm font-medium text-gray-500">
-                        <span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
-                          </svg>
+
+
+
+  <!-- Table Section -->
+<div class=" mt-12">
+  <!-- Card -->
+  <div class="flex flex-col">
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <!-- Header -->
+          <div class="px-6 py-6 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+
+          </div>
+          <!-- End Header -->
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="min-w-full table-auto divide-y max-w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <ng-container *ngFor="let row of tableHeader">
+                    <th scope="col" class="w-10 ps-2 py-3 text-start" *ngIf="row=='Name'">
+                      <label for="hs-at-with-checkboxes-main" class="flex">
+                        <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                        <span class="sr-only">Checkbox</span>
+                      </label>
+                    </th>
+                    <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+                      <div class="flex items-center gap-x-2">
+                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
+                          {{row}}
                         </span>
-                      </td>
-                    </tr>
-
-                    <!-- Expanded Sales Details Row -->
-                    <tr *ngIf="expandedSales.has(i)">
-                      <td colspan="8">
-                        <div class="w-full bg-white p-4">
-                          <table class="min-w-full border divide-y divide-gray-200">
-                            <thead>
-                              <tr>
-                                <ng-container *ngFor="let menu of saleDetailHeader">
-                                  <th scope="col" class="px-6 py-6 text-start text-xs font-medium text-gray-800 uppercase">{{menu}}</th>
-                                </ng-container>
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                                <ng-container *ngFor="let detail of sale.sale_details">
-                                  <tr>
-                                    <td class="px-6 py-4  text-sm text-gray-800">{{detail.time}}</td>
-                                    <td class="px-6 py-4  text-sm text-gray-800">{{detail.product}}</td>
-                                    <td class="px-6 py-4  text-sm text-gray-800">{{detail.quantity}}</td>
-                                    <td class="px-6 py-4  text-sm text-gray-800">{{detail.sale_amount}}</td>
-                                    <!-- <td class="px-6 py-4  text-sm text-start text-gray-500">{{detail.revenue | currency}}</td> -->
-                                  </tr>
-                                </ng-container>
-
-
-                              <!-- <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">Top Sellers</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                  <ng-container *ngFor="let product of sale.topSellers">
-                                    {{product}}<span *ngIf="!isLast(product, sale.topSellers)">, </span>
-                                  </ng-container>
-                                </td>
-                              </tr> -->
-
-                            </tbody>
-                          </table>
-                        </div>
-                      </td>
-                    </tr>
+                      </div>
+                    </th>
                   </ng-container>
-                </tbody>
-              </table>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="w-10 whitespace-nowrap">
+                    <div class="ps-2 py-4">
+                      <label for="hs-at-with-checkboxes-1" class="flex">
+                        <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                        <span class="sr-only">Checkbox</span>
+                      </label>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <img class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar">
+                      <div class="grow">
+                        <span class="block text-sm text-gray-500 truncate">King oil</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">₦25,000</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">43Packets</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">12Packets</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">11//12/2024</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">EPG-80912</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">in-stock</span>
+                      </div>
+                    </div>
+                  </td>
+                  <!-- Repeat for other cells -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-              <div *ngIf="sales?.data?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
-                <app-spinner></app-spinner>
-              </div>
+          <!-- End Table -->
 
-              <div *ngIf="sales?.data?.length<=0 && !pageLoading ">
-               <app-empty-list></app-empty-list>
+          <!-- Footer -->
+          <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+            <div>
+              <p class="text-sm text-gray-600">
+                <span class=" text-gray-500">12</span> results
+              </p>
+            </div>
+
+            <div>
+              <div class="inline-flex gap-x-2">
+                <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  Prev
+                </button>
+
+                <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                  Next
+                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
               </div>
             </div>
           </div>
+          <!-- End Footer -->
         </div>
       </div>
-
-      <!-- pagination -->
-      <div class="flex w-full justify-end mt-8">
-        <app-pagination [currentPage]="this.sales?.meta?.current_page" [lastPage]="this.sales?.meta?.last_page"></app-pagination>
-      </div>
-
-     </div>
-
-
-   </div>
- </ng-container>
-
-
-
- <!-- Create Sale Modal -->
-<div *ngIf="isAddSale" class="hs-overlay size-full fixed inset-0 bg-gray-900/45 z-[999] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="create-sale-modal-label">
-  <div class="hs-overlay-open:mt-0 hs-overlay-open:duration-500 mt-0 ease-out transition-all w-full lg:max-w-[700px] mx-auto">
-    <div class="h-full w-full flex flex-col mt-[60px] mb-[60px] bg-white border shadow-sm rounded-xl pointer-events-auto">
-      <div class="flex justify-between items-center py-3 px-4 border-b">
-        <h3 id="create-sale-modal-label" class="font-bold text-gray-800">
-          Add New Sale
-        </h3>
-        <button (click)="toggleAddSale()" type="button" class="size-8 inline-flex justify-center items-center gap-x-2 border border-transparent text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none" aria-label="Close">
-          <span class="sr-only">Close</span>
-          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18"/>
-            <path d="m6 6 12 12"/>
-          </svg>
-        </button>
-      </div>
-
-      <form [formGroup]="salesForm" (ngSubmit)="saveSale()" class="p-4 overflow-y-auto">
-          <!-- Sale Information -->
-          <div>
-            <div class="section-title font-bold">Sale Information</div>
-
-            <div class="grid grid-cols-2 gap-4 border-b py-2 pb-8">
-              <div>
-                <label class="block text-gray-600 text-sm font-medium">
-                  Sale Date
-                  <span class="text-red-500">*</span>
-                </label>
-                <input formControlName="date" [ngClass]="{'border-red-400': isSubmitted && f.saleDate.errors}" type="date" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Sale Date">
-              </div>
-
-              <!-- <div>
-                <label class="block text-gray-600 text-sm font-medium">
-                  Revenue
-                  <span class="text-red-500">*</span>
-                </label>
-                <input type="text" class="block w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Revenue">
-              </div> -->
-            </div>
-          </div>
-
-          <!-- Profit, Expenses, Customers Section -->
-          <div class="py-4">
-            <div class="section-title font-bold">Sale Details</div>
-            <div class="grid grid-cols-3 gap-4 py-2 pb-4">
-              <div>
-                <label class="block text-gray-600 text-sm font-medium">
-                  Product
-                </label>
-                <select formControlName="product" [ngClass]="{'border-red-400': isSubmitted && f.product.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
-                  <option value="">Select product</option>
-
-                  <ng-container *ngFor="let product of products">
-                    <option value={{product.id}}>{{product.name}}</option>
-                  </ng-container>
-                </select>
-                <!-- <input formControlName="product" [ngClass]="{'border-red-400': isSubmitted && f.product.errors}" type="text" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="product"> -->
-              </div>
-
-              <div>
-                <label class="block text-gray-600 text-sm font-medium">
-                  Quantity
-                </label>
-                <input formControlName="quantity" type="quantity" [ngClass]="{'border-red-400': isSubmitted && f.quantity.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Quantity">
-              </div>
-
-              <div>
-                <label class="block text-gray-600 text-sm font-medium">
-                  Price
-                </label>
-                <input formControlName="price" [ngClass]="{'border-red-400': isSubmitted && f.pricePerUnit.errors}"  type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Price">
-              </div>
-            </div>
-          </div>
-
-
-          <div class="flex w-full justify-between items-center gap-x-2 py-3 px-4 border-t">
-            <div>
-              <span class="text-gray-500 text-sm">Advanced settings</span>
-            </div>
-            <button type="submit" >
-              <p-button class="p-2 px-4 bg-primary text-white text-sm" label="Save" [loading]="loading" ></p-button>
-            </button>
-          </div>
-
-      </form>
-
-
     </div>
   </div>
+  <!-- End Card -->
+</div>
+<!-- End Table Section -->
+
 </div>
 
 
-</div>
+

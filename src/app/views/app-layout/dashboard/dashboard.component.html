@@ -109,7 +109,7 @@
           </div>
           <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
           <div class="info flex flex-col gap-1">
-            <span class="title ">Mr&Mrs Augustine Wedding</span>
+            <span class="title text-gray-800">Mr&Mrs Augustine Wedding</span>
             <span class="order text-gray-500 text-sm">
               Supply an exquisite spread is planned featuring tender chicken dishes, a generous serving of rice, and a variety of
             </span>
@@ -133,7 +133,7 @@
           </div>
           <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
           <div class="info flex flex-col gap-1">
-            <span class="title ">Mr&Mrs Augustine Wedding</span>
+            <span class="title text-gray-800">Mr&Mrs Augustine Wedding</span>
             <span class="order text-gray-500 text-sm">
               Supply an exquisite spread is planned featuring tender chicken dishes, a generous serving of rice, and a variety of
             </span>
@@ -167,12 +167,12 @@
 
 
   <!-- stocks section -->
-   <div class="stocke-section mt-8 w-full flex gap-16 ">
-    <div class="top-selling bg-white p-4 rounded-md basis-[65%]">
+   <div class="stocke-section mt-8 w-full flex gap-8 ">
+    <div class="top-selling bg-white p-4 rounded-md basis-[60%]">
       <div class="heading flex justify-between items-center">
         <div class="title text-lg capitalize text-gray-800">Top Selling</div>
 
-        <div class="text-primary flex gap-2 mt-8 cursor-pointer active:scale-95">
+        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
           See All
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
@@ -181,19 +181,144 @@
           </span>
         </div>
       </div>
+
+      <!-- table section -->
+       <!-- Table -->
+       <table class="w-full divide-y table-auto divide-gray-200 mt-4">
+        <thead class="">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-start ">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Name
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Sold Quantity
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start ">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Remaining Quantity
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start ">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Price
+              </p>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+      <!-- End Table -->
+
     </div>
 
-    <div class="out-of-stock bg-white p-4 rounded-md basis-[35%]">
-      <div class="heading">
+    <div class="out-of-stock bg-white p-4 rounded-md basis-[40%]">
+      <div class="heading heading flex justify-between items-center">
         <div class="title text-lg capitalize text-gray-800">Low Quality Stock</div>
 
-        <div class="text-primary flex gap-2 w-full justify-center items-center mt-8 cursor-pointer active:scale-95">
+        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
           See All
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
             </svg>
           </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/keg.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title  text-gray-600">Vegetable Oil</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 10 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
+        </div>
+
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/tomato.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title  text-gray-600">Ketchup</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 12 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
+        </div>
+
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/shawarma.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title capitalize text-gray-600">Shawarma wrap</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 15 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
         </div>
       </div>
     </div>
