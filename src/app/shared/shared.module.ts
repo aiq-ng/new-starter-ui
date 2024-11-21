@@ -38,7 +38,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SpinnerComponent,
     CreateNewInventoryPlanComponent,
     MobileMenuComponent,
-    SidebarComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

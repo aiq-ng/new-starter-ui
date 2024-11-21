@@ -46,12 +46,12 @@ export class DashboardComponent {
       const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
       this.data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
           datasets: [
 
               {
                   label: 'Cash Flow',
-                  data: [12, 51, 62, 33, 21, 62, 45],
+                  data: [800000, 450000, 900000, 1000000, 635000, 245000, 450000, 1200000, 780000, 540000, 1000000],
                   fill: false,
                   borderColor: documentStyle.getPropertyValue('--orange-500'),
                   tension: 0.4,
