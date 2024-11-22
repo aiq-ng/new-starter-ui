@@ -1,8 +1,14 @@
-<div class="section flex items-center flex-col">
+<div class="section flex items-center flex-col gap-8">
   <div >
-    <img src="assets/images/empty.png" alt="">
+    <img src="assets/icons/empty-table.jpeg" alt="empty image">
   </div>
 
-  <h1 class="text-center font-bold text-3xl text-gray-800">Nothing</h1>
-  <p class="text-center text-gray-500">Your collection list is empty</p>
+  <p class="text-center max-w-[450px] text-gray-500">{{message}}</p>
+
+  <button class="flex  gap-2 text-white bg-primary py-2 px-4 rounded-md">
+    {{buttonName}}
+    <span>
+      <img src={{buttonIcon}} class="w-6 h-6" alt="">
+    </span>
+  </button>
 </div>

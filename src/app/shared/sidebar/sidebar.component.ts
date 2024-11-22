@@ -72,20 +72,6 @@ export class SidebarComponent {
         ]
 
       },
-      // {
-      //   "name": "Procurement",
-      //   "icon": "assets/icons/procurement.png",
-      //   "route": "/app/procurement",
-      //   "dropdown": "assets/icons/arrow-right.png"
-
-      // },
-      // {
-      //   "name": "Expenses",
-      //   "icon": "assets/icons/procurement.png",
-      //   "route": "/app/expenses",
-      //   "dropdown": "assets/icons/arrow-right.png"
-
-      // },
       
       {
         "name": "Human Resources",

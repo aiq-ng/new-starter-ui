@@ -81,12 +81,16 @@ export class PurchasesComponent {
     }, 0);
   }
 
-  tableHeader = [
-    "purchaseDate",
-    "supplier",
-    "items",
-    "totalCost",
-    ""
+tableHeader = [
+    "Issue Date",
+    "Invoice",
+    "customer name",
+    "Due Date",
+    "Amount",
+    "Balance due",
+    "Days left",
+    "Status"
+    
   ]
 
   getTotalPrice(items: any[]): number {
