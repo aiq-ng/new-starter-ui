@@ -14,14 +14,15 @@ export class SalesComponent {
   isAddSale: boolean = false;
   saleDetailHeader = ['time', 'product', 'quantity', 'saleAmount']
   tableHeader = [
+    "Order Id",
+    "Order",
+    "Quantity",
+    "Customer Name",
     "Date",
-    "Sales",
-    "Revenue",
-    // "Profit",
-    // "Expenses",
-    // "Customers",
-    // "Top Sellers",
-    // "Notes"
+    "Order Type",
+    "Amount",
+    "Status"
+    
   ]
 
   sales:any;

@@ -5,7 +5,7 @@
     icon='assets/icons/export.svg'
     buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" ></app-sub-header>
 
-  <!-- Table Section -->
+      <!-- Table Section -->
 <div class=" mt-12">
   <!-- Card -->
   <div class="flex flex-col">
@@ -24,7 +24,7 @@
               <thead class="bg-gray-50">
                 <tr>
                   <ng-container *ngFor="let row of tableHeader">
-                    <th scope="col" class="w-10 ps-2 py-3 text-start" *ngIf="row=='Name'">
+                    <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='Order Id'">
                       <label for="hs-at-with-checkboxes-main" class="flex">
                         <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
                         <span class="sr-only">Checkbox</span>
@@ -54,49 +54,56 @@
                     <div class="flex items-center gap-x-3">
                       <img class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar">
                       <div class="grow">
-                        <span class="block text-sm text-gray-500 truncate">King oil</span>
+                        <span class="block text-sm text-gray-500 truncate">SLS-654</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">₦25,000</span>
+                        <span class="block text-sm  text-gray-500 truncate">Chiken Jumbo Pack</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">43Packets</span>
+                        <span class="block text-sm  text-gray-500 truncate">12</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">12Packets</span>
+                        <span class="block text-sm  text-gray-500 truncate">Mr.&Mrs Augustine</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">11//12/2024</span>
+                        <span class="block text-sm  text-gray-500 truncate">October 30, 2024</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">EPG-80912</span>
+                        <span class="block text-sm  text-gray-500 truncate">EPG-</span>
                       </div>
                     </div>
                   </td>
                   <td class="px-2 py-4">
                     <div class="flex items-center gap-x-3">
                       <div class="grow">
-                        <span class="block text-sm  text-gray-500 truncate">in-stock</span>
+                        <span class="block text-sm  text-gray-500 truncate">₦750,000.00</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4">
+                    <div class="flex items-center gap-x-3">
+                      <div class="grow">
+                        <span class="block text-sm  text-gray-500 truncate">Pending</span>
                       </div>
                     </div>
                   </td>

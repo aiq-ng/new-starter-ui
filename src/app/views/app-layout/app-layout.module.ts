@@ -23,6 +23,8 @@ import { HumanResourcesComponent } from './human-resources/human-resources.compo
 import { ReportsComponent } from './reports/reports.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { QouteComponent } from './qoute/qoute.component';
+import { OverviewComponent } from './overview/overview.component';
+import { VendorsComponent } from './vendors/vendors.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { QouteComponent } from './qoute/qoute.component';
     ReportsComponent,
     InvoiceComponent,
     QouteComponent,
+    OverviewComponent,
+    VendorsComponent,
 
   ],
   imports: [

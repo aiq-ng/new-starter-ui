@@ -16,6 +16,8 @@ import { HumanResourcesComponent } from './human-resources/human-resources.compo
 import { ReportsComponent } from './reports/reports.component';
 import { QouteComponent } from './qoute/qoute.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { OverviewComponent } from './overview/overview.component';
+import { VendorsComponent } from './vendors/vendors.component';
 
 
 const routes: Routes = [
@@ -28,8 +30,12 @@ const routes: Routes = [
       { path: 'purchases', component: PurchasesComponent },
       { path: 'sales', component: SalesComponent },
       { path: 'inventory', component: InventoryTrackerComponent },
-      { path: 'accounting', component: AccountingComponent },
-      { path: 'procurement', component: ProcurementComponent },
+      { path: 'accounting', component: AccountingComponent, children: [
+        {path: 'overview', component: OverviewComponent},
+        {path: 'sales-order', component: SalesComponent},
+        { path: 'prochurement', component: ProcurementComponent },
+        { path: 'vendors', component: VendorsComponent },
+      ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'human-resources', component: HumanResourcesComponent },

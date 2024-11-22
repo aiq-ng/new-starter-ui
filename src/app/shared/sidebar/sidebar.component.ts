@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
   dropDown:boolean = false;
   showMobileMenu:boolean = false;
+  subMenu:boolean = false;
 
     menu = [
       {
@@ -26,17 +27,11 @@ export class SidebarComponent {
 
       },
       {
-        "name": "Invoice",
-        "icon": "assets/icons/invoice.png",
-        "route": "/app/invoice",
+        "name": "Purchase Order",
+        "icon": "assets/icons/sales.png",
+        "route": "/app/purchases",
         "dropdown": ""
 
-      },
-      {
-        "name": "Qoute",
-        "icon": "assets/icons/qoute.png",
-        "route": "/app/qoute",
-        "dropdown": ""
       },
       {
         "name": "Sales Order",
@@ -46,33 +41,52 @@ export class SidebarComponent {
 
       },
       {
-        "name": "Accounting",
-        "icon": "assets/icons/accounting.png",
-        "route": "/app/accounting",
-        "dropdown": "assets/icons/arrow-right.png"
-
-      },
-      {
-        "name": "Procurement",
-        "icon": "assets/icons/procurement.png",
-        "route": "/app/procurement",
-        "dropdown": "assets/icons/arrow-right.png"
-
-      },
-      {
-        "name": "Expenses",
-        "icon": "assets/icons/procurement.png",
-        "route": "/app/expenses",
-        "dropdown": "assets/icons/arrow-right.png"
-
-      },
-      {
         "name": "Customers",
         "icon": "assets/icons/people.png",
         "route": "/app/customers",
         "dropdown": ""
 
       },
+      {
+        "name": "Accounting",
+        "icon": "assets/icons/accounting.png",
+        "route": "/app/accounting/overview",
+        "dropdown": "assets/icons/arrow-right.png",
+        "submenu": [
+          {
+            "name": "Overview",
+            "route": "/app/accounting/overview",
+          },
+          {
+            "name": "Sales Order",
+            "route": "/app/accounting/sales-order",
+          },
+          {
+            "name": "Prochurements",
+            "route": "/app/accounting/prochurement",
+          },
+          {
+            "name": "Vendors",
+            "route": "/app/accounting/vendors",
+          },
+        ]
+
+      },
+      // {
+      //   "name": "Procurement",
+      //   "icon": "assets/icons/procurement.png",
+      //   "route": "/app/procurement",
+      //   "dropdown": "assets/icons/arrow-right.png"
+
+      // },
+      // {
+      //   "name": "Expenses",
+      //   "icon": "assets/icons/procurement.png",
+      //   "route": "/app/expenses",
+      //   "dropdown": "assets/icons/arrow-right.png"
+
+      // },
+      
       {
         "name": "Human Resources",
         "icon": "assets/icons/people.png",
@@ -96,5 +110,9 @@ export class SidebarComponent {
 
   route(page:string){
     this.router.navigate([page]);
+  }
+
+  toggleSubmenu(){
+    this.subMenu =!this.subMenu;
   }
 }
