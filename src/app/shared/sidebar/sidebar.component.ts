@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
   dropDown:boolean = false;
   showMobileMenu:boolean = false;
-  subMenu:boolean = false;
+  subMenu:string = '';
 
     menu = [
       {
@@ -19,18 +19,30 @@ export class SidebarComponent {
         "dropdown": ""
 
       },
+   
       {
-        "name": "Inventory",
-        "icon": "assets/icons/inventory.png",
-        "route": "/app/inventory",
-        "dropdown": ""
-
-      },
-      {
-        "name": "Purchase Order",
+        "name": "Prochurement",
         "icon": "assets/icons/sales.png",
         "route": "/app/purchases",
-        "dropdown": ""
+        "dropdown": "assets/icons/arrow-right.png",
+        "submenu": [
+          {
+            "name": "Overview",
+            "route": "/app/prochurement/overview",
+          },
+          {
+            "name": "Inventory",
+            "route": "/app/prochurement/inventory",
+          },
+          {
+            "name": "Purchase Order",
+            "route": "/app/prochurement/purchases",
+          },
+          {
+            "name": "Vendors",
+            "route": "/app/vendors",
+          },
+        ]
 
       },
       {
@@ -80,13 +92,13 @@ export class SidebarComponent {
         "dropdown": ""
 
       },
-      {
-        "name": "Reports",
-        "icon": "assets/icons/report.png",
-        "route": "/app/reports",
-        "dropdown": "assets/icons/arrow-right.png"
+      // {
+      //   "name": "Reports",
+      //   "icon": "assets/icons/report.png",
+      //   "route": "/app/reports",
+      //   "dropdown": "assets/icons/arrow-right.png"
 
-      }
+      // }
     ]
 
   constructor(private router: Router){}
@@ -98,7 +110,8 @@ export class SidebarComponent {
     this.router.navigate([page]);
   }
 
-  toggleSubmenu(){
-    this.subMenu =!this.subMenu;
+  toggleSubmenu(menu:string){
+    this.subMenu = menu;
+    this.dropDown = !this.dropDown;
   }
 }

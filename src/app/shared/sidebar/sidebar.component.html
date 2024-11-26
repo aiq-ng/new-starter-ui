@@ -30,12 +30,12 @@
                 <img class="shrink-0 size-4" src={{row.icon}} width="24" height="24" alt="grid">
                 {{row.name}}
               </a>
-              <span (click)="toggleSubmenu()">
+              <span (click)="toggleSubmenu(row.name)">
                 <img src={{row.dropdown}} alt="">
               </span>
             </div>
 
-            <div *ngIf="subMenu">
+            <div *ngIf="subMenu==row.name && dropDown">
               <li *ngIf="row.submenu">
                 <ng-container *ngFor="let menu of row.submenu">
                   <nav class="flex pl-10 cursor-pointer items-center gap-x-3.5 py-4 px-2.5 hover:text-primary text-sm text-gray-500 " (click)="route(menu.route)">{{menu.name}}</nav>
