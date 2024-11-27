@@ -8,12 +8,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
-import { ProchurementOverviewComponent } from './views/prochurement-overview/prochurement-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProchurementOverviewComponent
   ],
   imports: [
     BrowserModule,

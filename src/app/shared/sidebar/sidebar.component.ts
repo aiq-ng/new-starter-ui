@@ -40,7 +40,7 @@ export class SidebarComponent {
           },
           {
             "name": "Vendors",
-            "route": "/app/vendors",
+            "route": "/app/prochurement/vendors",
           },
         ]
 

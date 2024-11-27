@@ -19,8 +19,9 @@ interface Warehouse {
   providers: [MessageService]  // for PrimeNG messages
 })
 export class CreateProductComponent {
-  @Input() wareHouses!: any;
-  @Input() vendors!: any;
+  @Input() departments!: any;
+  @Input() categories!: any;
+  @Input() manufacturers!: any;
   @Input() units!: any;
   @Input() loading:boolean = false;
   @Output() togleModal = new EventEmitter<string>();
@@ -59,8 +60,6 @@ export class CreateProductComponent {
       unit: ['', Validators.required],
     });
 
-    this.getWarehouses()
-    this.getVendors()
     this.getUnits()
   }
 
@@ -74,32 +73,13 @@ export class CreateProductComponent {
   }
 
 
-  getWarehouses(){
-    this.api.get('warehouses').subscribe(
-      res=>{
-        console.log('getting warhouses');
-        this.wareHouses = res
-        this.wareHouses = this.wareHouses.data
-        console.log(this.wareHouses)
-      }
-    )
-  }
 
-  getVendors(){
-    this.api.get('vendors').subscribe(
-      res=>{
-        this.vendors = res
-        console.log(this.vendors)
-        // this.vendors = this.wareHouses.data
-      }
-    )
-  }
+
 
   getUnits(){
     this.api.get('units').subscribe(
       res=>{
         this.units = res
-        console.log(this.vendors)
       }
     )
   }

@@ -1,0 +1,39 @@
+<div class="section relative">
+    <app-sub-header
+      [pageTitle]="item"
+      action1Name="Add new item"
+      icon='assets/icons/add.png'
+      buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-new-item')"></app-sub-header>
+
+      
+
+  <!-- Table Section -->
+  <div class=" mt-12 bg-white py-4 px-4">
+    <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
+
+    <div class="grid grid-cols-2 w-full border-t">
+        <div class="div1 ">
+            <h6 class="text-base text-gray-700 mt-8">Primary Details</h6>
+
+            <div class="details">
+                <div class="flex justify-between">
+                    <p>Item name</p>
+                    <p>Kings of oil</p>
+                </div>
+            </div>
+    
+        </div>
+        <div class="div2 "></div>
+    </div>
+
+
+
+
+  
+  </div>
+  <!-- End Table Section -->
+  
+  </div>
+
+
+

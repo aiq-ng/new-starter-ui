@@ -11,6 +11,7 @@ export class SubHeaderComponent {
  @Input() action2Name!:string;
  @Input() action3Name!:string;
  @Input() buttonStyle!:string;
+ @Input() monthlyFilter:boolean = false;
  @Input() icon!:string;
  @Output() action1= new EventEmitter()
  @Output() action2= new EventEmitter()

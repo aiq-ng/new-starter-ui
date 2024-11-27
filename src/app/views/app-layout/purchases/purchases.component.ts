@@ -27,6 +27,7 @@ export class PurchasesComponent {
     "supplier": "",
   };
 
+  tabMenu:any = ['All', 'Sent', 'Recieve', 'paid', 'Overdue']
   expandedPurchases: Set<number> = new Set();
 
   purchaseItems: any[] = [

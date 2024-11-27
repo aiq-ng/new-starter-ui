@@ -8,8 +8,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { AppLayoutComponent } from './app-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { InventoryTrackerComponent } from './inventory-tracker/inventory-tracker.component';
 import { MonthlyInventoryComponent } from './monthly-inventory/monthly-inventory.component';
 import { SalesComponent } from './sales/sales.component';
@@ -25,14 +23,15 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { QouteComponent } from './qoute/qoute.component';
 import { OverviewComponent } from './overview/overview.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { ProchurementOverviewComponent } from './prochurement-overview/prochurement-overview.component';
+import { CreateNewItemPageComponent } from './inventory-tracker/create-new-item-page/create-new-item-page.component';
+import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail.component';
 
 
 @NgModule({
   declarations: [
     AppLayoutComponent,
     DashboardComponent,
-    ProductsComponent,
-    ProductDetailComponent,
     InventoryTrackerComponent,
     MonthlyInventoryComponent,
     SalesComponent,
@@ -47,6 +46,9 @@ import { VendorsComponent } from './vendors/vendors.component';
     QouteComponent,
     OverviewComponent,
     VendorsComponent,
+    ProchurementOverviewComponent,
+    CreateNewItemPageComponent,
+    ItemDetailComponent,
 
   ],
   imports: [

@@ -31,6 +31,7 @@ export class VendorsComponent {
   loading: boolean = false;
   products:any;
   pageLoading: boolean = false;
+  vendors: any[] = [];
 
 
   constructor(private salesService: SalesService,

@@ -18,6 +18,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CreateNewInventoryPlanComponent } from './create-new-inventory-plan/create-new-inventory-plan.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { TabMenuComponent } from './tab-menu/tab-menu.component';
+import { TableComponent } from './table/table.component';
 
 
 
@@ -38,7 +40,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SpinnerComponent,
     CreateNewInventoryPlanComponent,
     MobileMenuComponent,
-    SidebarComponent
+    SidebarComponent,
+    TabMenuComponent,
+    TableComponent
+
   ],
   imports: [
     CommonModule,
@@ -61,6 +66,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SpinnerComponent,
     CreateNewInventoryPlanComponent,
     SidebarComponent,
+    TabMenuComponent,
+    TableComponent
 
   ]
 })
