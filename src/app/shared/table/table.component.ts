@@ -24,6 +24,11 @@ export class TableComponent {
     return Object.keys(obj  )
   }
 
+  onClick(){
+    this.viewAction.emit();
+    console.log('view action triggered')
+  }
+
   route(page:string){
     this.router.navigate(['/app/' + page])
   }

@@ -32,9 +32,9 @@
                   </ng-container>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-200">
-                  <tr *ngFor="let data of tableData">
-                     <ng-container (click)="route('prochurement/items/1')">
+              <tbody  class="divide-y divide-gray-200">
+                  <tr (click)="onClick()" *ngFor="let data of tableData">
+                     <ng-container >
                       <td class="w-10 whitespace-nowrap">
                         <div class="ps-2 py-4">
                             <label for="hs-at-with-checkboxes-1" class="flex">
@@ -45,7 +45,7 @@
                         </td>
                         <td *ngFor="let key of objectKeys(data)"   class="px-2 py-4">
                         <div *ngIf="key=='Name'" class="flex items-center gap-x-3">
-                            <img class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar">
+                            <img loading="lazy" class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar">
                             <div class="grow">
                             <span class="block text-sm text-gray-500 truncate">{{data[key]}}</span>
                             </div>

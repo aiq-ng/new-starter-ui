@@ -11,19 +11,58 @@
   <div class=" mt-12 bg-white py-4 px-4">
     <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
 
-    <div class="grid grid-cols-2 w-full border-t">
-        <div class="div1 ">
+    <div class="grid grid-cols-2 w-full max-w-[1000px] border-t">
+        <div class="div1 w-full ">
             <h6 class="text-base text-gray-700 mt-8">Primary Details</h6>
 
-            <div class="details">
-                <div class="flex justify-between">
-                    <p>Item name</p>
-                    <p>Kings of oil</p>
+            <div class="details flex flex-col gap-8 mt-6 w-full ">
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Item name</p>
+                    <p class="text-gray-800 ">Kings of oil</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Item ID</p>
+                    <p class="text-gray-800 ">45658GH</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Item Category</p>
+                    <p class="text-gray-800 ">Cooking oil</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Department</p>
+                    <p class="text-gray-800 ">Kitchen</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Expiery Date</p>
+                    <p class="text-gray-800 ">11/12/24</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Threshold</p>
+                    <p class="text-gray-800 ">12</p>
                 </div>
             </div>
     
         </div>
-        <div class="div2 "></div>
+        <div class="div2  flex flex-col justify-between items-center max-w-[300px]">
+
+            <div  class="item-image w-[150px] h-100px border mt-16 border-dashed p-4">
+                <img loading="lazy" class="w-full h-full object-cover" src="/assets/images/keg.png" alt="">
+            </div>
+
+
+            <div class="details flex flex-col gap-8 mt-6 w-full ">
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Opening Stock</p>
+                    <p class="text-gray-800 ">40</p>
+                </div>
+                <div class="flex justify-between max-w-[350px]">
+                    <p class="text-gray-600 text-sm">Remaining Stock</p>
+                    <p class="text-gray-800 ">60</p>
+                </div>
+               
+                
+            </div>
+        </div>
     </div>
 
 

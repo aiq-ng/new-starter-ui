@@ -15,7 +15,7 @@
 <div class=" mt-12">
   <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
 
-  <app-table [tableHeader]="tableHeader" [tableData]="inventoryData"></app-table>
+  <app-table [tableHeader]="tableHeader" [tableData]="inventoryData" (viewAction)="route('app/prochurement/items/1')"></app-table>
 </div>
 <!-- End Table Section -->
 
