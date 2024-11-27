@@ -210,8 +210,58 @@ export class PurchaseService {
 
   constructor() { }
 
-  getPurchases(){
-    return this.purchases
-  }
+  getPurchases() {
+    return [
+      {
+        issueDate: '2024-10-01',
+        invoice: 'INV-1001',
+        customerName: 'John Doe',
+        dueDate: '2024-10-15',
+        amount: '$1,200.00',
+        balanceDue: '$200.00',
+        daysLeft: 4,
+        status: 'Pending',
+      },
+      {
+        issueDate: '2024-09-20',
+        invoice: 'INV-1002',
+        customerName: 'Jane Smith',
+        dueDate: '2024-10-05',
+        amount: '$900.00',
+        balanceDue: '$0.00',
+        daysLeft: -6,
+        status: 'Paid',
+      },
+      {
+        issueDate: '2024-09-10',
+        invoice: 'INV-1003',
+        customerName: 'Chris Evans',
+        dueDate: '2024-09-30',
+        amount: '$600.00',
+        balanceDue: '$600.00',
+        daysLeft: -15,
+        status: 'Overdue',
+      },
+      {
+        issueDate: '2024-10-05',
+        invoice: 'INV-1004',
+        customerName: 'Emma Watson',
+        dueDate: '2024-10-20',
+        amount: '$2,500.00',
+        balanceDue: '$2,500.00',
+        daysLeft: 9,
+        status: 'Pending',
+      },
+      {
+        issueDate: '2024-10-07',
+        invoice: 'INV-1005',
+        customerName: 'Robert Brown',
+        dueDate: '2024-10-25',
+        amount: '$3,000.00',
+        balanceDue: '$3,000.00',
+        daysLeft: 14,
+        status: 'Pending',
+      },
+    ]}
 
 }

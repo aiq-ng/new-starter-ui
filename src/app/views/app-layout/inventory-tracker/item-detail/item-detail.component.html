@@ -1,13 +1,15 @@
 <div class="section relative">
     <app-sub-header
       [pageTitle]="item"
-      action1Name="Add new item"
+      action1Name="Adjust Stock"
+      action2Name="Edit Stock"
       icon='assets/icons/add.png'
-      buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-new-item')"></app-sub-header>
+      buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" 
+      buttonStyle2="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-primary bg-white text-primary shadow-sm hover:bg-primary/45"
+      (action1)="adjustStockToggle()" 
+      (action2)="editItemToggle()"></app-sub-header>
 
       
-
-  <!-- Table Section -->
   <div class=" mt-12 bg-white py-4 px-4">
     <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
 
@@ -64,10 +66,6 @@
             </div>
         </div>
     </div>
-
-
-
-
   
   </div>
   <!-- End Table Section -->
@@ -75,4 +73,78 @@
   </div>
 
 
+  <p-sidebar [(visible)]="adjustStock" [style]="{'width': '600px'}" position="right">
+    <div class="h-full p-6">
+        <div class="page-title text-2xl text-gray-800">
+            Adjust Stock - Kings Oil
+        </div>
+    
+        <form  class="mt-6 flex flex-col gap-2 h-full">
+            <div class="flex flex-col gap-3">
+                <div for="current-quantity " class="text-gray-500 font-normal">Quantity Adjustment</div>
+                <div class="py-4 border px-4 rounded-lg flex justify-between items-center">
+                        <span >Current Quantity</span>
+                        <span class="text-gray-900 text-lg font-bold">50 <span class="text-primary text-sm font-normal">pcs</span></span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <span class="text-gray-800 font-medium">Adjustment Type *</span>
+                <div class=" px-4 py-3 flex items-center gap-4">
+                    <label (click)="selectAdjustmentType('plus')" class="flex items-center cursor-pointer">
+                        <input type="radio" name="options" class="hidden peer" />
+                        <div class="w-4 h-4 border border-gray-400 rounded-full peer-checked:bg-red-500"></div>
+                        <span class="ml-2 text-gray-700">Add Item</span>
+                      </label>
+                    
+                      <!-- Radio Button 2 -->
+                      <label (click)="selectAdjustmentType('minus')"  class="flex items-center cursor-pointer">
+                        <input type="radio" name="options" class="hidden peer" />
+                        <div class="w-4 h-4 border border-gray-400 rounded-full peer-checked:bg-red-500"></div>
+                        <span class="ml-2 text-gray-700">Subtract Item</span>
+                      </label>
+                  </div>
+            </div>
+
+            <div class="py-4 border px-4 rounded-lg flex justify-between items-center">
+                <span >Current Quantity</span>
+                <input type="number" placeholder="Input number  " class="outline-none placeholder:font-light">
+            </div>
+
+            <div *ngIf="adjustmentType=='plus'" class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
+                <label for="">Select Vendor</label>
+                <select class="w-full px-4 border py-3 rounded-lg  outline-none" name="" id="">
+                    <option value="">Select vendor</option>
+                </select>
+            </div>
+
+            <div *ngIf="adjustmentType=='minus'" class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
+                <label for="">Collected by</label>
+                <select class="w-full px-4 border py-3 rounded-lg  outline-none" name="" id="">
+                    <option value="">Select person</option>
+                </select>
+            </div>
+
+            <div class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
+                <label for="">Department</label>
+                <select class="w-full px-4 border py-3 rounded-lg  outline-none" name="" id="">
+                    <option value="">Select Department</option>
+                </select>
+            </div>
+
+            <div class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
+                <label for="hs-about-contacts-1" >Descriptions</label>
+                <textarea id="hs-about-contacts-1" name="hs-about-contacts-1" rows="4" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"></textarea>
+            </div>
+
+            <div class="flex  items-center gap-2 mt-6">
+                <p-button class="px-4 py-2 border text-gray-500 rounded-md" label="Cancel"></p-button>
+                <button type="submit">
+                    <p-button class="px-4 py-2 bg-primary text-white border border-primary rounded-md" label="Save"></p-button>
+                </button>
+            </div>
+        
+        </form>
+    </div>
+</p-sidebar>
 

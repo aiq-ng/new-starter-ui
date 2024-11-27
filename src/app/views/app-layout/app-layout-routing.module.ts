@@ -19,6 +19,8 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { ProchurementOverviewComponent } from './prochurement-overview/prochurement-overview.component';
 import { CreateNewItemPageComponent } from './inventory-tracker/create-new-item-page/create-new-item-page.component';
 import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail.component';
+import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.component';
+import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
         { path: 'purchases', component: PurchasesComponent },
         { path: 'inventory', component: InventoryTrackerComponent },
         { path: 'create-new-item', component: CreateNewItemPageComponent },
+        { path: 'create-new-purchase', component: CreateNewPurchaseOrderComponent },
+        { path: 'edit-item/:id', component: EditItemComponent },
         { path: 'items/:id', component: ItemDetailComponent },
         { path: 'vendors', component: VendorsComponent },
       ] },

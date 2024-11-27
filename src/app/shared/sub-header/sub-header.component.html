@@ -37,6 +37,14 @@
 
     </div>
 
+    <div *ngIf="action2Name" (click)="action2Click()" class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+      <span class={{buttonStyle2}}>
+        {{action2Name}}
+        <img src='{{icon2}}' class="h-5" alt="">
+      </span>
+
+    </div>
+
     <div>
 
     </div>

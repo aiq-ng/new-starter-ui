@@ -1,0 +1,78 @@
+<div class="heading w-full ">
+    <h3 id="hs-bg-gray-on-hover-cards-label" class="font-bold text-gray-800">
+        Create Purchase Order
+      </h3>
+</div>
+
+
+<form >
+    <div>
+        <div class="flex items-center w-full max-w-[550px]">
+            <label for="vendor" class="w-full text-sm text-primary max-w-[400px]">Customer Name*</label>
+            <div class="w-full flex  gap-2  rounded-large mt-6">
+                <select class="w-full min-w-[300px] text-sm  px-4 border py-2 bg-gray-200 outline-none" name="" id="">
+                    <option value="">Select Customer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="flex items-center w-full max-w-[550px]">
+            <label for="vendor" class="w-full  text-sm max-w-[400px]">Branch</label>
+            <div class="w-full flex  gap-2  rounded-large mt-6">
+                <select class="w-full min-w-[300px] px-4 text-sm border py-2  bg-gray-200 outline-none" name="" id="">
+                    <option value="">Select branch</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider w-full my-6 border-b"></div>
+
+    <div>
+
+        <div class="flex items-start w-full max-w-[550px]">
+            <label for="vendor" class="w-full text-sm max-w-[400px]">Expected Delivery Date</label>
+            <div class="w-full flex flex-col rounded-large">
+                <label class="text-sm font-medium" for="startDate">Starting Date</label>
+                <div class="flex flex-col gap-4">
+                    <input id="startDate" type="date" class="w-full min-w-[300px] px-4 text-sm border py-2  bg-gray-200 outline-none" name="" id="" placeholder="Starting date">
+                
+                    <div>
+                        <label class="text-sm font-medium" for="startDate">Payment Terms</label>
+
+                        <select class="w-full min-w-[300px] px-4 text-sm border py-2  bg-gray-200 outline-none" name="" id="">
+                            <option value="">Due on reciept</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider w-full my-6 border-b"></div>
+
+    <div>
+        <div class="flex w-full max-w-[550px]">
+            <label for="vendor" class="w-full text-sm max-w-[400px]">
+                <div class="w-full flex items-center gap-4 ">
+                    Subject
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                        </svg>
+                    </span>
+                </div>
+            </label>
+            <textarea id="hs-about-contacts-1" name="hs-about-contacts-1" rows="4" class="py-3 px-4 block w-full min-w-[300px] bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"></textarea>
+        </div>
+    </div>
+
+    <div class="divider w-full my-6 border-b"></div>
+    
+    <div>
+        <div class="title py-3 w-full bg-gray-200 font-medium px-4">Item Table</div>
+    </div>
+
+
+</form>

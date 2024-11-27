@@ -1,17 +1,20 @@
 <div class="section relative">
   <app-sub-header
     pageTitle="Purchase Order list"
-    action1Name="Export"
-    icon='assets/icons/export.svg'
-    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" ></app-sub-header>
+    action1Name="New Purchase Order"
+    icon='assets/icons/add.png'
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" 
+    (action1)="route('/app/prochurement/create-new-purchase')"></app-sub-header>
 
      <!-- Table Section -->
       <div class=" mt-12">
         <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
 
-        <app-table [tableHeader]="tableHeader" [tableData]="purchases"></app-table>
+        <app-table [tableHeader]="tableHeader" [tableData]="purchasesData"></app-table>
       </div>
       <!-- End Table Section -->
+
+      
 
 </div>
 

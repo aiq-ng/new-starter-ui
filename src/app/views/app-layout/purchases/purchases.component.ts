@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { PurchaseService } from '../../../services/purchase.service';
 import { HttpServiceService } from '../../../services/http-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-purchases',
@@ -19,7 +20,7 @@ export class PurchasesComponent {
   pageLoading:boolean = false;
   totalPrice: number = 0;
   invalidFields!: string[];
-  purchases:any = []
+  purchasesData:any = []
   products:any = [];
   units:any;
   purchaseForm:any = {
@@ -37,6 +38,7 @@ export class PurchasesComponent {
   suppliers:any;
 
   constructor(private fb:FormBuilder,
+              private router:Router,
               private messageService: MessageService,
               private purchaseService: PurchaseService,
               private api:HttpServiceService){}
@@ -62,13 +64,15 @@ export class PurchasesComponent {
   }
   getPurchases(){
     this.pageLoading=true;
-    this.api.get('purchases?page&page_size=10').subscribe(
-      res=>{
-        this.purchases = res;
-        this.purchases = this.purchases;
-        this.pageLoading=false;
-      }
-    )
+    // this.api.get('purchases?page&page_size=10').subscribe(
+    //   res=>{
+    //     this.purchasesData = res;
+    //     this.purchasesData = this.purchasesData;
+    //     this.pageLoading=false;
+    //   }
+    // )
+
+    this.purchasesData=this.purchaseService.getPurchases()
   }
 
   addItem() {
@@ -108,6 +112,10 @@ tableHeader = [
 
   get f(){
     return this.purchaseForm.controls;
+  }
+
+  route(page:string){
+    this.router.navigate([page]);
   }
 
   validateForm(){
