@@ -22,6 +22,7 @@ import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail
 import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.component';
 import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
+import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.component';
 
 
 const routes: Routes = [
@@ -38,13 +39,14 @@ const routes: Routes = [
       { path: 'prochurement', component: ProcurementComponent, children: [
         {path: 'overview', component: ProchurementOverviewComponent},
         { path: 'purchases', component: PurchasesComponent },
-        { path: 'purchase-order-preview', component: PurchaseOrderPreviewComponent},
+        { path: 'purchase-order-preview/:id', component: PurchaseOrderPreviewComponent},
         { path: 'inventory', component: InventoryTrackerComponent },
         { path: 'create-new-item', component: CreateNewItemPageComponent },
         { path: 'create-new-purchase', component: CreateNewPurchaseOrderComponent },
         { path: 'edit-item/:id', component: EditItemComponent },
         { path: 'items/:id', component: ItemDetailComponent },
         { path: 'vendors', component: VendorsComponent },
+        { path: 'create-vendor', component: CreateVendorComponent },
       ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
