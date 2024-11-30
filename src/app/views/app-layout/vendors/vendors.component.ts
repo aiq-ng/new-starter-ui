@@ -142,7 +142,8 @@ export class VendorsComponent {
   }
 
   route(page:string){
-    this.router.navigate([])
+    console.log('route clicked')
+    this.router.navigateByUrl(page)
   }
 
 
