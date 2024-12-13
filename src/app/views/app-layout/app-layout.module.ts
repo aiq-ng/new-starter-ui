@@ -29,6 +29,8 @@ import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail
 import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.component';
 import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
+import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
+import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-previe
     EditItemComponent,
     CreateNewPurchaseOrderComponent,
     PurchaseOrderPreviewComponent,
+    CustomersOverviewComponent,
+    CustomersCreateComponent,
 
   ],
   imports: [

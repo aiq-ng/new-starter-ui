@@ -20,6 +20,8 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TabMenuComponent } from './tab-menu/tab-menu.component';
 import { TableComponent } from './table/table.component';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -48,7 +50,9 @@ import { TableComponent } from './table/table.component';
   imports: [
     CommonModule,
     PrimengModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    ToastModule,
+    ButtonModule
 
   ],
   exports: [
