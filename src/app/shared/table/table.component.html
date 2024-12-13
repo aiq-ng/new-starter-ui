@@ -2,11 +2,11 @@
 <div class="flex flex-col">
     <div class="-m-1.5 overflow-x-auto">
       <div class="p-1.5 min-w-full inline-block align-middle">
-    
+
         <div class="bg-white border border-gray-200  shadow-sm overflow-hidden">
           <!-- Header -->
           <div class="px-6 py-6 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
-
+            <div class="title">{{title}}</div>
           </div>
           <!-- End Header -->
 
@@ -16,12 +16,13 @@
               <thead class="bg-gray-50">
                 <tr>
                   <ng-container *ngFor="let row of tableHeader">
-                    <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='Name' || row=='Issue Date'">
+                    <th scope="col" class="w-10 ps-2 px-2 py-4 text-start" *ngIf="row=='Name' || row=='Issue Date'">
                       <label for="hs-at-with-checkboxes-main" class="flex">
                         <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
                         <span class="sr-only">Checkbox</span>
                       </label>
                     </th>
+
                     <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
                       <div class="flex items-center gap-x-2">
                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
@@ -57,7 +58,7 @@
                       </div>
                         </td>
                      </ng-container>
-                          
+
                 </tr>
 
                 <!-- <tr *ngFor="let item of tableData">
