@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './prochurement-overview.component.scss'
 })
 export class ProchurementOverviewComponent {
+  calender:any;
+
+
+  toggleCalender(){
+    this.calender = !this.calender;
+  }
 
 }

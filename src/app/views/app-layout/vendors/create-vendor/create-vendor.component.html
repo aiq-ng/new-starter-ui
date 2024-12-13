@@ -79,9 +79,9 @@
       </div>
     </div>
 
-    <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
+    <app-tab-menu [navigation]="tabMenu" (tabAction)="toggleTab('')"></app-tab-menu>
 
-    <div class="other flex flex-col gap-4 ">
+    <div *ngIf="tab=='other'" class="other flex flex-col gap-4 ">
 
       <div class="flex items-center gap-4">
         <label class="basis-[30%] text-sm" for="name">Payment Terms</label>
@@ -132,7 +132,7 @@
     </div>
 
 
-    <div class="address">
+    <div *ngIf="tab=='address'" class="address">
 
       <span class="text-xs text-primary">Add additional data</span>
 
