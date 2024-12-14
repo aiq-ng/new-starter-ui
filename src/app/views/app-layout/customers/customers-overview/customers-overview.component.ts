@@ -64,7 +64,31 @@ export class CustomersOverviewComponent {
       type: 'Business',
       currency: 'NGN',
       paymentTerms: 'Net 60',
-      transactions: [],
+      transactions: [
+        {
+          date: '02 Nov 2024 03:35 PM',
+          description: 'Invoice Added',
+          details: 'Invoice INV-000001 emailed by Susan Daniel',
+          currency: 'NGN',
+          receivables: '₦500,000',
+          paid: '₦300,000'
+        },
+         {
+          date: '02 Nov 2024 03:35 PM',
+          description: 'Invoice Added',
+          details: 'Invoice INV-000001 emailed by Susan Daniel',
+          currency: 'NGN',
+          receivables: '₦500,000',
+          paid: '₦300,000'
+        }, {
+          date: '02 Nov 2024 03:35 PM',
+          description: 'Invoice Added',
+          details: 'Invoice INV-000001 emailed by Susan Daniel',
+          currency: 'NGN',
+          receivables: '₦500,000',
+          paid: '₦300,000'
+        },
+      ],
     },
       {
       name: 'Jules Book Launch',

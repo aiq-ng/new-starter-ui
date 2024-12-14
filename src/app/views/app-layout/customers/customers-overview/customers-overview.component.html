@@ -42,12 +42,12 @@
       </div>
   
       <!-- Customer Overview -->
-      <div class="mt-4 border-b border-red-300">
+      <div class="mt-4 border-b border-red-100">
         <h2 class="font-medium text-lg">Overview</h2>
       </div>
 
 
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap md:flex-nowrap">
     <div class="flex flex-col gap-4 mt-4">
         <!-- Left Half: Customer Info -->
         <div class="flex items-start space-x-4 p-2">
@@ -74,17 +74,72 @@
         </div>
       </div>
         </div>
+
+        <!-- Transactions Section -->
+<div class="mx-2 border-l-[1px] border-red-100 p-2  w-full lg:w-2/3">
+    <h3 class="font-medium text-lg">Transactions</h3>
+  
+    <!-- Transaction Table -->
+    <div class="mt-2 overflow-x-auto">
+      <table class="min-w-full border">
+        <thead class="bg-[#D0D3D9] text-xs lg:text-sm">
+          <tr>
+            <th class="px-4 py-2 border text-[#668196] font-medium">Currency</th>
+            <th class="px-4 py-2 border text-[#668196] font-medium">Outstanding Receivables</th>
+            <th class="px-4 py-2 border text-[#668196] font-medium">Amount Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of selectedCustomer?.transactions.slice(0, 1)">
+            <td class="px-4 py-2 border text-xs lg:text-base">{{ transaction.currency }}</td>
+            <td class="px-4 py-2 border text-xs lg:text-base">{{ transaction.receivables }}</td>
+            <td class="px-4 py-2 border text-xs lg:text-base text-red-500">{{ transaction.paid }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Invoice Timeline -->
+    <div class="mt-6 space-y-4">
+      <div *ngFor="let invoice of selectedCustomer?.transactions">
+        <div class="flex flex-col lg:flex-row gap-4 items-center p-4 bg-gray-50 border rounded-md">
+          <div class="text-red-500 text-xl">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <div class="flex flex-wrap lg:flex-nowrap items-center gap-2 w-full">
+            <!-- Date -->
+            <div class="w-full lg:w-1/4">
+              <p class="text-sm lg:text-base font-medium text-black">{{ invoice.date }}</p>
+            </div>
+            <!-- Icon -->
+            <div class="w-8 h-8 lg:w-1/5 flex justify-center items-center">
+              <img src="/assets/icons/red-message.svg" alt="Message Icon" class="w-6 h-6">
+            </div>
+            <!-- Description -->
+            <div class="w-full lg:w-1/2 text-xs lg:text-sm p-2">
+              <p>{{ invoice.description }}</p>
+              <p>
+                {{ invoice.details }} - 
+                <a href="#" class="text-red-500 underline">View Details</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
         
         
   
       <!-- Transactions Section -->
-      <div class="mx-2 border-l-[1px] border-red-200 p-3 lg:w-2/3">
-        <h3 class="font-medium text-lg">Transactions</h3>
+      <!-- <div class="mx-2 border-l-[1px] border-red-200 p-3 lg:w-2/3">
+        <h3 class="font-medium text-lg">Transactions</h3> -->
         
         <!-- Transaction Table -->
-        <div class="mt-2 overflow-x-auto">
+        <!-- <div class="mt-2 overflow-x-auto">
           <table class="min-w-full border">
-            <thead class="text-[#D0D3D9] bg-[#D0D3D9]">
+            <thead class="text-[#D0D3D9] bg-[#D0D3D9] text-xs lg:text-base">
               <tr>
                 <th class="px-4 py-2 border text-[#668196] font-medium">Currency</th>
                 <th class="px-4 py-2 border text-[#668196] font-medium">Outstanding Receivables</th>
@@ -93,16 +148,16 @@
             </thead>
             <tbody>
               <tr *ngFor="let transaction of selectedCustomer?.transactions.slice(0, 1)">
-                <td class="px-4 py-2 border">{{ transaction.currency }}</td>
-                <td class="px-4 py-2 border">{{ transaction.receivables }}</td>
-                <td class="px-4 py-2 border text-red-500">{{ transaction.paid }}</td>
+                <td class="px-4 py-2 border text-xs lg:text-base">{{ transaction.currency }}</td>
+                <td class="px-4 py-2 border text-xs lg:text-base">{{ transaction.receivables }}</td>
+                <td class="px-4 py-2 border text-xs lg:text-base text-red-500">{{ transaction.paid }}</td>
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
 
         <!-- Invoice Timeline -->
-        <div class="mt-6 space-y-4">
+        <!-- <div class="mt-6 space-y-4">
           <div *ngFor="let invoice of selectedCustomer?.transactions">
             <div class="flex gap-4 items-center p-2 bg-gray-50 border rounded-md">
               <div class="text-red-500 text-xl">
@@ -127,7 +182,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+
+
     </div>
 
 
