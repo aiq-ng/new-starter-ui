@@ -24,7 +24,7 @@
     <div class="h-full py-4 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
       <nav class="hs-accordion-group p-2.5 px-4 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
         <ul class="flex flex-col space-y-1" *ngFor="let row of menu">
-          <li class="flex flex-col justify-between justify-start pr-4 hover:border-l-2  hover:border-primary hover:bg-accent focus:outline-none focus:bg-gray-100">
+          <li *ngIf="dropDown" class="flex flex-col justify-between  pr-4 hover:border-l-2 focus:outline-none focus:bg-gray-100">
             <div class="flex items-center">
               <a class="flex items-center gap-x-3.5 py-4 px-2.5 hover:text-primary text-sm text-gray-500 " (click)="route(row.route)">
                 <img class="shrink-0 size-4" src={{row.icon}} width="24" height="24" alt="grid">
@@ -38,7 +38,27 @@
             <div *ngIf="subMenu==row.name && dropDown">
               <li *ngIf="row.submenu">
                 <ng-container *ngFor="let menu of row.submenu">
-                  <nav class="flex pl-10 cursor-pointer items-center gap-x-3.5 py-4 px-2.5 hover:text-primary text-sm text-gray-500 " (click)="route(menu.route)">{{menu.name}}</nav>
+                  <nav class="flex pl-10 cursor-pointer items-center gap-x-3.5 py-4 px-2.5 hover:text-primary hover:border-primary hover:bg-accent text-sm text-gray-500 " (click)="route(menu.route)">{{menu.name}}</nav>
+                </ng-container>
+              </li>
+            </div>
+          </li>
+
+          <li *ngIf="!dropDown" class="flex flex-col justify-between  pr-4 hover:border-l-2  hover:border-primary hover:bg-accent focus:outline-none focus:bg-gray-100">
+            <div class="flex items-center">
+              <a class="flex items-center gap-x-3.5 py-4 px-2.5 hover:text-primary text-sm text-gray-500 " (click)="route(row.route)">
+                <img class="shrink-0 size-4" src={{row.icon}} width="24" height="24" alt="grid">
+                {{row.name}}
+              </a>
+              <span (click)="toggleSubmenu(row.name)">
+                <img src={{row.dropdown}} alt="">
+              </span>
+            </div>
+
+            <div *ngIf="subMenu==row.name && dropDown">
+              <li *ngIf="row.submenu">
+                <ng-container *ngFor="let menu of row.submenu">
+                  <nav class="flex pl-10 cursor-pointer items-center gap-x-3.5 py-4 px-2.5 hover:text-primary  hover:border-primary text-sm text-gray-500 " (click)="route(menu.route)">{{menu.name}}</nav>
                 </ng-container>
               </li>
             </div>

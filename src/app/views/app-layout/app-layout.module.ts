@@ -36,6 +36,11 @@ import { AccountingVendorsComponent } from './accounting/accounting-vendors/acco
 import { CreateProcurementComponent } from './accounting/create-procurement/create-procurement.component';
 import { AccountingProcurementPreviewComponent } from './accounting/accounting-procurement-preview/accounting-procurement-preview.component';
 import { VendorDetailComponent } from './vendors/vendor-detail/vendor-detail.component';
+import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
+import { CreateDepartmentComponent } from './human-resources/create-department/create-department.component';
+import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
+import { DepartmentsComponent } from './human-resources/departments/departments.component';
+import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
 
 
 @NgModule({
@@ -69,6 +74,11 @@ import { VendorDetailComponent } from './vendors/vendor-detail/vendor-detail.com
     CreateProcurementComponent,
     AccountingProcurementPreviewComponent,
     VendorDetailComponent,
+    CreateStaffComponent,
+    CreateDepartmentComponent,
+    StaffProfileComponent,
+    DepartmentsComponent,
+    HrOverviewComponent,
 
   ],
   imports: [

@@ -31,6 +31,10 @@ import { SalesOrderInvoiceComponent } from '../../shared/sales-order-invoice/sal
 import { CreateProcurementComponent } from './accounting/create-procurement/create-procurement.component';
 import { AccountingProcurementPreviewComponent } from './accounting/accounting-procurement-preview/accounting-procurement-preview.component';
 import { VendorDetailComponent } from './vendors/vendor-detail/vendor-detail.component';
+import { CreateDepartmentComponent } from './human-resources/create-department/create-department.component';
+import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
+import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
+import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
 
 
 const routes: Routes = [
@@ -66,7 +70,12 @@ const routes: Routes = [
       ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
-      { path: 'human-resources', component: HumanResourcesComponent },
+      { path: 'human-resources', component: HumanResourcesComponent, children: [
+        {path: '', component: HrOverviewComponent },
+        {path: 'create-department', component: CreateDepartmentComponent },
+        {path: 'add-employee', component: CreateStaffComponent },
+        {path: 'employee-profile', component: StaffProfileComponent },
+      ] },
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },

@@ -1,0 +1,70 @@
+<div class="flex flex-col items-center md:flex-row lg:flex-row justify-start md:justify-between lg:justify-between">
+  <h1 class="font-bold items-center text-2xl capitalize text-gray-800">Organisation Members</h1>
+
+  <div  class="action-button cursor-pointer text-gray-500 flex mt-2 md:mt-0 lg:mt-0 md:flex-row lg:flex-row items-start md:items-center lg:items-center gap-2 lg:gap-4">
+
+
+    <div (click)="route('/app/human-resources/create-department')" class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+      <span class="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-gray-200  shadow-sm hover:bg-gray-100">
+        Create Department
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+          </svg>
+        </span>
+      </span>
+
+    </div>
+
+    <div (click)="route('/app/human-resources/add-employee')" class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+      <span class="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">
+        Add Employee
+        <img src='/assets/icons/add.png' class="h-5" alt="">
+      </span>
+
+    </div>
+
+
+    <div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="metrics flex flex-col gap-6 bg-white rounded-lg border mt-8 p-4">
+  <div class="title text-sm">Overview</div>
+  <div class="data text-sm flex justify-between">
+    <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+      <div class="label text-blue-600 ">Number of Employees</div>
+      <div class="data text-gray-800 text-base font-semibold">12</div>
+    </div>
+
+    <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+      <div class="label text-yellow-600 ">Departments</div>
+      <div class="data text-gray-800 text-base font-semibold">12</div>
+    </div>
+
+    <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+      <div class="label text-purple-600 ">Admin</div>
+      <div class="data text-gray-800 text-base font-semibold">12</div>
+    </div>
+
+    <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+      <div class="label text-primary ">On leave</div>
+      <div class="data text-gray-800 text-base font-semibold">12</div>
+    </div>
+  </div>
+</div>
+
+      <!-- Table Section -->
+      <div class=" mt-12">
+        <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
+        <app-table [tableHeader]="tableHeader" [tableData]="humanResourceData" (viewAction)="route('/app/prochurement/purchase-order-preview/1')"></app-table>
+      </div>
+      <!-- End Table Section -->
+
+
+
+
