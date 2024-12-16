@@ -24,6 +24,7 @@ import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
 import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
 import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
+import { PriceListComponent } from './price-list/price-list.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'sales', component: SalesComponent },
+      { path: 'sales/customers', component: CustomersComponent}, 
+      {path: 'sales/customers/overview', component: CustomersOverviewComponent},
+      {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
+      {path: 'sales/price-list', component:PriceListComponent},
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
         {path: 'sales-order', component: SalesComponent},
@@ -49,9 +54,6 @@ const routes: Routes = [
         { path: 'vendors', component: VendorsComponent },
       ]},
       { path: 'expenses', component: ExpensesComponent },
-      { path: 'customers', component: CustomersComponent}, 
-      {path: 'customers/overview', component: CustomersOverviewComponent},
-      {path: 'customers/create-new-customer', component: CustomersCreateComponent},
       { path: 'human-resources', component: HumanResourcesComponent },
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },

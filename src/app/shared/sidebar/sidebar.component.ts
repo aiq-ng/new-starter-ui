@@ -46,19 +46,31 @@ export class SidebarComponent {
 
       },
       {
-        "name": "Sales Order",
+        "name": "Sales",
         "icon": "assets/icons/sales.png",
         "route": "/app/sales",
-        "dropdown": ""
+        "dropdown": "assets/icons/arrow-right.png",
+        "submenu" : [
+          {
+            "name": "Overview",
+            "route": "/app/sales/overview"
+          }, 
+          {
+            "name": "Order",
+            "route": "/app/sales/order",
+          },
+          {
+            "name": "Price List",
+            "route": "/app/sales/price-list",
+          },
+          {
+            "name": "Customers",
+            "route": "/app/sales/customers",
+          },
+        ]
 
       },
-      {
-        "name": "Customers",
-        "icon": "assets/icons/people.png",
-        "route": "/app/customers",
-        "dropdown": ""
-
-      },
+     
       {
         "name": "Accounting",
         "icon": "assets/icons/accounting.png",
