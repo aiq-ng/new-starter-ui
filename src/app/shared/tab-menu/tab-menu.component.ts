@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,16 @@ import { Router } from '@angular/router';
 export class TabMenuComponent {
   currentMenu:any;
   @Input() navigation:any;
+  @Output() tabAction = new EventEmitter();
 
   constructor(private router:Router) {}
 
   ngOnInit(){
    this.currentMenu = this.navigation[0]
+  }
+
+  onClick(){
+    this.tabAction.emit();
   }
 
   toggleTab(menu:string){

@@ -1,0 +1,206 @@
+<div class="heading w-full bg-white py-4 px-4 shadow-sm ">
+  <h3 id="hs-bg-gray-on-hover-cards-label" class="font-bold text-xl text-gray-800">
+      Record Procurement
+    </h3>
+</div>
+
+
+<form class="">
+
+  <div class="basic-info text-lg font-bold text-gray-800 mt-6">Basic Information</div>
+  <div>
+      <div class="flex items-center w-full max-w-[550px]">
+          <label for="vendor" class="w-full text-sm text-primary max-w-[400px]">Customer Name*</label>
+          <div class="w-full flex  gap-2  rounded-large mt-6">
+              <select class="w-full min-w-[300px] text-sm  px-4 border py-2 bg-gray-100 outline-none" name="" id="">
+                  <option value="">Vendor name</option>
+              </select>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="divider w-full my-6 border-b"></div>
+
+  <div class="w-ful max-w-[700px] grid grid-cols-2 gap-4">
+    <div class="">
+      <label for="expense-title"  class="text-sm text-gray-800">Expense Title</label>
+      <input type="text" class="px-4 py-2 w-full bg-gray-100 border rounded-md text-sm" placeholder="eg.'Transportation cost'">
+    </div>
+
+    <div class="">
+      <label for="expense-title" class="text-sm text-gray-800">Expense Date</label>
+      <input type="Date" class="px-4 py-2 w-full bg-gray-100 border rounded-md text-sm" placeholder="eg.'DDD/MM/YYYY'">
+    </div>
+
+    <div>
+      <label for="expense-title" class="text-sm text-gray-800">Expense Category</label>
+        <select class="w-full min-w-[300px] text-sm  px-4 border py-2 bg-gray-100 outline-none" name="" id="">
+          <option value="">Select Category</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="expense-title" class="text-sm text-gray-800">Department</label>
+        <select class="w-full min-w-[300px] text-sm  px-4 border py-2 bg-gray-100 outline-none" name="" id="">
+          <option value="">Select Department</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="mt-4">
+      <div class="w-full max-w-[700px]">
+          <label for="vendor" class="w-full text-sm ">
+            Description
+          </label>
+          <textarea id="hs-about-contacts-1" name="hs-about-contacts-1" rows="4" class="py-3 px-4 block w-full min-w-[300px] bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary disabled:opacity-50 disabled:pointer-events-none"></textarea>
+      </div>
+  </div>
+
+  <div class="divider w-full my-6 border-b"></div>
+
+<div class="my-4">
+  <div class="basic-info text-lg font-bold text-gray-800 mt-6">Payment Details</div>
+
+  <div class="w-ful max-w-[700px] grid grid-cols-2 gap-4 mb-8 mt-4">
+    <div class="">
+      <label for="expense-title"  class="text-sm text-gray-800">Amount Recieved</label>
+      <input type="number" class="px-4 py-2 w-full bg-gray-100 border rounded-md text-sm" placeholder="1000">
+    </div>
+
+    <div class="">
+      <label for="expense-title" class="text-sm text-gray-800">Bank Charges</label>
+      <input type="number" class="px-4 py-2 w-full bg-gray-100 border rounded-md text-sm" placeholder="24000">
+    </div>
+
+    <div>
+      <label for="expense-title" class="text-sm text-gray-800">Payment method</label>
+        <select class="w-full min-w-[300px] text-sm  px-4 border py-2 bg-gray-100 outline-none" name="" id="">
+          <option value="">Select method</option>
+      </select>
+    </div>
+
+  </div>
+
+</div>
+
+  <div>
+      <div class="title py-3 w-full bg-gray-200 font-medium px-4">Item Table</div>
+      <div class="form-table">
+          <table class="table-auto w-full">
+              <thead>
+                  <tr class="uppercase border-b">
+                      <th class="py-4 border-r">Item Details</th>
+                      <th class="py-4 border-r">Quantity</th>
+                      <th class="py-4 border-r">Tax</th>
+                      <th class="py-4 border-r">Amount</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="py-4 border-r px-8">
+                          <input type="text" class="py-2 px-4 block w-full  bg-gray-100 border border-secon rounded-lg text-sm focus:border-primary focus:ring-primary" placeholder="Item Name">
+                      </td>
+                      <td class="py-4 border-r px-8">
+                          <input type="number" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" placeholder="Quantity">
+                      </td>
+                      <td class="py-4 border-r px-8">
+                          <select name="" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" id="">
+                              <option value="">Select Tax</option>
+                          </select>
+                      </td>
+                      <td class="py-4 border-r flex items-center justify-center gap-4 px-8">
+                          1,250,000.00
+                          <span class="text-primary font-bold">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                </svg>
+                          </span>
+                      </td>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+
+  <div class="flex w-full h-full gap-16 mt-12">
+      <div class="basis-1/2 flex flex-col px-6 pt-6">
+          <div>
+              <button class="px-4 py-3 bg-primary text-white flex gap-2 items-center rounded-md">
+                  Add new Row
+                  <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                        </svg>
+                  </span>
+              </button>
+          </div>
+
+          <div class="h-full"></div>
+
+
+      </div>
+
+      <div class="basis-1/2 bg-white px-6 py-8 rounded-md">
+          <div class=" flex justify-between">
+              <span class="basis-[50%] text-gray-500 text-sm font-bold">Sub Total</span>
+              <span class="basis-[50%] text-gray-500 text-sm font-bold flex justify-end">1,250,000.00</span>
+          </div>
+
+          <div class="mt-12 flex justify-between">
+              <div class="basis-[33%] text-sm text-gray-500">
+              <span>Discount</span>
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500">
+              <input type="text" class="border-2 py-1 px-2 rounded-md">
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500 flex justify-end">
+              <span>0.00</span>
+              </div>
+          </div>
+
+          <div class="mt-12 flex justify-between">
+              <div class="basis-[33%] text-sm text-gray-500">
+              <span>Delivery charges</span>
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500">
+              <input type="text" class="border-2 py-1 px-2 rounded-md">
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500 flex justify-end">
+              <span>0.00</span>
+              </div>
+          </div>
+
+          <div class="mt-12 flex justify-between">
+              <div class="basis-[33%] text-sm text-gray-500">
+              <span>VAT</span>
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500">
+              <input type="text" class="border-2 py-1 px-2 rounded-md">
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500 flex justify-end">
+              <span>0.00</span>
+              </div>
+          </div>
+
+          <div class="divider w-full my-6 border-b"></div>
+
+
+          <div class="mt-8 flex justify-between ">
+              <span class="basis-[50%] text-gray-500 text-sm  font-bold">Total Amount(NGN)</span>
+              <span class="basis-[50%] text-gray-500 text-sm font-bold flex justify-end">1,250,000.00</span>
+          </div>
+
+      </div>
+  </div>
+
+
+</form>
+
+
+<div class="bg-white px-6 py-6 mt-8 flex gap-4">
+  <button class="px-4 py-2 border active:bg-primary/85 rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
+  <button routerLink="/app/accounting/preview/1" class="px-4 py-2 border active:bg-primary/85 rounded-md hover:bg-secondary  bg-primary text-white">Continue</button>
+
+</div>
