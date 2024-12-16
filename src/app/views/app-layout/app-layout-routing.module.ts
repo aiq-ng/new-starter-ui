@@ -74,7 +74,7 @@ const routes: Routes = [
         {path: '', component: HrOverviewComponent },
         {path: 'create-department', component: CreateDepartmentComponent },
         {path: 'add-employee', component: CreateStaffComponent },
-        {path: 'employee-profile', component: StaffProfileComponent },
+        {path: 'employee-profile/:id', component: StaffProfileComponent },
       ] },
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
