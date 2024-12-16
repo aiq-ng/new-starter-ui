@@ -20,7 +20,9 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TabMenuComponent } from './tab-menu/tab-menu.component';
 import { TableComponent } from './table/table.component';
-
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-invoice.component';
 
 
 @NgModule({
@@ -42,7 +44,10 @@ import { TableComponent } from './table/table.component';
     MobileMenuComponent,
     SidebarComponent,
     TabMenuComponent,
-    TableComponent
+    TableComponent,
+    OrderDetailComponent,
+    InvoiceComponent,
+    SalesOrderInvoiceComponent,
 
   ],
   imports: [
@@ -67,7 +72,10 @@ import { TableComponent } from './table/table.component';
     CreateNewInventoryPlanComponent,
     SidebarComponent,
     TabMenuComponent,
-    TableComponent
+    TableComponent,
+    OrderDetailComponent,
+    InvoiceComponent,
+    SalesOrderInvoiceComponent,
 
   ]
 })

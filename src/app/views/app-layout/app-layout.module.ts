@@ -21,7 +21,7 @@ import { HumanResourcesComponent } from './human-resources/human-resources.compo
 import { ReportsComponent } from './reports/reports.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { QouteComponent } from './qoute/qoute.component';
-import { OverviewComponent } from './overview/overview.component';
+import { OverviewComponent } from './accounting/overview/overview.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ProchurementOverviewComponent } from './prochurement-overview/prochurement-overview.component';
 import { CreateNewItemPageComponent } from './inventory-tracker/create-new-item-page/create-new-item-page.component';
@@ -30,6 +30,12 @@ import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.compo
 import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
 import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.component';
+import { AccountingOrdersComponent } from './accounting/accounting-orders/accounting-orders.component';
+import { AccountingProchurementComponent } from './accounting/accounting-prochurement/accounting-prochurement.component';
+import { AccountingVendorsComponent } from './accounting/accounting-vendors/accounting-vendors.component';
+import { CreateProcurementComponent } from './accounting/create-procurement/create-procurement.component';
+import { AccountingProcurementPreviewComponent } from './accounting/accounting-procurement-preview/accounting-procurement-preview.component';
+import { VendorDetailComponent } from './vendors/vendor-detail/vendor-detail.component';
 
 
 @NgModule({
@@ -57,6 +63,12 @@ import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.com
     CreateNewPurchaseOrderComponent,
     PurchaseOrderPreviewComponent,
     CreateVendorComponent,
+    AccountingOrdersComponent,
+    AccountingProchurementComponent,
+    AccountingVendorsComponent,
+    CreateProcurementComponent,
+    AccountingProcurementPreviewComponent,
+    VendorDetailComponent,
 
   ],
   imports: [
