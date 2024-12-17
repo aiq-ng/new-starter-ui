@@ -4,16 +4,15 @@
       action1Name="New Customers"
       icon='assets/icons/add.png'
       buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-vendor')"></app-sub-header>
-  
+
       <!-- Table Section -->
       <div class=" mt-12">
 
-        <app-table [tableHeader]="tableHeader" [tableData]="vendors"></app-table>
+        <app-table [tableHeader]="tableHeader" [tableData]="vendors" (viewAction)="route('app/prochurement/vendor-detail')"></app-table>
       </div>
       <!-- End Table Section -->
-  
+
   </div>
-  
-  
-  
-  
+
+
+

@@ -1,1 +1,214 @@
-<p>prochurement-overview works!</p>
+<div class="section">
+  <div class="metrics flex flex-col gap-6 bg-white rounded-lg border p-4">
+    <div class="title text-sm">Overall Inventory</div>
+    <div class="data text-sm flex justify-between">
+      <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+        <div class="label text-blue-600 ">Category</div>
+        <div class="data text-gray-800 text-base font-semibold">12</div>
+      </div>
+
+      <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+        <div class="label text-yellow-600 ">Total Products</div>
+        <div class="data text-gray-800 text-base font-semibold">12</div>
+      </div>
+
+      <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+        <div class="label text-purple-600 ">Vendors</div>
+        <div class="data text-gray-800 text-base font-semibold">12</div>
+      </div>
+
+      <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
+        <div class="label text-primary ">Low Stock</div>
+        <div class="data text-gray-800 text-base font-semibold">12</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- most purchased section -->
+  <div class="stocke-section mt-8 w-full flex gap-8 ">
+    <div class="top-selling bg-white p-4 text-sm rounded-md basis-[70%]">
+      <div class="heading flex justify-between items-center">
+        <div class="title text-base font-bold capitalize text-gray-800">Most purchased products</div>
+
+        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
+          <div class="hs-dropdown text-sm [--strategy:absolute] [--flip:false] hs-dropdown-example relative inline-flex">
+            <button (click)="toggleCalender()" id="hs-dropdown-example" type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+              This month
+              <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+
+            <div *ngIf="calender" class=" transition-[opacity,margin] duration w-32 absolute top-[48px]  z-10 mt-2 min-w-32 bg-white shadow-md rounded-lg p-2" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-example">
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+                2023
+              </a>
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+                2022
+              </a>
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+                2021
+              </a>
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+                2020
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- table section -->
+       <!-- Table -->
+       <table class="w-full divide-y table-auto divide-gray-200 mt-4">
+        <thead class=" text-sm">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-start ">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Name
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Sold Quantity
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start ">
+              <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Remaining Quantity
+              </span>
+            </th>
+
+            <th scope="col" class="px-6 py-3 text-start ">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                Price
+              </p>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <p class="font-semibold text-sm text-gray-500">30</p>
+              </div>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">12</p>
+            </td>
+            <td class="size-px  px-6 py-3">
+              <p class="text-sm text-gray-500">₦ 100</p>
+            </td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+      <!-- End Table -->
+
+    </div>
+
+    <div class="out-of-stock bg-white p-4 text-sm rounded-md basis-[30%]">
+      <div class="heading heading flex justify-between items-center">
+        <div class="title text-base font-bold capitalize text-gray-800">Low Quality Stock</div>
+
+        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
+          See All
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/keg.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title  text-gray-600">Vegetable Oil</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 10 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
+        </div>
+
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/tomato.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title  text-gray-600">Ketchup</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 12 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
+        </div>
+
+        <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div class="image">
+            <img src="/assets/images/shawarma.png" class="" alt="">
+          </div>
+          <div class="detail">
+            <div class="title capitalize text-gray-600">Shawarma wrap</div>
+            <div class="text-sm text-gray-500">Remaining Quantity : 15 Packet</div>
+          </div>
+          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
+        </div>
+      </div>
+
+    </div>
+   </div>
+   <!-- most purchased section end -->
+
+
+   <!-- Top vendors section -->
+    <div class=" mt-12">
+
+      <app-table title="Top Vendors" [tableHeader]="tableHeader" [tableData]="vendors"></app-table>
+    </div>
+    <!-- Top vendors sections end -->
+
+
+</div>
