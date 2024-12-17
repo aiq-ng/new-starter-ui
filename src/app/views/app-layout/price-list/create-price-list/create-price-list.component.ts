@@ -58,4 +58,6 @@ export class CreatePriceListComponent {
     }
     this.closeModal();
   }
+
+  
 }
