@@ -45,6 +45,7 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { DepartmentsComponent } from './human-resources/departments/departments.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
+import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
 
 
 
@@ -89,6 +90,7 @@ import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.c
     StaffProfileComponent,
     DepartmentsComponent,
     HrOverviewComponent,
+    SalesOverviewComponent,
 
 
   ],

@@ -39,6 +39,7 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
+import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
 
 
 
@@ -48,7 +49,9 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'sales', component: SalesComponent },
+      { path: 'sales', component: SalesComponent, children: [
+        {path: 'overview', component: SalesOverviewComponent}
+      ] },
       { path: 'sales/customers', component: CustomersComponent}, 
       {path: 'sales/customers/overview', component: CustomersOverviewComponent},
       {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
@@ -79,9 +82,8 @@ const routes: Routes = [
       ]},
       { path: 'expenses', component: ExpensesComponent },
       { path: 'human-resources', component: HumanResourcesComponent },
-        { path: 'vendor-detail', component: VendorDetailComponent},
+      { path: 'vendor-detail', component: VendorDetailComponent},
       { path: 'create-vendor', component: CreateVendorComponent},
-      ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'human-resources', component: HumanResourcesComponent, children: [
@@ -94,7 +96,8 @@ const routes: Routes = [
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },
-    ]}];
+    ]
+  }]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
