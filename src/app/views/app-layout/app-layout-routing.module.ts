@@ -49,7 +49,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'sales', component: SalesComponent },
-      { path: 'sales/customers', component: CustomersComponent}, 
+      { path: 'sales/customers', component: CustomersComponent},
       {path: 'sales/customers/overview', component: CustomersOverviewComponent},
       {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
       {path: 'sales/price-list', component:PriceListComponent},
@@ -94,7 +94,7 @@ const routes: Routes = [
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },
-    ]}];
+    ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
