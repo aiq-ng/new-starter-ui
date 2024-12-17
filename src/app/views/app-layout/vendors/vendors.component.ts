@@ -33,6 +33,9 @@ export class VendorsComponent {
   products:any;
   pageLoading: boolean = false;
   vendors:any;
+  branches:any;
+  currencies:any;
+  paymentTerms:any;
 
 
   constructor(private salesService: SalesService,
@@ -129,6 +132,7 @@ export class VendorsComponent {
       }
     )
   }
+
 
 
   route(page:string){
