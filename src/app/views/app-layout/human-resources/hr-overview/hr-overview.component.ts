@@ -31,6 +31,8 @@ export class HrOverviewComponent {
   loading: boolean = false;
   products:any;
   pageLoading: boolean = false;
+  metrics:any;
+  employees:any;
 
 
   constructor(
@@ -89,8 +91,8 @@ export class HrOverviewComponent {
       },
     ];
 
-    this.getSales()
-    this.getProducts()
+    this.getMetrics()
+    this.getEmployess()
   }
 
   route(page:string){
@@ -108,11 +110,11 @@ export class HrOverviewComponent {
     }
   }
 
-  getSales(){
+  getMetrics(){
     this.pageLoading = true;
-    this.api.get('departments').subscribe(
+    this.api.get('human-resources/overview').subscribe(
       res=>{
-        this.departments = res;
+        this.metrics = res;
         this.pageLoading = false;
       },
       err=>{
@@ -122,45 +124,18 @@ export class HrOverviewComponent {
     )
   }
 
-  getProducts(){
-    this.api.get('products').subscribe(
+  getEmployess(){
+    this.api.get('human-resources/employees?page=1&page_size=10').subscribe(
       res =>{
-        this.products = res
-        this.products = this.products.data
-        console.log('products', this.products)
+        this.employees = res
+        this.employees = this.employees.data
+        console.log('products', this.employees)
       }
     )
   }
 
 
-  get f(){return this.salesForm.controls}
 
-  saveSale() {
-    this.isSubmitted = true;
-    this.loading = true;
-
-    if(this.salesForm.invalid){
-      return;
-    }
-
-    this.api.post('sales', this.salesForm.value).subscribe(
-      res=>{
-        console.log(res)
-        this.salesForm.reset();
-        this.isAddSale = false;
-        this.getSales()
-        this.showSuccess('Sale added successfully');
-      },
-      err=>{
-        console.log(err)
-        this.showError('Failed to add sale');
-      }
-    )
-  }
-
-  isLast(item: string, list: string[]): boolean {
-    return list.indexOf(item) === list.length - 1;
-  }
 
   showSuccess(message: string) {
     console.log('showSuccess')

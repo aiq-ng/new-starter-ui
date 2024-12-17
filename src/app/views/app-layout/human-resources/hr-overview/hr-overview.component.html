@@ -38,33 +38,144 @@
   <div class="data text-sm flex justify-between">
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-blue-600 ">Number of Employees</div>
-      <div class="data text-gray-800 text-base font-semibold">12</div>
+      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.employee_count}}</div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-yellow-600 ">Departments</div>
-      <div class="data text-gray-800 text-base font-semibold">12</div>
+      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.department_count}}</div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-purple-600 ">Admin</div>
-      <div class="data text-gray-800 text-base font-semibold">12</div>
+      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.admin_count}}</div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-primary ">On leave</div>
-      <div class="data text-gray-800 text-base font-semibold">12</div>
+      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.on_leave_count}}</div>
     </div>
   </div>
 </div>
 
-      <!-- Table Section -->
-      <div class=" mt-12">
-        <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
-        <app-table [tableHeader]="tableHeader" [tableData]="humanResourceData" (viewAction)="route('/app/human-resources/employee-profile/1')"></app-table>
-      </div>
-      <!-- End Table Section -->
+             <!-- Table Section -->
+ <!-- Card -->
+ <div class="flex flex-col mt-6">
+  <div class="overflow-x-auto">
+    <div class="min-w-full inline-block align-middle">
+      <div class="bg-white border border-gray-200  shadow-sm overflow-hidden">
+         <!-- Header -->
+         <div class="px-6 py-6 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+          <div class="title"></div>
+        </div>
+        <!-- End Header -->
 
+        <!-- Table -->
+        <table class="min-w-full table-auto divide-y max-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <ng-container *ngFor="let row of tableHeader">
+                <th scope="col" class="w-10 ps-2 px-2 py-2 text-start" *ngIf="row=='Name'">
+                  <label for="hs-at-with-checkboxes-main" class="flex">
+                    <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                    <span class="sr-only">Checkbox</span>
+                  </label>
+                </th>
+
+
+
+                <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
+                      {{row}}
+                    </span>
+                  </div>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody  class="divide-y divide-gray-200">
+            <ng-container *ngFor="let data of employees">
+              <tr (click)="route('/app/prochurement/purchase-order-preview/' + data.id)" >
+                  <td  class="w-10 whitespace-nowrap">
+                    <div class="ps-2 py-4">
+                        <label for="hs-at-with-checkboxes-1" class="flex">
+                        <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                        <span class="sr-only">Checkbox</span>
+                        </label>
+                    </div>
+                    </td>
+
+                    <td   class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.name}}
+                    </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.department}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.salary}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                        {{data.bank_details.account_number}}
+                          {{data.bank_details.bank_name}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.leave_status}}
+                      </div>
+                    </td>
+
+                  </tr>
+                </ng-container>
+
+            <!-- <tr *ngFor="let item of tableData">
+              <td *ngFor="let key of objectKeys(item)">{{ item[key] }}</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <!-- End Table -->
+
+        <!-- Footer -->
+        <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+          <div>
+            <p class="text-sm text-gray-600">
+              <span class="font-semibold text-gray-800">12</span> results
+            </p>
+          </div>
+
+          <div>
+            <div class="inline-flex gap-x-2">
+              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Prev
+              </button>
+
+              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                Next
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- End Footer -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Card -->
+<!-- End Table Section -->
 
 
 
