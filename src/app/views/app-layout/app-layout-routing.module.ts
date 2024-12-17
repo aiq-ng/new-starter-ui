@@ -25,6 +25,7 @@ import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-previe
 import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
 import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
 import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
       {path: 'sales/customers/overview', component: CustomersOverviewComponent},
       {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
       {path: 'sales/price-list', component:PriceListComponent},
+      {path: 'sales/price-list/create', component:CreatePriceListComponent},
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
         {path: 'sales-order', component: SalesComponent},

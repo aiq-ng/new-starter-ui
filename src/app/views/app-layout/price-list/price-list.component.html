@@ -3,8 +3,13 @@ pageTitle="Price List"
 class="font-medium"></app-sub-header>
 
 
-<div class="flex flex-col justify-center items-center h-screen">
+<div class="flex flex-col justify-center items-center h-screen overflow-y-none">
 <img src="/assets/images/payment.png" alt="">
-<p class="text-[#668196]">Create price-list for your products.</p>
-
+<p class="text-[#668196] text-md mt-7">Create price-list for your products.</p>
+<app-sub-header
+action1Name="Create price list"
+icon='assets/icons/add.png'
+buttonStyle="active:scale-95 bg-primary text-base text-white py-2 px-5 hover:gray-400"
+class="mt-3"
+(action1)="route('app/sales/price-list/create')"></app-sub-header>
 </div>

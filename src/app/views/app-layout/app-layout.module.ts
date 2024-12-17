@@ -32,6 +32,7 @@ import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-previe
 import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
 import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
 import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { PriceListComponent } from './price-list/price-list.component';
     CustomersOverviewComponent,
     CustomersCreateComponent,
     PriceListComponent,
+    CreatePriceListComponent,
 
   ],
   imports: [
