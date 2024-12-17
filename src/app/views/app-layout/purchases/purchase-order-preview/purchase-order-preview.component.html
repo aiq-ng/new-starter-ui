@@ -23,7 +23,7 @@
         <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
       </svg>
     </button>
-    
+
   </div>
 </div>
 
@@ -49,7 +49,7 @@
         <div class="flex justify-between">
           <div class="flex items-start gap-4 mt-12 px-8">
             <img src="/assets/logo.png" alt="">
-  
+
             <div class="flex flex-col items-start">
               <h1 class=" text-lg md:text-2xl font-bold text-primary">Starters</h1>
               <span class="text-xs text-gray-500">www.webiste.com</span>
@@ -58,11 +58,11 @@
             </div>
           </div>
           <!-- Col -->
-  
+
           <div class="text-end">
             <h2 class="text-xl md:text-xl font-semibold text-gray-800">Invoice #</h2>
             <span class="mt-1 block text-gray-500">3682303</span>
-  
+
             <address class="mt-4 not-italic text-xs text-gray-500">
               Business address<br>
               city, state, IN - 000 000<br>
@@ -72,7 +72,7 @@
           <!-- Col -->
         </div>
         <!-- End Grid -->
-  
+
         <div class="body-content border rounded-xl mt-8 px-8">
                   <!-- Grid -->
           <div class="mt-8 grid sm:grid-cols-3 gap-3">
@@ -86,22 +86,22 @@
               </address>
             </div>
             <!-- Col -->
-    
+
             <div class="sm:text-end space-y-2">
               <!-- Grid -->
               <div class="grid grid-cols-1 place-items-center sm:grid-cols-1 gap-3 sm:gap-2">
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-1  ">
                     <span class="text-sm text-start text-gray-500">Invoice number</span>
-                    <span class="text-sm font-bold text-start text-gray-800">#AB2324-01</span>
+                    <span class="text-sm font-bold text-start text-gray-800">{{invoiceDetail.invoice_number}}</span>
                   </div>
                   <dl class="flex flex-col gap-1">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Refernce</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">INV-057</dd>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.reference_number}}</dd>
                   </dl>
                   <dl class="flex flex-col gap-1 ">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Date</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">01 Aug, 2023</dd>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.order_date}}</dd>
                   </dl>
                 </div>
               </div>
@@ -114,14 +114,14 @@
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-1  ">
                     <span class="text-sm text-start text-gray-500">Invoice of (NGN)</span>
-                    <span class="text-2xl font-bold text-start text-primary"> ₦ 4,950.00</span>
+                    <span class="text-2xl font-bold text-start text-primary"> ₦ {{invoiceDetail.total}}</span>
                   </div>
                   <!-- <dl class="h-full">
-                    
+
                   </dl> -->
                   <dl class="flex flex-col gap-1 ">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Delivery date</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">01 Aug, 2023</dd>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.delivery_date}}</dd>
                   </dl>
                 </div>
               </div>
@@ -131,7 +131,7 @@
             <!-- Col -->
           </div>
           <!-- End Grid -->
-    
+
           <!-- Table -->
           <div class="mt-8">
             <div class="border text-sm border-gray-200 p-4 rounded-lg space-y-4">
@@ -141,73 +141,36 @@
                 <div class="text-start text-xs font-medium text-gray-500 uppercase">Rate</div>
                 <div class="text-end text-xs font-medium text-gray-500 uppercase">Amount</div>
               </div>
-    
+
               <div class="hidden sm:block border-b border-gray-200"></div>
-    
-              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                <div class="col-span-full sm:col-span-2">
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                  <p class="font-medium text-gray-800">Design UX and UI</p>
+
+              <ng-container *ngFor="let item of invoiceDetail.items">
+                <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                  <div class="col-span-full sm:col-span-2">
+                    <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
+                    <p class="font-medium text-gray-800"></p>
+                  </div>
+                  <div>
+                    <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
+                    <p class="text-gray-800">{{item.quatity}}</p>
+                  </div>
+                  <div>
+                    <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
+                    <p class="text-gray-800">{{item.rate}}</p>
+                  </div>
+                  <div>
+                    <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
+                    <p class="sm:text-end text-gray-800"> ₦{{item.amount}}</p>
+                  </div>
                 </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                  <p class="text-gray-800">1</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                  <p class="text-gray-800">5</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                  <p class="sm:text-end text-gray-800"> ₦500</p>
-                </div>
-              </div>
-    
+              </ng-container>
+
               <div class="sm:hidden border-b border-gray-200"></div>
-    
-              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                <div class="col-span-full sm:col-span-2">
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                  <p class="font-medium text-gray-800">Web project</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                  <p class="text-gray-800">1</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                  <p class="text-gray-800">24</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                  <p class="sm:text-end text-gray-800"> ₦1250</p>
-                </div>
-              </div>
-    
-              <div class="sm:hidden border-b border-gray-200"></div>
-    
-              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                <div class="col-span-full sm:col-span-2">
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                  <p class="font-medium text-gray-800">SEO</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                  <p class="text-gray-800">1</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                  <p class="text-gray-800">6</p>
-                </div>
-                <div>
-                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                  <p class="sm:text-end text-gray-800"> ₦2000</p>
-                </div>
-              </div>
+
             </div>
           </div>
           <!-- End Table -->
-    
+
           <!-- Flex -->
           <div class="mt-8 flex sm:justify-end">
             <div class="w-full max-w-2xl sm:text-end space-y-2">
@@ -217,22 +180,22 @@
                   <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
                 </dl>
-    
+
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
                 </dl>
-    
+
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Tax:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦39.00</dd>
                 </dl>
-    
+
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Amount paid:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦2789.00</dd>
                 </dl>
-    
+
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Due balance:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦0.00</dd>
@@ -242,13 +205,13 @@
             </div>
           </div>
           <!-- End Flex -->
-    
+
           <div class="my-8 sm:mt-12">
             <h4 class="text-sm font-semibold text-gray-800">Thanks for the business.</h4>
-            
+
           </div>
           </div>
-  
+
         <p class="mt-5 text-sm text-gray-500">Please pay within 15 days of recieving this invoice.</p>
       </div>
       <!-- End Card -->

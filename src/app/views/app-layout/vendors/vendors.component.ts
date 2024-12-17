@@ -22,7 +22,7 @@ export class VendorsComponent {
     "Address",
     "Transaction",
     "Status"
-    
+
   ]
 
   sales:any;
@@ -32,7 +32,7 @@ export class VendorsComponent {
   loading: boolean = false;
   products:any;
   pageLoading: boolean = false;
-  vendors: any[] = [];
+  vendors:any;
 
 
   constructor(private salesService: SalesService,
@@ -53,8 +53,7 @@ export class VendorsComponent {
 
 
   ngOnInit(){
-    this.getSales()
-    this.getProducts()
+    this.getVendors()
     this.vendors = [
       {
         name: "John Doe",
@@ -102,7 +101,7 @@ export class VendorsComponent {
         status: "Pending",
       },
     ];
-    
+
   }
 
   toggleAddSale(){
@@ -117,11 +116,11 @@ export class VendorsComponent {
     }
   }
 
-  getSales(){
+  getVendors(){
     this.pageLoading = true;
-    this.api.get('sales').subscribe(
+    this.api.get('vendors?page=1&page_size=5&sort_by=total_transaction&sort_order=desc').subscribe(
       res=>{
-        this.sales = res;
+        this.vendors = res;
         this.pageLoading = false;
       },
       err=>{
@@ -131,15 +130,6 @@ export class VendorsComponent {
     )
   }
 
-  getProducts(){
-    this.api.get('products').subscribe(
-      res =>{
-        this.products = res
-        this.products = this.products.data
-        console.log('products', this.products)
-      }
-    )
-  }
 
   route(page:string){
     console.log('route clicked')
@@ -162,7 +152,7 @@ export class VendorsComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getSales()
+        this.getVendors()
         this.showSuccess('Sale added successfully');
       },
       err=>{

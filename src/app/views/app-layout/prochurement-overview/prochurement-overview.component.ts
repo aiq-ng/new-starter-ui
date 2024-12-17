@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpServiceService } from '../../../services/http-service.service';
 
 @Component({
   selector: 'app-prochurement-overview',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 export class ProchurementOverviewComponent {
   calender:any;
   vendors:any;
+  lowQuantityStock:any;
+  mostPurchased:any;
+  overallInventory:any;
   tableHeader = [
     "Name",
     "Category",
@@ -19,7 +23,7 @@ export class ProchurementOverviewComponent {
 
   ]
 
-  constructor() { };
+  constructor(private api: HttpServiceService) { };
 
   ngOnInit(){
     this.vendors = [
@@ -69,6 +73,73 @@ export class ProchurementOverviewComponent {
         status: "Pending",
       },
     ];
+
+    this.getLowQuantityStock()
+    this.getMostPurchasedProduct()
+    this.getTopVendors()
+    this.getOverallInventory()
+  }
+
+  getTopVendors(){
+    this.api.get('dashboard/vendors/top-vendors').subscribe(
+      res=>{
+        this.lowQuantityStock = res;
+        console.log(this.lowQuantityStock)
+        // this.chartData = [this.lowQuantityStock?.data.cold_room, this.warehouseDetail?.data.kitchen]
+
+      },
+      err=>{
+        console.log('low quality error', err);
+      }
+    )
+
+  }
+
+  getMostPurchasedProduct(){
+      this.api.get('dashboard/products/mostpurchased?page=1&page_size=5&month=12').subscribe(
+        res=>{
+          this.mostPurchased = res;
+          console.log('most purchases', this.mostPurchased)
+          // this.chartData = [this.lowQuantityStock?.data.cold_room, this.warehouseDetail?.data.kitchen]
+
+        },
+        err=>{
+          console.log('low quality error', err);
+        }
+      )
+
+    }
+
+
+  getLowQuantityStock(){
+    this.api.get('dashboard/products/lowstock').subscribe(
+      res=>{
+        this.lowQuantityStock = res;
+        console.log(this.lowQuantityStock)
+        // this.chartData = [this.lowQuantityStock?.data.cold_room, this.warehouseDetail?.data.kitchen]
+
+      },
+      err=>{
+        console.log('low quality error', err);
+      }
+    )
+
+  }
+
+
+  getOverallInventory(){
+    this.api.get('dashboard/overview').subscribe(
+      res=>{
+        this.overallInventory = res;
+        console.log(this.lowQuantityStock)
+        // this.chartData = [this.lowQuantityStock?.data.cold_room, this.warehouseDetail?.data.kitchen]
+
+      },
+      err=>{
+        console.log('low quality error', err);
+      }
+    )
+
   }
 
   toggleCalender(){

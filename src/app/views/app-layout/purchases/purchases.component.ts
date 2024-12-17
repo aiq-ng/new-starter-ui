@@ -46,31 +46,21 @@ export class PurchasesComponent {
   ngOnInit(){
     console.log('purchaseService')
     this.getPurchases()
-    this.getSuppliers()
-    this.getProducts()
   }
 
   toggleCreatePurchase() {
     this.isCreatePurchase = !this.isCreatePurchase;
   }
 
-  getProducts(){
-    this.api.get('products').subscribe(
-      res =>{
-        this.products = res
-        this.products = this.products.data
-      }
-    )
-  }
+
   getPurchases(){
     this.pageLoading=true;
-    // this.api.get('purchases?page&page_size=10').subscribe(
-    //   res=>{
-    //     this.purchasesData = res;
-    //     this.purchasesData = this.purchasesData;
-    //     this.pageLoading=false;
-    //   }
-    // )
+    this.api.get('purchases/orders?status=&start_date=2024-11-27&end_date').subscribe(
+      res=>{
+        this.purchasesData = res;
+        this.pageLoading=false;
+      }
+    )
 
     this.purchasesData=this.purchaseService.getPurchases()
   }
@@ -87,15 +77,13 @@ export class PurchasesComponent {
   }
 
 tableHeader = [
-    "Issue Date",
-    "Invoice",
-    "customer name",
+    "Ref Id",
+    "Date",
+    "bill",
+    "Vendors Name",
     "Due Date",
     "Amount",
-    "Balance due",
-    "Days left",
-    "Status"
-    
+
   ]
 
   getTotalPrice(items: any[]): number {
@@ -167,17 +155,6 @@ tableHeader = [
     this.api.get('units').subscribe(
       res=>{
         this.units = res;      }
-    )
-  }
-
-  getSuppliers(){
-    this.api.get('suppliers').subscribe(
-      res=>{
-        this.suppliers = res;
-      },
-      err=>{
-        console.log(err)
-      }
     )
   }
 

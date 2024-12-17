@@ -65,7 +65,7 @@ const routes: Routes = [
         { path: 'edit-item/:id', component: EditItemComponent },
         { path: 'items/:id', component: ItemDetailComponent },
         { path: 'vendors', component: VendorsComponent },
-        { path: 'vendor-detail', component: VendorDetailComponent},
+        { path: 'vendor-detail/:id', component: VendorDetailComponent},
         { path: 'create-vendor', component: CreateVendorComponent},
       ] },
       { path: 'expenses', component: ExpensesComponent },
