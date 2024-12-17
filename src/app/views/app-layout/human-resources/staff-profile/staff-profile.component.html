@@ -10,9 +10,9 @@
       </div>
       <div class="divider h-10 border-r"></div>
       <div class="image">
-        <img src="/assets/images/person.jpeg" class="w-12 h-12 rounded-full " alt="">
+        <img src={{employeeDetail.avatar_url}} class="w-12 h-12 rounded-full " alt="">
       </div>
-      <span>Mike Azenagu</span>
+      <span>{{employeeDetail.name}}</span>
     </h3>
 
     <div class="actions flex gap-4">
@@ -52,18 +52,19 @@
 <div class="body justify-center py-8 flex gap-8">
   <div class="side-one">
     <div class="image flex justify-center items-center ">
-      <img src="/assets/images/person.jpeg" class="w-32 h-32 rounded-full " alt="">
+      <img src={{employeeDetail.avatar_url}}  class="w-32 h-32 rounded-full " alt="">
     </div>
 
     <div class="box-one bg-white p-8 mt-4 flex flex-col gap-4 rounded-lg border shadow-sm min-w-[250px]">
       <div>
         <span class="text-sm text-gray-500">Joined on </span>
-        <div class="date text-lg font-normal text-gray-800">April 4, 2022</div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.created_at | date}} </div>
       </div>
 
       <div>
         <span class="text-sm text-gray-500">Bank Details</span>
-        <div class="date text-lg font-normal text-gray-800">124xxxxxxx</div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.bank_details.account_number}} </div>
+        <div class="date text-sm font-normal text-gray-800">{{employeeDetail.bank_details.bank_name}} </div>
       </div>
     </div>
 
@@ -79,12 +80,12 @@
             </svg>
           </span>
         </span>
-        <div class="date text-base font-normal text-gray-800">Accounting</div>
+        <div class="date text-base font-normal text-gray-800">{{employeeDetail.department}} </div>
       </div>
 
       <div>
         <span class="text-sm text-gray-500">Current Sallary</span>
-        <div class="date text-lg font-normal text-gray-800">₦200,000.00</div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.salary}} </div>
       </div>
     </div>
   </div>
@@ -94,24 +95,25 @@
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">First Name</label>
-        <div class="data text-gray-800">Mike </div>
+        <div class="data text-gray-800">{{employeeDetail.firstname}} </div>
       </div>
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">Last Name</label>
-        <div class="data text-gray-800">Ezenagu</div>
+        <div class="data text-gray-800">{{employeeDetail.lastname}} </div>
       </div>
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">Date of Birth</label>
-        <div class="data text-gray-800">October 25 1995</div>
+        <div class="data text-gray-800">{{employeeDetail.date_of_birth}} </div>
       </div>
 
 
       <div class="mt-6">
         <label for="" class="text-gray-500 ">NIN</label>
         <div class="nin bg-gray-100 h-[100px] w-[150px] flex justify-center items-center rounded-md ">
-          <img src="" alt="NIN image">
+          <!-- <img src="" alt="NIN image"> -->
+          {{employeeDetail.nin}}
         </div>
       </div>
 
@@ -119,7 +121,9 @@
       <div class="mt-4">
         <label for="" class="text-gray-500 ">Passport</label>
         <div class="nin bg-gray-100 h-[100px] w-[150px] flex justify-center items-center rounded-md ">
-          <img src="" alt="passport image">
+          <!-- <img src="" alt="passport image"> -->
+          {{employeeDetail.passport}}
+
         </div>
       </div>
 

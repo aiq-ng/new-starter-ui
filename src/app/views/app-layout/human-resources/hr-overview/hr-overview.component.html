@@ -96,8 +96,8 @@
           </thead>
           <tbody  class="divide-y divide-gray-200">
             <ng-container *ngFor="let data of employees">
-              <tr (click)="route('/app/prochurement/purchase-order-preview/' + data.id)" >
-                  <td  class="w-10 whitespace-nowrap">
+              <tr (click)="route('app/human-resources/employee-profile/' + data.id)" >
+                  <td class="w-10 whitespace-nowrap">
                     <div class="ps-2 py-4">
                         <label for="hs-at-with-checkboxes-1" class="flex">
                         <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
