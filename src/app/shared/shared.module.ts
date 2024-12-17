@@ -22,7 +22,9 @@ import { TabMenuComponent } from './tab-menu/tab-menu.component';
 import { TableComponent } from './table/table.component';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-invoice.component';
 
 
 @NgModule({
@@ -44,7 +46,10 @@ import { ButtonModule } from 'primeng/button';
     MobileMenuComponent,
     SidebarComponent,
     TabMenuComponent,
-    TableComponent
+    TableComponent,
+    OrderDetailComponent,
+    InvoiceComponent,
+    SalesOrderInvoiceComponent,
 
   ],
   imports: [
@@ -71,7 +76,10 @@ import { ButtonModule } from 'primeng/button';
     CreateNewInventoryPlanComponent,
     SidebarComponent,
     TabMenuComponent,
-    TableComponent
+    TableComponent,
+    OrderDetailComponent,
+    InvoiceComponent,
+    SalesOrderInvoiceComponent,
 
   ]
 })

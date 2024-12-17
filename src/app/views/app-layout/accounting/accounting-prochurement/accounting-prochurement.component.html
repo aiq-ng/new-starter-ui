@@ -1,0 +1,19 @@
+<div *ngIf="procurementData<=0 && pageLoading">
+  <app-empty-list buttonName="New Procurement" buttonIcon="/assets/icons/add.png" message="Expenses: the backbone of your budget. Track spending, manage costs efficiently, and sustain financial stability."></app-empty-list>
+</div>
+
+
+<div class="section relative">
+  <app-sub-header
+    pageTitle="Expenses"
+    action1Name="New Procurement"
+    icon='assets/icons/add.png'
+    (action1)="route('/app/accounting/new-procurement')"
+    ></app-sub-header>
+
+
+  <!-- Table Section -->
+  <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
+  <app-table [tableHeader]="tableHeader" [tableData]="procurementData"></app-table>
+
+  <!-- End Table Section -->

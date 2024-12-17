@@ -2,7 +2,6 @@ import { PrimengModule } from './../../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AppLayoutRoutingModule } from './app-layout-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AppLayoutComponent } from './app-layout.component';
@@ -21,7 +20,7 @@ import { HumanResourcesComponent } from './human-resources/human-resources.compo
 import { ReportsComponent } from './reports/reports.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { QouteComponent } from './qoute/qoute.component';
-import { OverviewComponent } from './overview/overview.component';
+import { OverviewComponent } from './accounting/overview/overview.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ProchurementOverviewComponent } from './prochurement-overview/prochurement-overview.component';
 import { CreateNewItemPageComponent } from './inventory-tracker/create-new-item-page/create-new-item-page.component';
@@ -34,6 +33,19 @@ import { CustomersCreateComponent } from './customers/customers-create/customers
 import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 import { PriceListOverviewComponent } from './price-list/price-list-overview/price-list-overview.component';
+import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.component';
+import { AccountingOrdersComponent } from './accounting/accounting-orders/accounting-orders.component';
+import { AccountingProchurementComponent } from './accounting/accounting-prochurement/accounting-prochurement.component';
+import { AccountingVendorsComponent } from './accounting/accounting-vendors/accounting-vendors.component';
+import { CreateProcurementComponent } from './accounting/create-procurement/create-procurement.component';
+import { AccountingProcurementPreviewComponent } from './accounting/accounting-procurement-preview/accounting-procurement-preview.component';
+import { VendorDetailComponent } from './vendors/vendor-detail/vendor-detail.component';
+import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
+import { CreateDepartmentComponent } from './human-resources/create-department/create-department.component';
+import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
+import { DepartmentsComponent } from './human-resources/departments/departments.component';
+import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
+
 
 
 @NgModule({
@@ -65,6 +77,19 @@ import { PriceListOverviewComponent } from './price-list/price-list-overview/pri
     PriceListComponent,
     CreatePriceListComponent,
     PriceListOverviewComponent,
+    CreateVendorComponent,
+    AccountingOrdersComponent,
+    AccountingProchurementComponent,
+    AccountingVendorsComponent,
+    CreateProcurementComponent,
+    AccountingProcurementPreviewComponent,
+    VendorDetailComponent,
+    CreateStaffComponent,
+    CreateDepartmentComponent,
+    StaffProfileComponent,
+    DepartmentsComponent,
+    HrOverviewComponent,
+
 
   ],
   imports: [

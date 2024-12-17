@@ -1,206 +1,257 @@
 
+<div class="flex justify-between gap-2 items-center bg-white py-3 px-4">
+  <div class="id flex items-center  gap-4">
+    <button class="h-10 w-10 rounded-full hover:bg-gray-200 flex justify-center items-center active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+      </svg>
+    </button>
+    #PO-000011
+  </div>
+  <div class="flex gap-2">
+    <button class="px-4 py-2 bg-yellow-400 flex gap-2 items-center text-black rounded-md">
+      Mark as recieved
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+          <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+        </svg>
+      </span>
+    </button>
+    <button class="px-4 py-2 bg-primary flex gap-2 items-center text-white rounded-md">
+      Send Mail
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+      </svg>
+    </button>
+    
+  </div>
+</div>
 
+<!-- Buttons -->
+<div class="mt-6 flex justify-start gap-x-3">
+  <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50" href="#">
+  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+    Invoice PDF
+  </a>
+  <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border hover:font-bold  focus:outline-none text-gray-800  disabled:opacity-50 disabled:pointer-events-none" href="#">
+    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+    Print
+  </a>
+</div>
+<!-- End Buttons -->
 
 <!-- Invoice -->
-<div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
-    <div class="sm:w-11/12 lg:w-3/4 mx-auto">
+<div class="max-w-[65rem] px-4 sm:px-6 lg:px-4  my-4 sm:my-10">
+    <div class="sm:w-11/12 lg:w-3/4 ">
       <!-- Card -->
-      <div class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl">
+      <div class="flex flex-col p-2 sm:p-5 bg-white shadow-md rounded-xl">
         <!-- Grid -->
         <div class="flex justify-between">
-          <div>
-            <svg class="size-10" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 26V13C1 6.37258 6.37258 1 13 1C19.6274 1 25 6.37258 25 13C25 19.6274 19.6274 25 13 25H12" class="stroke-blue-600" stroke="currentColor" stroke-width="2"/>
-              <path d="M5 26V13.16C5 8.65336 8.58172 5 13 5C17.4183 5 21 8.65336 21 13.16C21 17.6666 17.4183 21.32 13 21.32H12" class="stroke-blue-600" stroke="currentColor" stroke-width="2"/>
-              <circle cx="13" cy="13.0214" r="5" fill="currentColor" class="fill-blue-600"/>
-            </svg>
+          <div class="flex items-start gap-4 mt-12 px-8">
+            <img src="/assets/logo.png" alt="">
   
-            <h1 class="mt-2 text-lg md:text-xl font-semibold text-blue-600">Preline Inc.</h1>
+            <div class="flex flex-col items-start">
+              <h1 class=" text-lg md:text-2xl font-bold text-primary">Starters</h1>
+              <span class="text-xs text-gray-500">www.webiste.com</span>
+              <span class="text-xs text-gray-500">hello&#64;email.com</span>
+              <span class="text-xs text-gray-500">www.webiste.com</span>
+            </div>
           </div>
           <!-- Col -->
   
           <div class="text-end">
-            <h2 class="text-2xl md:text-3xl font-semibold text-gray-800">Invoice #</h2>
+            <h2 class="text-xl md:text-xl font-semibold text-gray-800">Invoice #</h2>
             <span class="mt-1 block text-gray-500">3682303</span>
   
-            <address class="mt-4 not-italic text-gray-800">
-              45 Roker Terrace<br>
-              Latheronwheel<br>
-              KW5 8NW, London<br>
-              United Kingdom<br>
+            <address class="mt-4 not-italic text-xs text-gray-500">
+              Business address<br>
+              city, state, IN - 000 000<br>
+              TAX ID 00XXXX123X0xx<br>
             </address>
           </div>
           <!-- Col -->
         </div>
         <!-- End Grid -->
   
-        <!-- Grid -->
-        <div class="mt-8 grid sm:grid-cols-2 gap-3">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-800">Bill to:</h3>
-            <h3 class="text-lg font-semibold text-gray-800">Sara Williams</h3>
-            <address class="mt-2 not-italic text-gray-500">
-              280 Suzanne Throughway,<br>
-              Breannabury, OR 45801,<br>
-              United States<br>
-            </address>
+        <div class="body-content border rounded-xl mt-8 px-8">
+                  <!-- Grid -->
+          <div class="mt-8 grid sm:grid-cols-3 gap-3">
+            <div>
+              <h3 class="text-sm font-semibold text-gray-800">Bill to:</h3>
+              <h3 class="text-sm font-bold text-gray-800">Company Name</h3>
+              <address class="mt-2 text-sm not-italic text-gray-500">
+                280 Suzanne Throughway,<br>
+                Breannabury, OR 45801,<br>
+                United States<br>
+              </address>
+            </div>
+            <!-- Col -->
+    
+            <div class="sm:text-end space-y-2">
+              <!-- Grid -->
+              <div class="grid grid-cols-1 place-items-center sm:grid-cols-1 gap-3 sm:gap-2">
+                <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-1  ">
+                    <span class="text-sm text-start text-gray-500">Invoice number</span>
+                    <span class="text-sm font-bold text-start text-gray-800">#AB2324-01</span>
+                  </div>
+                  <dl class="flex flex-col gap-1">
+                    <dt class="text-sm col-span-3 text-start text-gray-500">Refernce</dt>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">INV-057</dd>
+                  </dl>
+                  <dl class="flex flex-col gap-1 ">
+                    <dt class="text-sm col-span-3 text-start text-gray-500">Date</dt>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">01 Aug, 2023</dd>
+                  </dl>
+                </div>
+              </div>
+              <!-- End Grid -->
+            </div>
+
+            <div class="sm:text-end space-y-2">
+              <!-- Grid -->
+              <div class="grid grid-cols-1 place-items-center sm:grid-cols-1 gap-3 sm:gap-2">
+                <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-1  ">
+                    <span class="text-sm text-start text-gray-500">Invoice of (NGN)</span>
+                    <span class="text-2xl font-bold text-start text-primary"> ₦ 4,950.00</span>
+                  </div>
+                  <!-- <dl class="h-full">
+                    
+                  </dl> -->
+                  <dl class="flex flex-col gap-1 ">
+                    <dt class="text-sm col-span-3 text-start text-gray-500">Delivery date</dt>
+                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">01 Aug, 2023</dd>
+                  </dl>
+                </div>
+              </div>
+              <!-- End Grid -->
+            </div>
+
+            <!-- Col -->
           </div>
-          <!-- Col -->
-  
-          <div class="sm:text-end space-y-2">
-            <!-- Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Invoice date:</dt>
-                <dd class="col-span-2 text-gray-500">03/10/2018</dd>
-              </dl>
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Due date:</dt>
-                <dd class="col-span-2 text-gray-500">03/11/2018</dd>
-              </dl>
-            </div>
-            <!-- End Grid -->
-          </div>
-          <!-- Col -->
-        </div>
-        <!-- End Grid -->
-  
-        <!-- Table -->
-        <div class="mt-6">
-          <div class="border border-gray-200 p-4 rounded-lg space-y-4">
-            <div class="hidden sm:grid sm:grid-cols-5">
-              <div class="sm:col-span-2 text-xs font-medium text-gray-500 uppercase">Item</div>
-              <div class="text-start text-xs font-medium text-gray-500 uppercase">Qty</div>
-              <div class="text-start text-xs font-medium text-gray-500 uppercase">Rate</div>
-              <div class="text-end text-xs font-medium text-gray-500 uppercase">Amount</div>
-            </div>
-  
-            <div class="hidden sm:block border-b border-gray-200"></div>
-  
-            <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-              <div class="col-span-full sm:col-span-2">
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                <p class="font-medium text-gray-800">Design UX and UI</p>
+          <!-- End Grid -->
+    
+          <!-- Table -->
+          <div class="mt-8">
+            <div class="border text-sm border-gray-200 p-4 rounded-lg space-y-4">
+              <div class="hidden sm:grid sm:grid-cols-5">
+                <div class="sm:col-span-2 text-xs font-medium text-gray-500 uppercase">Item</div>
+                <div class="text-start text-xs font-medium text-gray-500 uppercase">Qty</div>
+                <div class="text-start text-xs font-medium text-gray-500 uppercase">Rate</div>
+                <div class="text-end text-xs font-medium text-gray-500 uppercase">Amount</div>
               </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                <p class="text-gray-800">1</p>
+    
+              <div class="hidden sm:block border-b border-gray-200"></div>
+    
+              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                <div class="col-span-full sm:col-span-2">
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
+                  <p class="font-medium text-gray-800">Design UX and UI</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
+                  <p class="text-gray-800">1</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
+                  <p class="text-gray-800">5</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
+                  <p class="sm:text-end text-gray-800"> ₦500</p>
+                </div>
               </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                <p class="text-gray-800">5</p>
+    
+              <div class="sm:hidden border-b border-gray-200"></div>
+    
+              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                <div class="col-span-full sm:col-span-2">
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
+                  <p class="font-medium text-gray-800">Web project</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
+                  <p class="text-gray-800">1</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
+                  <p class="text-gray-800">24</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
+                  <p class="sm:text-end text-gray-800"> ₦1250</p>
+                </div>
               </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                <p class="sm:text-end text-gray-800">$500</p>
-              </div>
-            </div>
-  
-            <div class="sm:hidden border-b border-gray-200"></div>
-  
-            <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-              <div class="col-span-full sm:col-span-2">
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                <p class="font-medium text-gray-800">Web project</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                <p class="text-gray-800">1</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                <p class="text-gray-800">24</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                <p class="sm:text-end text-gray-800">$1250</p>
-              </div>
-            </div>
-  
-            <div class="sm:hidden border-b border-gray-200"></div>
-  
-            <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-              <div class="col-span-full sm:col-span-2">
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                <p class="font-medium text-gray-800">SEO</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                <p class="text-gray-800">1</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                <p class="text-gray-800">6</p>
-              </div>
-              <div>
-                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                <p class="sm:text-end text-gray-800">$2000</p>
+    
+              <div class="sm:hidden border-b border-gray-200"></div>
+    
+              <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                <div class="col-span-full sm:col-span-2">
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
+                  <p class="font-medium text-gray-800">SEO</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
+                  <p class="text-gray-800">1</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
+                  <p class="text-gray-800">6</p>
+                </div>
+                <div>
+                  <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
+                  <p class="sm:text-end text-gray-800"> ₦2000</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- End Table -->
-  
-        <!-- Flex -->
-        <div class="mt-8 flex sm:justify-end">
-          <div class="w-full max-w-2xl sm:text-end space-y-2">
-            <!-- Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
-                <dd class="col-span-2 text-gray-500">$2750.00</dd>
-              </dl>
-  
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
-                <dd class="col-span-2 text-gray-500">$2750.00</dd>
-              </dl>
-  
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Tax:</dt>
-                <dd class="col-span-2 text-gray-500">$39.00</dd>
-              </dl>
-  
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Amount paid:</dt>
-                <dd class="col-span-2 text-gray-500">$2789.00</dd>
-              </dl>
-  
-              <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800">Due balance:</dt>
-                <dd class="col-span-2 text-gray-500">$0.00</dd>
-              </dl>
+          <!-- End Table -->
+    
+          <!-- Flex -->
+          <div class="mt-8 flex sm:justify-end">
+            <div class="w-full max-w-2xl sm:text-end space-y-2">
+              <!-- Grid -->
+              <div class="grid text-sm grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
+                <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
+                  <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
+                </dl>
+    
+                <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
+                  <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
+                </dl>
+    
+                <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dt class="col-span-3 font-semibold text-gray-800">Tax:</dt>
+                  <dd class="col-span-2 text-gray-500"> ₦39.00</dd>
+                </dl>
+    
+                <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dt class="col-span-3 font-semibold text-gray-800">Amount paid:</dt>
+                  <dd class="col-span-2 text-gray-500"> ₦2789.00</dd>
+                </dl>
+    
+                <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dt class="col-span-3 font-semibold text-gray-800">Due balance:</dt>
+                  <dd class="col-span-2 text-gray-500"> ₦0.00</dd>
+                </dl>
+              </div>
+              <!-- End Grid -->
             </div>
-            <!-- End Grid -->
           </div>
-        </div>
-        <!-- End Flex -->
-  
-        <div class="mt-8 sm:mt-12">
-          <h4 class="text-lg font-semibold text-gray-800">Thank you!</h4>
-          <p class="text-gray-500">If you have any questions concerning this invoice, use the following contact information:</p>
-          <div class="mt-2">
-            <p class="block text-sm font-medium text-gray-800">example&#64;site.com</p>
-            <p class="block text-sm font-medium text-gray-800">+1 (062) 109-9222</p>
+          <!-- End Flex -->
+    
+          <div class="my-8 sm:mt-12">
+            <h4 class="text-sm font-semibold text-gray-800">Thanks for the business.</h4>
+            
           </div>
-        </div>
+          </div>
   
-        <p class="mt-5 text-sm text-gray-500">© 2022 Preline.</p>
+        <p class="mt-5 text-sm text-gray-500">Please pay within 15 days of recieving this invoice.</p>
       </div>
       <!-- End Card -->
-  
-      <!-- Buttons -->
-      <div class="mt-6 flex justify-end gap-x-3">
-        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50" href="#">
-        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-          Invoice PDF
-        </a>
-        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
-          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-          Print
-        </a>
-      </div>
-      <!-- End Buttons -->
     </div>
   </div>
   <!-- End Invoice -->

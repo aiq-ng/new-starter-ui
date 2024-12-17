@@ -11,6 +11,8 @@ export class TableComponent {
   @Input() tableTitle!: string;
   @Input() tableData: any[] = [];
   @Input() tableHeader: any[] = [];
+  @Input() title!:string;
+  @Input() noPagination: boolean = false;
   @Output() viewAction = new EventEmitter();
 
   constructor(private router:Router){}

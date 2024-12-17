@@ -19,7 +19,7 @@ export class SidebarComponent {
         "dropdown": ""
 
       },
-   
+
       {
         "name": "Prochurement",
         "icon": "assets/icons/sales.png",
@@ -82,8 +82,8 @@ export class SidebarComponent {
             "route": "/app/accounting/overview",
           },
           {
-            "name": "Sales Order",
-            "route": "/app/accounting/sales-order",
+            "name": "Order",
+            "route": "/app/accounting/order",
           },
           {
             "name": "Prochurements",
@@ -96,7 +96,7 @@ export class SidebarComponent {
         ]
 
       },
-      
+
       {
         "name": "Human Resources",
         "icon": "assets/icons/people.png",
