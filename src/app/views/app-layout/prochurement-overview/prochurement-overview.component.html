@@ -1,25 +1,26 @@
 <div class="section">
+  {{overallInventory}}jsakdjfaksdjfkl;
   <div class="metrics flex flex-col gap-6 bg-white rounded-lg border p-4">
     <div class="title text-sm">Overall Inventory</div>
     <div class="data text-sm flex justify-between">
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-blue-600 ">Category</div>
-        <div class="data text-gray-800 text-base font-semibold">12</div>
+        <div class="data text-gray-800 text-base font-semibold">{{overallInventory.data.categories}}</div>
       </div>
 
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-yellow-600 ">Total Products</div>
-        <div class="data text-gray-800 text-base font-semibold">12</div>
+        <div class="data text-gray-800 text-base font-semibold">{{overallInventory.data.total_products}}</div>
       </div>
 
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-purple-600 ">Vendors</div>
-        <div class="data text-gray-800 text-base font-semibold">12</div>
+        <div class="data text-gray-800 text-base font-semibold">{{overallInventory.data.vendors}}</div>
       </div>
 
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-primary ">Low Stock</div>
-        <div class="data text-gray-800 text-base font-semibold">12</div>
+        <div class="data text-gray-800 text-base font-semibold">{{overallInventory.data.low_stocks}}</div>
       </div>
     </div>
   </div>
@@ -83,63 +84,32 @@
 
             <th scope="col" class="px-6 py-3 text-start ">
               <p class="text-xs font-semibold uppercase tracking-wide text-gray-800">
-                Price
+                Amount
               </p>
             </th>
           </tr>
         </thead>
 
         <tbody class="divide-y divide-gray-200">
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
+          <ng-container *ngFor="let item of mostPurchased.data">
+            <tr>
+              <td class="size-px  px-6 py-3">
+                  <p class="text-sm text-gray-500">{{item.item_name}}</p>
+              </td>
+              <td class="size-px  px-6 py-3">
+                <div class="flex items-center gap-x-3">
+                  <p class="font-semibold text-sm text-gray-500">{{item.purchased_quantity}}</p>
+                </div>
+              </td>
+              <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">{{item.remaining_quantity}}</p>
+              </td>
+              <td class="size-px  px-6 py-3">
+                <p class="text-sm text-gray-500">₦{{item.amount}}</p>
+              </td>
+            </tr>
+          </ng-container>
 
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
 
 
 
@@ -163,39 +133,21 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/keg.png" class="" alt="">
+      <div class="flex flex-col gap-4 h-[30vh] overflow-y-auto">
+        <ng-container *ngFor="let stock of lowQuantityStock.data">
+          <div class="low-items flex gap-4 items-center w-full mt-4">
+            <div class="image">
+              <img src={{stock.media[0]}} class="w-12 h-12 object-contain" alt="">
+            </div>
+            <div class="detail">
+              <div class="title  text-gray-600">{{stock.name}}</div>
+              <div class="text-sm text-gray-500">Remaining Quantity : {{stock.remaining_quantity}}</div>
+            </div>
+            <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
           </div>
-          <div class="detail">
-            <div class="title  text-gray-600">Vegetable Oil</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 10 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
-        </div>
+        </ng-container>
 
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/tomato.png" class="" alt="">
-          </div>
-          <div class="detail">
-            <div class="title  text-gray-600">Ketchup</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 12 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
-        </div>
 
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/shawarma.png" class="" alt="">
-          </div>
-          <div class="detail">
-            <div class="title capitalize text-gray-600">Shawarma wrap</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 15 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize text-xs rounded-full">low</div>
-        </div>
       </div>
 
     </div>

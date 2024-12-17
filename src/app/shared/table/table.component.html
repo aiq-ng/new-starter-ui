@@ -23,6 +23,8 @@
                       </label>
                     </th>
 
+
+
                     <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
                       <div class="flex items-center gap-x-2">
                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
@@ -34,9 +36,9 @@
                 </tr>
               </thead>
               <tbody  class="divide-y divide-gray-200">
-                  <tr (click)="onClick()" *ngFor="let data of tableData">
+                  <tr  *ngFor="let data of tableData">
                      <ng-container >
-                      <td class="w-10 whitespace-nowrap">
+                      <td (click)="onClick()" class="w-10 whitespace-nowrap">
                         <div class="ps-2 py-4">
                             <label for="hs-at-with-checkboxes-1" class="flex">
                             <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
@@ -44,9 +46,20 @@
                             </label>
                         </div>
                         </td>
+
                         <td *ngFor="let key of objectKeys(data)"   class="px-2 py-4">
+                          <div *ngIf="key=='media'" class="flex items-center gap-x-3">
+                            <img loading="lazy" class="w-8 h-8 rounded-full" src={{data[key]}} alt="Avatar">
+                            <div class="grow">
+                          </div>
+                        </div>
+
+                        <div *ngIf="key=='id'" class="flex items-center gap-x-3">
+
+                      </div>
+
                         <div *ngIf="key=='Name'" class="flex items-center gap-x-3">
-                            <img loading="lazy" class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar">
+                            <!-- <img loading="lazy" class="w-8 h-8 rounded-full" src="/assets/images/keg.png" alt="Avatar"> -->
                             <div class="grow">
                             <span class="block text-sm text-gray-500 truncate">{{data[key]}}</span>
                             </div>

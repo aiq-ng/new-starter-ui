@@ -20,8 +20,6 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TabMenuComponent } from './tab-menu/tab-menu.component';
 import { TableComponent } from './table/table.component';
-import { ToastModule } from 'primeng/toast';
-import { ButtonModule } from 'primeng/button';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-invoice.component';
@@ -55,9 +53,7 @@ import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-in
   imports: [
     CommonModule,
     PrimengModule,
-    ReactiveFormsModule, 
-    ToastModule,
-    ButtonModule
+    ReactiveFormsModule
 
   ],
   exports: [

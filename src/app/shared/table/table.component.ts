@@ -14,6 +14,8 @@ export class TableComponent {
   @Input() title!:string;
   @Input() noPagination: boolean = false;
   @Output() viewAction = new EventEmitter();
+  @Output() detail = new EventEmitter();
+  @Input() url:any;
 
   constructor(private router:Router){}
 
@@ -28,7 +30,12 @@ export class TableComponent {
 
   onClick(){
     this.viewAction.emit();
-    console.log('view action triggered')
+  }
+
+  viewDetail(id:any){
+    this.detail.emit();
+    console.log('detail action triggered')
+    this.router.navigate([this.url + id])
   }
 
   route(page:string){

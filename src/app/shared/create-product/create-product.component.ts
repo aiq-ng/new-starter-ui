@@ -44,23 +44,29 @@ export class CreateProductComponent {
   ngOnInit(){
     this.createProductForm = this.fb.group({
       // Basic information
-      productName: ['', Validators.required],
-      warehouse: ['', Validators.required],
-      vendor: ['', Validators.required],
-      code: [''],
-      sku: ['', Validators.required],
+      name: ['', Validators.required],
+      department_id: ['', Validators.required],
+      category_id: ['', Validators.required],
+      manufacturer_id: ['', Validators.required],
+      date_recieved: ['', Validators.required],
       image: ['', Validators.required],
-      barcode: [''],
+      expiry_date: ['', Validators.required],
 
       // Sales information
-      price: ['', [Validators.required, Validators.min(0)]],
+      description: ['', [Validators.required, Validators.min(0)]],
 
       // Inventory
       quantity: ['', [Validators.required, Validators.min(1)]],
-      unit: ['', Validators.required],
+      unit_id: ['', Validators.required],
+      price: ['', Validators.required],
+      threshold_value: ['', Validators.required],
     });
 
     this.getUnits()
+    this.getDepartments()
+    this.getCategories();
+    this.getManufacturers();
+
   }
 
   toggleCreateProduct(){
@@ -80,6 +86,40 @@ export class CreateProductComponent {
     this.api.get('units').subscribe(
       res=>{
         this.units = res
+      }, err=>{
+        console.log(err);
+      }
+    )
+  }
+
+  getDepartments(){
+    this.api.get('departments').subscribe(
+      res=>{
+        this.departments = res
+      }, err=>{
+        console.log(err);
+      }
+    )
+  }
+
+
+  getManufacturers(){
+    this.api.get('item_manufacturers').subscribe(
+      res=>{
+        this.manufacturers = res
+      }, err=>{
+        console.log(err);
+      }
+    )
+  }
+
+
+  getCategories(){
+    this.api.get('item_categories').subscribe(
+      res=>{
+        this.categories = res
+      }, err=>{
+        console.log(err);
       }
     )
   }
@@ -97,26 +137,29 @@ export class CreateProductComponent {
     });
 
     // Append other form data
-    formData.append('name', this.createProductForm.get('productName')?.value);
-    formData.append('location', this.createProductForm.get('warehouse')?.value);
-    formData.append('vendor', this.createProductForm.get('vendor')?.value);
-    formData.append('code', this.createProductForm.get('code')?.value);
-    formData.append('sku', this.createProductForm.get('sku')?.value);
-    formData.append('barcode', this.createProductForm.get('barcode')?.value);
-    formData.append('price', this.createProductForm.get('price')?.value);
-    formData.append('unit', this.createProductForm.get('unit')?.value);
+    formData.append('name', this.createProductForm.get('name')?.value);
+    formData.append('department_id', this.createProductForm.get('department_id')?.value);
+    formData.append('category_id', this.createProductForm.get('category_id')?.value);
+    formData.append('manufacturer_id', this.createProductForm.get('manufacturer_id')?.value);
+    formData.append('date_recieved', this.createProductForm.get('date_recieved')?.value);
+    formData.append('expiry_date', this.createProductForm.get('expiry_date')?.value);
+    formData.append('description', this.createProductForm.get('description')?.value);
+    formData.append('unit_id', this.createProductForm.get('unit_id')?.value);
     formData.append('quantity', this.createProductForm.get('quantity')?.value);
+    formData.append('threshold_value', this.createProductForm.get('threshold_value')?.value);
+    formData.append('price', this.createProductForm.get('price')?.value);
 
     if (this.createProductForm.invalid) {
       console.log("form invalid");
       return;
     }
 
-    this.api.post('products', formData).subscribe(
+    this.api.post('inventory/items', formData).subscribe(
       res => {
         console.log(res);
         this.showSuccess('Product created successfully');
         this.createProductForm.reset();
+        this.isSubmitted = false;
       },
       err => {
         console.log(err);

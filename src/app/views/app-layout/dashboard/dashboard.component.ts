@@ -13,8 +13,9 @@ export class DashboardComponent {
     data: any;
     options: any=null;
     metrics: any=null;
+    events:any;
     TopSellingProduct: any=null;
-    warehouseDetail: any=null;
+    lowQuantityStock: any=null;
     pageLoading:boolean=false;
     calender:boolean=false;
     chartData:any[]=[]
@@ -37,7 +38,10 @@ export class DashboardComponent {
       },
     ]
 
-    constructor(private api:HttpServiceService, private messageService:MessageService){}
+    constructor(
+                private api:HttpServiceService,
+                private messageService:MessageService,
+              ){}
 
     ngOnInit() {
       const documentStyle = getComputedStyle(document.documentElement);
@@ -89,22 +93,27 @@ export class DashboardComponent {
             }
         }
     };
+
+    this.getMetrics();
+    this.getTopSellingProducts(1, 10);
+    this.getLowQuantityStock();
+    this.getEvents();
     }
 
 
-    getTopSellingProducts(){
+    getTopSellingProducts(pageNumber:number, numberPerPage:number){
       this.pageLoading = true;
-      this.api.get('dashboard/products/topselling').subscribe(
+      this.api.get(`dashboard/products/topselling?page=${pageNumber}&page_size=${numberPerPage}`).subscribe(
         res=>{
           this.TopSellingProduct = res
-          console.log(this.TopSellingProduct)
+          console.log('Top selling', this.TopSellingProduct)
           this.pageLoading = false;
         }
       )
     }
 
     getMetrics(){
-      this.api.get('dashboard/metrics').subscribe(
+      this.api.get('dashboard/business').subscribe(
         res=>{
           this.metrics = res;
           console.log(this.metrics)
@@ -115,12 +124,36 @@ export class DashboardComponent {
       )
     }
 
-    getWarehouseDetail(){
-      this.api.get('dashboard/warehouses/details').subscribe(
+    getEvents(){
+      this.api.get('dashboard/business').subscribe(
         res=>{
-          this.warehouseDetail = res;
-          console.log(this.warehouseDetail)
-          this.chartData = [this.warehouseDetail?.data.cold_room, this.warehouseDetail?.data.kitchen]
+          this.events = res;
+          console.log(this.events)
+        },
+        err=>{
+          this.showError('Error fetching metrics');
+        }
+      )
+    }
+
+    getCashFlow(){
+      this.api.get('dashboard/business').subscribe(
+        res=>{
+          this.events = res;
+          console.log(this.events)
+        },
+        err=>{
+          this.showError('Error fetching metrics');
+        }
+      )
+    }
+
+    getLowQuantityStock(){
+      this.api.get('dashboard/products/lowstock').subscribe(
+        res=>{
+          this.lowQuantityStock = res;
+          console.log(this.lowQuantityStock)
+          // this.chartData = [this.lowQuantityStock?.data.cold_room, this.warehouseDetail?.data.kitchen]
 
           console.log('chartData', this.chartData)
         },

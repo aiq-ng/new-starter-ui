@@ -17,7 +17,7 @@
         <img src="/assets/icons/income.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class=" text-gray-500">Total income</span>
-          <span class=" text-xl  text-gray-800">₦2,360,000</span>
+          <span class=" text-xl  text-gray-800">₦{{metrics?.data.total_income}}</span>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
         <img src="/assets/icons/expense.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class="text-sm text-gray-500">Total Expenses</span>
-          <span class=" text-xl text-gray-800">₦1,360,000</span>
+          <span class=" text-xl text-gray-800">₦{{metrics?.data.total_expenses}}</span>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
         <img src="/assets/icons/employees.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class="text-sm text-gray-500">Employees</span>
-          <span class=" text-xl text-gray-800">38</span>
+          <span class=" text-xl text-gray-800">{{metrics?.data.total_employees}}</span>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
         <img src="/assets/icons/suppliers.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class="text-sm text-gray-500">Number of suppliers</span>
-          <span class=" text-xl text-gray-800">42</span>
+          <span class=" text-xl text-gray-800">{{metrics?.data.total_vendors}}</span>
         </div>
       </div>
     </div>
@@ -214,60 +214,26 @@
         </thead>
 
         <tbody class="divide-y divide-gray-200">
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="size-px  px-6 py-3">
-                <p class="text-sm text-gray-500">Small Chops Jumbo</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <div class="flex items-center gap-x-3">
-                <p class="font-semibold text-sm text-gray-500">30</p>
-              </div>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">12</p>
-            </td>
-            <td class="size-px  px-6 py-3">
-              <p class="text-sm text-gray-500">₦ 100</p>
-            </td>
-          </tr>
-
-
-
+          <ng-container *ngFor="let stock of TopSellingProduct.data">
+            <tr>
+              <td class="size-px px-6 py-3">
+                <p class="text-sm text-gray-500">{{stock.item_name}}</p>
+              </td>
+              <td class="size-px px-6 py-3">
+                <div class="flex items-center gap-x-3">
+                  <p class="font-semibold text-sm text-gray-500">{{stock.sold_quantity}}</p>
+                </div>
+              </td>
+              <td class="size-px px-6 py-3">
+                <p class="text-sm text-gray-500">{{stock.remaining_quantity}}</p>
+              </td>
+              <td class="size-px px-6 py-3">
+                <p class="text-sm text-gray-500">₦{{stock.price}}</p>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
+
       </table>
       <!-- End Table -->
 
@@ -287,39 +253,21 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/keg.png" class="" alt="">
+      <div class="flex flex-col gap-4 h-[40vh] overflow-y-auto">
+        <ng-container *ngFor="let stock of lowQuantityStock.data">
+          <div class="low-items flex gap-4 items-center w-full mt-4">
+            <div class="image">
+              <img src={{stock.media[0]}} class="w-12 h-12 object-contain" alt="">
+            </div>
+            <div class="detail">
+              <div class="title  text-gray-600">{{stock.name}}</div>
+              <div class="text-sm text-gray-500">Remaining Quantity : {{stock.remaining_quantity}}</div>
+            </div>
+            <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
           </div>
-          <div class="detail">
-            <div class="title  text-gray-600">Vegetable Oil</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 10 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
-        </div>
+        </ng-container>
 
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/tomato.png" class="" alt="">
-          </div>
-          <div class="detail">
-            <div class="title  text-gray-600">Ketchup</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 12 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
-        </div>
 
-        <div class="low-items flex gap-4 items-center w-full mt-4">
-          <div class="image">
-            <img src="/assets/images/shawarma.png" class="" alt="">
-          </div>
-          <div class="detail">
-            <div class="title capitalize text-gray-600">Shawarma wrap</div>
-            <div class="text-sm text-gray-500">Remaining Quantity : 15 Packet</div>
-          </div>
-          <div class="status px-4 py-1 bg-accent text-primary capitalize rounded-full">low</div>
-        </div>
       </div>
     </div>
    </div>
