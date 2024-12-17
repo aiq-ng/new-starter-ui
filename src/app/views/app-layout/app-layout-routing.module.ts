@@ -22,6 +22,10 @@ import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail
 import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.component';
 import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
+import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
+import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.component';
 import { AccountingProchurementComponent } from './accounting/accounting-prochurement/accounting-prochurement.component';
 import { AccountingOrdersComponent } from './accounting/accounting-orders/accounting-orders.component';
@@ -37,6 +41,7 @@ import { StaffProfileComponent } from './human-resources/staff-profile/staff-pro
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
 
 
+
 const routes: Routes = [
   {
     path: 'app',
@@ -44,7 +49,13 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'sales', component: SalesComponent },
-      { path: 'order/invoice', component: SalesOrderInvoiceComponent },
+      { path: 'sales/customers', component: CustomersComponent}, 
+      {path: 'sales/customers/overview', component: CustomersOverviewComponent},
+      {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
+      {path: 'sales/price-list', component:PriceListComponent},
+      {path: 'sales/price-list/create', component:CreatePriceListComponent},
+       { path: 'order/invoice', component: SalesOrderInvoiceComponent },
+
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
         {path: 'order', component: AccountingOrdersComponent},
@@ -65,8 +76,11 @@ const routes: Routes = [
         { path: 'edit-item/:id', component: EditItemComponent },
         { path: 'items/:id', component: ItemDetailComponent },
         { path: 'vendors', component: VendorsComponent },
+      ]},
+      { path: 'expenses', component: ExpensesComponent },
+      { path: 'human-resources', component: HumanResourcesComponent },
         { path: 'vendor-detail', component: VendorDetailComponent},
-        { path: 'create-vendor', component: CreateVendorComponent},
+      { path: 'create-vendor', component: CreateVendorComponent},
       ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
@@ -76,6 +90,7 @@ const routes: Routes = [
         {path: 'add-employee', component: CreateStaffComponent },
         {path: 'employee-profile/:id', component: StaffProfileComponent },
       ] },
+
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },

@@ -2,7 +2,6 @@ import { PrimengModule } from './../../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AppLayoutRoutingModule } from './app-layout-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AppLayoutComponent } from './app-layout.component';
@@ -29,6 +28,11 @@ import { ItemDetailComponent } from './inventory-tracker/item-detail/item-detail
 import { EditItemComponent } from './inventory-tracker/edit-item/edit-item.component';
 import { CreateNewPurchaseOrderComponent } from './purchases/create-new-purchase-order/create-new-purchase-order.component';
 import { PurchaseOrderPreviewComponent } from './purchases/purchase-order-preview/purchase-order-preview.component';
+import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
+import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
+import { PriceListOverviewComponent } from './price-list/price-list-overview/price-list-overview.component';
 import { CreateVendorComponent } from './vendors/create-vendor/create-vendor.component';
 import { AccountingOrdersComponent } from './accounting/accounting-orders/accounting-orders.component';
 import { AccountingProchurementComponent } from './accounting/accounting-prochurement/accounting-prochurement.component';
@@ -41,6 +45,7 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { DepartmentsComponent } from './human-resources/departments/departments.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
+
 
 
 @NgModule({
@@ -67,6 +72,11 @@ import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.c
     EditItemComponent,
     CreateNewPurchaseOrderComponent,
     PurchaseOrderPreviewComponent,
+    CustomersOverviewComponent,
+    CustomersCreateComponent,
+    PriceListComponent,
+    CreatePriceListComponent,
+    PriceListOverviewComponent,
     CreateVendorComponent,
     AccountingOrdersComponent,
     AccountingProchurementComponent,
@@ -79,6 +89,7 @@ import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.c
     StaffProfileComponent,
     DepartmentsComponent,
     HrOverviewComponent,
+
 
   ],
   imports: [
