@@ -23,7 +23,7 @@ export class InventoryTrackerComponent {
   tabMenu = ['All','Low stock', 'In Stock', 'Out of Stock']
 
 
-  tableHeader = ['Name', 'BuyingPrice', 'Quantity', 'Threshold Value', 'Expiry Date', 'SKU', 'Availability', 'Image',]
+  tableHeader = ['Name', 'BuyingPrice', 'Quantity', 'Threshold Value', 'Expiry Date', 'SKU', 'Availability']
 
 
   constructor(private messageService: MessageService,

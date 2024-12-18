@@ -134,6 +134,12 @@ export class CreateProductComponent {
 
     console.log(this.createProductForm.value);
 
+    if (this.createProductForm.invalid) {
+      console.log("form invalid");
+      this.loading = false;
+      return;
+    }
+
     let formData:any = new FormData();
 
     // Append each file in the files array to FormData
@@ -154,10 +160,7 @@ export class CreateProductComponent {
     formData.append('threshold_value', this.createProductForm.get('threshold_value')?.value);
     formData.append('price', this.createProductForm.get('price')?.value);
 
-    if (this.createProductForm.invalid) {
-      console.log("form invalid");
-      return;
-    }
+
 
     this.api.post('inventory/items', formData).subscribe(
       res => {

@@ -23,6 +23,8 @@ import { TableComponent } from './table/table.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-invoice.component';
+import { ConfirmActionComponent } from './confirm-action/confirm-action.component';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-in
     OrderDetailComponent,
     InvoiceComponent,
     SalesOrderInvoiceComponent,
+    ConfirmActionComponent,
+    ConfirmDeleteComponent,
 
   ],
   imports: [
@@ -76,6 +80,8 @@ import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-in
     OrderDetailComponent,
     InvoiceComponent,
     SalesOrderInvoiceComponent,
+    ConfirmActionComponent,
+    ConfirmDeleteComponent,
 
   ]
 })
