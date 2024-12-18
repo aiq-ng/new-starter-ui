@@ -4,6 +4,7 @@ import { SharedModule } from './../../../../shared/shared.module';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-item-detail',
@@ -23,6 +24,7 @@ export class ItemDetailComponent {
   itemDetail:any;
   item_id:any;
   pageLoading:boolean = false;
+  saveLoading:boolean = false;
   adjustmentForm:any;
   isSubmitted:boolean = false;
   vendors:any=[];
@@ -34,6 +36,7 @@ export class ItemDetailComponent {
               private router: Router,
               private api:HttpServiceService,
               private fb:FormBuilder,
+              private location: Location,
               private messageService:MessageService){}
 
   ngOnInit(){
@@ -63,15 +66,20 @@ export class ItemDetailComponent {
 
   getItemDetail(){
     this.pageLoading= true;
+    console.log(this.pageLoading)
     return this.api.get('inventory/items/' + this.getParamsId()).subscribe(
       res =>{
         let response:any = res
         this.itemDetail = response.data
         console.log(this.itemDetail)
         this.pageLoading=false;
+    console.log(this.pageLoading)
+
       }, err=>{
         console.log(err)
         this.pageLoading=false;
+    console.log(this.pageLoading)
+
       }
     )
 
@@ -99,11 +107,9 @@ export class ItemDetailComponent {
   }
 
   getVendors(){
-    this.pageLoading = true;
     this.api.get('vendors?page=1&page_size=5&sort_by=total_transaction&sort_order=desc').subscribe(
       res=>{
         this.vendors = res;
-        this.pageLoading = false;
       },
       err=>{
         console.log(err)
@@ -135,6 +141,7 @@ export class ItemDetailComponent {
   get f(){return this.adjustmentForm.controls};
 
   saveAdjustment(){
+    this.saveLoading = true;
     if(this.adjustmentForm.invalid){
       console.log(this.adjustmentForm.value)
       this.showError('One or more fields are required')
@@ -148,17 +155,26 @@ export class ItemDetailComponent {
         this.adjustmentForm.reset();
         this.getItemDetail()
         this.isSubmitted = false;
+        this.saveLoading = false;
+
       },
       err => {
         console.log(err);
         this.showError('Failed to adjut quantity, please try again');
+        this.saveLoading = false;
+
       }
     );
 
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   editItemToggle(){
-    this.route('/app/prochurement/edit-item/1');
+    this.showError('Edit feture coming soon')
+    // this.route('/app/prochurement/edit-item/1');
   }
 
 

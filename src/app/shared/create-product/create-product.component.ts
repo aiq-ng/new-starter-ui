@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Location } from '@angular/common';
 
 
 interface Warehouse {
@@ -38,6 +39,7 @@ export class CreateProductComponent {
 
   constructor(private fb:FormBuilder,
               private api:HttpServiceService,
+              private location: Location,
               private messageService: MessageService){}
 
 
@@ -79,7 +81,9 @@ export class CreateProductComponent {
   }
 
 
-
+  goBack(): void {
+    this.location.back();
+  }
 
 
   getUnits(){
@@ -125,6 +129,7 @@ export class CreateProductComponent {
   }
 
   save() {
+    this.loading = true;
     this.isSubmitted = true;
 
     console.log(this.createProductForm.value);
@@ -160,10 +165,13 @@ export class CreateProductComponent {
         this.showSuccess('Product created successfully');
         this.createProductForm.reset();
         this.isSubmitted = false;
+        this.loading = false;
+
       },
       err => {
         console.log(err);
         this.showError('Failed to create product, please try again');
+        this.loading = false;
       }
     );
   }

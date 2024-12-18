@@ -1,6 +1,16 @@
+
+<div (click)="goBack()" class="mb-2 px-2 cursor-pointer hover:text-primary hover:bg-primary/45 py-2 rounded-md text-sm max-w-[100px] flex items-center gap-2">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </span>
+  <span class="text-gray-500 hover:text-primary font-normal">Back</span>
+</div>
+
 <div class="section relative">
     <app-sub-header
-      [pageTitle]="itemDetail.item_name"
+      [pageTitle]="itemDetail?.item_name"
       action1Name="Adjust Stock"
       action2Name="Edit Stock"
       icon='assets/icons/add.png'
@@ -19,27 +29,45 @@
             <div class="details flex flex-col gap-8 mt-6 w-full ">
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Item name</p>
-                    <p class="text-gray-800 ">{{itemDetail.item_name}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.item_name}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Item ID</p>
-                    <p class="text-gray-800 ">{{itemDetail.item_id}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.item_id}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Item Category</p>
-                    <p class="text-gray-800 ">{{itemDetail.category}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.category}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Department</p>
-                    <p class="text-gray-800 ">{{itemDetail.department}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.department}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Expiery Date</p>
-                    <p class="text-gray-800 ">{{itemDetail.expiry_date}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.expiry_date}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Threshold</p>
-                    <p class="text-gray-800 ">{{itemDetail.threshold_value}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.threshold_value}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
             </div>
 
@@ -47,18 +75,27 @@
         <div class="div2  flex flex-col justify-between items-center max-w-[300px]">
 
             <div  class="item-image w-[150px] h-100px border mt-16 border-dashed p-4">
-                <img loading="lazy" class="w-full h-full object-cover" src={{itemDetail.media[0]}} alt="">
+                <img *ngIf="!pageLoading"loading="lazy" class="w-full h-full object-cover" src={{itemDetail?.media[0]}} alt="">
+                <p *ngIf="pageLoading" class="text-gray-800 ">
+                  <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                </p>
             </div>
 
 
             <div class="details flex flex-col gap-8 mt-6 w-full ">
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Opening Stock</p>
-                    <p class="text-gray-800 ">{{itemDetail.opening_stock}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.opening_stock}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Remaining Stock</p>
-                    <p class="text-gray-800 ">{{itemDetail.remaining_stock}}</p>
+                    <p *ngIf="!pageLoading"  class="text-gray-800 ">{{itemDetail?.remaining_stock}}</p>
+                    <p *ngIf="pageLoading" class="text-gray-800 ">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                    </p>
                 </div>
 
 
@@ -75,7 +112,7 @@
   <p-sidebar [(visible)]="adjustStock" [style]="{'width': '600px'}" position="right">
     <div class="h-full p-6">
         <div class="page-title text-2xl text-gray-800">
-            Adjust Stock - {{itemDetail.item_name}}
+            Adjust Stock - {{itemDetail?.item_name}}
         </div>
 
         <form [formGroup]="adjustmentForm" (ngSubmit)="saveAdjustment()" class="mt-6 flex flex-col gap-2 h-full">
@@ -83,7 +120,7 @@
                 <div for="current-quantity " class="text-gray-500 font-normal">Quantity Adjustment</div>
                 <div class="py-4 border px-4 rounded-lg flex justify-between items-center">
                         <span >Current Quantity</span>
-                        <span class="text-gray-900 text-lg font-bold">{{itemDetail.remaining_stock}} <span class="text-primary text-sm font-normal">pcs</span></span>
+                        <span class="text-gray-900 text-lg font-bold">{{itemDetail?.remaining_stock}} <span class="text-primary text-sm font-normal">pcs</span></span>
                 </div>
             </div>
 
@@ -150,7 +187,12 @@
             <div class="flex  items-center gap-2 mt-6">
                 <p-button class="px-4 py-2 border text-gray-500 rounded-md" label="Cancel"></p-button>
                 <button type="submit">
-                    <p-button class="px-4 py-2 bg-primary text-white text-sm border border-primary rounded-md" label="Save"></p-button>
+                    <button  class="px-4 py-2 bg-primary text-white text-sm border border-primary rounded-md">
+                      <span *ngIf="!saveLoading">Save</span>
+                      <span class="w-full flex justify-center" *ngIf="saveLoading">
+                          <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                        </span>
+                    </button>
                 </button>
             </div>
 
