@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-new-purchase-order',
   templateUrl: './create-new-purchase-order.component.html',
-  styleUrl: './create-new-purchase-order.component.scss'
+  styleUrl: './create-new-purchase-order.component.scss',
+  providers: [MessageService]  // Import MessageService to use it in the component
 })
 export class CreateNewPurchaseOrderComponent {
   purchaseOrderForm:any;
@@ -18,11 +20,13 @@ export class CreateNewPurchaseOrderComponent {
   iventoryItems:any;
   // items:any;
   itemsToAdd:any = []
+  totalToPay:any;
+  taxes:any;
 
 
 
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService){}
+  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService:MessageService){}
 
   ngOnInit(): void {
     this.purchaseOrderForm = this.fb.group({
@@ -35,7 +39,6 @@ export class CreateNewPurchaseOrderComponent {
       terms_and_conditions: ['', Validators.required],
       discount: ['', Validators.required],
       shipping_charge: ['', Validators.required],
-      vat: ['', Validators.required],
       total: [{ value: 0, disabled: true }], // Readonly total
       items: this.fb.array([]) // FormArray for dynamic rows
     });
@@ -43,7 +46,8 @@ export class CreateNewPurchaseOrderComponent {
     this.getVendors()
     this.getBranches()
     this.getItems()
-    this.getPaymentMethod()
+    this.getTaxes()
+    this.getPaymentTerms()
     this.addRow();
   }
 
@@ -71,21 +75,26 @@ export class CreateNewPurchaseOrderComponent {
   savePurchase(){
     this.isSubmitted = true;
     this.loading = true;
-    console.log(this.purchaseOrderForm)
+    console.log(this.purchaseOrderForm.value)
     if(this.purchaseOrderForm.invalid){
       console.log(this.purchaseOrderForm.value)
       console.log('invalid purchase order form')
       return;
     }
     // save purchase order data
-    console.log(this.purchaseOrderForm.value)
-    this.api.post('purchase_orders', this.purchaseOrderForm.value).subscribe(
+    let purchaseData = this.purchaseOrderForm.value
+    purchaseData.total = this.totalToPay
+    console.log(purchaseData)
+    this.api.post('purchases/orders', this.purchaseOrderForm.value).subscribe(
       res=>{
         console.log(res);
         this.loading = false;
         this.purchaseOrderForm.reset();
+        this.showSuccess('purchase order added successfully')
+        this.isSubmitted = false
       }, err=>{
         console.log(err);
+        this.showError('Failed to add purchase order')
         this.loading = false;
       }
     )
@@ -117,6 +126,19 @@ export class CreateNewPurchaseOrderComponent {
     )
   }
 
+  getTaxes(){
+    this.pageLoading = true;
+    this.api.get('taxes').subscribe(
+      res=>{
+        this.taxes = res;
+        this.pageLoading = false;
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+  }
+
 
   getItems(){
     this.pageLoading = true;
@@ -131,9 +153,9 @@ export class CreateNewPurchaseOrderComponent {
     )
   }
 
-  getPaymentMethod(){
+  getPaymentTerms(){
     this.pageLoading = true;
-    this.api.get('payment_methods').subscribe(
+    this.api.get('payment_terms').subscribe(
       res=>{
         this.paymentTerms = res;
         this.pageLoading = false;
@@ -163,10 +185,24 @@ export class CreateNewPurchaseOrderComponent {
     this.purchaseOrderForm.patchValue({ total });
   }
 
+  calculateTotalToPay(){
+    this.totalToPay = this.purchaseOrderForm.get('total').value + Number(this.purchaseOrderForm.get('shipping_charge').value) - Number(this.purchaseOrderForm.get('discount').value)
+  }
+
   // Remove row
   removeRow(index: number): void {
     this.items.removeAt(index);
     this.calculateTotal();
+  }
+
+
+  showSuccess(message: string) {
+    console.log('showSuccess')
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+  }
+
+  showError(message: string) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
 }

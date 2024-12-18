@@ -143,20 +143,19 @@
               </div>
 
               <div class="hidden sm:block border-b border-gray-200"></div>
-
               <ng-container *ngFor="let item of invoiceDetail.items">
                 <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
                   <div class="col-span-full sm:col-span-2">
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                    <p class="font-medium text-gray-800"></p>
+                    <p class="font-medium text-gray-800">{{item.item_id}}</p>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                    <p class="text-gray-800">{{item.quatity}}</p>
+                    <p class="text-gray-800">{{item.quantity}}</p>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                    <p class="text-gray-800">{{item.rate}}</p>
+                    <p class="text-gray-800">{{item.price}}</p>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
@@ -178,12 +177,12 @@
               <div class="grid text-sm grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
+                  <dd class="col-span-2 text-gray-500"> ₦{{invoiceDetail.total}}</dd>
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦2750.00</dd>
+                  <dd class="col-span-2 text-gray-500"> ₦{{invoiceDetail.total}}</dd>
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">

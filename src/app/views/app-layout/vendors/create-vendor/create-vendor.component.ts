@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]  // Import MessageService to use it in the component
 })
 export class CreateVendorComponent {
-  tabMenu = ['Other details','Address']
+  tabMenu = ['Other details']
   tab:string = 'other'
   createVendorForm:any;
   isSubmitted:boolean = false
@@ -38,7 +38,7 @@ export class CreateVendorComponent {
       currency_id: ['', Validators.required],
       category_id: ['', Validators.required],
       address: ['', Validators.required],
-      website: ['', Validators.required],
+      website: [''],
       twitter: [''],
       facebook: [''],
       instagram: [''],
@@ -47,6 +47,7 @@ export class CreateVendorComponent {
     this.getBranches()
     this.getCurrencies()
     this.getPaymentTerms()
+    this.getVendorCategory()
   }
 
   toggleTab(view:string){
@@ -86,7 +87,7 @@ export class CreateVendorComponent {
 
   getPaymentTerms(){
     this.pageLoading = true;
-    this.api.get('').subscribe(
+    this.api.get('payment_terms').subscribe(
       res=>{
         this.paymentTerms = res;
         this.pageLoading = false;
@@ -100,9 +101,9 @@ export class CreateVendorComponent {
 
   getVendorCategory(){
     this.pageLoading = true;
-    this.api.get('').subscribe(
+    this.api.get('vendor_categories').subscribe(
       res=>{
-        this.paymentTerms = res;
+        this.vendoCategories = res;
         this.pageLoading = false;
       },
       err=>{
@@ -123,8 +124,19 @@ export class CreateVendorComponent {
       console.log('form is invalid')
       return;
     }
-    // save vendor data to server
-    //...
+    this.api.post('vendors', this.createVendorForm.value).subscribe(
+      res=>{
+        console.log(res);
+        this.loading = false;
+        this.createVendorForm.reset();
+        this.showSuccess('Vendor added successfully')
+        this.isSubmitted = false
+      }, err=>{
+        console.log(err);
+        this.showError('Failed to add vendor ')
+        this.loading = false;
+      }
+    )
   }
 
 

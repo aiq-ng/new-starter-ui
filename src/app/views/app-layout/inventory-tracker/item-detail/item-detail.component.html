@@ -106,8 +106,8 @@
             </div>
 
             <div class="py-4 border px-4 rounded-lg flex justify-between items-center">
-                <span class="text-sm">Current Quantity</span>
-                <input type="number" placeholder="Input number  " class="outline-none placeholder:font-light">
+                <span class="text-sm">Adjust Quantity</span>
+                <input type="number" formControlName="quantity" placeholder="Input number  " class="outline-none placeholder:font-light">
             </div>
 
             <div *ngIf="adjustmentType=='addition'" class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
@@ -120,21 +120,19 @@
                 </select>
             </div>
 
-
-
             <div *ngIf="adjustmentType=='subtraction'" class="w-full flex flex-col gap-2 justify-end  rounded-large mt-6">
                 <label class="text-sm" for="">Collected by</label>
                 <select formControlName="collector_id" class="w-full px-4 border py-3 rounded-lg  outline-none" name="" id="">
                   <option value="">Select Collector</option>
-                  <ng-container *ngFor="let employee of employees">
-                    <option class="text-sm" value={{employee.id}}>{{employee.name}}</option>
+                  <ng-container *ngFor="let user of users.data">
+                    <option class="text-sm" value={{user.id}}>{{user.name}}</option>
                   </ng-container>
                 </select>
             </div>
 
             <div>
               <label class="text-sm" for="">Department</label>
-              <select [ngClass]="{'border-red-400': isSubmitted && f.department_id.errors}" formControlName="department_id" class="w-full px-4 border py-3 rounded-lg  outline-none">
+              <select [ngClass]="{'border-red-400': isSubmitted && f.department_id.errors}" formControlName="receiving_department_id" class="w-full px-4 border py-3 rounded-lg  outline-none">
                 <option value="">Select Department</option>
                 <!-- dynamically fetched categories -->
                 <ng-container *ngFor="let department of departments?.data">

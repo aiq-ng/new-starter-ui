@@ -28,6 +28,7 @@ export class ItemDetailComponent {
   vendors:any=[];
   departments:any=[];
   employees:any=[];
+  users:any=[];
 
   constructor(
               private router: Router,
@@ -40,14 +41,14 @@ export class ItemDetailComponent {
       adjustment_type: ['', Validators.required],
       quantity: ['', Validators.required],
       collector_id: ['', Validators.required],
-      collector_department_id: ['', Validators.required],
+      receiving_department_id: ['', Validators.required],
       vendor_id: ['', Validators.required],
-      department_id: ['', Validators.required],
       description: ['', Validators.required],
     })
     this.getItemDetail();
     this.getVendors();
     this.getDepartments();
+    this.getUsers();
   }
 
 
@@ -86,7 +87,15 @@ export class ItemDetailComponent {
   selectAdjustmentType(adjustmentType:string){
     this.adjustmentType = adjustmentType;
     this.adjustmentForm.patchValue({adjustment_type: adjustmentType})
-    console.log(this.adjustmentForm.get('adjustment_type').value);
+    if(adjustmentType=='addition'){
+      this.adjustmentForm.patchValue({collector_id: 0})
+      console.log(this.adjustmentForm.get('adjustment_type').value);
+
+    }else if(adjustmentType=='subtraction'){
+      this.adjustmentForm.patchValue({vendor_id: 0})
+      console.log(this.adjustmentForm.get('adjustment_type').value);
+    }
+
   }
 
   getVendors(){
@@ -113,10 +122,21 @@ export class ItemDetailComponent {
     )
   }
 
+  getUsers(){
+    this.api.get('users').subscribe(
+      res=>{
+        this.users = res
+      }, err=>{
+        console.log(err);
+      }
+    )
+  }
+
   get f(){return this.adjustmentForm.controls};
 
   saveAdjustment(){
     if(this.adjustmentForm.invalid){
+      console.log(this.adjustmentForm.value)
       this.showError('One or more fields are required')
       return;
     }
@@ -126,11 +146,12 @@ export class ItemDetailComponent {
         console.log(res);
         this.showSuccess('Quantity adjusted successfully');
         this.adjustmentForm.reset();
+        this.getItemDetail()
         this.isSubmitted = false;
       },
       err => {
         console.log(err);
-        this.showError('Failed to create product, please try again');
+        this.showError('Failed to adjut quantity, please try again');
       }
     );
 

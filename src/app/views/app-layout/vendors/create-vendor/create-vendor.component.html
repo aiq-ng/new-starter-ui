@@ -4,6 +4,7 @@
       </h3>
 </div>
 
+<p-toast/>
 
 <form [formGroup]="createVendorForm" (ngSubmit)="saveVendor()" class="py-8 flex flex-col gap-6">
     <div class="flex items-center gap-4">
@@ -11,13 +12,15 @@
 
       <div class="basis-[70%] flex gap-2">
         <select formControlName="salutation" [ngClass]="{'border-red-400': isSubmitted && f.salutation.errors}" class=" px-4 text-sm border py-2  outline-none rounded-md gap-2" name="" id="">
-          <option value="">Select branch</option>
-          <ng-container *ngFor="let branch of branches?.data">
-            <option [value]="branch.id">{{ branch.name }}</option>
+          <option value="">Salutation</option>
+          <ng-container >
+            <option value="Mr">Mr</option>
+            <option value="Mr">Mrs</option>
+            <option value="Mr">Miss</option>
           </ng-container>
         </select>
-        <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" class=" px-4 text-sm border py-2  outline-none rounded-md gap-2" type="text">
-        <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" class=" px-4 text-sm border py-2  outline-none rounded-md gap-2" type="text">
+        <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" class=" px-4 text-sm border py-2  outline-none rounded-md gap-2" type="text" placeholder="First name">
+        <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" class=" px-4 text-sm border py-2  outline-none rounded-md gap-2" type="text" placeholder="last name">
       </div>
     </div>
 
@@ -25,7 +28,7 @@
       <label class="basis-[30%] text-sm text-primary " for="name">Company Name*</label>
 
       <div class="basis-[70%] flex gap-2">
-        <input [ngClass]="{'border-red-400': isSubmitted && f.company_name.errors}" formControlName="company_name" class=" px-4 text-sm border py-2 w-full max-w-[400px] outline-none rounded-md gap-2" type="text">
+        <input [ngClass]="{'border-red-400': isSubmitted && f.company_name.errors}" formControlName="company_name" class=" px-4 text-sm border py-2 w-full max-w-[400px] outline-none rounded-md gap-2" type="text" placeholder="company name">
       </div>
     </div>
 
@@ -33,7 +36,7 @@
       <label class="basis-[30%] text-sm" for="name">Display Name</label>
 
       <div class="basis-[70%] flex gap-2">
-        <input [ngClass]="{'border-red-400': isSubmitted && f.display_name.errors}" formControlName="display_name" class=" px-4 text-sm border py-2 w-full max-w-[200px] outline-none rounded-md gap-2" type="text">
+        <input [ngClass]="{'border-red-400': isSubmitted && f.display_name.errors}" formControlName="display_name" class=" px-4 text-sm border py-2 w-full max-w-[200px] outline-none rounded-md gap-2" type="text" placeholder="Display name">
       </div>
     </div>
 
@@ -82,6 +85,16 @@
           <input formControlName="mobile"  class=" text-sm py-2 w-full outline-none rounded-md gap-2" type="email" placeholder="Mobile">
         </div>
 
+
+
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <label class="basis-[30%] text-sm" for="name">Address</label>
+
+      <div [ngClass]="{'border-red-400': isSubmitted && f.address.errors}" class="basis-[70%] flex items-center gap-2 bg-white w-full max-w-[400px] border px-4  outline-none rounded-md ">
+        <textarea formControlName="address"  class=" text-sm py-2 w-full  outline-none rounded-md gap-2" type="email"></textarea>
       </div>
     </div>
 

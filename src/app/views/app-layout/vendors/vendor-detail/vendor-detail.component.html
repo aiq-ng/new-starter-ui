@@ -68,82 +68,41 @@
       </div>
 
       <div class="flex border py-3 px-4 text-sm w-full max-w-[700px] ">
-        <div class="w-full max-w-[150px]">{{vendorDetail.default_currency}}</div>
-        <div class="w-full max-w-[200px] text-primary/65">{{vendorDetail.total_outstanding}}</div>
-        <div class="w-full max-w-[150px]">{{vendorDetail.total_paid}}</div>
+        <div class="w-full max-w-[150px]">{{vendorDetail.receivables.currency}}</div>
+        <div class="w-full max-w-[200px] text-primary/65">{{vendorDetail.receivables.total_outstanding}}</div>
+        <div class="w-full max-w-[150px]">{{vendorDetail.receivables.total_paid}}</div>
       </div>
     </div>
 
 
-    <div class="flex gap-4 text-sm ">
-      <div class="date w-full min-w-[80px] max-w-[80px] flex flex-col justify-center">
-        <span>02 Nov 2024</span>
-        <span>03:35 PM</span>
-      </div>
-      <div class="separator flex justify-center items-center flex-col ">
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-        <div class="div flex justify-center items-center text-primary/85 h-8 w-8 rounded-full bg-white border border-primary/45">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-          </svg>
-        </div>
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-      </div>
-      <div class="h-full w-full flex flex-col justify-center">
-        <div class="message  w-full max-w-[300px] max-h-[90px] flex flex-col gap-1 justify-center border border-primary/45 bg-gray-100 px-2 py-2 rounded-lg">
-          <span class="text-sm text-gray-800">Invoice Added</span>
-          <span class="text-sm text-gray-500">Invoice INV-000001 emailed</span>
-          <span class="text-sm text-gray-500">by Susan Daniel - <span class="text-red-500">View Details</span></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex gap-4 text-sm ">
-      <div class="date w-full min-w-[80px] max-w-[80px] flex flex-col justify-center">
-        <span>02 Nov 2024</span>
-        <span>03:35 PM</span>
-      </div>
-      <div class="separator flex justify-center items-center flex-col ">
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-        <div class="div flex justify-center items-center text-primary/85 h-8 w-8 rounded-full bg-white border border-primary/45">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-          </svg>
-        </div>
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-      </div>
-      <div class="h-full w-full flex flex-col justify-center">
-        <div class="message  w-full max-w-[300px] max-h-[90px] flex flex-col gap-1 justify-center border border-primary/45 bg-gray-100 px-2 py-2 rounded-lg">
-          <span class="text-sm text-gray-800">Invoice Added</span>
-          <span class="text-sm text-gray-500">Invoice INV-000001 emailed</span>
-          <span class="text-sm text-gray-500">by Susan Daniel - <span class="text-red-500">View Details</span></span>
-        </div>
-      </div>
-    </div>
 
 
-    <div class="flex gap-4 text-sm ">
-      <div class="date w-full min-w-[80px] max-w-[80px] flex flex-col justify-center">
-        <span>02 Nov 2024</span>
-        <span>03:35 PM</span>
-      </div>
-      <div class="separator flex justify-center items-center flex-col ">
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-        <div class="div flex justify-center items-center text-primary/85 h-8 w-8 rounded-full bg-white border border-primary/45">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-          </svg>
+    <ng-container *ngFor="let transaction of vendorDetail.transactions">
+      <div class="flex gap-4 text-sm ">
+        <div class="date w-full min-w-[80px] max-w-[100px] flex flex-col justify-center">
+          <span>{{transaction.transaction_created_at | date}}</span>
+          <span>{{ transaction.transaction_created_at | date: 'shortTime' }}</span>
         </div>
-        <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
-      </div>
-      <div class="h-full w-full flex flex-col justify-center">
-        <div class="message  w-full max-w-[300px] max-h-[90px] flex flex-col gap-1 justify-center border border-primary/45 bg-gray-100 px-2 py-2 rounded-lg">
-          <span class="text-sm text-gray-800">Invoice Added</span>
-          <span class="text-sm text-gray-500">Invoice INV-000001 emailed</span>
-          <span class="text-sm text-gray-500">by Susan Daniel - <span class="text-red-500">View Details</span></span>
+        <div class="separator flex justify-center items-center flex-col ">
+          <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
+          <div class="div flex justify-center items-center text-primary/85 h-8 w-8 rounded-full bg-white border border-primary/45">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+              <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>
+          </div>
+          <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
+        </div>
+        <div class="h-full w-full flex flex-col justify-center">
+          <div class="message  w-full max-w-[300px] max-h-[90px] flex flex-col gap-1 justify-center border border-primary/45 bg-gray-100 px-2 py-2 rounded-lg">
+            <span class="text-sm text-gray-800">Invoice Added</span>
+            <span class="text-sm text-gray-500">{{transaction.purchase_order_number}}</span>
+            <span class="text-sm text-gray-500">{{transaction.processed_by}} - <span class="text-red-500">View Details</span></span>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+
+
 
   </div>
 
