@@ -1,4 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { SalesService } from '../../../../services/sales.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { HttpServiceService } from '../../../../services/http-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,12 +14,18 @@ export class SalesOrderComponent {
 
 
   inventoryData:any;
+  SalesOrder: any=null;
+  pageLoading:boolean=false;
   @Output() viewAction = new EventEmitter();
 
-  constructor(private router: Router){
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private api: HttpServiceService,
+    private messageService: MessageService,
+  ){
     this.generatePages();
   }
-
   tableHeader = [
     "Order Id",
     "Order",
@@ -166,6 +176,16 @@ export class SalesOrderComponent {
   ]
   }
   
+  getSalesOrder(){
+    this.pageLoading = true;
+    this.api.get('sales/orders?page=1&page_size=10&status=&order_type=order&start_date=2024-11-27&end_date').subscribe(
+      res=>{
+        this.SalesOrder = res
+        console.log(this.SalesOrder)
+        this.pageLoading = false;
+      }
+    )
+  }
 
   activeTab: string = 'allOrders'; 
   switchTab(tab: string) {

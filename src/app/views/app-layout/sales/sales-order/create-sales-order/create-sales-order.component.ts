@@ -98,6 +98,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-sales-order',
@@ -122,7 +123,8 @@ export class CreateSalesOrderComponent {
   constructor(
     private fb: FormBuilder,
     private apiService: HttpServiceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.createSalesOrderForm = this.fb.group({
       order_type: ['order', Validators.required],
@@ -169,6 +171,10 @@ export class CreateSalesOrderComponent {
     }
     this.closeModal();
   }
+  route(arg0: string) {
+    this.router.navigateByUrl(arg0);
+    // throw new Error('Method not implemented.');
+    }
 
   // Submit Sales Order
   submitOrder() {

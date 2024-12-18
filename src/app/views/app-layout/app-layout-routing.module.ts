@@ -67,7 +67,7 @@ const routes: Routes = [
         ,
       ] },
  
-       { path: 'order/invoice', component: SalesOrderInvoiceComponent },
+       { path: 'order/invoice', component: InvoiceComponent },
 
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
