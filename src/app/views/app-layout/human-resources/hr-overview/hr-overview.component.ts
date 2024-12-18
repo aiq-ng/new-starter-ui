@@ -53,43 +53,6 @@ export class HrOverviewComponent {
 
 
   ngOnInit(){
-    this.humanResourceData = [
-      {
-        Name: "John Doe",
-        Department: "Human Resources",
-        Salaries: "$5,000",
-        "Bank Details": "Bank of America, Account: 1234567890",
-        Leave: "5 days remaining",
-      },
-      {
-        Name: "Jane Smith",
-        Department: "Finance",
-        Salaries: "$6,500",
-        "Bank Details": "Chase Bank, Account: 0987654321",
-        Leave: "10 days remaining",
-      },
-      {
-        Name: "Michael Brown",
-        Department: "IT",
-        Salaries: "$7,200",
-        "Bank Details": "Wells Fargo, Account: 1122334455",
-        Leave: "2 days remaining",
-      },
-      {
-        Name: "Emily Davis",
-        Department: "Marketing",
-        Salaries: "$5,800",
-        "Bank Details": "Citibank, Account: 6677889900",
-        Leave: "8 days remaining",
-      },
-      {
-        Name: "Chris Wilson",
-        Department: "Operations",
-        Salaries: "$6,000",
-        "Bank Details": "HSBC, Account: 5566778899",
-        Leave: "15 days remaining",
-      },
-    ];
 
     this.getMetrics()
     this.getEmployess()

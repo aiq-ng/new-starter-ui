@@ -14,9 +14,10 @@ export class DashboardComponent {
     options: any=null;
     metrics: any=null;
     events:any;
-    TopSellingProduct: any=null;
-    lowQuantityStock: any=null;
+    TopSellingProduct: any= [];
+    lowQuantityStock: any=[];
     pageLoading:boolean=false;
+    loading:boolean=false;
     calender:boolean=false;
     chartData:any[]=[]
     products = [
@@ -113,10 +114,12 @@ export class DashboardComponent {
     }
 
     getMetrics(){
+      this.loading=true;
       this.api.get('dashboard/business').subscribe(
         res=>{
           this.metrics = res;
           console.log(this.metrics)
+          this.loading = false;
         },
         err=>{
           this.showError('Error fetching metrics');
