@@ -1,8 +1,10 @@
 <div class="mt-8 flex gap-8  cursor-pointer">
     <ng-container *ngFor="let nav of navigation">
-        <nav (click)="toggleTab(nav)" [ngClass]="{'border-b-2 border-primary': currentMenu==nav}" class="flex px-4 py-2 gap-4 text-sm" aria-label="Tabs" role="tablist">
+        <div (click)="onClick(nav)">
+          <nav (click)="toggleTab(nav)" [ngClass]="{'border-b-2 border-primary': currentMenu==nav}" class="flex px-4 py-2 gap-4 text-sm" aria-label="Tabs" role="tablist">
             {{ nav }}
         </nav>
+        </div>
     </ng-container>
 
       <!-- <nav (click)="toggleTab('courses')" [ngClass]="{'border-b-2 border-primary': currentMenu=='courses'}" class="flex gap-4 text-base" aria-label="Tabs" role="tablist">

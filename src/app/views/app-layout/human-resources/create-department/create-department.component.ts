@@ -57,7 +57,9 @@ export class CreateDepartmentComponent {
     if(this.createDepartmentForm.invalid){
     console.log(this.createDepartmentForm.value);
     console.log('Invalid form')
-      return;
+    this.loading = false;
+
+    return;
     }
 
     this.createDepartmentForm.get('base_type_id').value = Number(this.createDepartmentForm.get('base_type_id').value)

@@ -126,6 +126,8 @@ export class CreateVendorComponent {
       this.loading = false;
       console.log(this.createVendorForm.value)
       console.log('form is invalid')
+      this.loading = false;
+
       return;
     }
     this.api.post('vendors', this.createVendorForm.value).subscribe(

@@ -92,6 +92,7 @@ export class CreateStaffComponent {
     if (this.createEmployeeForm.invalid) {
       console.log("form invalid");
       console.log(this.createEmployeeForm.value)
+      this.loading = false;
       return;
     }
 

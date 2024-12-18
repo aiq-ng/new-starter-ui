@@ -17,8 +17,9 @@ export class TabMenuComponent {
    this.currentMenu = this.navigation[0]
   }
 
-  onClick(){
-    this.tabAction.emit();
+  onClick(nav:string){
+    this.tabAction.emit(nav);
+
   }
 
   toggleTab(menu:string){

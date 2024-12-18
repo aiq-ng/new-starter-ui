@@ -75,7 +75,7 @@ export class VendorsComponent {
 
   getVendors(){
     this.pageLoading = true;
-    this.api.get('vendors?page=1&page_size=10&sort_by=total_transaction&sort_order=DESC&status=').subscribe(
+    this.api.get('vendors?page=1&page_size=10&sort_by=total_transaction&sort=DESC&status=').subscribe(
       res=>{
         this.vendors = res;
         this.pageLoading = false;

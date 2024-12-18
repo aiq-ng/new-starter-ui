@@ -83,6 +83,7 @@ export class CreateNewPurchaseOrderComponent {
     if(this.purchaseOrderForm.invalid){
       console.log(this.purchaseOrderForm.value)
       console.log('invalid purchase order form')
+      this.loading = false;
       return;
     }
     // save purchase order data
