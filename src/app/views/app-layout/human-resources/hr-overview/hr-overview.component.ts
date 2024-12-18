@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { HttpServiceService } from '../../../../services/http-service.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-hr-overview',
@@ -12,7 +13,7 @@ import { HttpServiceService } from '../../../../services/http-service.service';
 export class HrOverviewComponent {
   isAddSale: boolean = false;
   humanResourceData:any= [];
-  tabMenu=['All', 'sell', 'riders', 'receptionists', 'accountants', 'store keepers']
+  tabMenu:any =[]
   saleDetailHeader = ['time', 'product', 'quantity', 'saleAmount']
   tableHeader = [
     "Name",
@@ -55,11 +56,22 @@ export class HrOverviewComponent {
   ngOnInit(){
 
     this.getMetrics()
-    this.getEmployess()
+    this.getDepartments();
+    this.getEmployess('')
+  }
+
+  filterEmployees(value:any){
+    console.log(value)
+    if(value=='All'){
+      this.getEmployess('')
+    }else {
+      this.getEmployess(value)
+    }
   }
 
   route(page:string){
     this.router.navigate([page]);
+    console.log('routing')
   }
   toggleCreateDepartment(){
     this.createDepartment =!this.createDepartment;
@@ -87,13 +99,29 @@ export class HrOverviewComponent {
     )
   }
 
-  getEmployess(){
+  getDepartments(){
+    this.loading = true;
+    this.api.get('departments').subscribe(
+      res=>{
+         let response:any = res;
+        for(let department of response.data){
+          this.tabMenu.push(department.name)
+        }
+      },
+      err=>{
+        console.log(err)
+        this.showError('Failed to load sales data');
+      }
+    )
+  }
+
+  getEmployess(filterValue:string){
     this.pageLoading = true;
-    this.api.get('human-resources/employees?page=1&page_size=10').subscribe(
+    this.api.get('human-resources/employees?page=1&page_size=10&department=' + filterValue).subscribe(
       res =>{
         this.employees = res
         this.employees = this.employees.data
-        console.log('products', this.employees)
+        console.log('employess', this.employees)
         this.pageLoading = false;
       }
     )

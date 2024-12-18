@@ -73,6 +73,7 @@
              <!-- Table Section -->
  <!-- Card -->
  <div class="flex flex-col mt-6">
+  <app-tab-menu [navigation]="tabMenu" (tabAction)="filterEmployees($event)"></app-tab-menu>
   <div class="overflow-x-auto">
     <div class="min-w-full inline-block align-middle">
       <div class="bg-white border border-gray-200  shadow-sm overflow-hidden">
@@ -160,12 +161,12 @@
         <!-- End Table -->
 
 
-        <div *ngIf="employees.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+        <div *ngIf="employees?.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
           <app-spinner></app-spinner>
         </div>
 
-        <div *ngIf="employees?.length<=0 && !pageLoading ">
-          <app-empty-list></app-empty-list>
+        <div *ngIf="employees?.length<=0 && !pageLoading " class="py-4">
+          <app-empty-list (add)="route('app/human-resources/add-employee')" message="there are no employees added click on the button to add employees" buttonName="Add Employee" buttonIcon="/assets/icons/add.png"></app-empty-list>
          </div>
 
         <!-- Footer -->
