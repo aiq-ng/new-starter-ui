@@ -27,9 +27,11 @@ export class CreateStaffComponent {
     this.createEmployeeForm = this.fb.group({
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       residential_address: ['', [Validators.required]],
       next_of_kin: ['', [Validators.required]],
       date_of_employment: ['', [Validators.required]],
+      date_of_birth: ['', [Validators.required]],
       department: ['', [Validators.required]],
       position: ['', [Validators.required]],
       working_days: ['', [Validators.required]],
@@ -93,34 +95,28 @@ export class CreateStaffComponent {
 
     // Append other form data
 
-    this.nin.forEach((file: any) => {
-      formData.append(`nin`, file, file.name);  // Append each file with the key media[]
-    });
-
-    this.passport.forEach((file: any) => {
-      formData.append(`pasport`, file, file.name);  // Append each file with the key media[]
-    });
-
-    formData.append('first_name', this.createEmployeeForm.get('first_name')?.value);
-    formData.append('last_name', this.createEmployeeForm.get('last_name')?.value);
-    formData.append('residential_address', this.createEmployeeForm.get('residential_address')?.value);
+    formData.append('firstname', this.createEmployeeForm.get('first_name')?.value);
+    formData.append('lastname', this.createEmployeeForm.get('last_name')?.value);
+    formData.append('email', this.createEmployeeForm.get('email')?.value);
     formData.append('next_of_kin', this.createEmployeeForm.get('next_of_kin')?.value);
     formData.append('date_of_employment', this.createEmployeeForm.get('date_of_employment')?.value);
-    formData.append('department', this.createEmployeeForm.get('department')?.value);
-    formData.append('position', this.createEmployeeForm.get('position')?.value);
-    formData.append('working_days', this.createEmployeeForm.get('working_days')?.value);
+    formData.append('date_of_birth', this.createEmployeeForm.get('date_of_birth')?.value);
+    formData.append('department_id', this.createEmployeeForm.get('department')?.value);
+    formData.append('address', this.createEmployeeForm.get('residential_address')?.value);
+    formData.append('role_id', this.createEmployeeForm.get('position')?.value);
+    formData.append('no_of_working_days_id', this.createEmployeeForm.get('working_days')?.value);
 
     // Nested bank_details group
-    formData.append('account_number', this.createEmployeeForm.get('bank_details.account_number')?.value);
-    formData.append('bank_name', this.createEmployeeForm.get('bank_details.bank_name')?.value);
+    formData.append('account_number', this.createEmployeeForm.get('account_number')?.value);
+    formData.append('bank_name', this.createEmployeeForm.get('bank_name')?.value);
 
     formData.append('salary', this.createEmployeeForm.get('salary')?.value);
 
     // File uploads (ensure you have File input in the form)
-    formData.append('upload_nin', this.createEmployeeForm.get('upload_nin')?.value);
-    formData.append('upload_passport', this.createEmployeeForm.get('upload_passport')?.value);
+    formData.append('nin', this.nin);
+    formData.append('passport', this.passport);
 
-    this.api.post('inventory/items', formData).subscribe(
+    this.api.post('human-resources/employees', formData).subscribe(
       res => {
         console.log(res);
         this.showSuccess('Product created successfully');
@@ -168,23 +164,19 @@ export class CreateStaffComponent {
     }
 
     // Handle file selection
-    onFileSelected(event: any, imageType:string): void {
-      console.log('selection function hit');
+    onNinSelected(event: Event): void {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.nin = input.files[0];
+        console.log(this.nin);
+      }
+    }
 
-      // Store all selected files
-      let file = Array.from(event.target.files);  // Converts FileList to an array of files
-
-
-      if(imageType=='nin'){
-        if (event.target.files && event.target.files[0]) {
-          const nin = event.target.files[0];
-
-        }
-      }else if(imageType=='passport'){
-        if (event.target.files && event.target.files[0]) {
-          const passport = event.target.files[0];
-
-        }
+    onPassportSelected(event: Event): void {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.passport = input.files[0];
+        console.log(this.passport);
       }
     }
 }

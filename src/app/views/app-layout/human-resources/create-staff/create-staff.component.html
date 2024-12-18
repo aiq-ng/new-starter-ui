@@ -18,22 +18,27 @@
   <form [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()" class="mx-auto w-full flex justify-center gap-6  " [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()">
     <div class="details flex flex-col gap-3 max-w-[420px] p-6 px-8 bg-white rounded-lg">
       <div>
-        <label for="department " class=" text-sm text-gray-800">First Name</label>
+        <label for="first_name " class=" text-sm text-gray-800">First Name</label>
         <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="First name">
       </div>
 
       <div>
-        <label for="department " class=" text-sm text-gray-800">Last Name</label>
+        <label for="last_name " class=" text-sm text-gray-800">Last Name</label>
         <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
       </div>
 
       <div>
-        <label for="department " class=" text-sm text-gray-800">Residential Address</label>
+        <label for="email " class=" text-sm text-gray-800">Email</label>
+        <input formControlName="email" [ngClass]="{'border-red-400': isSubmitted && f.email.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
+      </div>
+
+      <div>
+        <label for="residential_address" class=" text-sm text-gray-800">Residential Address</label>
         <input formControlName="residential_address" [ngClass]="{'border-red-400': isSubmitted && f.residential_address.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Residential Address">
       </div>
 
       <div>
-        <label for="department " class=" text-sm text-gray-800">Next of Kin</label>
+        <label for="next_of_kin " class=" text-sm text-gray-800">Next of Kin</label>
         <input formControlName="next_of_kin" [ngClass]="{'border-red-400': isSubmitted && f.next_of_kin.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Next of Kin">
       </div>
 
@@ -43,6 +48,11 @@
       <div>
         <label for="department " class=" text-sm text-gray-800">Date of Employment</label>
         <input formControlName="date_of_employment" [ngClass]="{'border-red-400': isSubmitted && f.date_of_employment.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
+      </div>
+
+      <div>
+        <label for="department " class=" text-sm text-gray-800">Date of Birth</label>
+        <input formControlName="date_of_birth" [ngClass]="{'border-red-400': isSubmitted && f.date_of_birth.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
       </div>
 
       <div>
@@ -141,7 +151,7 @@
               type="file"
               class="hidden"
               #fileInput
-              (change)="onFileSelected($event, 'nin')"
+              (change)="onNinSelected($event)"
               accept=".svg,.png,.jpg,.gif, .pdf,.docs"
             />
             <button
@@ -153,7 +163,7 @@
             </button>
           </div>
 
-          <div *ngIf="file" class="mt-6 text-center">
+          <div *ngIf="nin" class="mt-6 text-center">
             <p class="text-sm text-gray-500">Selected File:</p>
             <p class="text-sm text-gray-800 font-medium">{{ nin.name }}</p>
           </div>
@@ -206,22 +216,22 @@
             <input
               type="file"
               class="hidden"
-              #fileInput
-              (change)="onFileSelected($event, 'passport')"
+              #passportInput
+              (change)="onPassportSelected($event)"
               accept=".svg,.png,.jpg,.gif, .pdf,.docs"
             />
             <button
               type="button"
               class="px-6 py-2 text-primary text-sm border  bg-red-100 rounded-md hover:bg-seccolor focus:outline-none focus:ring-2 focus:ring-seccolor focus:ring-offset-2"
-              (click)="fileInput.click()"
+              (click)="passportInput.click()"
             >
               Browse Files
             </button>
           </div>
 
-          <div *ngIf="file" class="mt-6 text-center">
+          <div *ngIf="passport" class="mt-6 text-center">
             <p class="text-sm text-gray-500">Selected File:</p>
-            <p class="text-sm text-gray-800 font-medium">{{ passport.name }}</p>
+            <p class="text-sm text-gray-800 font-medium">{{passport.name}}</p>
           </div>
 
 

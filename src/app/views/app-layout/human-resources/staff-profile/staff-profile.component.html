@@ -10,13 +10,15 @@
       </div>
       <div class="divider h-10 border-r"></div>
       <div class="image">
-        <img src={{employeeDetail.avatar_url}} class="w-12 h-12 rounded-full " alt="">
+        <img src={{employeeDetail?.avatar_url}} class="w-12 h-12 rounded-full " alt="">
       </div>
-      <span>{{employeeDetail.name}}</span>
+      <span>{{employeeDetail?.name}}</span>
     </h3>
 
+    <p-toast/>
+
     <div class="actions flex gap-4">
-      <div class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
+      <div (click)="putOnLeave()" class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -26,7 +28,7 @@
         <span>Put on leave</span>
       </div>
 
-      <div class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
+      <div (click)="suspendEmployee()" class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
         <span class="text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
             <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
@@ -36,7 +38,7 @@
         <span>Suspend</span>
       </div>
 
-      <div class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
+      <div (click)="deleteEmployee()" class="flex gap-2 text-sm text-gray-800 items-center active:scale-95 cursor-pointer">
         <span class="text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
             <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
@@ -52,19 +54,19 @@
 <div class="body justify-center py-8 flex gap-8">
   <div class="side-one">
     <div class="image flex justify-center items-center ">
-      <img src={{employeeDetail.avatar_url}}  class="w-32 h-32 rounded-full " alt="">
+      <img src={{employeeDetail?.avatar_url}}  class="w-32 h-32 rounded-full " alt="">
     </div>
 
     <div class="box-one bg-white p-8 mt-4 flex flex-col gap-4 rounded-lg border shadow-sm min-w-[250px]">
       <div>
         <span class="text-sm text-gray-500">Joined on </span>
-        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.created_at | date}} </div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail?.created_at | date}} </div>
       </div>
 
       <div>
         <span class="text-sm text-gray-500">Bank Details</span>
-        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.bank_details.account_number}} </div>
-        <div class="date text-sm font-normal text-gray-800">{{employeeDetail.bank_details.bank_name}} </div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail?.bank_details.account_number}} </div>
+        <div class="date text-sm font-normal text-gray-800">{{employeeDetail?.bank_details.bank_name}} </div>
       </div>
     </div>
 
@@ -80,12 +82,12 @@
             </svg>
           </span>
         </span>
-        <div class="date text-base font-normal text-gray-800">{{employeeDetail.department}} </div>
+        <div class="date text-base font-normal text-gray-800">{{employeeDetail?.department}} </div>
       </div>
 
       <div>
         <span class="text-sm text-gray-500">Current Sallary</span>
-        <div class="date text-lg font-normal text-gray-800">{{employeeDetail.salary}} </div>
+        <div class="date text-lg font-normal text-gray-800">{{employeeDetail?.salary}} </div>
       </div>
     </div>
   </div>
@@ -95,25 +97,25 @@
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">First Name</label>
-        <div class="data text-gray-800">{{employeeDetail.firstname}} </div>
+        <div class="data text-gray-800">{{employeeDetail?.firstname}} </div>
       </div>
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">Last Name</label>
-        <div class="data text-gray-800">{{employeeDetail.lastname}} </div>
+        <div class="data text-gray-800">{{employeeDetail?.lastname}} </div>
       </div>
 
       <div class="mt-4 flex justify-between py-3 border-b ">
         <label class="text-gray-500" for="">Date of Birth</label>
-        <div class="data text-gray-800">{{employeeDetail.date_of_birth}} </div>
+        <div class="data text-gray-800">{{employeeDetail?.date_of_birth}} </div>
       </div>
 
 
       <div class="mt-6">
         <label for="" class="text-gray-500 ">NIN</label>
         <div class="nin bg-gray-100 h-[100px] w-[150px] flex justify-center items-center rounded-md ">
-          <!-- <img src="" alt="NIN image"> -->
-          {{employeeDetail.nin}}
+          <img src={{employeeDetail?.nin}} alt="NIN image">
+
         </div>
       </div>
 
@@ -121,8 +123,7 @@
       <div class="mt-4">
         <label for="" class="text-gray-500 ">Passport</label>
         <div class="nin bg-gray-100 h-[100px] w-[150px] flex justify-center items-center rounded-md ">
-          <!-- <img src="" alt="passport image"> -->
-          {{employeeDetail.passport}}
+          <img src={{employeeDetail?.passport}} alt="passport image">
 
         </div>
       </div>
