@@ -21,21 +21,6 @@
       <input formControlName="name" [ngClass]="{'border-red-400': isSubmitted && f.name.errors}" type="text" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Department name">
     </div>
 
-    <div>
-      <label for="department " class=" text-sm text-gray-800">Employee roles/Position</label>
-      <select formControlName="name" [ngClass]="{'border-red-400': isSubmitted && f.name.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
-        <option class="" value="">Select position</option>
-
-        <ng-container *ngFor="let position of positions?.data">
-          <option [value]="position.id">{{ position.name }}</option>
-        </ng-container>
-      </select>
-    </div>
-
-    <div>
-      <label for="department " class=" text-sm text-gray-800">Description</label>
-      <textarea formControlName="description" [ngClass]="{'border-red-400': isSubmitted && f.description.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm" placeholder="Enter detail"></textarea>
-    </div>
 
     <div class="flex justify-between items-center">
       <span [ngClass]="{'text-red-600': isSubmitted && f.salary_type.errors}" class="text-gray-800 text-sm">Salary type *</span>
@@ -49,7 +34,7 @@
             value="fixed"
             class="hidden peer"
           />
-          <div
+          <div (click)="chooseSalary('fixed')"
             class="w-4 h-4 border border-red-400 rounded-full peer-checked:bg-red-500"
           ></div>
           <span class="ml-2 text-sm text-gray-700">Fixed</span>
@@ -61,10 +46,10 @@
             formControlName="salary_type"
             type="radio"
             name="salary_type"
-            value="base_pay"
+            value="base"
             class="hidden peer"
           />
-          <div
+          <div (click)="chooseSalary('base')"
             class="w-4 h-4 border border-red-400 rounded-full peer-checked:bg-red-500"
           ></div>
           <span class="ml-2 text-sm text-gray-700">Base Pay</span>
@@ -74,8 +59,33 @@
     </div>
 
     <div>
+      <!-- <label for="department " class=" text-sm text-gray-800">Description</label> -->
+      <textarea formControlName="description" [ngClass]="{'border-red-400': isSubmitted && f.description.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm" placeholder="Enter description"></textarea>
+    </div>
+
+    <div *ngIf="salarytype=='base'">
+      <!-- <label for="department " class=" text-sm text-gray-800">Salary type *</label> -->
+      <select formControlName="base_type_id" [ngClass]="{'border-red-400': isSubmitted && f.base_type_id.errors}"  class="px-3 py-2 rounded-md border w-full text-sm ">
+        <option value="">Select Salary type</option>
+
+        <ng-container *ngFor="let salary of baseSalaryType?.data">
+          <option value={{salary.id}} >{{salary.name}}</option>
+        </ng-container>
+      </select>
+
+    </div>
+
+
+
+
+    <div *ngIf="salarytype=='base'">
       <label for="department " class=" text-sm text-gray-800"></label>
-      <input formControlName="base_salary" [ngClass]="{'border-red-400': isSubmitted && f.base_salary.errors}" type="number" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Input amount">
+      <input formControlName="base_rate" [ngClass]="{'border-red-400': isSubmitted && f.base_salary.errors}" type="number" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Input base rate">
+    </div>
+
+    <div *ngIf="salarytype=='fixed'">
+      <label for="department " class=" text-sm text-gray-800"></label>
+      <input formControlName="base_salary" [ngClass]="{'border-red-400': isSubmitted && f.base_salary.errors}" type="number" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Input fixed salary amount">
     </div>
 
 

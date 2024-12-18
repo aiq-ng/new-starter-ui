@@ -12,28 +12,29 @@
     </h3>
 </div>
 
+<p-toast/>
 
 <div class="h-full w-full flex flex-col mt-8 justify-center">
-  <form class="mx-auto w-full flex justify-center gap-6  " [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()">
+  <form [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()" class="mx-auto w-full flex justify-center gap-6  " [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()">
     <div class="details flex flex-col gap-3 max-w-[420px] p-6 px-8 bg-white rounded-lg">
       <div>
         <label for="department " class=" text-sm text-gray-800">First Name</label>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="First name">
+        <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="First name">
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Last Name</label>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
+        <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Residential Address</label>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Residential Address">
+        <input formControlName="residential_address" [ngClass]="{'border-red-400': isSubmitted && f.residential_address.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Residential Address">
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Next of Kin</label>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Next of Kin">
+        <input formControlName="next_of_kin" [ngClass]="{'border-red-400': isSubmitted && f.next_of_kin.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Next of Kin">
       </div>
 
       <div class="divider" class="w-full border-b my-4"></div>
@@ -41,28 +42,37 @@
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Date of Employment</label>
-        <input type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
+        <input formControlName="date_of_employment" [ngClass]="{'border-red-400': isSubmitted && f.date_of_employment.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Deparment</label>
-        <select type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+        <select formControlName="department" [ngClass]="{'border-red-400': isSubmitted && f.department.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
           <option class="" value="">Select department</option>
+          <ng-container *ngFor="let department of departments?.data">
+            <option value={{department.id}} >{{department.name}}</option>
+          </ng-container>
         </select>
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Position</label>
-        <select type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+        <select formControlName="position" [ngClass]="{'border-red-400': isSubmitted && f.position.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
           <option class="" value="">Select position</option>
+          <ng-container *ngFor="let position of positions?.data">
+            <option value={{position.id}} >{{position.name}}</option>
+          </ng-container>
         </select>
       </div>
 
 
       <div>
         <label for="department " class=" text-sm text-gray-800">No of working days</label>
-        <select type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+        <select formControlName="working_days" [ngClass]="{'border-red-400': isSubmitted && f.working_days.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
           <option class="" value="">Select month</option>
+          <ng-container *ngFor="let days of workingDays?.data">
+            <option value={{days.id}} >{{days.name}}</option>
+          </ng-container>
         </select>
       </div>
 
@@ -72,16 +82,16 @@
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Bank Details</label>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Account Number">
+        <input formControlName="account_number" [ngClass]="{'border-red-400': isSubmitted && f.account_number.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Account Number">
       </div>
 
       <div>
-        <input type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Bank">
+        <input formControlName="bank_name" [ngClass]="{'border-red-400': isSubmitted && f.bank_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Bank">
       </div>
 
       <div>
         <label for="department " class=" text-sm text-gray-800">Salary</label>
-        <input type="number" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Salary">
+        <input formControlName="salary" [ngClass]="{'border-red-400': isSubmitted && f.salary.errors}" type="number" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Salary">
       </div>
 
     </div>
@@ -131,7 +141,7 @@
               type="file"
               class="hidden"
               #fileInput
-              (change)="onFileSelected($event)"
+              (change)="onFileSelected($event, 'nin')"
               accept=".svg,.png,.jpg,.gif, .pdf,.docs"
             />
             <button
@@ -145,7 +155,7 @@
 
           <div *ngIf="file" class="mt-6 text-center">
             <p class="text-sm text-gray-500">Selected File:</p>
-            <p class="text-sm text-gray-800 font-medium">{{ file.name }}</p>
+            <p class="text-sm text-gray-800 font-medium">{{ nin.name }}</p>
           </div>
 
 
@@ -197,7 +207,7 @@
               type="file"
               class="hidden"
               #fileInput
-              (change)="onFileSelected($event)"
+              (change)="onFileSelected($event, 'passport')"
               accept=".svg,.png,.jpg,.gif, .pdf,.docs"
             />
             <button
@@ -211,7 +221,7 @@
 
           <div *ngIf="file" class="mt-6 text-center">
             <p class="text-sm text-gray-500">Selected File:</p>
-            <p class="text-sm text-gray-800 font-medium">{{ file.name }}</p>
+            <p class="text-sm text-gray-800 font-medium">{{ passport.name }}</p>
           </div>
 
 
@@ -228,6 +238,6 @@
 
 <div class="bg-white px-6 py-6 mt-8 flex gap-4">
   <button class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
-  <button routerLink="/app/accounting/preview/1" class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md hover:bg-secondary  bg-primary text-white">Continue</button>
+  <button (click)="createDepartment()" class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md hover:bg-secondary  bg-primary text-white">Continue</button>
 
 </div>

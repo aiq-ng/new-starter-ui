@@ -15,6 +15,7 @@ export class CreateDepartmentComponent {
   positions:any;
   baseSalaryType:any;
   isSubmitted:boolean = false;
+  salarytype:any;
 
   constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
 
@@ -25,11 +26,22 @@ export class CreateDepartmentComponent {
       salary_type: ['', Validators.required],
       base_type_id: [''],
       base_salary: [''],
+      base_rate: [''],
       description: [''],
     });
 
     this.getPositions();
     this.getBaseSalaryType()
+  }
+
+  chooseSalary(type:string){
+    this.salarytype = type;
+    if(type=='fixed'){
+      this.createDepartmentForm.patchValue({base_type_id: null});
+      this.createDepartmentForm.patchValue({base_rate: null});
+    } else if(type=='base'){
+      this.createDepartmentForm.patchValue({base_salary: null});
+    }
   }
 
   get f(){return this.createDepartmentForm.controls}
@@ -42,11 +54,13 @@ export class CreateDepartmentComponent {
       return;
     }
 
+    this.createDepartmentForm.get('base_type_id').value = Number(this.createDepartmentForm.get('base_type_id').value)
     console.log(this.createDepartmentForm.value);
     this.api.post('human-resources/departments', this.createDepartmentForm.value).subscribe(
       res=>{
         console.log(res)
         this.showSuccess('Department created successfully');
+        this.isSubmitted =false;
         this.createDepartmentForm.reset();
       },
       err=>{
