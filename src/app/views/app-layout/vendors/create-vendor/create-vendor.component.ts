@@ -50,6 +50,10 @@ export class CreateVendorComponent {
     this.getVendorCategory()
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   toggleTab(view:string){
     this.tab = view;
   }
