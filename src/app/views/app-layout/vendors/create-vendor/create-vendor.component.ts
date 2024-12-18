@@ -127,10 +127,10 @@ export class CreateVendorComponent {
     this.api.post('vendors', this.createVendorForm.value).subscribe(
       res=>{
         console.log(res);
-        this.loading = false;
         this.createVendorForm.reset();
         this.showSuccess('Vendor added successfully')
         this.isSubmitted = false
+        this.loading = false;
       }, err=>{
         console.log(err);
         this.showError('Failed to add vendor ')

@@ -46,6 +46,10 @@ export class CreateStaffComponent {
     this.getWorkingDays()
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   get f(){return this.createEmployeeForm.controls}
 
   getDepartments(){

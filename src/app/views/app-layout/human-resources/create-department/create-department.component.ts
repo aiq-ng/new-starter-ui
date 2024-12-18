@@ -15,6 +15,7 @@ export class CreateDepartmentComponent {
   positions:any;
   baseSalaryType:any;
   isSubmitted:boolean = false;
+  loading:boolean = false;
   salarytype:any;
 
   constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
@@ -34,6 +35,10 @@ export class CreateDepartmentComponent {
     this.getBaseSalaryType()
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   chooseSalary(type:string){
     this.salarytype = type;
     if(type=='fixed'){
@@ -48,6 +53,7 @@ export class CreateDepartmentComponent {
 
   createDepartment(){
     this.isSubmitted = true;
+    this.loading=true;
     if(this.createDepartmentForm.invalid){
     console.log(this.createDepartmentForm.value);
     console.log('Invalid form')
@@ -62,10 +68,12 @@ export class CreateDepartmentComponent {
         this.showSuccess('Department created successfully');
         this.isSubmitted =false;
         this.createDepartmentForm.reset();
+        this.loading=false;
       },
       err=>{
         console.log(err)
         this.showError('Failed to create department');
+        this.loading = false;
       }
     )
   }

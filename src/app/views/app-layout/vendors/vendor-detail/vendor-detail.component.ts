@@ -20,6 +20,10 @@ export class VendorDetailComponent {
     this.getItemDetail()
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   getParamsId(){
     const url = window.location.href;
     console.log('url', url);
