@@ -53,6 +53,7 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
+
       { path: 'sales', component: SalesComponent, children: [
         {path: 'overview', component: SalesOverviewComponent},
         {path: 'order', component: SalesOrderComponent},
@@ -68,6 +69,8 @@ const routes: Routes = [
       ] },
  
        { path: 'order/invoice', component: InvoiceComponent },
+
+
 
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
@@ -91,8 +94,15 @@ const routes: Routes = [
         { path: 'vendors', component: VendorsComponent },
       ]},
       { path: 'expenses', component: ExpensesComponent },
-      { path: 'human-resources', component: HumanResourcesComponent },
+
+      { path: 'human-resources', component: HumanResourcesComponent, children: [
+        {path: '', component: HrOverviewComponent },
+        {path: 'create-department', component: CreateDepartmentComponent },
+        {path: 'add-employee', component: CreateStaffComponent },
+        {path: 'employee-profile/:id', component: StaffProfileComponent },
+      ] },
       { path: 'vendor-detail', component: VendorDetailComponent},
+
       { path: 'create-vendor', component: CreateVendorComponent},
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
@@ -106,8 +116,11 @@ const routes: Routes = [
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },
+
     ]
   }]
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
