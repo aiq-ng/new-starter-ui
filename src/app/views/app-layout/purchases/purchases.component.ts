@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { PurchaseService } from '../../../services/purchase.service';
 import { HttpServiceService } from '../../../services/http-service.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-purchases',
@@ -39,6 +40,7 @@ export class PurchasesComponent {
 
   constructor(private fb:FormBuilder,
               private router:Router,
+              private location: Location,
               private messageService: MessageService,
               private purchaseService: PurchaseService,
               private api:HttpServiceService){}
@@ -46,6 +48,10 @@ export class PurchasesComponent {
   ngOnInit(){
     console.log('purchaseService')
     this.getPurchases()
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   toggleCreatePurchase() {

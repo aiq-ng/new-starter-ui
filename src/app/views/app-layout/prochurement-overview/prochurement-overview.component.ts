@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpServiceService } from '../../../services/http-service.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-prochurement-overview',
@@ -29,7 +30,7 @@ export class ProchurementOverviewComponent {
 
   ]
 
-  constructor(private api: HttpServiceService, private router:Router) { };
+  constructor(private api: HttpServiceService, private location: Location, private router:Router) { };
 
   ngOnInit(){
 
@@ -41,6 +42,10 @@ export class ProchurementOverviewComponent {
 
   route(page:string){
     this.router.navigate([page]);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   getTopVendors(){

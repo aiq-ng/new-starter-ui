@@ -1,7 +1,7 @@
 
 <div class="flex justify-between gap-2 items-center bg-white py-3 px-4">
   <div class="id flex items-center  gap-4">
-    <button class="h-10 w-10 rounded-full hover:bg-gray-200 flex justify-center items-center active:scale-95">
+    <button (click)="goBack()" class="h-10 w-10 rounded-full hover:bg-gray-200 flex justify-center items-center active:scale-95">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
       </svg>
@@ -93,15 +93,24 @@
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-1  ">
                     <span class="text-sm text-start text-gray-500">Invoice number</span>
-                    <span class="text-sm font-bold text-start text-gray-800">{{invoiceDetail.invoice_number}}</span>
+                    <span *ngIf="!pageLoading" class="text-sm font-bold text-start text-gray-800">{{invoiceDetail?.invoice_number}}</span>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                   <dl class="flex flex-col gap-1">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Refernce</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.reference_number}}</dd>
+                    <dd  *ngIf="!pageLoading" class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail?.reference_number}}</dd>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </dl>
                   <dl class="flex flex-col gap-1 ">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Date</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.order_date}}</dd>
+                    <dd *ngIf="!pageLoading" class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail?.order_date}}</dd>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </dl>
                 </div>
               </div>
@@ -114,14 +123,20 @@
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-1  ">
                     <span class="text-sm text-start text-gray-500">Invoice of (NGN)</span>
-                    <span class="text-2xl font-bold text-start text-primary"> ₦ {{invoiceDetail.total}}</span>
+                    <span *ngIf="!pageLoading" class="text-2xl font-bold text-start text-primary"> ₦ {{invoiceDetail?.total}}</span>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                   <!-- <dl class="h-full">
 
                   </dl> -->
                   <dl class="flex flex-col gap-1 ">
                     <dt class="text-sm col-span-3 text-start text-gray-500">Delivery date</dt>
-                    <dd class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail.delivery_date}}</dd>
+                    <dd *ngIf="!pageLoading" class="text-sm col-span-2 font-bold text-start text-gray-800">{{invoiceDetail?.delivery_date}}</dd>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </dl>
                 </div>
               </div>
@@ -143,23 +158,35 @@
               </div>
 
               <div class="hidden sm:block border-b border-gray-200"></div>
-              <ng-container *ngFor="let item of invoiceDetail.items">
+              <ng-container *ngFor="let item of invoiceDetail?.items">
                 <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
                   <div class="col-span-full sm:col-span-2">
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                    <p class="font-medium text-gray-800">{{item.item_id}}</p>
+                    <p *ngIf="!pageLoading" class="font-medium text-gray-800">{{item.item_name}}</p>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                    <p class="text-gray-800">{{item.quantity}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800">{{item.quantity}}</p>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                    <p class="text-gray-800">{{item.price}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800">{{item.price}}</p>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                   <div>
                     <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                    <p class="sm:text-end text-gray-800"> ₦{{item.amount}}</p>
+                    <p *ngIf="!pageLoading" class="sm:text-end text-gray-800"> ₦{{item.amount}}</p>
+                    <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                    </span>
                   </div>
                 </div>
               </ng-container>
@@ -177,27 +204,38 @@
               <div class="grid text-sm grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦{{invoiceDetail.total}}</dd>
+                  <dd *ngIf="!pageLoading" class="col-span-2 text-gray-500"> ₦{{invoiceDetail?.total}}</dd>
+                  <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                  </span>
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦{{invoiceDetail.total}}</dd>
+                  <dd *ngIf="!pageLoading" class="col-span-2 text-gray-500"> ₦{{invoiceDetail?.total}}</dd>
+                  <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                  </span>
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Tax:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦39.00</dd>
+                  <dd *ngIf="!pageLoading" class="col-span-2 text-gray-500"> ₦00.00</dd>
+
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Amount paid:</dt>
-                  <dd class="col-span-2 text-gray-500"> ₦2789.00</dd>
+                  <dd *ngIf="!pageLoading" class="col-span-2 text-gray-500"> ₦{{invoiceDetail?.total}}</dd>
+                  <span *ngIf="pageLoading" class="text-sm font-bold text-start text-gray-800">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
+                  </span>
                 </dl>
 
                 <dl class="grid sm:grid-cols-5 gap-x-3">
                   <dt class="col-span-3 font-semibold text-gray-800">Due balance:</dt>
                   <dd class="col-span-2 text-gray-500"> ₦0.00</dd>
+
                 </dl>
               </div>
               <!-- End Grid -->

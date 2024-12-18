@@ -51,6 +51,10 @@ export class CreateNewPurchaseOrderComponent {
     this.addRow();
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   // Getter for items FormArray
   get items(): FormArray {
     return this.purchaseOrderForm.get('items') as FormArray;
@@ -88,10 +92,10 @@ export class CreateNewPurchaseOrderComponent {
     this.api.post('purchases/orders', this.purchaseOrderForm.value).subscribe(
       res=>{
         console.log(res);
-        this.loading = false;
         this.purchaseOrderForm.reset();
         this.showSuccess('purchase order added successfully')
         this.isSubmitted = false
+        this.loading = false;
       }, err=>{
         console.log(err);
         this.showError('Failed to add purchase order')
