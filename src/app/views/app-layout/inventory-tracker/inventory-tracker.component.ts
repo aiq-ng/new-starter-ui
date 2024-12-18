@@ -89,7 +89,7 @@ export class InventoryTrackerComponent {
 
   getInventoryPlan(){
     this.pageLoading= true;
-    return this.api.get('inventory?page=1&page_size=5&availability=in stock&sort=ASC').subscribe(
+    return this.api.get('inventory?page=1&page_size=5&availability=in stock&sort=DESC').subscribe(
       res =>{
         let response:any = res
         this.inventoryData = response.data
