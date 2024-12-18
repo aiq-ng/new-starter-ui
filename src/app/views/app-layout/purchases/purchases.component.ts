@@ -55,14 +55,15 @@ export class PurchasesComponent {
 
   getPurchases(){
     this.pageLoading=true;
+    console.log(this.pageLoading)
     this.api.get('purchases/orders?status=&start_date=2024-11-27&end_date').subscribe(
       res=>{
         this.purchasesData = res;
         this.pageLoading=false;
+        console.log(this.pageLoading)
       }
     )
 
-    this.purchasesData=this.purchaseService.getPurchases()
   }
 
   addItem() {

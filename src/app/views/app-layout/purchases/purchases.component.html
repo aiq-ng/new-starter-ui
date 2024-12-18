@@ -102,6 +102,14 @@
         </table>
         <!-- End Table -->
 
+        <div *ngIf="purchasesData.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+          <app-spinner></app-spinner>
+        </div>
+
+        <div *ngIf="purchasesData?.length<=0 && !pageLoading ">
+          <app-empty-list></app-empty-list>
+         </div>
+
         <!-- Footer -->
         <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
           <div>

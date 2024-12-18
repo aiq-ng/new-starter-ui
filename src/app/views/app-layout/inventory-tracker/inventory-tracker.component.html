@@ -5,12 +5,6 @@
     icon='assets/icons/add.png'
     buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-new-item')"></app-sub-header>
 
-
-
-
-
-
-
   <!-- Table Section -->
 <div class=" mt-12">
   <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
@@ -117,6 +111,14 @@
           </tbody>
         </table>
         <!-- End Table -->
+
+        <div *ngIf="inventoryData?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+          <app-spinner></app-spinner>
+        </div>
+
+        <div *ngIf="inventoryData?.data?.length<=0 && !pageLoading ">
+          <app-empty-list></app-empty-list>
+         </div>
 
         <!-- Footer -->
         <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">

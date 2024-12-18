@@ -32,7 +32,7 @@ export class HrOverviewComponent {
   products:any;
   pageLoading: boolean = false;
   metrics:any;
-  employees:any;
+  employees:any =[];
 
 
   constructor(
@@ -74,11 +74,11 @@ export class HrOverviewComponent {
   }
 
   getMetrics(){
-    this.pageLoading = true;
+    this.loading = true;
     this.api.get('human-resources/overview').subscribe(
       res=>{
         this.metrics = res;
-        this.pageLoading = false;
+        this.loading = false;
       },
       err=>{
         console.log(err)
@@ -88,11 +88,13 @@ export class HrOverviewComponent {
   }
 
   getEmployess(){
+    this.pageLoading = true;
     this.api.get('human-resources/employees?page=1&page_size=10').subscribe(
       res =>{
         this.employees = res
         this.employees = this.employees.data
         console.log('products', this.employees)
+        this.pageLoading = false;
       }
     )
   }

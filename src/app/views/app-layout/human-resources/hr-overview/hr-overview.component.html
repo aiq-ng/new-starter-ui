@@ -38,22 +38,34 @@
   <div class="data text-sm flex justify-between">
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-blue-600 ">Number of Employees</div>
-      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.employee_count}}</div>
+      <div *ngIf="!loading" class="data text-gray-800 text-base font-semibold">{{metrics?.data.employee_count}}</div>
+      <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+        <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+      </div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-yellow-600 ">Departments</div>
-      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.department_count}}</div>
+      <div *ngIf="!loading" class="data text-gray-800 text-base font-semibold">{{metrics?.data.department_count}}</div>
+      <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+        <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+      </div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-purple-600 ">Admin</div>
-      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.admin_count}}</div>
+      <div *ngIf="!loading" class="data text-gray-800 text-base font-semibold">{{metrics?.data.admin_count}}</div>
+      <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+        <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+      </div>
     </div>
 
     <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
       <div class="label text-primary ">On leave</div>
-      <div class="data text-gray-800 text-base font-semibold">{{metrics.data.on_leave_count}}</div>
+      <div *ngIf="!loading" class="data text-gray-800 text-base font-semibold">{{metrics?.data.on_leave_count}}</div>
+      <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+        <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+      </div>
     </div>
   </div>
 </div>
@@ -146,6 +158,15 @@
           </tbody>
         </table>
         <!-- End Table -->
+
+
+        <div *ngIf="employees.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+          <app-spinner></app-spinner>
+        </div>
+
+        <div *ngIf="employees?.length<=0 && !pageLoading ">
+          <app-empty-list></app-empty-list>
+         </div>
 
         <!-- Footer -->
         <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
