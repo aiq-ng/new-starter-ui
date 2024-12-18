@@ -19,6 +19,6 @@ Create price list <span class="ml-2"><img src="/assets/icons/add.png" alt=""></s
 
 <!-- Price Overview Component -->
 <ng-template #priceOverview>
-    <app-price-list-overview></app-price-list-overview>
+    <app-price-list-overview  *ngIf="currentView === 'overview'"></app-price-list-overview>
   </ng-template>
   

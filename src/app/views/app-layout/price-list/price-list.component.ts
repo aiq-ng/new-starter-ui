@@ -25,5 +25,18 @@ export class PriceListComponent {
     { name: 'BUNS', price: 500, quantity: '30 PCS' },
   ];
 
- 
+  // Current View State: list | create | overview
+  currentView: string = 'list';
+  
+
+  // Switch to Create Price List View
+  showCreatePriceList() {
+    this.currentView = 'create';
+  }
+
+  // Handle Save Event from CreatePriceListComponent
+  handleSave(savedPriceList: any[]) {
+    this.priceList = savedPriceList;
+    this.currentView = 'overview'; // Switch to Price Overview
+  }
 }

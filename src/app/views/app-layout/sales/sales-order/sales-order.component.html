@@ -1,0 +1,126 @@
+    <app-sub-header
+    pageTitle = "Sales Order"
+    monthlyFilter = "Today"
+    ></app-sub-header>
+
+    
+
+     <!-- Tabs -->
+ <div class="flex justify-between border-b-2 border-gray-100 mt-10 pb-2">
+    
+    <div class="flex gap-10">
+    <button (click)="switchTab('allOrders')" [class.border-b-2]="activeTab === 'allOrders'" class="text-black pb-2 font-semibold border-red-500">All Orders</button>
+    <button (click)="switchTab('sent')" [class.border-b-2]="activeTab === 'sent'" class="text-black pb-2 font-semibold border-red-500">Sent</button>
+    <button (click)="switchTab('completed')" [class.border-b-2]="activeTab === 'completed'" class="text-black pb-2 font-semibold border-red-500">Completed</button>
+    <button (click)="switchTab('services')" [class.border-b-2]="activeTab === 'services'" class="text-black pb-2 font-semibold border-red-500">Services</button>
+    <button (click)="switchTab('upcomingAddress')" [class.border-b-2]="activeTab === 'upcomingAddress'" class="text-black pb-2 font-semibold border-red-500">Upcoming Events</button>
+    <button (click)="switchTab('cancel')" [class.border-b-2]="activeTab === 'cancel'" class="text-black pb-2 font-semibold border-red-500">Cancel</button>
+    </div>
+    <div class="">
+        <div class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+            <span (click) = "route('/app/sales/order/create')" class="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">
+              Add new order
+              <img src='assets/icons/add.png' class="h-5" alt="">
+            </span>
+      
+          </div>
+    </div>
+</div>
+
+
+  <!-- Table -->
+  <div class="overflow-x-auto mt-10">
+    <table class="min-w-full table-auto divide-y max-w-full bg-white">
+      <thead >
+        <tr>
+          <ng-container *ngFor="let row of tableHeader">
+            <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='Order Id'">
+              <label for="hs-at-with-checkboxes-main" class="flex">
+                <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                <span class="sr-only">Checkbox</span>
+              </label>
+            </th>
+            <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+              <div class="flex items-center gap-x-2">
+                <span class="text-xs font-semibold uppercase tracking-wide text-black truncate">
+                  {{row}}
+                </span>
+              </div>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+
+
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let data of inventoryData">
+          <ng-container>
+          <td class="w-10 whitespace-nowrap">
+            <div class="ps-2 py-4">
+              <label for="hs-at-with-checkboxes-1" class="flex">
+                <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                <span class="sr-only">Checkbox</span>
+              </label>
+            </div>
+          </td>
+          <td class="px-2 py-6"  *ngFor="let key of objectKeys(data)">
+            <div class="flex items-center gap-x-3">
+              <div class="grow">
+                <span class="block text-sm text-gray-500 truncate">{{data[key]}}</span>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+        </tr>
+       </tbody>
+    </table>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white rounded-lg border">
+        <!-- Pagination Buttons -->
+        <div class="flex items-center gap-2">
+          <!-- Prev Button -->
+          <button
+            class="px-3 py-2 border rounded hover:bg-gray-200 focus:outline-none"
+            (click)="onPageChange(currentPage - 1)"
+            [disabled]="currentPage === 1"
+          >
+            Prev
+          </button>
+      
+          <!-- Page Numbers -->
+          <ng-container *ngFor="let page of pages; let i = index">
+            <button
+              class="px-3 py-2 border rounded hover:bg-gray-200 focus:outline-none"
+              [class.bg-blue-500]="currentPage === page"
+              [class.text-white]="currentPage === page"
+              (click)="onPageChange(page)"
+            >
+              {{ page }}
+            </button>
+          </ng-container>
+      
+          <!-- Next Button -->
+          <button
+            class="px-3 py-2 border rounded hover:bg-gray-200 focus:outline-none"
+            (click)="onPageChange(currentPage + 1)"
+            [disabled]="currentPage === totalPages"
+          >
+            Next
+          </button>
+        </div>
+      
+        <!-- Page Select Dropdown -->
+        <div class="flex items-center gap-2 mt-4 sm:mt-0">
+          <span class="text-sm text-gray-500">Page</span>
+          <select
+            class="border rounded px-3 py-2 focus:outline-none"
+        
+            [value]="currentPage"
+          >
+          <!-- (change)="onPageChange($event.target.value)" -->
+            <option *ngFor="let page of pages" [value]="page"> {{ page }} </option>
+          </select>
+          <span class="text-sm text-gray-500">of {{ totalPages }}</span>
+        </div>
+      </div>
+      

@@ -40,6 +40,10 @@ import { CreateStaffComponent } from './human-resources/create-staff/create-staf
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
 import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
+import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
+import { CreateSalesOrderComponent } from './sales/sales-order/create-sales-order/create-sales-order.component';
+import { PriceListOverviewComponent } from './price-list/price-list-overview/price-list-overview.component';
+import { PriceListEditComponent } from './price-list/price-list-edit/price-list-edit.component';
 
 
 
@@ -50,13 +54,19 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'sales', component: SalesComponent, children: [
-        {path: 'overview', component: SalesOverviewComponent}
+        {path: 'overview', component: SalesOverviewComponent},
+        {path: 'order', component: SalesOrderComponent},
+        {path: 'order/create', component: CreateSalesOrderComponent},
+        {path: 'customers', component: CustomersComponent}, 
+        {path: 'customers/overview', component: CustomersOverviewComponent},
+        {path: 'customers/create-new-customer', component: CustomersCreateComponent},
+        {path: 'price-list', component:PriceListComponent},
+        {path: 'price-list/create', component:CreatePriceListComponent},
+        {path: 'price-list/overview', component:PriceListOverviewComponent},
+        {path: 'price-list/edit', component:PriceListEditComponent}
+        ,
       ] },
-      { path: 'sales/customers', component: CustomersComponent}, 
-      {path: 'sales/customers/overview', component: CustomersOverviewComponent},
-      {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
-      {path: 'sales/price-list', component:PriceListComponent},
-      {path: 'sales/price-list/create', component:CreatePriceListComponent},
+ 
        { path: 'order/invoice', component: SalesOrderInvoiceComponent },
 
       { path: 'accounting', component: AccountingComponent, children: [

@@ -1,0 +1,360 @@
+<!-- Create New Order Component -->
+<section class=" bg-white">
+       <!-- Page Title -->
+    <header class="sticky top-0 inset-0 z-[100px] font-bold text-2xl capitalize text-gray-800 p-4">Create New Order</header>
+
+      <div class="bg-gray-50">
+      <!-- Order Details -->
+      <div class="w-full">
+        <h2 class="text-2xl font-semibold mb-4 sm:mb-6 p-4">Order Details</h2>
+        <!-- Order Type -->
+        <div class="w-1/2 flex p-4">
+          <label class="block text-sm md:text-base text-red-500 font-medium w-full md:w-1/4 mb-2 md:mb-0">Order Type <span class="text-red-500">*</span></label>
+          <div class="flex space-x-4">
+            <label class="flex items-center">
+              <input type="radio" name="orderType" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <span>Order</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="orderType" class="mr-2 accent-red-500 text-red-500 focus:ring-red-500" />
+              <span>Service</span>
+            </label>
+          </div>
+          </div>
+        
+  
+        <!-- Order ID -->
+        <div class="flex gap-3 w-full p-3">
+          <div class="w-1/4">
+            <label class="block text-sm md:text-lg  font-medium mb-2">Customer Name</label>
+             <!-- Dropdown for Category -->
+              <div class="" *ngFor="let item of items; let i = index">
+                <select
+                  class="w-full py-2 px-5 border-2 rounded-md bg-gray-50 outline-none border-gray-300"
+                  [(ngModel)]="item.customers"
+                  (change)="item.customers === 'Add Customer' ? openModal() : ''"
+                >
+                  <option value="" disabled>Customer Name</option>
+                  <option *ngFor="let customer of customers" [value]="customer">
+                    {{ customer }}
+                  </option>
+                  <hr color="gray"/>
+                  <option value="Add Customer" class="text-red-500">
+                     Add Customer +
+                  </option>
+                </select>
+            </div>
+              
+
+<!-- Modal -->
+<div
+*ngIf="isModalOpen"
+class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
+>
+<div class="bg-white p-6 rounded-lg w-1/2">
+<h2 class="text-lg font-semibold mb-4 p-4">New Customer</h2>
+<hr/>
+
+
+
+<div class="flex flex-wrap md:flex-nowrap justify-around items-center mt-4">
+<label class="w-1/3"> Salutation </label>
+<div class="mx-2">
+    <select class="mt-1 block w-full border-[1px] border-[#D0D3D9] rounded-md text-[#668196] outline-none p-2" >
+        <!-- <option value="" disabled selected hidden class="text-[#668196]"></option> -->
+        <option value="Mr." class="text-[#668196]">Mr.</option>
+        <option value="Miss" class="text-[#668196]">Miss</option>
+        <option value="Mrs." class="text-[#668196]">Mrs.</option>
+        <option value="Dr." class="text-[#668196]">Dr.</option>
+    </select>
+</div>
+<div class="mx-2">
+    <input type="text" class="mt-1 block bg-gray-50 w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="First Name" />
+</div>
+<div class="mx-2">
+    <input type="text" class="mt-1 block bg-gray-50 w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="Last Name" />
+</div>
+</div>
+
+
+<div class="flex flex-wrap md:flex-nowrap items-start my-4">
+<label class=" text-red-500 w-1/2">Company Display Name<span class="text-red-500">*</span></label>
+<input
+  type="text"
+  class="w-full p-2 border rounded bg-gray-50"
+  [(ngModel)]="newCustomer.name"
+  placeholder="Company name"
+/>
+</div>
+
+
+
+<div class="flex flex-wrap md:flex-nowrap items-start my-4">
+<label class=" text-gray-700 w-1/2">Display Name</label>
+<div class="w-full">
+<input
+  type="text"
+  class="w-1/2 p-2 border rounded"
+  [(ngModel)]="newCustomer.description"
+  placeholder="Optional"
+/>
+</div>
+</div>
+
+
+
+<div class="flex flex-wrap md:flex-nowrap items-start my-3">
+    <label class="text-sm font-medium text-gray-700 w-full md:w-1/2 mb-2 md:mb-0">Company Email *</label>
+    <div class="w-full">
+        <input type="email" placeholder="Company email" class="mt-1 block w-full bg-gray-50 border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left" />
+    </div>
+</div>
+
+<div class="flex flex-wrap md:flex-nowrap items-start my-3">
+    <label class="text-sm font-medium text-gray-700 w-full md:w-1/2 mb-2 md:mb-0">Company Phone</label>
+    <div class="w-full md:flex-nowrap flex flex-wrap gap-3">
+        <input type="tel" style="background-image: url('/assets/icons/call.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Work"  />
+        <input type="tel" style="background-image: url('/assets/icons/mobile.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Mobile"  />
+    </div>
+</div> 
+
+
+<div class="flex justify-start gap-4">
+<button
+  (click)="closeModal()"
+  class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+>
+  Cancel
+</button>
+<button
+  (click)="saveCategory()"
+  class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+>
+  Save
+</button>
+</div>
+</div>
+</div>
+</div>
+
+
+          <div class="w-1/4">
+          <label class="block text-sm md:text-lg font-bold mb-2 ">Order ID (Autogenerated)</label>
+          <input
+            type="text"
+            value="SLS-654"
+            disabled
+            class="w-full font-semibold border-2 px-3 py-2 rounded focus:outline-none bg-gray-100"
+          />
+        </div>
+        </div>
+  
+        <!-- Payment Method -->
+         <div class="flex gap-3 p-3 w-full">
+        <div class="w-1/4">
+          <label class="block text-sm md:text-lg font-bold mb-2">Payment Method</label>
+          <select class="w-full border px-7 py-2 rounded focus:outline-none">
+            <option>Select Method</option>
+          </select>
+        </div>
+  
+        <!-- Payment Terms -->
+        <div class="w-1/4">
+          <label class="block text-sm md:text-lg font-bold mb-2">Payment Terms</label>
+          <select class="w-full border px-7 py-2 rounded focus:outline-none">
+            <option>Select Account</option>
+          </select>
+        </div>
+        </div>
+  
+        <!-- Delivery Option -->
+        <div class="sm:col-span-2 p-3 flex">
+          <label class="w-1/4 text-sm md:text-lg font-medium mb-2 text-red-500">Delivery Option *</label>
+          <div class="flex space-x-6">
+            <label class="flex items-center">
+              <input type="radio" name="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <span>Dispatch Delivery</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <span>Pickup</span>
+            </label>
+          </div>
+        </div>
+  
+        <div class="flex gap-5 p-3 w-2/3">
+        <!-- Assigned Driver -->
+        <div class="w-1/2">
+          <label class="block text-sm md:text-lg font-medium mb-2">Assigned Driver</label>
+          <select class="w-full border px-5 py-2 rounded focus:outline-none">
+            <option>Select Driver</option>
+          </select>
+        </div>
+  
+        <!-- Delivery Date -->
+        <div class="w-1/2">
+          <label class="block text-sm md:text-lg font-medium mb-2">Delivery Date</label>
+          <input
+            type="date"
+            class="w-full border px-5 py-2 rounded focus:outline-none"
+          />
+        </div>
+  
+        <!-- Delivery Time -->
+        <div class="w-1/2">
+          <label class="block text-sm md:text-lg font-medium mb-2">Delivery Time</label>
+          <input
+            type="time"
+            class="w-full border px-5 py-2 rounded focus:outline-none"
+          />
+        </div>
+      </div>
+    </div>
+
+    <hr/>
+  
+      <!-- Order Description -->
+      <div class="mt-6">
+        <h3 class="text-sm md:text-lg font-semibold mb-4 bg-gray-100">Order Description</h3>
+  
+        <!-- Item Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full table-auto border border-gray-300">
+            <thead>
+              <tr class="w-full">
+                <th class="border px-4 py-2 text-left w-1/2">Item Details</th>
+            
+                <th class="border px-4 py-2 text-left">Quantity</th>
+                <th class="border px-4 py-2 text-left">Rate</th>
+                <th class="border px-4 py-2 text-left">Amount</th>
+                <!-- <th class="border px-4 py-2"></th> -->
+             
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border px-4 py-2">
+                  <input
+                    type="text"
+                    value="Samosa (beef)"
+                    class="w-full border px-2 py-1 rounded focus:outline-none"
+                  />
+                </td>
+                <td class="border px-4 py-2">
+                  <input
+                    type="number"
+                    value="5"
+                    class="w-full border px-2 py-1 rounded focus:outline-none"
+                  />
+                </td>
+                <td class="border px-4 py-2">
+                  <input
+                    type="number"
+                    value="400.00"
+                    class="w-full border px-2 py-1 rounded focus:outline-none"
+                  />
+                </td>
+                <td class="border px-4 py-2">2,000.00 <span class="px-4 text-red-500 cursor-pointer">✖</span></td>
+                <!-- <td class="border px-4 py-2 text-center text-red-500 cursor-pointer">
+                  
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+      </div>
+  
+      <!-- Summary Section -->
+      <div class="mt-6 flex flex-wrap lg:flex-nowrap w-full flex-col lg:flex-row gap-10">
+        <div class="flex flex-col w-1/2">
+            <!-- Add Item Button -->
+            <div class="mb-4 p-3">
+                <button
+                  type="button"
+                  class="bg-red-500 text-white px-7 py-3 rounded hover:bg-red-600"
+                >
+                  Add Item +
+                </button>
+              </div>
+        <div>
+          <label class="block text-sm font-medium mb-2">Additional Note</label>
+          <textarea
+            rows="3"
+            class="w-full border px-3 py-2 rounded focus:outline-none"
+            placeholder="Optional"
+          ></textarea>
+        </div>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Customer Notes</label>
+            <textarea
+              rows="3"
+              class="w-full border px-3 py-2 rounded focus:outline-none"
+              placeholder="Thank you for doing business. we hope to hear from you again."
+            ></textarea>
+          </div>
+      </div>
+   
+
+        <div class="bg-white rounded-lg p-4 border w-1/2">
+          <div class="flex justify-between mb-2 p-4">
+            <span class="font-semibold">Sub Total</span>
+            <span class="font-semibold">₦12,000.00</span>
+          </div>
+          <div class="flex justify-between mb-2 p-4">
+            <span class="lg:w-1/3">Discount</span>  
+            <input
+              type="number"
+              class="lg:w-1/3 border px-2 py-1 rounded focus:outline-none"
+              value="0.00"
+            />
+            <span class="lg:w-1/3 text-end">₦0.00</span>
+          </div>
+          <div class="flex justify-between mb-2 p-4">
+            <span class="lg:w-1/3">Delivery Charges</span>
+            <input
+              type="number"
+              class="w-1/3 border px-2 py-1 rounded focus:outline-none"
+              value="0.00"
+            />
+            <span class="lg:w-1/3 text-end">₦0.00</span>
+          </div>
+          <div class="flex justify-between mb-2 p-4">
+            <span class="lg:w-1/3">VAT</span>
+            <input
+              type="number"
+              class="w-1/3 border px-2 py-1 rounded focus:outline-none"
+              value="0.00"
+            />
+            <span class="lg:w-1/3 text-end">₦0.00</span>
+          </div>
+          <hr/>
+          <div class="flex justify-between mb-2 p-4">
+            <span class="font-semibold">Total Amount (NGN)</span>
+            <span class="font-semibold">₦1,250,000.00</span>
+          </div>
+        </div>
+
+    </div>
+
+  
+      <!-- Action Buttons -->
+      <div class="flex justify-start space-x-4 mt-6">
+        <button
+          type="button"
+          class="px-4 py-2 bg-white text-gray-400 rounded hover:bg-gray-200"
+        >
+          Discard
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          (click)="submitOrder()"
+        >
+          Create Order
+        </button>
+      </div>
+    </div>
+  </section>
+  
