@@ -9,6 +9,8 @@
        <!-- Table Section -->
  <!-- Card -->
  <div class="flex flex-col mt-6">
+  <app-tab-menu [navigation]="tabMenu" (tabAction)="filterPurchases($event)"></app-tab-menu>
+
   <div class="overflow-x-auto">
     <div class="min-w-full inline-block align-middle">
       <div class="bg-white border border-gray-200  shadow-sm overflow-hidden">
@@ -88,6 +90,20 @@
                     <td class="px-2 py-2">
                       <div  class="flex items-center gap-x-3 text-sm text-gray-500">
                           {{data.total}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                        @if(data.status =='received'){
+                          <span class="text-green-600">{{data.status}}</span>
+                        } @else if(data.status =='sent'){
+                          <span class="text-yellow-500">{{data.status}}</span>
+                        }@else if(data.status =='overdue'){
+                          <span class="text-red-500">{{data.status}}</span>
+                        }@else {
+                          <span class="text-gray-500">{{data.status}}</span>
+                        }
                       </div>
                     </td>
 
