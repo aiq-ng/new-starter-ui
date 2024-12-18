@@ -13,7 +13,7 @@ export class SidebarComponent {
 
     menu = [
       {
-        "name": "dashboard",
+        "name": "Dashboard",
         "icon": "assets/icons/grid.png",
         "route": "/app/dashboard",
         "dropdown": ""
@@ -45,57 +45,57 @@ export class SidebarComponent {
         ]
 
       },
-      {
-        "name": "Sales",
-        "icon": "assets/icons/sales.png",
-        "route": "/app/sales",
-        "dropdown": "assets/icons/arrow-right.png",
-        "submenu" : [
-          {
-            "name": "Overview",
-            "route": "/app/sales/overview"
-          },
-          {
-            "name": "Order",
-            "route": "/app/sales/order",
-          },
-          {
-            "name": "Price List",
-            "route": "/app/sales/price-list",
-          },
-          {
-            "name": "Customers",
-            "route": "/app/sales/customers",
-          },
-        ]
+      // {
+      //   "name": "Sales",
+      //   "icon": "assets/icons/sales.png",
+      //   "route": "/app/sales",
+      //   "dropdown": "assets/icons/arrow-right.png",
+      //   "submenu" : [
+      //     {
+      //       "name": "Overview",
+      //       "route": "/app/sales/overview"
+      //     },
+      //     {
+      //       "name": "Order",
+      //       "route": "/app/sales/order",
+      //     },
+      //     {
+      //       "name": "Price List",
+      //       "route": "/app/sales/price-list",
+      //     },
+      //     {
+      //       "name": "Customers",
+      //       "route": "/app/sales/customers",
+      //     },
+      //   ]
 
-      },
+      // },
 
-      {
-        "name": "Accounting",
-        "icon": "assets/icons/accounting.png",
-        "route": "/app/accounting/overview",
-        "dropdown": "assets/icons/arrow-right.png",
-        "submenu": [
-          {
-            "name": "Overview",
-            "route": "/app/accounting/overview",
-          },
-          {
-            "name": "Order",
-            "route": "/app/accounting/order",
-          },
-          {
-            "name": "Prochurements",
-            "route": "/app/accounting/prochurement",
-          },
-          {
-            "name": "Vendors",
-            "route": "/app/accounting/vendors",
-          },
-        ]
+      // {
+      //   "name": "Accounting",
+      //   "icon": "assets/icons/accounting.png",
+      //   "route": "/app/accounting/overview",
+      //   "dropdown": "assets/icons/arrow-right.png",
+      //   "submenu": [
+      //     {
+      //       "name": "Overview",
+      //       "route": "/app/accounting/overview",
+      //     },
+      //     {
+      //       "name": "Order",
+      //       "route": "/app/accounting/order",
+      //     },
+      //     {
+      //       "name": "Prochurements",
+      //       "route": "/app/accounting/prochurement",
+      //     },
+      //     {
+      //       "name": "Vendors",
+      //       "route": "/app/accounting/vendors",
+      //     },
+      //   ]
 
-      },
+      // },
 
       {
         "name": "Human Resources",
