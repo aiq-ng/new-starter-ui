@@ -39,8 +39,8 @@ buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400"
 <!-- Table -->
 <div class="overflow-x-auto mt-10">
 <table class="min-w-full table-auto divide-y max-w-full bg-white">
-  <thead >
-    <tr>
+  <thead class="">
+    <tr class="flex-wrap">
       <ng-container *ngFor="let row of tableHeader">
         <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='S/N'">
           <label for="hs-at-with-checkboxes-main" class="flex">
@@ -78,7 +78,7 @@ buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400"
           </div>
         </div>
       </td>
-      <td class="w-10 whitespace-nowrap">
+      <td class="whitespace-nowrap">
         <div class="ps-2 py-4">
           <label for="hs-at-with-checkboxes-1" class="flex gap-2" (click) = "route('/app/sales/price-list/edit')">
             <span class="text-red-500">Edit</span>
