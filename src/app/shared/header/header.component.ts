@@ -1,5 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { HttpServiceService } from '../../services/http-service.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +12,7 @@ export class HeaderComponent {
 
   dropDown:boolean = false;
   showMobileMenu:boolean = false;
+  user:any;
 
     menu = [
       {
@@ -42,9 +45,10 @@ export class HeaderComponent {
       }
     ]
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private api:HttpServiceService, private storage:StorageService){}
 
   ngOnInit() {
+    this.getUser()
   }
 
   route(page:string){
@@ -53,6 +57,16 @@ export class HeaderComponent {
 
   showDropDown(){
     this.dropDown = !this.dropDown
+  }
+
+  getUser(){
+    this.api.get('human-resources/employees/' + this.storage.getdata('user_id')).subscribe(
+      res=>{
+        this.user = res
+      }, err=>{
+        console.log(err);
+      }
+    )
   }
 
   toggleMobileMenu(){

@@ -10,6 +10,8 @@ export class SidebarComponent {
   dropDown:boolean = false;
   showMobileMenu:boolean = false;
   subMenu:string = '';
+  dropdown: boolean =false;
+
 
     menu = [
       {
@@ -23,7 +25,7 @@ export class SidebarComponent {
       {
         "name": "Procurement",
         "icon": "assets/icons/sales.png",
-        "route": "/app/purchases",
+        "route": "/app/prochurement/overview",
         "dropdown": "assets/icons/arrow-right.png",
         "submenu": [
           {
@@ -48,7 +50,7 @@ export class SidebarComponent {
       // {
       //   "name": "Sales",
       //   "icon": "assets/icons/sales.png",
-      //   "route": "/app/sales",
+      //   "route": "/app/sales/overview",
       //   "dropdown": "assets/icons/arrow-right.png",
       //   "submenu" : [
       //     {
@@ -120,6 +122,10 @@ export class SidebarComponent {
 
   route(page:string){
     this.router.navigate([page]);
+  }
+
+  toggleDropdown(){
+    this.dropdown =!this.dropdown;
   }
 
   toggleSubmenu(menu:string){
