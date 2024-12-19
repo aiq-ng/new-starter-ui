@@ -13,6 +13,7 @@ export class StaffProfileComponent {
   item_id:any;
   pageLoading:any;
   employeeDetail:any;
+  confirmAction:any;
 
 
   constructor(private router:Router, private api:HttpServiceService, private messageService:MessageService){}
@@ -54,11 +55,11 @@ export class StaffProfileComponent {
     return this.api.delete(`human-resources/employees/${this.item_id}`).subscribe(
       res =>{
         let response:any = res
-        this.showSuccess('employee put on leave')
+        this.showSuccess('Employee Deleted successfully')
         this.router.navigate(['/app/human-resources'])
       }, err=>{
         console.log(err)
-        this.showError('error putting employee on leave')
+        this.showError('Error deleting employee')
       }
     )
 
@@ -70,10 +71,10 @@ export class StaffProfileComponent {
     return this.api.post(`human-resources/employees/${this.item_id}/suspend`, '').subscribe(
       res =>{
         let response:any = res
-        this.showSuccess('employee put on leave')
+        this.showSuccess('Employee suspended')
       }, err=>{
         console.log(err)
-        this.showError('error putting employee on leave')
+        this.showError('Error putting employee on suspention')
       }
     )
 
@@ -84,15 +85,22 @@ export class StaffProfileComponent {
     return this.api.post(`human-resources/employees/leave/${this.item_id}/approve`, '').subscribe(
       res =>{
         let response:any = res
-        this.showSuccess('employee put on leave')
+        this.showSuccess('Employee is now on leave')
       }, err=>{
         console.log(err)
-        this.showError('error putting employee on leave')
+        this.showError('An error occurred, are you sure employee applied to go on leave?')
       }
     )
 
   }
 
+  toggleConfirmAction(action:string){
+    this.confirmAction = action
+  }
+
+  exitConfirmModal(){
+    this.confirmAction = null;
+  }
 
   showSuccess(message: string) {
     console.log('showSuccess')
