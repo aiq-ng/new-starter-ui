@@ -12,9 +12,6 @@ import { Router } from '@angular/router';
   providers: [MessageService]  // Import MessageService to use it in the component
 })
 export class CustomersComponent {
-
-
-
   isAddSale: boolean = false;
   saleDetailHeader = ['time', 'product', 'quantity', 'saleAmount']
   tableHeader = [
@@ -25,6 +22,7 @@ export class CustomersComponent {
     "Address",
     "Transaction",
     "Status"
+
   ]
 
   sales:any;
@@ -34,14 +32,16 @@ export class CustomersComponent {
   loading: boolean = false;
   products:any;
   pageLoading: boolean = false;
-  inventoryData:any;
-  @Output() viewAction = new EventEmitter();
+  vendors:any =[];
+  branches:any;
+  currencies:any;
+  paymentTerms:any;
 
 
   constructor(private salesService: SalesService,
               private fb: FormBuilder,
-              private messageService: MessageService,
               private router: Router,
+              private messageService: MessageService,
               private api:HttpServiceService){
     this.salesForm = this.fb.group({
       // Sale Information
@@ -55,73 +55,10 @@ export class CustomersComponent {
   }
 
 
-
-  route(arg0: string) {
-    this.router.navigateByUrl(arg0);
-    // throw new Error('Method not implemented.');
-    }
-
-
   ngOnInit(){
-    this.getSales()
-    this.getProducts()
+    this.getCustomers()
 
-    this.inventoryData = [
-        {
-          Name: "John Doe",
-          CompanyName: "TechCorp Inc.",
-          Email: "john.doe@example.com",
-          WorkPhone: "555-123-4567",
-          Address: "123 Elm Street, Springfield",
-          Transaction: "$1500",
-          Status: "Paid"
-        },
-        {
-          Name: "Jane Smith",
-          CompanyName: "Innovate Solutions",
-          Email: "jane.smith@example.com",
-          WorkPhone: "555-987-6543",
-          Address: "456 Maple Avenue, Lakeside",
-          Transaction: "$1200",
-          Status: "Owing"
-        },
-        {
-          Name: "Carlos Mendoza",
-          CompanyName: "GreenFields Ltd.",
-          Email: "carlos.mendoza@example.com",
-          WorkPhone: "555-555-7890",
-          Address: "789 Oak Drive, Rivertown",
-          Transaction: "$3000",
-          Status: "Paid"
-        },
-        {
-          Name: "Emily Johnson",
-          CompanyName: "Johnson Enterprises",
-          Email: "emily.j@example.com",
-          WorkPhone: "555-444-3210",
-          Address: "321 Pine Lane, Hillcrest",
-          Transaction: "$500",
-          Status: "Owing"
-        },
-        {
-          Name: "Michael Brown",
-          CompanyName: "Brown Logistics",
-          Email: "michael.brown@example.com",
-          WorkPhone: "555-222-6789",
-          Address: "222 Birch Way, Eastwood",
-          Transaction: "$2500",
-          Status: "Paid"
-        }
-    ]
-  }
 
-  objectKeys(obj: any){
-    return Object.keys(obj  )
-  }
-
-  onClick(){
-    this.viewAction.emit();
-    console.log('view action triggered')
   }
 
   toggleAddSale(){
@@ -136,11 +73,11 @@ export class CustomersComponent {
     }
   }
 
-  getSales(){
+  getCustomers(){
     this.pageLoading = true;
-    this.api.get('sales').subscribe(
+    this.api.get('customers?page=1&page_size=10&sort_by=total_transaction&sort_order=desc&status').subscribe(
       res=>{
-        this.sales = res;
+        this.vendors = res;
         this.pageLoading = false;
       },
       err=>{
@@ -150,14 +87,11 @@ export class CustomersComponent {
     )
   }
 
-  getProducts(){
-    this.api.get('products').subscribe(
-      res =>{
-        this.products = res
-        this.products = this.products.data
-        console.log('products', this.products)
-      }
-    )
+
+
+  route(page:string){
+    console.log('route clicked')
+    this.router.navigateByUrl(page)
   }
 
 
@@ -176,7 +110,7 @@ export class CustomersComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getSales()
+        this.getCustomers()
         this.showSuccess('Sale added successfully');
       },
       err=>{
@@ -198,6 +132,7 @@ export class CustomersComponent {
   showError(message: string) {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
+
 
 
 }

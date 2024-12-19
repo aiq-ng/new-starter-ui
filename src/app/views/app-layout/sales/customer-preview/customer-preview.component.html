@@ -1,0 +1,148 @@
+
+<div (click)="goBack()" class="mb-2 px-2 cursor-pointer hover:text-primary hover:bg-primary/45 py-2 rounded-md text-sm max-w-[100px] flex items-center gap-2">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </span>
+  <span class="text-gray-500 hover:text-primary font-normal">Back</span>
+</div>
+
+<div class="section relative">
+  <app-sub-header
+    pageTitle={{customerDetail?.display_name}}
+    action1Name="New Transaction"
+    icon='assets/icons/add.png'
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-new-purchase')"></app-sub-header>
+
+
+<app-tab-menu [navigation]="tabMenu"></app-tab-menu>
+
+
+<div class="main flex h-screen border-t border-primary/45">
+  <div class="detail basis-[30%] border-r border-primary/45 p-4">
+
+    <div class="main-detail flex gap-8">
+      <div class="pics">
+        <span class="text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+          </svg>
+        </span>
+      </div>
+      <div class="detail flex flex-col gap-1 text-sm text-gray-400">
+        <div *ngIf="!pageLoading" class="text-gray-800">{{customerDetail?.display_name}}</div>
+        <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
+        <div *ngIf="!pageLoading">{{customerDetail?.email}}</div>
+
+        <div class="flex gap-2 items-center">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+            </svg>
+          </span>
+          {{customerDetail?.mobile_phone}}
+
+        </div>
+        <div class="flex gap-4">
+          <button class="border-none text-primary/65 text-sm active:scale-95">Edit</button>
+          <button class="border-none text-primary/65 text-sm active:scale-95">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="other-detail mt-4">
+      <div class="title py-2">Other Details</div>
+
+      <div class="grid grid-cols-2 gap-2 text-sm mt-2 text-gray-500">
+        <div class="detail">Customer Type</div>
+        <div class="detail">{{customerDetail?.customer_type}}</div>
+
+        <div class="detail">Default Currency</div>
+        <div class="detail">{{customerDetail?.default_currency}}</div>
+
+        <div class="detail">Payment Terms</div>
+        <div class="detail">{{customerDetail?.payment_term}}</div>
+        <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="history basis-[70%] flex flex-col p-6">
+    <div class="title" class="text-gray-800 font-semibold pb-4">Transactions</div>
+
+
+
+    <div class="mb-8">
+      <div class="flex border bg-gray-100 py-3 px-4 text-sm w-full max-w-[700px] ">
+        <div class="w-full max-w-[150px]">Currency</div>
+        <div class="w-full max-w-[200px]">Outstanding Recievable</div>
+        <div class="w-full max-w-[150px]">Paid</div>
+      </div>
+
+      <div class="flex border py-3 px-4 text-sm w-full max-w-[700px] ">
+        <div class="w-full max-w-[150px]">{{customerDetail?.receivables.currency}}</div>
+        <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
+        <div class="w-full max-w-[200px] text-primary/65">{{customerDetail?.receivables.total_outstanding | number:'1.0-2'}}</div>
+        <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
+        <div class="w-full max-w-[150px]">{{customerDetail?.receivables.total_paid | number:'1.0-2'}}</div>
+        <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <ng-container *ngFor="let transaction of customerDetail?.transactions">
+      <div class="flex gap-4 text-sm ">
+        <div class="date w-full min-w-[80px] max-w-[100px] flex flex-col justify-center">
+          <span>{{transaction.transaction_created_at | date}}</span>
+          <span>{{ transaction.transaction_created_at | date: 'shortTime' }}</span>
+          <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+            <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+          </div>
+        </div>
+        <div class="separator flex justify-center items-center flex-col ">
+          <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
+          <div class="div flex justify-center items-center text-primary/85 h-8 w-8 rounded-full bg-white border border-primary/45">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+              <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>
+          </div>
+          <div class="div border-r h-10 border-primary/45  flex justify-center items-center"></div>
+        </div>
+        <div class="h-full w-full flex flex-col justify-center">
+          <div class="message  w-full max-w-[300px] max-h-[90px] flex flex-col gap-1 justify-center border border-primary/45 bg-gray-100 px-2 py-2 rounded-lg">
+            <span class="text-sm text-gray-800">Invoice Added</span>
+            <span class="text-sm text-gray-500">Invoice <span class=" ">{{transaction.invoice_number}}</span></span>
+            <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+              <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+            </div>
+            <span class="text-sm text-gray-500">{{transaction.processed_by}} - <span class="text-red-500">View Details</span></span>
+            <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
+              <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+
+
+  </div>
+
+
+
+</div>

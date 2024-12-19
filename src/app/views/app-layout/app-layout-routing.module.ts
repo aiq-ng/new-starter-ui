@@ -35,11 +35,11 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
-import { CustomersOverviewComponent } from './sales/customers/customers-overview/customers-overview.component';
 import { CustomersCreateComponent } from './sales/customers/customers-create/customers-create.component';
-import { PriceListComponent } from './sales/price-list/price-list.component';
-import { CreatePriceListComponent } from './sales/price-list/create-price-list/create-price-list.component';
-import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
+import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
+import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
+import { SalesOrderPreviewComponent } from './sales/sales-order-preview/sales-order-preview.component';
+import { CustomerPreviewComponent } from './sales/customer-preview/customer-preview.component';
 
 
 const routes: Routes = [
@@ -48,12 +48,6 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'sales', component: SalesComponent },
-      { path: 'sales/customers', component: CustomersComponent},
-      {path: 'sales/customers/overview', component: CustomersOverviewComponent},
-      {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
-      {path: 'sales/price-list', component:PriceListComponent},
-      {path: 'sales/price-list/create', component:CreatePriceListComponent},
       { path: 'order/invoice', component: SalesOrderInvoiceComponent },
 
       { path: 'accounting', component: AccountingComponent, children: [
@@ -80,7 +74,15 @@ const routes: Routes = [
         { path: 'create-vendor', component: CreateVendorComponent},
       ] },
       { path: 'expenses', component: ExpensesComponent },
-      { path: 'customers', component: CustomersComponent },
+      { path: 'sales', component: SalesComponent, children: [
+        { path: 'overview', component: SalesOverviewComponent },
+        { path: 'orders', component: SalesOrderComponent },
+        { path: 'orders-preview/:id', component: SalesOrderPreviewComponent },
+        { path: 'customers', component: CustomersComponent },
+        { path: 'create-customer', component: CustomersCreateComponent },
+        { path: 'customers-preview/:id', component: CustomerPreviewComponent },
+
+      ] },
       { path: 'human-resources', component: HumanResourcesComponent, children: [
         {path: '', component: HrOverviewComponent },
         {path: 'create-department', component: CreateDepartmentComponent },

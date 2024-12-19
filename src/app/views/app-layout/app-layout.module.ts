@@ -40,14 +40,12 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { DepartmentsComponent } from './human-resources/departments/departments.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
-import { PriceListComponent } from './sales/price-list/price-list.component';
-import { PriceListOverviewComponent } from './sales/price-list/price-list-overview/price-list-overview.component';
-import { CreatePriceListComponent } from './sales/price-list/create-price-list/create-price-list.component';
 import { CustomersCreateComponent } from './sales/customers/customers-create/customers-create.component';
-import { CustomersOverviewComponent } from './sales/customers/customers-overview/customers-overview.component';
 import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
 import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
 import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
+import { SalesOrderPreviewComponent } from './sales/sales-order-preview/sales-order-preview.component';
+import { CustomerPreviewComponent } from './sales/customer-preview/customer-preview.component';
 
 
 @NgModule({
@@ -86,14 +84,12 @@ import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
     StaffProfileComponent,
     DepartmentsComponent,
     HrOverviewComponent,
-    PriceListComponent,
-    PriceListOverviewComponent,
-    CreatePriceListComponent,
     CustomersCreateComponent,
-    CustomersOverviewComponent,
     AdjustmentHistoryComponent,
     SalesOverviewComponent,
-    SalesOrderComponent
+    SalesOrderComponent,
+    SalesOrderPreviewComponent,
+    CustomerPreviewComponent
 
   ],
   imports: [

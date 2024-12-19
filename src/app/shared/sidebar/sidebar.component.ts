@@ -70,7 +70,7 @@ export class SidebarComponent {
           {
             "id": 9,
             "name": "Order",
-            "route": "/app/sales/order",
+            "route": "/app/sales/orders",
           },
           {
             "id": 10,
