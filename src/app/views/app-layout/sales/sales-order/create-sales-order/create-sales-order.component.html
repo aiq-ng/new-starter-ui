@@ -1,9 +1,9 @@
 <!-- Create New Order Component -->
-<section class=" bg-white">
+<section class="relative bg-white">
        <!-- Page Title -->
-    <header class="sticky top-0 inset-0 z-[100px] font-bold text-2xl capitalize text-gray-800 p-4">Create New Order</header>
+    <div class="sticky top-16 min-w-full inset-0 z-[10] bg-white font-bold text-2xl capitalize text-gray-800 p-4">Create New Order</div>
 
-      <div class="bg-gray-50">
+      <form [formGroup]="createSalesOrderForm" (ngSubmit)="submitOrder()" class="bg-gray-50">
       <!-- Order Details -->
       <div class="w-full">
         <h2 class="text-2xl font-semibold mb-4 sm:mb-6 p-4">Order Details</h2>
@@ -12,11 +12,11 @@
           <label class="block text-sm md:text-base text-red-500 font-medium w-full md:w-1/4 mb-2 md:mb-0">Order Type <span class="text-red-500">*</span></label>
           <div class="flex space-x-4">
             <label class="flex items-center">
-              <input type="radio" name="orderType" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <input type="radio" name="orderType" formControlName="orderType" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
               <span>Order</span>
             </label>
             <label class="flex items-center">
-              <input type="radio" name="orderType" class="mr-2 accent-red-500 text-red-500 focus:ring-red-500" />
+              <input type="radio" name="orderType" formControlName="orderType" class="mr-2 accent-red-500 text-red-500 focus:ring-red-500" />
               <span>Service</span>
             </label>
           </div>
@@ -27,23 +27,24 @@
         <div class="flex gap-3 w-full p-3">
           <div class="w-1/4">
             <label class="block text-sm md:text-lg  font-medium mb-2">Customer Name</label>
-             <!-- Dropdown for Category -->
-              <div class="" *ngFor="let item of items; let i = index">
-                <select
-                  class="w-full py-2 px-5 border-2 rounded-md bg-gray-50 outline-none border-gray-300"
-                  [(ngModel)]="item.customers"
-                  (change)="item.customers === 'Add Customer' ? openModal() : ''"
-                >
-                  <option value="" disabled>Customer Name</option>
-                  <option *ngFor="let customer of customers" [value]="customer">
-                    {{ customer }}
-                  </option>
-                  <hr color="gray"/>
-                  <option value="Add Customer" class="text-red-500">
-                     Add Customer +
-                  </option>
-                </select>
+
+            <div *ngFor="let item of items; let i = index;">
+              <select
+                class="w-full py-2 px-5 border-2 rounded-md bg-gray-50 outline-none border-gray-300"
+                formControlName="customer_id"
+                (change)="onCustomerSelect($event, item)"
+              >
+                <option value="" disabled>Customer Name</option>
+                <option *ngFor="let customer of customers" [value]="customer.id">
+                  {{ customer.name }}
+                </option>
+                <hr color="gray" />
+                <option value="Add Customer" class="text-red-500">
+                  Add Customer +
+                </option>
+              </select>
             </div>
+            
               
 
 <!-- Modal -->
@@ -153,16 +154,20 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
          <div class="flex gap-3 p-3 w-full">
         <div class="w-1/4">
           <label class="block text-sm md:text-lg font-bold mb-2">Payment Method</label>
-          <select class="w-full border px-7 py-2 rounded focus:outline-none">
+          <select class="w-full border px-7 py-2 rounded focus:outline-none"
+          formControlName="paymentMethod">
             <option>Select Method</option>
+            <option>1</option>
           </select>
         </div>
   
         <!-- Payment Terms -->
         <div class="w-1/4">
           <label class="block text-sm md:text-lg font-bold mb-2">Payment Terms</label>
-          <select class="w-full border px-7 py-2 rounded focus:outline-none">
+          <select class="w-full border px-7 py-2 rounded focus:outline-none"
+          formControlName="paymentTerms">
             <option>Select Account</option>
+            <option>1</option>
           </select>
         </div>
         </div>
@@ -172,11 +177,11 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
           <label class="w-1/4 text-sm md:text-lg font-medium mb-2 text-red-500">Delivery Option *</label>
           <div class="flex space-x-6">
             <label class="flex items-center">
-              <input type="radio" name="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <input type="radio" name="deliveryOption" formControlName="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
               <span>Dispatch Delivery</span>
             </label>
             <label class="flex items-center">
-              <input type="radio" name="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
+              <input type="radio" name="deliveryOption" formControlName="deliveryOption" class="mr-2 text-red-500 accent-red-500 focus:ring-red-500" />
               <span>Pickup</span>
             </label>
           </div>
@@ -186,8 +191,10 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
         <!-- Assigned Driver -->
         <div class="w-1/2">
           <label class="block text-sm md:text-lg font-medium mb-2">Assigned Driver</label>
-          <select class="w-full border px-5 py-2 rounded focus:outline-none">
+          <select class="w-full border px-5 py-2 rounded focus:outline-none"
+          formControlName="driver">
             <option>Select Driver</option>
+            <option value="1">1</option>
           </select>
         </div>
   
@@ -197,6 +204,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
           <input
             type="date"
             class="w-full border px-5 py-2 rounded focus:outline-none"
+            formControlName="deliveryDate"
           />
         </div>
   
@@ -206,6 +214,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
           <input
             type="time"
             class="w-full border px-5 py-2 rounded focus:outline-none"
+            formControlName="deliveryTime"
           />
         </div>
       </div>
@@ -238,6 +247,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
                     type="text"
                     value="Samosa (beef)"
                     class="w-full border px-2 py-1 rounded focus:outline-none"
+                    formControlName="item"
                   />
                 </td>
                 <td class="border px-4 py-2">
@@ -245,6 +255,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
                     type="number"
                     value="5"
                     class="w-full border px-2 py-1 rounded focus:outline-none"
+                    formControlName="quantity"
                   />
                 </td>
                 <td class="border px-4 py-2">
@@ -252,9 +263,11 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
                     type="number"
                     value="400.00"
                     class="w-full border px-2 py-1 rounded focus:outline-none"
+                    formControlName="rate"
                   />
                 </td>
-                <td class="border px-4 py-2">2,000.00 <span class="px-4 text-red-500 cursor-pointer">✖</span></td>
+                <td class="border px-4 py-2"
+                formControlName="amount">2,000.00 <span class="px-4 text-red-500 cursor-pointer">✖</span></td>
                 <!-- <td class="border px-4 py-2 text-center text-red-500 cursor-pointer">
                   
                 </td> -->
@@ -283,6 +296,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
             rows="3"
             class="w-full border px-3 py-2 rounded focus:outline-none"
             placeholder="Optional"
+            formControlName="additionalNote"
           ></textarea>
         </div>
         
@@ -292,6 +306,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
               rows="3"
               class="w-full border px-3 py-2 rounded focus:outline-none"
               placeholder="Thank you for doing business. we hope to hear from you again."
+              formControlName="customerNote"
             ></textarea>
           </div>
       </div>
@@ -308,6 +323,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
               type="number"
               class="lg:w-1/3 border px-2 py-1 rounded focus:outline-none"
               value="0.00"
+              formControlName="discount"
             />
             <span class="lg:w-1/3 text-end">₦0.00</span>
           </div>
@@ -317,6 +333,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
               type="number"
               class="w-1/3 border px-2 py-1 rounded focus:outline-none"
               value="0.00"
+              formControlName="deliveryCharges"
             />
             <span class="lg:w-1/3 text-end">₦0.00</span>
           </div>
@@ -326,6 +343,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
               type="number"
               class="w-1/3 border px-2 py-1 rounded focus:outline-none"
               value="0.00"
+              formControlName="vat"
             />
             <span class="lg:w-1/3 text-end">₦0.00</span>
           </div>
@@ -350,12 +368,12 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
         <button
           type="submit"
           class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-          (click)="route('app/order/invoice')"
+          (click)="submitOrder()"
 
         >
           Create Order
         </button>
       </div>
-    </div>
+    </form>
   </section>
   

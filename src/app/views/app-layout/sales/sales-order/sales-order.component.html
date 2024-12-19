@@ -18,7 +18,7 @@
     </div>
     <div class="">
         <div class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-            <span (click) = "route('/app/sales/order/create')" class="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">
+            <span (click) = "route('/app/sales/order/create')" class="flex items-center text-sm lg:py-3 lg:px-4 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">
               Add new order
               <img src='assets/icons/add.png' class="h-5" alt="">
             </span>
@@ -34,7 +34,7 @@
       <thead >
         <tr>
           <ng-container *ngFor="let row of tableHeader">
-            <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='Order Id'">
+            <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='Id'">
               <label for="hs-at-with-checkboxes-main" class="flex">
                 <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
                 <span class="sr-only">Checkbox</span>
@@ -53,7 +53,7 @@
 
 
       <tbody class="divide-y divide-gray-200">
-        <tr *ngFor="let data of inventoryData">
+        <tr *ngFor="let data of SalesOrder">
           <ng-container>
           <td class="w-10 whitespace-nowrap">
             <div class="ps-2 py-4">
@@ -66,7 +66,7 @@
           <td class="px-2 py-6"  *ngFor="let key of objectKeys(data)">
             <div class="flex items-center gap-x-3">
               <div class="grow">
-                <span class="block text-sm text-gray-500 truncate">{{data[key]}}</span>
+                <span class="block text-sm text-gray-500 truncate" >{{data[key]}}</span>
               </div>
             </div>
           </td>

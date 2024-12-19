@@ -1,4 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { SalesService } from '../../../../services/sales.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { HttpServiceService } from '../../../../services/http-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +11,31 @@ import { Router } from '@angular/router';
   styleUrl: './price-list-overview.component.scss'
 })
 export class PriceListOverviewComponent {
-  
+
+
+
+  PriceList: any=null;
+  pageLoading:boolean=false;
   inventoryData:any;
   @Output() viewAction = new EventEmitter();
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private api: HttpServiceService,
+    private messageService: MessageService,
+  ){}
+
+  getSalesOrder(){
+    this.pageLoading = true;
+    this.api.get('sales/price-list').subscribe(
+      res=>{
+        this.PriceList = res
+        console.log(this.PriceList)
+        this.pageLoading = false;
+      }
+    )
+  }
   
   tableHeader = [
     "S/N",

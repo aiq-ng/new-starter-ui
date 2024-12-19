@@ -18,9 +18,9 @@
             <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary" >
             <p class="font-medium">{{ customer.name }}</p>
             <span
-              [class.text-red-500]="customer.status === 'Owing'"
-              [class.text-green-500]="customer.status === 'Paid'"
-              [class.text-orange-500]="customer.status.includes('Due')"
+              [class.text-red-500]="customer.status === 'owing'"
+              [class.text-green-500]="customer.status === 'paid'"
+              [class.text-orange-500]="customer.status.includes('due')"
               class="text-sm"
             >
               {{ customer.status }}
@@ -53,7 +53,7 @@
         <div class="flex items-start space-x-4 p-2">
          <img src="/assets/icons/profile-circle.svg" alt="">
           <div>
-            <p class="font-medium text-lg">{{ selectedCustomer?.name }}</p>
+            <p class="font-medium text-lg">{{ selectedCustomer?.display_name }}</p>
             <p class="text-sm text-gray-500">{{ selectedCustomer?.email }}</p>
             <p class="text-sm text-gray-500 flex items-center gap-1">
               <img src="/assets/icons/call.svg">

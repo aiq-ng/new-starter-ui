@@ -1,4 +1,4 @@
-<div class="relative">
+<form class="relative" (ngSubmit)="onSubmit()">
 <div class="p-5">
     <h1 class="font-bold text-gray-800 text-2xl ">
     Create Customer
@@ -11,11 +11,11 @@
         <label class="text-red-500 text-sm font-medium w-full md:w-1/4 mb-2 md:mb-0">Customer Type<span class="text-red-500">*</span></label>
         <div class="flex gap-4">
             <label class="flex items-center">
-                <input type="radio" name="customerType" value="Business" [(ngModel)]="customerType" (change)="onCustomerTypeChange('Business')" class="form-radio accent-red-500">
+                <input type="radio" name="customerType" value="Business" name="customerType" [(ngModel)]="customerType" (change)="onCustomerTypeChange('Business')" class="form-radio accent-red-500">
                 <span class="ml-2">Business</span>
             </label>
             <label class="flex items-center">
-                <input type="radio" name="customerType" value="Individual" [(ngModel)]="customerType" (change)="onCustomerTypeChange('Individual')" class="form-radio accent-red-500">
+                <input type="radio" name="customerType" value="Individual" name="customerType" [(ngModel)]="customerType" (change)="onCustomerTypeChange('Individual')" class="form-radio accent-red-500">
                 <span class="ml-2">Individual</span>
             </label>
         </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="flex flex-wrap gap-3 w-full md:w-3/4">
         <div class="w-full md:w-1/3">
-            <select class="mt-1 block w-full border-[1px] border-[#D0D3D9] rounded-md text-[#668196] outline-none p-2" [(ngModel)]="customerData.salutation">
+            <select class="mt-1 block w-full border-[1px] border-[#D0D3D9] rounded-md text-[#668196] outline-none p-2" name="salutation" [(ngModel)]="customerData.salutation">
                 <option value="" disabled selected hidden class="text-[#668196]">Salutation</option>
                 <option value="Miss" class="text-[#668196]">Miss</option>
                 <option value="Mr." class="text-[#668196]">Mr.</option>
@@ -36,10 +36,10 @@
             </select>
         </div>
         <div class="">
-            <input type="text" class="mt-1 block w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="First Name" [(ngModel)]="customerData.firstName" />
+            <input type="text" class="mt-1 block w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="First Name" name="firstName" [(ngModel)]="customerData.first_name" />
         </div>
         <div class="">
-            <input type="text" class="mt-1 block w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="Last Name" [(ngModel)]="customerData.lastName" />
+            <input type="text" class="mt-1 block w-full border-[1px] border-[#D0D3D9] text-[#668196] rounded-md outline-none p-2" placeholder="Last Name" name="lastName" [(ngModel)]="customerData.last_name" />
         </div>
     </div>
 </div>
@@ -47,7 +47,7 @@
 <div class="flex flex-wrap items-start md:justify-start my-3">
     <label class="text-red-500 text-sm font-medium w-full md:w-1/4 mb-2 md:mb-0">Company Name<span class="text-red-500">*</span></label>
     <div class="w-full md:w-1/2">
-        <input type="text" placeholder="Company Name" class="p-2 border-[1px] w-full border-[#D0D3D9] text-[#668196] rounded-md outline-none" [(ngModel)]="customerData.companyName" />
+        <input type="text" placeholder="Company Name" class="p-2 border-[1px] w-full border-[#D0D3D9] text-[#668196] rounded-md outline-none" name="companyName" [(ngModel)]="customerData.company_name" />
     </div>
 </div>
 
@@ -55,22 +55,22 @@
 <div class="flex flex-wrap items-start my-3">
     <label class="text-sm font-medium text-gray-700 w-full md:w-1/4 mb-2 md:mb-0">Display Name</label>
     <div class="w-full md:w-1/2">
-        <input type="text" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" placeholder="Optional" [(ngModel)]="customerData.displayName" />
+        <input type="text" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" placeholder="Optional"name="displayName" [(ngModel)]="customerData.display_name" />
     </div>
 </div>
 
 <div class="flex flex-wrap items-start my-3">
     <label class="text-sm font-medium text-gray-700 w-full md:w-1/4 mb-2 md:mb-0">Email Address</label>
     <div class="w-full md:w-1/2">
-        <input type="email" style="background-image: url('/assets/icons/message.svg'); background-position: 10px center;" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left" [(ngModel)]="customerData.email" />
+        <input type="email" style="background-image: url('/assets/icons/message.svg'); background-position: 10px center;" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left" name="email" [(ngModel)]="customerData.email" />
     </div>
 </div>
 
 <div class="flex flex-wrap items-start my-3">
     <label class="text-sm font-medium text-gray-700 w-full md:w-1/4 mb-2 md:mb-0">Phone</label>
     <div class="w-full md:w-1/2 flex flex-wrap gap-3">
-        <input type="tel" style="background-image: url('/assets/icons/call.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Work" [(ngModel)]="customerData.workPhone" />
-        <input type="tel" style="background-image: url('/assets/icons/mobile.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Mobile" [(ngModel)]="customerData.mobile" />
+        <input type="tel" style="background-image: url('/assets/icons/call.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Work" name="workPhone" [(ngModel)]="customerData.work_phone" />
+        <input type="tel" style="background-image: url('/assets/icons/mobile.svg'); background-position: 10px center;" class="mt-1 p-2 border-[#D0D3D9] border-[1px] text-[#668196] rounded-md outline-none bg-no-repeat bg-left phone" placeholder="Mobile" name="mobile" [(ngModel)]="customerData.mobile_phone" />
     </div>
 </div>  
 
@@ -88,11 +88,15 @@
         <div class="flex flex-wrap items-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Payment Terms</label>
             <div class="w-full md:w-1/3">
-                <select class="mt-1 block w-full bg-[#D0D3D9] border-[1px] border-[#D0D3D9] rounded-md text-[#668196] outline-none p-2" [(ngModel)]="otherDetails.paymentTerms">
+                <select  class="mt-1 block w-full bg-[#D0D3D9] border-[1px] border-[#D0D3D9] rounded-md text-[black] outline-none p-2" [(ngModel)]="customerData.payment_terms_id">
                     <option value="" disabled selected hidden class="text-[#171A1F]">Select</option>
-                    <option value="Net 30" class="text-[#668196]">Net 30</option>
-                    <option value="Net 60" class="text-[#668196]">Net 60</option>
-                    <option value="Due on Receipt" class="text-[#668196]">Due on Receipt</option>
+                    <ng-container  *ngFor = "let terms of payment_terms">
+                        <option value="{{terms.id}}" class="text-[black]">{{terms.name}}</option>
+                    </ng-container>
+                    <option value="Net 30" class="text-[black]">Net 30</option>
+                    <option value="Net 60" class="text-[black]">Net 60</option>
+                    <option value="Due on Receipt" class="text-[black]">Due on Receipt</option>
+               
                 </select>
             </div>
         </div>
@@ -100,19 +104,26 @@
         <div class="flex flex-wrap items-start md:justify-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Currency</label>
             <div class="w-full md:w-1/3">
-                <select class="mt-1 block w-full bg-[#D0D3D9] border-[1px] border-[#D0D3D9] rounded-md text-[#668196] outline-none p-2" [(ngModel)]="otherDetails.currency">
+               
+                
+                <select class="mt-1 block w-full bg-[#D0D3D9] border-[1px] border-[#D0D3D9] rounded-md text-[black] outline-none p-2" name="curency" [(ngModel)]="customerData.currency_id">
                     <option value="" disabled selected hidden class="text-[#171A1F]">Select</option>
-                    <option value="USD" class="text-[#668196]">USD</option>
-                    <option value="EUR" class="text-[#668196]">EUR</option>
-                    <option value="INR" class="text-[#668196]">INR</option>
+                    <ng-container *ngFor = "let currency of currency">
+                    <option value={{currency.id}} class="text-[black]">{{currency.name}}</option>
+                     </ng-container>
+                    <option value="USD" class="text-[black]">CAD Dollars</option>
+                    <option value="EUR" class="text-[black]">YEN</option>
+                    <option value="INR" class="text-[black]">INR</option>
                 </select>
+               
+
             </div>
         </div>
         <p class="text-red-500 text-sm">Add additional data</p>
         <div class="flex flex-wrap items-start md:justify-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Website URL</label>
             <div class="w-full md:w-1/3">
-            <input type="url" placeholder="Company Name" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" [(ngModel)]="otherDetails.websiteUrl" />
+            <input type="url" placeholder="Company Name" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" name="websiteUrl" [(ngModel)]="customerData.website" />
             </div>
         </div>
 
@@ -120,14 +131,14 @@
         <div class="flex flex-wrap items-start md:justify-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Twitter</label>
             <div class="w-full md:w-1/3">
-            <input type="text" placeholder="Twitter" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" [(ngModel)]="otherDetails.twitter" />
+            <input type="text" placeholder="Twitter" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" name="twitter" [(ngModel)]="customerData.social_media.twitter" />
             </div>
         </div>
 
         <div class="flex flex-wrap items-start md:justify-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Facebook</label>
             <div class="w-full md:w-1/3">
-            <input type="text" placeholder="Facebook" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" [(ngModel)]="otherDetails.facebook" />
+            <input type="text" placeholder="Facebook" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" name="facebook" [(ngModel)]="customerData.social_media.facebook" />
             </div>
         </div>
       </form>
@@ -140,7 +151,7 @@
         <div class="flex flex-wrap items-start my-3">
             <label class="w-full md:w-1/4 text-sm font-medium text-gray-700 mb-2 md:mb-0">Address</label>
             <div class="w-full md:w-1/2">
-                <input type="text" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" placeholder="Street Address" [(ngModel)]="delivery.address" />
+                <input type="text" class="mt-1 block w-full border-[#D0D3D9] p-2 border-[1px] text-[#668196] rounded-md outline-none" placeholder="Street Address" name="address" [(ngModel)]="customerData.address" />
             </div>
         </div>
     </form>
@@ -151,7 +162,7 @@
  
 <div class="flex gap-2 my-3">
     <button class="text-sm py-3 px-5 rounded-lg gap-1 border border-gray-200 bg-white text-[#668196] shadow-sm">Cancel</button>
-    <button class="text-sm py-3 px-5 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">Continue</button>
+    <button type="submit" (click) = "route('app/sales/customers/overview')" class="text-sm py-3 px-5 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">Continue</button>
 </div>
 <!-- <div class="absolute bottom-0 mt-5 w-full p-4">
     <div class="flex  gap-4">
@@ -162,4 +173,4 @@
 
      
 
-</div>
+</form>

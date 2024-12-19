@@ -24,12 +24,12 @@ buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400"
  <!-- Tabs -->
 <div class="flex justify-between border-b-2 border-gray-100 mt-10 pb-2">
 
-<div class="flex gap-10">
-<button (click)="switchTab('pastry')" [class.border-b-2]="activeTab === 'pastry'" class="text-black pb-2 font-semibold border-red-500">Pastry & More</button>
-<button (click)="switchTab('chicken')" [class.border-b-2]="activeTab === 'chicken'" class="text-black pb-2 font-semibold border-red-500">Chicken</button>
-<button (click)="switchTab('seafood')" [class.border-b-2]="activeTab === 'seafood'" class="text-black pb-2 font-semibold border-red-500">Seafood</button>
-<button (click)="switchTab(' beef')" [class.border-b-2]="activeTab === 'beef'" class="text-black pb-2 font-semibold border-red-500">Beef</button>
-<button (click)="switchTab('grills')" [class.border-b-2]="activeTab === 'grills'" class="text-black pb-2 font-semibold border-red-500">Grills</button>
+<div class="flex gap-2 lg:gap-10">
+<button (click)="switchTab('pastry')" [class.border-b-2]="activeTab === 'pastry'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Pastry & More</button>
+<button (click)="switchTab('chicken')" [class.border-b-2]="activeTab === 'chicken'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Chicken</button>
+<button (click)="switchTab('seafood')" [class.border-b-2]="activeTab === 'seafood'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Seafood</button>
+<button (click)="switchTab(' beef')" [class.border-b-2]="activeTab === 'beef'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Beef</button>
+<button (click)="switchTab('grills')" [class.border-b-2]="activeTab === 'grills'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Grills</button>
 
 </div>
 
@@ -40,7 +40,7 @@ buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400"
 <div class="overflow-x-auto mt-10">
 <table class="min-w-full table-auto divide-y max-w-full bg-white">
   <thead class="">
-    <tr class="flex-wrap">
+    <tr class="">
       <ng-container *ngFor="let row of tableHeader">
         <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='S/N'">
           <label for="hs-at-with-checkboxes-main" class="flex">

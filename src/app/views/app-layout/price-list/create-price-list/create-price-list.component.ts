@@ -1,5 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpServiceService } from '../../../../services/http-service.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-price-list',
@@ -8,7 +11,19 @@ import { Router } from '@angular/router';
 })
 export class CreatePriceListComponent {
 
-  constructor(private router: Router){}
+  createPriceListForm: any;
+  constructor(
+    private fb:FormBuilder,
+    private api:HttpServiceService,
+    private messageService: MessageService,
+    private router: Router){}
+
+
+    ngOnInit(){
+        this.createPriceListForm = this.fb.group({
+
+        })
+    }
 
   route(arg0: string) {
     this.router.navigateByUrl(arg0);
@@ -52,11 +67,12 @@ export class CreatePriceListComponent {
 
   // Initialize the table with one row
   items: any[] = [
-    { category: '', details: '', price: '', quantity: '' }
+    { item_category_id: '', item_details: '', unit_price: '', minimum_order: '', unit_id: ''}
   ];
 
+
   // Options for dropdown categories
-  categories: string[] = ['Pastry', 'Seafood', 'Beef', 'Chickens', 'Grill'];
+  categories: any[] = [{id: 1, name: 'Pastry'}, {id: 2, name: 'Seafood'}, {id: 3, name: 'Beef'}, {id: 4, name: 'Chicken'}, {id: 5, name: 'Grill'}];
 
   // Add a new row
   addRow() {
@@ -98,5 +114,20 @@ export class CreatePriceListComponent {
     this.closeModal();
   }
 
+  onSubmit() {
+    console.log('Form Data:', this.items);
+
+    // Post the form data to the API
+    this.api.post('sales/price-list', this.items).subscribe({
+      next: (response) => {
+        console.log('Success:', response);
+        alert('Price List added successfully!');
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        alert('Failed to add price list.');
+      }
+    });
+  }
   
 }

@@ -1,98 +1,4 @@
-// import { Component, Input, Output, EventEmitter } from '@angular/core';
-// import { FormBuilder, Validators } from '@angular/forms';
-// import { HttpServiceService } from '../../../../../services/http-service.service';
-// import { MessageService } from 'primeng/api';
-// @Component({
-//   selector: 'app-create-sales-order',
-//   templateUrl: './create-sales-order.component.html',
-//   styleUrl: './create-sales-order.component.scss',
-//   providers: [MessageService] 
-// })
-// export class CreateSalesOrderComponent {
-//   @Output() saveProduct = new EventEmitter<string>(); 
 
-//   createProductForm:any;
-//   isSubmitted: boolean = false;
-//   files:any;
-
-
-//   constructor(private fb:FormBuilder,
-//     private api:HttpServiceService,
-//     private messageService: MessageService){}
-
-//     // ngOnInit(): void {
-//     //   this.createSalesOrder = this.fb.group({
-
-//     //     orderType: ['', Validators.required],
-
-//     //     {
-//     //       "order_type": "order", // order or service
-//     //       "order_title": "Office Supplies Purchase",
-//     //       "customer_id": 1,
-//     //       "payment_method_id": 1,
-//     //       "payment_term_id": 4,
-//     //       "delivery_option": "delivery", // delivery or pickup
-//     //       "assigned_driver_id": 1,
-//     //       "delivery_date": "2024-12-05",
-//     //       "additional_note": "Ensure to be available for delivery.",
-//     //       "customer_note": "Thank You For Your Business",
-//     //       "discount": 5.00,
-//     //       "delivery_charge": 50.00,
-//     //       "total": 1050.00,
-//     //       "items": [
-//     //           {
-//     //               "item_id": 3,
-//     //               "quantity": 10,
-//     //               "price": 100.00
-//     //           },
-//     //           {
-//     //               "item_id": 4,
-//     //               "quantity": 5,
-//     //               "price": 50.00
-//     //           }
-//     //       ]
-//     //   }
-      
-//     //   })
-      
-//     // }
-
-//  // Initialize the table with one row
-//  items: any[] = [
-//   { customers: '', details: '', price: '', quantity: '' }
-// ];
-
-// // Options for dropdown categories
-// customers: string[] = ['Mr Abimbola Lara', 'Mrs Susan Peterson', 'Jamilshon Ltd.', 'Mr Emmanuel Akinola'];
-//  // Modal state
-//  isModalOpen: boolean = false;
-//  // New category inputs
-// newCustomer = {
-// name: '',
-// description: ''
-// };
-
-
-// // Open modal
-// openModal() {
-// this.isModalOpen = true;
-// this.newCustomer = { name: '', description: '' };
-// }
-
-// // Close modal
-// closeModal() {
-// this.isModalOpen = false;
-// }
-
-// // Save new category
-// saveCategory() {
-// if (this.newCustomer.name.trim()) {
-//  this.customers.push(this.newCustomer.name);
-// }
-// this.closeModal();
-// }
-
-// }
 
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -108,13 +14,19 @@ import { Router } from '@angular/router';
 })
 export class CreateSalesOrderComponent {
   @Output() saveProduct = new EventEmitter<string>();
-
-  createSalesOrderForm: FormGroup;
+  // customer: any;
+  pageLoading: boolean = false;
+  currentPage: number = 1;
+  totalPages: number = 1;
+  createSalesOrderForm: any;
   isSubmitted: boolean = false;
-  customers: string[] = ['Mr Abimbola Lara', 'Mrs Susan Peterson', 'Jamilshon Ltd.', 'Mr Emmanuel Akinola'];
+  // customers: string[] = ['Mr Abimbola Lara', 'Mrs Susan Peterson', 'Jamilshon Ltd.', 'Mr Emmanuel Akinola'];
   isModalOpen: boolean = false;
   newCustomer = { name: '', description: '' };
 
+
+
+  customers: any[] = [];
    // Initialize the table with one row
  items: any[] = [
   { customers: '', details: '', price: '', quantity: '' }
@@ -122,10 +34,14 @@ export class CreateSalesOrderComponent {
 
   constructor(
     private fb: FormBuilder,
-    private apiService: HttpServiceService,
+    private api: HttpServiceService,
     private messageService: MessageService,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.getCustomers();
+
     this.createSalesOrderForm = this.fb.group({
       order_type: ['order', Validators.required],
       order_title: ['', Validators.required],
@@ -148,6 +64,27 @@ export class CreateSalesOrderComponent {
         }),
       ]),
     });
+  }
+
+  getCustomers() {
+    this.pageLoading = true;
+    this.api.get('customers')
+      .subscribe(
+       (res:any) => {
+          this.customers = res.data;
+          console.log(this.customers);
+          this.pageLoading = false;
+       },
+      )
+  }
+
+    onCustomerSelect(event: Event, item: any) {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    if (selectedValue === 'Add Customer') {
+      this.openModal();
+    } else {
+      item.customers = selectedValue;
+    }
   }
 
   // Add Customer Modal
@@ -176,14 +113,34 @@ export class CreateSalesOrderComponent {
     // throw new Error('Method not implemented.');
     }
 
+    get f() {
+      return this.createSalesOrderForm.controls;
+    }
+  
   // Submit Sales Order
   submitOrder() {
     this.isSubmitted = true;
+    
+    console.log(this.createSalesOrderForm.value);
 
+    let formData:any = new FormData();
     if (this.createSalesOrderForm.valid) {
-      const formData = this.createSalesOrderForm.value;
+          // Append other form data
+    formData.append('order_type', this.createSalesOrderForm.get('orderType')?.value);
+    formData.append('customer_id', this.createSalesOrderForm.get('customerName')?.value);
+    formData.append('payment_method_id', this.createSalesOrderForm.get('paymentMethod')?.value);
+    formData.append('delivery_option', this.createSalesOrderForm.get('deliveryOption')?.value);
+    formData.append('assigned_driver_id', this.createSalesOrderForm.get('driver')?.value);
+    formData.append('delivery_date', this.createSalesOrderForm.get('deliveryDate')?.value);
+    formData.append('delivery_time', this.createSalesOrderForm.get('deliveryTime')?.value);
+    formData.append('additional_note', this.createSalesOrderForm.get('additionalNote')?.value);
+    formData.append('discount', this.createSalesOrderForm.get('discount')?.value);
+    formData.append('delivery_charge', this.createSalesOrderForm.get('deliveryCharge')?.value);
+    formData.append('total', this.createSalesOrderForm.get('total')?.value);
 
-      this.apiService.post('/sales/orders', formData).subscribe({
+      // const formData = this.createSalesOrderForm.value;
+
+      this.api.post('sales/orders', formData).subscribe({
         next: (response) => {
           this.messageService.add({
             severity: 'success',

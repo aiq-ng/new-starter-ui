@@ -8,8 +8,8 @@
 
 </div>
 
-<div class="mt-5 overflow-x-auto border rounded-sm shadow-md">
-    <div class="bg-gray-300 p-4">
+<form (ngSubmit)="onSubmit()" #form="ngForm" class="mt-5 overflow-x-auto border rounded-sm shadow-md">
+    <div class="bg-gray-300 p-4 w-full">
     <h1>Item Table</h1>
     </div>
     <table class="min-w-full table-auto divide-y max-w-full">
@@ -29,17 +29,18 @@
    
                <tbody>
                 <!-- Dynamic Rows -->
-                <tr *ngFor="let item of items; let i = index">
+                <tr *ngFor="let item of items; let i = index" [(ngModel)]="item.unit_id">
                   <!-- Dropdown for Category -->
                   <td class="border border-gray-300 px-3 py-2">
                     <select
                       class="w-full p-2 border-2 rounded-md bg-gray-200 outline-none border-gray-300"
-                      [(ngModel)]="item.category"
+                      [(ngModel)]="item.item_category_id"
+                      name="category"
                       (change)="item.category === 'Add New Category' ? openModal() : ''"
                     >
                       <option value="" disabled>Select Category</option>
-                      <option *ngFor="let category of categories" [value]="category">
-                        {{ category }}
+                      <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
                       </option>
                       <hr color="gray"/>
                       <option value="Add New Category" class="text-red-500">
@@ -97,7 +98,8 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
                       type="text"
                       placeholder="Enter item details"
                       class="w-full p-2 border rounded-md bg-gray-200 outline-none border-gray-300"
-                      [(ngModel)]="item.details"
+                      [(ngModel)]="item.item_details"
+                      name="details"
                     />
                   </td>
         
@@ -107,17 +109,19 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
                       type="number"
                       placeholder="₦"
                       class="w-full p-2 border rounded-md bg-gray-200 outline-none border-gray-300"
-                      [(ngModel)]="item.price"
+                      [(ngModel)]="item.unit_price"
+                      name="price"
                     />
                   </td>
         
                   <!-- Minimum Order Quantity -->
                   <td class="border border-gray-300 px-3 py-2">
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Pcs"
                       class="w-full p-2 border rounded-md bg-gray-200 outline-none border-gray-300"
-                      [(ngModel)]="item.quantity"
+                      [(ngModel)]="item.minimum_order"
+                      name="quantity"
                     />
                   </td>
         
@@ -143,7 +147,7 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
     </button>
   </div>
 
-</div>
+
 
 
   <!-- Save and Cancel Buttons -->
@@ -151,7 +155,9 @@ class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
     <button class=" px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400">
       Cancel
     </button>
-    <button (click)="route('/app/sales/price-list/overview')" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+    <button type="submit" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
       Save
     </button>
 </div>
+
+</form>
