@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SalesService } from '../../../services/sales.service';
+import { SalesService } from '../../../../services/sales.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { HttpServiceService } from '../../../services/http-service.service';
+import { HttpServiceService } from '../../../../services/http-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -54,8 +54,8 @@ export class CustomersComponent {
     });
   }
 
-  
-  
+
+
   route(arg0: string) {
     this.router.navigateByUrl(arg0);
     // throw new Error('Method not implemented.');
@@ -111,7 +111,7 @@ export class CustomersComponent {
           Address: "222 Birch Way, Eastwood",
           Transaction: "$2500",
           Status: "Paid"
-        }  
+        }
     ]
   }
 

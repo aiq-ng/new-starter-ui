@@ -12,10 +12,12 @@ export class SidebarComponent {
   subMenu:string = '';
   dropdown: boolean =false;
   url!: string;
+  currentId:any;
 
 
     menu = [
       {
+        "id": 1,
         "name": "Dashboard",
         "icon": "assets/icons/grid.png",
         "route": "/app/dashboard",
@@ -24,55 +26,65 @@ export class SidebarComponent {
       },
 
       {
+        "id": 2,
         "name": "Procurement",
         "icon": "assets/icons/sales.png",
         "route": "/app/prochurement/overview",
         "dropdown": "assets/icons/arrow-right.png",
         "submenu": [
           {
+            "id": 3,
             "name": "Overview",
             "route": "/app/prochurement/overview",
           },
           {
+            "id": 4,
             "name": "Inventory",
             "route": "/app/prochurement/inventory",
           },
           {
+            "id": 5,
             "name": "Purchase Order",
             "route": "/app/prochurement/purchases",
           },
           {
+            "id": 6,
             "name": "Vendors",
             "route": "/app/prochurement/vendors",
           },
         ]
 
       },
-      // {
-      //   "name": "Sales",
-      //   "icon": "assets/icons/sales.png",
-      //   "route": "/app/sales/overview",
-      //   "dropdown": "assets/icons/arrow-right.png",
-      //   "submenu" : [
-      //     {
-      //       "name": "Overview",
-      //       "route": "/app/sales/overview"
-      //     },
-      //     {
-      //       "name": "Order",
-      //       "route": "/app/sales/order",
-      //     },
-      //     {
-      //       "name": "Price List",
-      //       "route": "/app/sales/price-list",
-      //     },
-      //     {
-      //       "name": "Customers",
-      //       "route": "/app/sales/customers",
-      //     },
-      //   ]
+      {
+        "id": 7,
+        "name": "Sales",
+        "icon": "assets/icons/sales.png",
+        "route": "/app/sales/overview",
+        "dropdown": "assets/icons/arrow-right.png",
+        "submenu" : [
+          {
+            "id": 8,
+            "name": "Overview",
+            "route": "/app/sales/overview"
+          },
+          {
+            "id": 9,
+            "name": "Order",
+            "route": "/app/sales/order",
+          },
+          {
+            "id": 10,
+            "name": "Price List",
+            "route": "/app/sales/price-list",
+          },
+          {
+            "id": 11,
+            "name": "Customers",
+            "route": "/app/sales/customers",
+          },
+        ]
 
-      // },
+      },
 
       // {
       //   "name": "Accounting",
@@ -131,7 +143,8 @@ export class SidebarComponent {
     console.log('page', page)
   }
 
-  toggleDropdown(){
+  toggleDropdown(id:number){
+    this.currentId = id;
     this.dropdown =!this.dropdown;
   }
 

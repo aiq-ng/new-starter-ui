@@ -14,7 +14,7 @@ import { PurchasesComponent } from './purchases/purchases.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AccountingComponent } from './accounting/accounting.component';
 import { ProcurementComponent } from './procurement/procurement.component';
-import { CustomersComponent } from './customers/customers.component';
+import { CustomersComponent } from './sales/customers/customers.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { HumanResourcesComponent } from './human-resources/human-resources.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -40,12 +40,14 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { DepartmentsComponent } from './human-resources/departments/departments.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
-import { PriceListComponent } from './price-list/price-list.component';
-import { PriceListOverviewComponent } from './price-list/price-list-overview/price-list-overview.component';
-import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
-import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
-import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
+import { PriceListComponent } from './sales/price-list/price-list.component';
+import { PriceListOverviewComponent } from './sales/price-list/price-list-overview/price-list-overview.component';
+import { CreatePriceListComponent } from './sales/price-list/create-price-list/create-price-list.component';
+import { CustomersCreateComponent } from './sales/customers/customers-create/customers-create.component';
+import { CustomersOverviewComponent } from './sales/customers/customers-overview/customers-overview.component';
 import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
+import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
+import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
 
 
 @NgModule({
@@ -89,7 +91,9 @@ import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-histo
     CreatePriceListComponent,
     CustomersCreateComponent,
     CustomersOverviewComponent,
-    AdjustmentHistoryComponent
+    AdjustmentHistoryComponent,
+    SalesOverviewComponent,
+    SalesOrderComponent
 
   ],
   imports: [

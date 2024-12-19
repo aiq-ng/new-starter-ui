@@ -31,12 +31,12 @@
               {{row.name}}
 
               <!-- <svg class="hs-accordion-active:block ms-auto hidden size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg> -->
-              <span (click)="toggleDropdown()" *ngIf="row.submenu">
+              <span (click)="toggleDropdown(row.id)" *ngIf="row.submenu">
               <svg class="hs-accordion-active:hidden ms-auto block size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
               </span>
             </button>
 
-            <div *ngIf="dropdown && row.submenu" id="users-accordion-child" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 " role="region" aria-labelledby="users-accordion">
+            <div *ngIf="dropdown && row.submenu && currentId==row.id" id="users-accordion-child" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 " role="region" aria-labelledby="users-accordion">
               <ul *ngFor="let item of row.submenu" class="hs-accordion-group ps-8 pt-1 space-y-1" data-hs-accordion-always-open>
                 <li class="hs-accordion" id="users-accordion-sub-1">
                   <a (click)="route(item.route)" type="button" [ngClass]="{'text-primary': url==item.route}" class="hs-accordion-toggle w-full text-start hover:text-primary flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-500 rounded-lg hover:bg-seccolor focus:outline-none focus:bg-seccolor" aria-expanded="true" aria-controls="users-accordion-sub-1-child">

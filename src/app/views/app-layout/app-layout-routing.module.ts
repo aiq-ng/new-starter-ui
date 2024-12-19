@@ -9,7 +9,7 @@ import { PurchasesComponent } from './purchases/purchases.component';
 import { AccountingComponent } from './accounting/accounting.component';
 import { ProcurementComponent } from './procurement/procurement.component';
 import { ExpensesComponent } from './expenses/expenses.component';
-import { CustomersComponent } from './customers/customers.component';
+import { CustomersComponent } from './sales/customers/customers.component';
 import { HumanResourcesComponent } from './human-resources/human-resources.component';
 import { ReportsComponent } from './reports/reports.component';
 import { QouteComponent } from './qoute/qoute.component';
@@ -35,10 +35,10 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
-import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
-import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
-import { PriceListComponent } from './price-list/price-list.component';
-import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
+import { CustomersOverviewComponent } from './sales/customers/customers-overview/customers-overview.component';
+import { CustomersCreateComponent } from './sales/customers/customers-create/customers-create.component';
+import { PriceListComponent } from './sales/price-list/price-list.component';
+import { CreatePriceListComponent } from './sales/price-list/create-price-list/create-price-list.component';
 import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
 
 
