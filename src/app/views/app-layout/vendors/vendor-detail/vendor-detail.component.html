@@ -95,11 +95,11 @@
         <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
         </div>
-        <div class="w-full max-w-[200px] text-primary/65">{{vendorDetail?.receivables.total_outstanding}}</div>
+        <div class="w-full max-w-[200px] text-primary/65">{{vendorDetail?.receivables.total_outstanding | number:'1.0-2'}}</div>
         <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
         </div>
-        <div class="w-full max-w-[150px]">{{vendorDetail?.receivables.total_paid}}</div>
+        <div class="w-full max-w-[150px]">{{vendorDetail?.receivables.total_paid | number:'1.0-2'}}</div>
         <div *ngIf="pageLoading" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
         </div>

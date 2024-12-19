@@ -17,7 +17,7 @@
         <img src="/assets/icons/income.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class=" text-gray-500">Total income</span>
-          <span *ngIf="!loading" class=" text-xl  text-gray-800">₦{{metrics?.data.total_income}}</span>
+          <span *ngIf="!loading" class=" text-xl  text-gray-800">₦{{metrics?.data.total_income | number:'1.0-2'}}</span>
           <span *ngIf="loading" class=" text-xl  text-gray-800">
             <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
           </span>
@@ -30,7 +30,7 @@
         <img src="/assets/icons/expense.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class="text-sm text-gray-500">Total Expenses</span>
-          <span *ngIf="!loading" class=" text-xl text-gray-800">₦{{metrics?.data.total_expenses}}</span>
+          <span *ngIf="!loading" class=" text-xl text-gray-800">₦{{metrics?.data.total_expenses | number:'1.0-2'}}</span>
           <span *ngIf="loading" class=" text-xl  text-gray-800">
             <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
           </span>
@@ -43,7 +43,7 @@
         <img src="/assets/icons/employees.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span  class="text-sm text-gray-500">Employees</span>
-          <span *ngIf="!loading" class=" text-xl text-gray-800">{{metrics?.data.total_employees}}</span>
+          <span *ngIf="!loading" class=" text-xl text-gray-800">{{metrics?.data.total_employees | number:'1.0-2'}}</span>
           <span *ngIf="loading" class=" text-xl  text-gray-800">
             <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
           </span>
@@ -56,7 +56,7 @@
         <img src="/assets/icons/suppliers.png" class="object-cover" alt="">
         <div class="details flex flex-col">
           <span class="text-sm text-gray-500">Number of suppliers</span>
-          <span *ngIf="!loading" class=" text-xl text-gray-800">{{metrics?.data.total_vendors}}</span>
+          <span *ngIf="!loading" class=" text-xl text-gray-800">{{metrics?.data.total_vendors | number:'1.0-2'}}</span>
           <span *ngIf="loading" class=" text-xl  text-gray-800">
             <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
           </span>
@@ -239,7 +239,7 @@
                 <p class="text-sm text-gray-500">{{stock.remaining_quantity}}</p>
               </td>
               <td class="size-px px-6 py-3">
-                <p class="text-sm text-gray-500">₦{{stock.price}}</p>
+                <p class="text-sm text-gray-500">₦{{stock.price | number:'1.0-2'}}</p>
               </td>
             </tr>
           </ng-container>

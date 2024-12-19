@@ -132,15 +132,15 @@
                     </td>
 
                     <td class="px-2 py-2">
-                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
-                          {{data.salary}}
+                      <div  class="flex items-center font-light gap-x-3 text-sm text-gray-500">
+                        ₦{{data.salary | number:'1.0-2'}}
                       </div>
                     </td>
 
                     <td class="px-2 py-2">
-                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                      <div  class="flex flex-col font-light justify-center gap-x-3 text-sm text-gray-500">
                         {{data.bank_details.account_number}}
-                          {{data.bank_details.bank_name}}
+                          <span class="text-gray-800">{{data.bank_details.bank_name}}</span>
                       </div>
                     </td>
 
