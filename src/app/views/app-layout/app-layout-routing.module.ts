@@ -86,7 +86,7 @@ const routes: Routes = [
         { path: 'customers-preview/:id', component: CustomerPreviewComponent },
         { path: 'price-list', component: PriceListComponent },
         { path: 'create-price-list', component: CreatePriceListComponent },
-        { path: 'edit-price-list', component: EditPriceListComponent },
+        { path: 'edit-price-list/:id', component: EditPriceListComponent },
 
       ] },
       { path: 'human-resources', component: HumanResourcesComponent, children: [

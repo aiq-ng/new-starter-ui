@@ -11,9 +11,9 @@
 <div class="section relative">
   <app-sub-header
     pageTitle={{customerDetail?.display_name}}
-    action1Name="New Transaction"
+    action1Name="New Customer"
     icon='assets/icons/add.png'
-    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/prochurement/create-new-purchase')"></app-sub-header>
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/sales/create-customer')"></app-sub-header>
 
 
 <app-tab-menu [navigation]="tabMenu"></app-tab-menu>

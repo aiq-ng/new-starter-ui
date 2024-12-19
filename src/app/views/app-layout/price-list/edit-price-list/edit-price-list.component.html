@@ -1,1 +1,83 @@
-<p>edit-price-list works!</p>
+
+<div (click)="goBack()" class="mb-2 px-2 cursor-pointer hover:text-primary hover:bg-primary/45 py-2 rounded-md text-sm max-w-[100px] flex items-center gap-2">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </span>
+  <span class="text-gray-500 hover:text-primary font-normal">Back</span>
+</div>
+
+
+<div class="heading w-full bg-white py-4 px-4 shadow-sm ">
+    <h3 id="hs-bg-gray-on-hover-cards-label" class="font-medium text-lg text-gray-800">
+        Edit Price list
+      </h3>
+</div>
+
+<p-toast/>
+
+
+<div class="py-8">
+  <div class="title py-3 w-full bg-gray-200 font-medium px-4">Item Table</div>
+  <form class="form-table">
+
+      <table class="table-auto w-full">
+        <thead>
+          <tr class="uppercase border-b">
+            <th class="py-4 text-sm border-r">Item Category</th>
+            <th class="py-4 text-sm border-r">Item Details</th>
+            <th class="py-4 text-sm border-r">Unit Price(₦)</th>
+            <th class="py-4 text-sm border-r">Minimum Order QTY</th>
+            <th class="py-4 text-sm border-r">Units</th>
+
+          </tr>
+        </thead>
+        <tbody >
+          <tr [formGroup]="priceListForm" class="" >
+            <td class="py-2">
+              <select formControlName="item_category_id" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary">
+                <option value="">Select Item Category</option>
+                <ng-container *ngFor="let category of itemCategory?.data">
+                  <option [value]="category.id">{{ category.name }}</option>
+                </ng-container>
+              </select>
+            </td>
+            <td>
+              <input type="text" formControlName="item_details"  class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" placeholder="Quantity"  />
+            </td>
+            <td>
+              <input type="number" formControlName="unit_price" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" placeholder="Price" />
+            </td>
+            <td>
+              <input type="text"  formControlName="minimum_order" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary" />
+            </td>
+            <td>
+              <select formControlName="unit_id" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary">
+                <option value="">Select Unit</option>
+                <ng-container *ngFor="let unit of units?.data">
+                  <option [value]="unit.id">{{ unit.name }}</option>
+                </ng-container>
+              </select>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+
+  </form>
+</div>
+
+
+
+<div class="bg-white px-6 py-6 mt-8 flex gap-4">
+  <button class="px-4 py-2 border active:bg-primary/85 rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
+  <button (click)="savePriceList()" type="submit" class="px-4 py-2 border active:bg-primary/85 rounded-md hover:bg-secondary  bg-primary text-white">
+    <span *ngIf="!loading">Continue</span>
+    <span class="w-full flex justify-center items-center gap-2" *ngIf="loading">
+      <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i> Continue
+    </span>
+  </button>
+</div>

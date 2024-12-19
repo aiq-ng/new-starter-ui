@@ -27,7 +27,7 @@
           <thead class="bg-gray-50">
             <tr>
               <ng-container *ngFor="let row of tableHeader">
-                <th scope="col" class="w-10 ps-2 px-2 py-2 text-start" *ngIf="row=='Name' || row=='Issue Date' || row=='Order Id' || row=='description' || row=='expense Id'">
+                <th scope="col" class="w-10 ps-2 px-2 py-2 text-start" *ngIf="row=='S/N' || row=='Issue Date' || row=='Order Id' || row=='description' || row=='expense Id'">
                   <label for="hs-at-with-checkboxes-main" class="flex">
                     <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
                     <span class="sr-only">Checkbox</span>
@@ -47,8 +47,8 @@
             </tr>
           </thead>
           <tbody  class="divide-y divide-gray-200">
-            <ng-container *ngFor="let data of priceList">
-              <tr (click)="route('app/sales/orders-preview/' + data.id)" class="">
+            <ng-container *ngFor="let data of priceList let i = index">
+              <tr (click)="route('app/sales/edit-price-list/' + data.id)" class="">
                   <td  class="w-10 whitespace-nowrap">
                     <div class="ps-2 py-4">
                         <label for="hs-at-with-checkboxes-1" class="flex">
@@ -60,13 +60,19 @@
 
                     <td   class="px-2 py-2">
                       <div  class="flex items-center gap-x-3 text-sm text-gray-500">
-                          {{data.order_id}}
+                          {{i + 1}}
                     </div>
                     </td>
 
                     <td class="px-2 py-2">
                       <div  class="flex items-center gap-x-3 text-sm text-gray-500">
                           {{data.item_details}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.unit_price}}
                       </div>
                     </td>
 
