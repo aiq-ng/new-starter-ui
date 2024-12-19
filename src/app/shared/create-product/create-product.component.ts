@@ -42,6 +42,8 @@ export class CreateProductComponent {
 
 
   ngOnInit(){
+
+    
     this.createProductForm = this.fb.group({
       // Basic information
       productName: ['', Validators.required],
@@ -66,6 +68,7 @@ export class CreateProductComponent {
   toggleCreateProduct(){
     this.togleModal.emit()
   }
+
 
 
   get f() {

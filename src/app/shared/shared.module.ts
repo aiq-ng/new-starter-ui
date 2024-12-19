@@ -25,6 +25,7 @@ import { ButtonModule } from 'primeng/button';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-invoice.component';
+import { RevenueChartComponent } from './revenue-chart/revenue-chart.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-in
     OrderDetailComponent,
     InvoiceComponent,
     SalesOrderInvoiceComponent,
+    RevenueChartComponent,
 
   ],
   imports: [
@@ -80,6 +82,7 @@ import { SalesOrderInvoiceComponent } from './sales-order-invoice/sales-order-in
     OrderDetailComponent,
     InvoiceComponent,
     SalesOrderInvoiceComponent,
+    RevenueChartComponent
 
   ]
 })

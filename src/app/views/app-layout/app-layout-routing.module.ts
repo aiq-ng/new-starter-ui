@@ -39,6 +39,11 @@ import { CreateDepartmentComponent } from './human-resources/create-department/c
 import { CreateStaffComponent } from './human-resources/create-staff/create-staff.component';
 import { StaffProfileComponent } from './human-resources/staff-profile/staff-profile.component';
 import { HrOverviewComponent } from './human-resources/hr-overview/hr-overview.component';
+import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.component';
+import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
+import { CreateSalesOrderComponent } from './sales/sales-order/create-sales-order/create-sales-order.component';
+import { PriceListOverviewComponent } from './price-list/price-list-overview/price-list-overview.component';
+import { PriceListEditComponent } from './price-list/price-list-edit/price-list-edit.component';
 
 
 
@@ -48,13 +53,24 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'sales', component: SalesComponent },
-      { path: 'sales/customers', component: CustomersComponent},
-      {path: 'sales/customers/overview', component: CustomersOverviewComponent},
-      {path: 'sales/customers/create-new-customer', component: CustomersCreateComponent},
-      {path: 'sales/price-list', component:PriceListComponent},
-      {path: 'sales/price-list/create', component:CreatePriceListComponent},
-       { path: 'order/invoice', component: SalesOrderInvoiceComponent },
+
+      { path: 'sales', component: SalesComponent, children: [
+        {path: 'overview', component: SalesOverviewComponent},
+        {path: 'order', component: SalesOrderComponent},
+        {path: 'order/create', component: CreateSalesOrderComponent},
+        {path: 'customers', component: CustomersComponent}, 
+        {path: 'customers/overview', component: CustomersOverviewComponent},
+        {path: 'customers/create-new-customer', component: CustomersCreateComponent},
+        {path: 'price-list', component:PriceListComponent},
+        {path: 'price-list/create', component:CreatePriceListComponent},
+        {path: 'price-list/overview', component:PriceListOverviewComponent},
+        {path: 'price-list/edit', component:PriceListEditComponent}
+        ,
+      ] },
+ 
+       { path: 'order/invoice', component: InvoiceComponent },
+
+
 
       { path: 'accounting', component: AccountingComponent, children: [
         {path: 'overview', component: OverviewComponent},
@@ -78,14 +94,16 @@ const routes: Routes = [
         { path: 'vendors', component: VendorsComponent },
       ]},
       { path: 'expenses', component: ExpensesComponent },
+
       { path: 'human-resources', component: HumanResourcesComponent, children: [
         {path: '', component: HrOverviewComponent },
         {path: 'create-department', component: CreateDepartmentComponent },
         {path: 'add-employee', component: CreateStaffComponent },
         {path: 'employee-profile/:id', component: StaffProfileComponent },
       ] },
+      { path: 'vendor-detail', component: VendorDetailComponent},
+
       { path: 'create-vendor', component: CreateVendorComponent},
-      ] },
       { path: 'expenses', component: ExpensesComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'human-resources', component: HumanResourcesComponent, children: [
@@ -98,7 +116,11 @@ const routes: Routes = [
       { path: 'qoute', component: QouteComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'reports', component: ReportsComponent },
-    ];
+
+    ]
+  }]
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

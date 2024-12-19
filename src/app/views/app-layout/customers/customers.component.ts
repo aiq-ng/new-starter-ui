@@ -26,7 +26,11 @@ export class CustomersComponent {
     "Transaction",
     "Status"
   ]
-
+  customers: Customer[] =[];
+  customerData:any[] = [];
+  pages: number[] = [];
+  currentPage: number = 1;
+  totalPages: number = 1;
   sales:any;
   expandedSales: Set<number> = new Set();
   salesForm:any;
@@ -63,8 +67,10 @@ export class CustomersComponent {
 
 
   ngOnInit(){
-    this.getSales()
-    this.getProducts()
+    this.getSales();
+    this.getProducts();
+    this.getCustomers();
+    this.generatePages();
 
     this.inventoryData = [
         {
@@ -160,6 +166,39 @@ export class CustomersComponent {
     )
   }
 
+  getCustomers(page: number = 1) {
+    this.pageLoading = true;
+    this.api.get('customers?page=1&page_size=10&status=&order_type=order&start_date=2024-11-27&end_date')
+      .subscribe(
+       (res:any) => {
+          this.customerData = res.data;
+          this.currentPage = res.meta.current_page;
+          this.totalPages = res.meta.total_pages;
+          console.log(this.customerData);
+          this.pageLoading = false;
+          this.generatePages(); // Re-generate pages
+       },
+         (err) => {
+          console.log(err);
+          this.showError('Failed to load sales data');
+          this.pageLoading = false;
+        }
+      );
+  }
+
+   // Generate page numbers
+   generatePages() {
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  // Handle page change
+  onPageChange(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.getCustomers(page);
+    }
+  }
+
 
   get f(){return this.salesForm.controls}
 
@@ -200,4 +239,31 @@ export class CustomersComponent {
   }
 
 
+}
+
+// Interfaces
+interface Customer {
+  id: number;
+  name: string;
+  company_name: string;
+  email: number;
+  work_phone: string;
+  address: string;
+  total_transaction: string;
+  balance: string;
+  status: string;
+}
+
+interface Meta {
+  current_page: number;
+  next_page: number;
+  page_size: number;
+  total_data: number;
+  total_pages: number;
+}
+
+interface ApiResponse {
+  message: string;
+  data: Customer[];
+  meta: Meta;
 }

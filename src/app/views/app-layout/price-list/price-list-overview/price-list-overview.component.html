@@ -1,1 +1,95 @@
-<p>price-list-overview works!</p>
+<app-sub-header
+pageTitle = "Price Lists"
+action1Name = "New Price List"
+icon="assets/icons/add.png"
+buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" 
+(action1)="route('app/sales/price-list/create')"
+
+>
+<div class="">
+    <div class="inline-flex items-center gap-x-2 text-sm font-medium  focus:outline-none focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+        <span (click) = "route('/app/sales/order/create')" class="flex items-center text-sm py-3 px-4 rounded-lg gap-1 border border-gray-200 bg-primary text-white shadow-sm hover:bg-secondary">
+          Add new order
+          <img src='assets/icons/add.png' class="h-5" alt="">
+        </span>
+  
+      </div>
+</div>
+</app-sub-header>
+
+
+
+
+
+ <!-- Tabs -->
+<div class="flex justify-between border-b-2 border-gray-100 mt-10 pb-2">
+
+<div class="flex gap-2 lg:gap-10">
+<button (click)="switchTab('pastry')" [class.border-b-2]="activeTab === 'pastry'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Pastry & More</button>
+<button (click)="switchTab('chicken')" [class.border-b-2]="activeTab === 'chicken'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Chicken</button>
+<button (click)="switchTab('seafood')" [class.border-b-2]="activeTab === 'seafood'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Seafood</button>
+<button (click)="switchTab(' beef')" [class.border-b-2]="activeTab === 'beef'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Beef</button>
+<button (click)="switchTab('grills')" [class.border-b-2]="activeTab === 'grills'" class="text-black text-sm lg:text-lg pb-2 font-semibold border-red-500">Grills</button>
+
+</div>
+
+</div>
+
+
+<!-- Table -->
+<div class="overflow-x-auto mt-10">
+<table class="min-w-full table-auto divide-y max-w-full bg-white">
+  <thead class="">
+    <tr class="">
+      <ng-container *ngFor="let row of tableHeader">
+        <th scope="col" class="w-10 ps-2 py-4 text-start" *ngIf="row=='S/N'">
+          <label for="hs-at-with-checkboxes-main" class="flex">
+            <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+            <span class="sr-only">Checkbox</span>
+          </label>
+        </th>
+        <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+          <div class="flex items-center gap-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-black truncate">
+              {{row}}
+            </span>
+          </div>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+
+
+  <tbody class="divide-y divide-gray-200">
+    <tr *ngFor="let data of inventoryData">
+      <ng-container>
+      <td class="w-10 whitespace-nowrap">
+        <div class="ps-2 py-4">
+          <label for="hs-at-with-checkboxes-1" class="flex">
+            <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+            <span class="sr-only">Checkbox</span>
+          </label>
+        </div>
+      </td>
+      <td class="px-2 py-6"  *ngFor="let key of objectKeys(data)">
+        <div class="flex items-center gap-x-3">
+          <div class="grow">
+            <span class="block text-sm text-gray-500 truncate">{{data[key]}}</span>
+          </div>
+        </div>
+      </td>
+      <td class="whitespace-nowrap">
+        <div class="ps-2 py-4">
+          <label for="hs-at-with-checkboxes-1" class="flex gap-2" (click) = "route('/app/sales/price-list/edit')">
+            <span class="text-red-500">Edit</span>
+            <img src="/assets/icons/pencil-edit.svg" alt="">
+          </label>
+        </div>
+      </td>
+    </ng-container>
+    </tr>
+   </tbody>
+</table>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white rounded-lg border">
+   

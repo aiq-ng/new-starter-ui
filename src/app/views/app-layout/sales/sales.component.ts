@@ -51,8 +51,8 @@ export class SalesComponent {
 
 
   ngOnInit(){
-    this.getSales()
-    this.getProducts()
+    // this.getSales()
+    // this.getProducts()
   }
 
   toggleAddSale(){

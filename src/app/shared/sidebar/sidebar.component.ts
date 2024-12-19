@@ -48,7 +48,7 @@ export class SidebarComponent {
       {
         "name": "Sales",
         "icon": "assets/icons/sales.png",
-        "route": "/app/sales",
+        "route": "/app/sales/overview",
         "dropdown": "assets/icons/arrow-right.png",
         "submenu" : [
           {
