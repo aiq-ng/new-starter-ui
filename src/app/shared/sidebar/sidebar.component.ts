@@ -11,6 +11,7 @@ export class SidebarComponent {
   showMobileMenu:boolean = false;
   subMenu:string = '';
   dropdown: boolean =false;
+  url!: string;
 
 
     menu = [
@@ -118,10 +119,16 @@ export class SidebarComponent {
   constructor(private router: Router){}
 
   ngOnInit() {
+    this.url = this.router.url; // Get the full URL
+    console.log('url', this.url)
+
   }
 
   route(page:string){
+    this.url = page;
     this.router.navigate([page]);
+    console.log('url', this.url)
+    console.log('page', page)
   }
 
   toggleDropdown(){
