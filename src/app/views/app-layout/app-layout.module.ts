@@ -46,6 +46,9 @@ import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.co
 import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
 import { SalesOrderPreviewComponent } from './sales/sales-order-preview/sales-order-preview.component';
 import { CustomerPreviewComponent } from './sales/customer-preview/customer-preview.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
+import { EditPriceListComponent } from './price-list/edit-price-list/edit-price-list.component';
 
 
 @NgModule({
@@ -89,7 +92,10 @@ import { CustomerPreviewComponent } from './sales/customer-preview/customer-prev
     SalesOverviewComponent,
     SalesOrderComponent,
     SalesOrderPreviewComponent,
-    CustomerPreviewComponent
+    CustomerPreviewComponent,
+    PriceListComponent,
+    CreatePriceListComponent,
+    EditPriceListComponent
 
   ],
   imports: [

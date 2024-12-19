@@ -40,6 +40,9 @@ import { SalesOverviewComponent } from './sales/sales-overview/sales-overview.co
 import { SalesOrderComponent } from './sales/sales-order/sales-order.component';
 import { SalesOrderPreviewComponent } from './sales/sales-order-preview/sales-order-preview.component';
 import { CustomerPreviewComponent } from './sales/customer-preview/customer-preview.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
+import { EditPriceListComponent } from './price-list/edit-price-list/edit-price-list.component';
 
 
 const routes: Routes = [
@@ -81,6 +84,9 @@ const routes: Routes = [
         { path: 'customers', component: CustomersComponent },
         { path: 'create-customer', component: CustomersCreateComponent },
         { path: 'customers-preview/:id', component: CustomerPreviewComponent },
+        { path: 'price-list', component: PriceListComponent },
+        { path: 'create-price-list', component: CreatePriceListComponent },
+        { path: 'edit-price-list', component: EditPriceListComponent },
 
       ] },
       { path: 'human-resources', component: HumanResourcesComponent, children: [
