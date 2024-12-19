@@ -17,11 +17,12 @@ import { Location } from '@angular/common';
 //   SharedModule  // <-- import it here
 // ]
 export class ItemDetailComponent {
-  tabMenu = ['All','Low stock', 'In-Stock', 'Out of Stock']
+  tabMenu = ['Overview','History',]
   adjustStock:boolean = false;
   adjustmentType:string = 'minus';
   editStock:boolean = false;
   itemDetail:any;
+  itemAdjustmentHistory:any;
   item_id:any;
   pageLoading:boolean = false;
   saveLoading:boolean = false;
@@ -31,6 +32,7 @@ export class ItemDetailComponent {
   departments:any=[];
   employees:any=[];
   users:any=[];
+  view!:string;
 
   constructor(
               private router: Router,
@@ -52,6 +54,8 @@ export class ItemDetailComponent {
     this.getVendors();
     this.getDepartments();
     this.getUsers();
+    this.getItemAdjustmentHistory();
+    this.view = 'overview';
   }
 
 
@@ -85,12 +89,42 @@ export class ItemDetailComponent {
 
   }
 
+  getItemAdjustmentHistory(){
+    this.pageLoading= true;
+    console.log(this.pageLoading)
+    return this.api.get('inventory/history/' + this.getParamsId()).subscribe(
+      res =>{
+        let response:any = res
+        this.itemAdjustmentHistory = response.data
+        console.log(this.itemAdjustmentHistory)
+        this.pageLoading=false;
+        console.log(this.pageLoading)
+
+      }, err=>{
+        console.log(err)
+        this.pageLoading=false;
+    console.log(this.pageLoading)
+
+      }
+    )
+
+  }
+
   adjustStockToggle(){
     this.adjustStock =!this.adjustStock;
   }
   route(page:string){
     this.router.navigateByUrl(page);
   }
+
+navigate(value:any){
+  if( value.toLowerCase() =='overview'){
+    this.view = 'overview';
+  }else if( value.toLowerCase() =='history'){
+    this.view = 'history';
+
+  }
+}
 
   selectAdjustmentType(adjustmentType:string){
     this.adjustmentType = adjustmentType;
@@ -154,6 +188,7 @@ export class ItemDetailComponent {
         this.showSuccess('Quantity adjusted successfully');
         this.adjustmentForm.reset();
         this.getItemDetail()
+        this.getItemAdjustmentHistory()
         this.isSubmitted = false;
         this.saveLoading = false;
 

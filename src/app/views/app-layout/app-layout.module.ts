@@ -45,6 +45,7 @@ import { PriceListOverviewComponent } from './price-list/price-list-overview/pri
 import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
 import { CustomersOverviewComponent } from './customers/customers-overview/customers-overview.component';
+import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { CustomersOverviewComponent } from './customers/customers-overview/custo
     PriceListOverviewComponent,
     CreatePriceListComponent,
     CustomersCreateComponent,
-    CustomersOverviewComponent
+    CustomersOverviewComponent,
+    AdjustmentHistoryComponent
 
   ],
   imports: [

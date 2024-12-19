@@ -39,6 +39,7 @@ import { CustomersOverviewComponent } from './customers/customers-overview/custo
 import { CustomersCreateComponent } from './customers/customers-create/customers-create.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
+import { AdjustmentHistoryComponent } from './inventory-tracker/adjustment-history/adjustment-history.component';
 
 
 const routes: Routes = [
