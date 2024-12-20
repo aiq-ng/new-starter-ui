@@ -86,31 +86,31 @@ export class SidebarComponent {
 
       },
 
-      // {
-      //   "name": "Accounting",
-      //   "icon": "assets/icons/accounting.png",
-      //   "route": "/app/accounting/overview",
-      //   "dropdown": "assets/icons/arrow-right.png",
-      //   "submenu": [
-      //     {
-      //       "name": "Overview",
-      //       "route": "/app/accounting/overview",
-      //     },
-      //     {
-      //       "name": "Order",
-      //       "route": "/app/accounting/order",
-      //     },
-      //     {
-      //       "name": "Prochurements",
-      //       "route": "/app/accounting/prochurement",
-      //     },
-      //     {
-      //       "name": "Vendors",
-      //       "route": "/app/accounting/vendors",
-      //     },
-      //   ]
+      {
+        "name": "Accounting",
+        "icon": "assets/icons/accounting.png",
+        "route": "/app/accounting/overview",
+        "dropdown": "assets/icons/arrow-right.png",
+        "submenu": [
+          {
+            "name": "Overview",
+            "route": "/app/accounting/overview",
+          },
+          {
+            "name": "Order",
+            "route": "/app/accounting/order",
+          },
+          {
+            "name": "Prochurements",
+            "route": "/app/accounting/prochurement",
+          },
+          {
+            "name": "Vendors",
+            "route": "/app/accounting/vendors",
+          },
+        ]
 
-      // },
+      },
 
       {
         "name": "Human Resources",
@@ -143,7 +143,7 @@ export class SidebarComponent {
     console.log('page', page)
   }
 
-  toggleDropdown(id:number){
+  toggleDropdown(id:any){
     this.currentId = id;
     this.dropdown =!this.dropdown;
   }

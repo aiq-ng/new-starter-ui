@@ -3,6 +3,7 @@ import { SalesService } from '../../../../services/sales.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { HttpServiceService } from '../../../../services/http-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accounting-orders',
@@ -14,6 +15,8 @@ export class AccountingOrdersComponent {
   isAddSale: boolean = false;
   calender:any;
   orderDetail:boolean = false;
+  orderInvoice:any;
+  item_id:any;
   saleDetailHeader = ['time', 'product', 'quantity', 'saleAmount']
   tableHeader = [
     "Order Id",
@@ -34,10 +37,13 @@ export class AccountingOrdersComponent {
   loading: boolean = false;
   products:any;
   pageLoading: boolean = false;
+  tabMenu = ['All','Sent', 'Completed', 'Services', 'Upcoming', 'Cancel']
+
 
 
   constructor(private salesService: SalesService,
               private fb: FormBuilder,
+              private router:Router,
               private messageService: MessageService,
               private api:HttpServiceService){
     this.salesForm = this.fb.group({
@@ -50,60 +56,69 @@ export class AccountingOrdersComponent {
       quantity: ['', Validators.required],  // Not required by default
     });
 
-    this.sales = [
-      {
-        "Name": "Milk Pack",
-        "BuyingPrice": 500,
-        "Quantity": 50,
-        "ThresholdValue": 10,
-        "ExpiryDate": "2024-12-30",
-        "SKU": "MIL-001",
-        "Availability": "In Stock"
-      },
-      {
-        "Name": "Egg Carton",
-        "BuyingPrice": 1500,
-        "Quantity": 20,
-        "ThresholdValue": 5,
-        "ExpiryDate": "2025-01-10",
-        "SKU": "EGG-002",
-        "Availability": "In Stock"
-      },
-      {
-        "Name": "Bread Loaf",
-        "BuyingPrice": 300,
-        "Quantity": 100,
-        "ThresholdValue": 20,
-        "ExpiryDate": "2024-12-25",
-        "SKU": "BRD-003",
-        "Availability": "In Stock"
-      },
-      {
-        "Name": "Butter",
-        "BuyingPrice": 1200,
-        "Quantity": 10,
-        "ThresholdValue": 2,
-        "ExpiryDate": "2025-02-15",
-        "SKU": "BUT-004",
-        "Availability": "Low Stock"
-      },
-      {
-        "Name": "Cheese Block",
-        "BuyingPrice": 2500,
-        "Quantity": 5,
-        "ThresholdValue": 3,
-        "ExpiryDate": "2024-11-20",
-        "SKU": "CHS-005",
-        "Availability": "Low Stock"
-      }
-    ]
+
   }
 
 
   ngOnInit(){
-    this.getSales()
+    this.getSales('', '')
     this.getProducts()
   }
+
+  getParamsId(){
+    const url = window.location.href;
+    console.log('url', url);
+    const segments = url.split('/');
+    this.item_id = segments[segments.length - 1];
+
+    return this.item_id;
+  }
+
+  getSalesInvoice(id:any){
+    this.pageLoading= true;
+    return this.api.get('sales/orders/invoice/' + id).subscribe(
+      res =>{
+        let response:any = res
+        this.orderInvoice = response.data
+        console.log(this.orderInvoice)
+        this.pageLoading=false;
+      }, err=>{
+        console.log(err)
+        this.pageLoading=false;
+      }
+    )
+
+  }
+
+
+  filterInventory(value:any){
+    console.log(value.toLowerCase())
+    if(value=='All'){
+      this.getSales('', '')
+    }else if(value=='Services'){
+      this.getSales('', value.toLowerCase())
+    }else {
+      this.getSales(value.toLowerCase(), '')
+    }
+  }
+
+  getSales(status:string, order_type:string){
+    this.pageLoading= true;
+    return this.api.get(`sales/orders?page=1&page_size=10&status=${status}&order_type=${order_type}&start_date=&end_date`).subscribe(
+      res =>{
+        let response:any = res
+        this.sales = response.data
+        console.log(this.sales)
+        this.pageLoading=false;
+      }, err=>{
+        console.log(err)
+        this.pageLoading=false;
+      }
+    )
+
+  }
+
+  confirmPayment(){}
 
   toggleAddSale(){
     this.isAddSale =!this.isAddSale;
@@ -121,21 +136,6 @@ export class AccountingOrdersComponent {
     this.calender = !this.calender;
   }
 
-  getSales(){
-    this.pageLoading = true;
-    this.api.get('sales').subscribe(
-      res=>{
-        this.sales = res;
-        this.pageLoading = false;
-        console.log('Sales Data', this.sales);
-      },
-      err=>{
-        console.log(err)
-        this.showError('Failed to load sales data');
-      }
-    )
-  }
-
   getProducts(){
     this.api.get('products').subscribe(
       res =>{
@@ -146,8 +146,13 @@ export class AccountingOrdersComponent {
     )
   }
 
-  toggleOrderDetail(){
+  toggleOrderDetail(id:any){
     this.orderDetail = !this.orderDetail;
+    this.getSalesInvoice(id)
+  }
+
+  route(page:string){
+    this.router.navigate([page]);
   }
 
 
@@ -166,7 +171,7 @@ export class AccountingOrdersComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getSales()
+        this.getSales('', '')
         this.showSuccess('Sale added successfully');
       },
       err=>{

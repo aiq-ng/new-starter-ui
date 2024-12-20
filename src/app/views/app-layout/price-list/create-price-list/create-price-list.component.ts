@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]  // Import MessageService to use it in the component
 })
 export class CreatePriceListComponent {
-  priceListForm:any;
+    priceListForm:any;
     isSubmitted:boolean = false;
     loading:boolean = false;
     vendors:any;

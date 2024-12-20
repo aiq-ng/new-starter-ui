@@ -43,6 +43,8 @@ import { CustomerPreviewComponent } from './sales/customer-preview/customer-prev
 import { PriceListComponent } from './price-list/price-list.component';
 import { CreatePriceListComponent } from './price-list/create-price-list/create-price-list.component';
 import { EditPriceListComponent } from './price-list/edit-price-list/edit-price-list.component';
+import { CreateSaleOrderComponent } from './sales/create-sale-order/create-sale-order.component';
+import { CreateExpensesComponent } from './accounting/create-expenses/create-expenses.component';
 
 
 const routes: Routes = [
@@ -60,6 +62,7 @@ const routes: Routes = [
         {path: 'orders', component: AccountingOrdersComponent},
         {path: 'vendors', component: AccountingVendorsComponent},
         {path: 'new-procurement', component: CreateProcurementComponent},
+        {path: 'create-expenses', component: CreateExpensesComponent},
         {path: 'preview/:id', component: AccountingProcurementPreviewComponent},
         // {path: 'vendors', component: SalesComponent},
       ] },
@@ -79,6 +82,7 @@ const routes: Routes = [
       { path: 'expenses', component: ExpensesComponent },
       { path: 'sales', component: SalesComponent, children: [
         { path: 'overview', component: SalesOverviewComponent },
+        { path: 'create-sale-order', component: CreateSaleOrderComponent },
         { path: 'orders', component: SalesOrderComponent },
         { path: 'orders-preview/:id', component: SalesOrderPreviewComponent },
         { path: 'customers', component: CustomersComponent },

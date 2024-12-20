@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrl: './order-detail.component.scss'
 })
 export class OrderDetailComponent {
+  @Input() invoiceData:any;
+  @Output() action = new EventEmitter();
   tableHeader:any=['description', 'qyt', 'price', 'discount', 'subtotal']
 
   tableData:any = [
@@ -31,6 +33,9 @@ export class OrderDetailComponent {
 
   ngOnInit(){}
 
+  onClick(){
+    this.action.emit();
+  }
 
   route(page:any){
     this.router.navigate([page]);

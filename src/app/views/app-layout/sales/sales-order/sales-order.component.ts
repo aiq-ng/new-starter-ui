@@ -18,6 +18,7 @@ export class SalesOrderComponent {
     wareHouses:any;
     item_id:any;
     pageLoading:any = false;
+    saleInvoice:any;
     inventoryData:any;
     filter:any = '';
     tabMenu = ['All','Sent', 'Completed', 'Services', 'Upcoming', 'Cancel']
@@ -45,6 +46,8 @@ export class SalesOrderComponent {
       this.getSales('', '')
 
     }
+
+
 
 
     filterInventory(value:any){

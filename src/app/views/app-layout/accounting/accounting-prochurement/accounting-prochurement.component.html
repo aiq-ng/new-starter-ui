@@ -1,19 +1,259 @@
-<div *ngIf="procurementData<=0 && pageLoading">
-  <app-empty-list buttonName="New Procurement" buttonIcon="/assets/icons/add.png" message="Expenses: the backbone of your budget. Track spending, manage costs efficiently, and sustain financial stability."></app-empty-list>
-</div>
-
-
 <div class="section relative">
   <app-sub-header
     pageTitle="Expenses"
     action1Name="New Procurement"
     icon='assets/icons/add.png'
-    (action1)="route('/app/accounting/new-procurement')"
-    ></app-sub-header>
+    buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/accounting/create-procurement')"></app-sub-header>
+
+  <!-- Table Section -->
+<div class=" mt-12">
+  <app-tab-menu [navigation]="tabMenu" (tabAction)="filterInventory($event)"></app-tab-menu>
 
 
   <!-- Table Section -->
-  <app-tab-menu [navigation]="tabMenu"></app-tab-menu>
-  <app-table [tableHeader]="tableHeader" [tableData]="procurementData"></app-table>
+ <!-- Card -->
+ <div class="flex flex-col">
+  <div class="overflow-x-auto">
+    <div class="min-w-full inline-block align-middle">
+      <div class="bg-white border border-gray-200  shadow-sm overflow-hidden">
+         <!-- Header -->
+         <div class="px-6 py-6 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+          <div class="title"></div>
+        </div>
+        <!-- End Header -->
 
-  <!-- End Table Section -->
+        <!-- expenses Table -->
+        <table *ngIf="tableView=='expenses'" class="min-w-full table-auto divide-y max-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <ng-container *ngFor="let row of tableHeader">
+                <th scope="col" class="w-10 ps-2 px-2 py-2 text-start" *ngIf="row=='Name' || row=='Issue Date' || row=='Order Id' || row=='description' || row=='expense Id'">
+                  <label for="hs-at-with-checkboxes-main" class="flex">
+                    <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                    <span class="sr-only">Checkbox</span>
+                  </label>
+                </th>
+
+
+
+                <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
+                      {{row}}
+                    </span>
+                  </div>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody  class="divide-y divide-gray-200">
+            <ng-container *ngFor="let data of tableData">
+              <tr (click)="toggleOrderDetail(data.id)" class="">
+                  <td  class="w-10 whitespace-nowrap">
+                    <div class="ps-2 py-4">
+                        <label for="hs-at-with-checkboxes-1" class="flex">
+                        <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                        <span class="sr-only">Checkbox</span>
+                        </label>
+                    </div>
+                    </td>
+
+                    <td   class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.expense_id}}
+                    </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.date_of_expense}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.payment_method}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.expense_category}}
+                      </div>
+                    </td>
+
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.department}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                        ₦{{data.amount | number:'1.0-2'}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.status}}
+                      </div>
+                    </td>
+
+                  </tr>
+                </ng-container>
+
+            <!-- <tr *ngFor="let item of tableData">
+              <td *ngFor="let key of objectKeys(item)">{{ item[key] }}</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <!-- expenses End Table -->
+
+        <!-- bills Table -->
+        <table *ngIf="tableView=='bills'" class="min-w-full table-auto divide-y max-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <ng-container *ngFor="let row of billsTableHeader">
+                <th scope="col" class="w-10 ps-2 px-2 py-2 text-start" *ngIf="row=='Ref Id' || row=='Issue Date' || row=='Order Id' || row=='description' || row=='expense Id'">
+                  <label for="hs-at-with-checkboxes-main" class="flex">
+                    <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                    <span class="sr-only">Checkbox</span>
+                  </label>
+                </th>
+
+
+
+                <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
+                      {{row}}
+                    </span>
+                  </div>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody  class="divide-y divide-gray-200">
+            <ng-container *ngFor="let data of billsData">
+              <tr (click)="toggleOrderDetail(data.id)" class="">
+                  <td  class="w-10 whitespace-nowrap">
+                    <div class="ps-2 py-4">
+                        <label for="hs-at-with-checkboxes-1" class="flex">
+                        <input type="checkbox" class="shrink-0 border-secondary rounded text-primary focus:ring-primary">
+                        <span class="sr-only">Checkbox</span>
+                        </label>
+                    </div>
+                    </td>
+
+                    <td   class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.ref_id}}
+                    </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.date | date}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.due_date | date}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.vendor_name}}
+                      </div>
+                    </td>
+
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.po_number}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                        ₦{{data.amount | number:'1.0-2'}}
+                      </div>
+                    </td>
+
+                    <td class="px-2 py-2">
+                      <div  class="flex items-center gap-x-3 text-sm text-gray-500">
+                          {{data.status}}
+                      </div>
+                    </td>
+
+                  </tr>
+                </ng-container>
+
+            <!-- <tr *ngFor="let item of tableData">
+              <td *ngFor="let key of objectKeys(item)">{{ item[key] }}</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <!-- bills End Table -->
+
+        <div *ngIf="tableData?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+          <app-spinner></app-spinner>
+        </div>
+
+        <div *ngIf="tableData?.length<=0 && !pageLoading ">
+          <app-empty-list></app-empty-list>
+         </div>
+
+        <!-- Footer -->
+        <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+          <div>
+            <p class="text-sm text-gray-600">
+              <span class="font-semibold text-gray-800">12</span> results
+            </p>
+          </div>
+
+          <div>
+            <div class="inline-flex gap-x-2">
+              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Prev
+              </button>
+
+              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+                Next
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- End Footer -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Card -->
+<!-- End Table Section -->
+
+
+</div>
+<!-- End Table Section -->
+
+</div>
+
+
+
+
+
+
+<!-- Order Details -->
+<p-sidebar [(visible)]="orderDetail" position="right" [style]="{'width': '800px'}">
+  <app-order-detail [invoiceData]="orderInvoice" (action)="confirmPayment()"></app-order-detail>
+</p-sidebar>
+<!-- Order details end -->
+
+
+
