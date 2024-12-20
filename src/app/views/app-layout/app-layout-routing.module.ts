@@ -45,6 +45,7 @@ import { CreatePriceListComponent } from './price-list/create-price-list/create-
 import { EditPriceListComponent } from './price-list/edit-price-list/edit-price-list.component';
 import { CreateSaleOrderComponent } from './sales/create-sale-order/create-sale-order.component';
 import { CreateExpensesComponent } from './accounting/create-expenses/create-expenses.component';
+import { AccountingOrderPreviewComponent } from './accounting/accounting-order-preview/accounting-order-preview.component';
 
 
 const routes: Routes = [
@@ -63,7 +64,7 @@ const routes: Routes = [
         {path: 'vendors', component: AccountingVendorsComponent},
         {path: 'new-procurement', component: CreateProcurementComponent},
         {path: 'create-expenses', component: CreateExpensesComponent},
-        {path: 'preview/:id', component: AccountingProcurementPreviewComponent},
+        {path: 'preview/:id', component: AccountingOrderPreviewComponent},
         // {path: 'vendors', component: SalesComponent},
       ] },
       { path: 'prochurement', component: ProcurementComponent, children: [

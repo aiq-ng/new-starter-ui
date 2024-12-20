@@ -4,6 +4,8 @@
     icon='assets/icons/add.png'
     buttonStyle="active:scale-95 bg-primary text-sm text-white p-2 hover:gray-400" (action1)="route('app/sales/create-sale-order')"></app-sub-header>
 
+    <p-toast/>
+
   <!-- Table Section -->
 <div class=" mt-12">
   <app-tab-menu [navigation]="tabMenu" (tabAction)="filterInventory($event)"></app-tab-menu>
@@ -167,7 +169,7 @@
 
 <!-- Order Details -->
 <p-sidebar [(visible)]="orderDetail" position="right" [style]="{'width': '800px'}">
-  <app-order-detail [invoiceData]="orderInvoice" (action)="confirmPayment()"></app-order-detail>
+  <app-order-detail [invoiceData]="orderInvoice" [confirmPaymentLoading]="confirmPaymentLoading" [loading]="pageLoading" (action)="confirmPayment(orderInvoice.id)"></app-order-detail>
 </p-sidebar>
 <!-- Order details end -->
 

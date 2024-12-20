@@ -16,6 +16,7 @@ export class AccountingOrdersComponent {
   calender:any;
   orderDetail:boolean = false;
   orderInvoice:any;
+  confirmPaymentLoading:boolean = false;
   item_id:any;
   saleDetailHeader = ['time', 'product', 'quantity', 'saleAmount']
   tableHeader = [
@@ -76,7 +77,7 @@ export class AccountingOrdersComponent {
 
   getSalesInvoice(id:any){
     this.pageLoading= true;
-    return this.api.get('sales/orders/invoice/' + id).subscribe(
+    return this.api.get('accounting/sales-orders/' + id).subscribe(
       res =>{
         let response:any = res
         this.orderInvoice = response.data
@@ -118,7 +119,20 @@ export class AccountingOrdersComponent {
 
   }
 
-  confirmPayment(){}
+  confirmPayment(id:any){
+    this.confirmPaymentLoading = true;
+
+    this.api.post(`accounting/sales-orders/${id}/confirm-payment`, '').subscribe(
+      res=>{
+        this.showSuccess('payment confirmed successfully')
+
+        setTimeout(()=>{
+          this.confirmPaymentLoading = false;
+          this.route('app/accounting/preview/' + id)
+        }, 2000)
+      }
+    )
+  }
 
   toggleAddSale(){
     this.isAddSale =!this.isAddSale;

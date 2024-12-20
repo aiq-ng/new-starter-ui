@@ -2,48 +2,69 @@
   <div class="title text-lg font-semibold text-gray-800">Order ID: SLS-654 &nbsp;&nbsp; <span class="text-blue-500 font-normal text-sm">Pending</span> </div>
 
 
-
+  <p-toast/>
 
   <div class="flex w-full gap-4">
 
     <div class="basis-[60%] flex flex-col gap-4">
       <div class="text-sm text-gray-800 mt-6">Order Detail</div>
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
-        <div class="label">Order Title: </div>
+        <div *ngIf="!loading" class="label">Order Title: </div>
         <div class="value">{{invoiceData?.order_title}}</div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Recorded by: </div>
-        <div class="value text-primary underline">Susan Damsel</div>
+        <div *ngIf="!loading" class="value text-primary underline">{{invoiceData?.recorded_by}}</div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Order Category: </div>
-        <div class="value">Service</div>
+        <div *ngIf="!loading" class="value">{{invoiceData?.order_category}}</div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Delivery Type: </div>
-        <div class="value">Delivery </div>
+        <div *ngIf="!loading" class="value">{{invoiceData?.delivery_option}}</div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
 
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Assigned driver: </div>
-        <div class="value text-primary underline">James Ahmadu </div>
+        <div *ngIf="!loading" class="value text-primary underline">{{invoiceData?.assigned_driver}}</div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
       <div class="text-sm text-gray-800 mt-6">Order Detail</div>
 
       <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Customer Name: </div>
-        <div class="value ">Mr Johnson Samson </div>
+        <div *ngIf="!loading" class="value ">{{invoiceData?.customer_name}} </div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
        <div class="detail w-full grid grid-cols-2 gap-4 text-gray-500 text-sm">
         <div class="label">Contact Number: </div>
-        <div class="value ">08087675433 </div>
+        <div *ngIf="!loading" class="value ">{{invoiceData?.customer_mobile_phone}} </div>
+        <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+          <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+        </div>
        </div>
 
 
@@ -55,7 +76,10 @@
 
         <div class="flex justify-between text-sm mt-2">
           <span class="text-sm text-gray-500">#INVV-001</span>
-          <span class="text-red-500 text-sm">View-invoice</span>
+          <span *ngIf="!loading" class="text-red-500 text-sm">{{invoiceData?.invoice_number}}</span>
+          <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+            <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+          </div>
         </div>
 
         <div class="divider border-b w-full mt-2"></div>
@@ -67,12 +91,22 @@
 
         <div class="flex justify-between text-sm mt-2">
           <span class="text-sm text-gray-500">Total</span>
-          <span class=" text-sm">₦2,000,000</span>
+          <span *ngIf="!loading" class=" text-sm">₦{{invoiceData?.amount}}</span>
+          <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+            <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+          </div>
         </div>
 
         <div class="divider border-b w-full mt-2"></div>
 
-        <button (click)="route('app/sales/orders-preview/6')" class="px-6 w-full rounded-md py-3 bg-primary hover:bg-primary/95 active:bg-primary/85 text-white text-sm mt-2">Confirm payment</button>
+        <button (click)="onClick()" class="px-6 w-full rounded-md py-3 bg-primary hover:bg-primary/95 active:bg-primary/85 text-white text-sm mt-2">
+          <span *ngIf="!confirmPaymentLoading">
+            Confirm payment
+          </span>
+          <span *ngIf="confirmPaymentLoading" class="data text-gray-800 text-base font-semibold">
+            <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+          </span>
+        </button>
       </div>
     </div>
 
@@ -81,6 +115,86 @@
   <div class="mt-10">
     <div class="title text-gray-800 text-sm mb-4">Product Order</div>
 
-    <app-table [noPagination]="true" [tableHeader]="tableHeader" [tableData]="tableData"></app-table>
+     <!-- Table -->
+     <table class="min-w-full table-auto divide-y max-w-full">
+      <thead class="bg-gray-50">
+        <tr>
+          <ng-container *ngFor="let row of tableHeader">
+            <th scope="col" class="ps-2 lg:ps-1 xl:ps-0 pe-2 py-3 text-start">
+              <div class="flex items-center gap-x-2">
+                <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 truncate">
+                  {{row}}
+                </span>
+              </div>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody  class="divide-y divide-gray-200">
+        <ng-container *ngFor="let data of invoiceData?.product_order">
+          <tr  class="">
+              <td  class="w-10 whitespace-nowrap">
+
+                </td>
+
+                <td   class="px-2 py-2">
+                  <div *ngIf="!loading"  class="flex items-center gap-x-3 text-sm text-gray-500">
+                      {{data.name}}
+                </div>
+                <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+                  <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                </div>
+                </td>
+
+                <td class="px-2 py-2">
+                  <div *ngIf="!loading" class="flex items-center gap-x-3 text-sm text-gray-500">
+                      {{data.quantity}}
+                  </div>
+
+                  <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                  </div>
+                </td>
+
+                <td class="px-2 py-2">
+                  <div *ngIf="!loading" class="flex items-center gap-x-3 text-sm text-gray-500">
+                      {{data.price}}
+                  </div>
+
+                  <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                  </div>
+                </td>
+
+                <td class="px-2 py-2">
+                  <div *ngIf="!loading" class="flex items-center gap-x-3 text-sm text-gray-500">
+                      {{data.discount}}
+                  </div>
+
+                  <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                  </div>
+                </td>
+
+
+                <td class="px-2 py-2">
+                  <div *ngIf="!loading" class="flex items-center gap-x-3 text-sm text-gray-500">
+                      {{data.total}}
+                  </div>
+
+                  <div *ngIf="loading" class="data text-gray-800 text-base font-semibold">
+                    <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
+                  </div>
+                </td>
+
+              </tr>
+            </ng-container>
+
+        <!-- <tr *ngFor="let item of tableData">
+          <td *ngFor="let key of objectKeys(item)">{{ item[key] }}</td>
+        </tr> -->
+      </tbody>
+    </table>
+    <!-- End Table -->
   </div>
 </div>

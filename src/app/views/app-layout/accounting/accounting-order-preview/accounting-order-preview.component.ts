@@ -34,7 +34,7 @@ export class AccountingOrderPreviewComponent {
 
       getItemDetail(){
         this.pageLoading= true;
-        return this.api.get('' + this.getParamsId()).subscribe(
+        return this.api.get('sales/orders/invoice/' + this.getParamsId()).subscribe(
           res =>{
             let response:any = res
             this.invoiceDetail = response.data
