@@ -67,7 +67,7 @@
   </div>
 
   <!-- graph section -->
-  <!-- <div class="graph-section flex w-full  gap-8  mt-8">
+  <div class="graph-section flex w-full  gap-8  mt-8">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
       <div class="graph-heading flex justify-between basis-1/2">
         <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
@@ -113,53 +113,31 @@
       <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
 
       <div class="flex flex-col gap-4">
-        <div class="event mt-4 flex gap-2">
-          <div class="date flex flex-col items-center ">
-            <span class="text-gray-500">NOV</span>
-            <span class="text-gray-800 text-xl">15</span>
-          </div>
-          <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
-          <div class="info flex flex-col gap-1">
-            <span class="title text-gray-800">Mr&Mrs Augustine Wedding</span>
-            <span class="order text-gray-500 text-sm">
-              Supply an exquisite spread is planned featuring tender chicken dishes, a generous serving of rice, and a variety of
-            </span>
-            <span class="text-gray-800 text-sm">25 April at 09:30 am</span>
-          </div>
-          <div class="view-icon h-full min-h-[130px] flex items-center justify-center">
-            <div class="h-auto ">
-              <div class=" rounded-full h-9 w-9 bg-accent flex justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-                </svg>
+        <ng-container *ngFor="let event of events.data">
+          <div class="event mt-4 flex gap-2">
+            <div class="date flex flex-col items-center max-w-[50px] ">
+              <span class="text-gray-500">{{event.delivery_date | date}}</span>
+              <!-- <span class="text-gray-800 text-xl">15</span> -->
+            </div>
+            <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
+            <div class="info flex flex-col gap-1">
+              <span class="title text-gray-800">{{event.title}}</span>
+              <span class="order text-gray-500 text-sm">
+                {{event.description}}
+              </span>
+              <span class="text-gray-800 text-sm">{{event.created_at | date}}</span>
+            </div>
+            <div class="view-icon h-full min-h-[130px] flex items-center justify-center">
+              <div class="h-auto ">
+                <div class=" rounded-full h-9 w-9 bg-accent flex justify-center items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="event mt-4 flex gap-2">
-          <div class="date flex flex-col items-center ">
-            <span class="text-gray-500">NOV</span>
-            <span class="text-gray-800 text-xl">15</span>
-          </div>
-          <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
-          <div class="info flex flex-col gap-1">
-            <span class="title text-gray-800">Mr&Mrs Augustine Wedding</span>
-            <span class="order text-gray-500 text-sm">
-              Supply an exquisite spread is planned featuring tender chicken dishes, a generous serving of rice, and a variety of
-            </span>
-            <span class="text-gray-800 text-sm">25 April at 09:30 am</span>
-          </div>
-          <div class="view-icon h-full min-h-[130px] flex items-center justify-center">
-            <div class="h-auto ">
-              <div class=" rounded-full h-9 w-9 bg-accent flex justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        </ng-container>
       </div>
 
       <div class="text-primary flex gap-2 w-full justify-center items-center mt-8 cursor-pointer active:scale-95">
@@ -174,12 +152,12 @@
     </div>
 
 
-  </div> -->
+  </div>
 
 
   <!-- stocks section -->
    <div class="stocke-section mt-8 w-full flex gap-8 ">
-    <div class="top-selling bg-white p-4 rounded-md basis-[60%] h-[60vh]">
+    <div class="top-selling bg-white p-4 rounded-md basis-[60%] h-[60vh] overflow-y-auto">
       <div class="heading flex justify-between items-center">
         <div class="title text-lg capitalize text-gray-800">Top Selling</div>
 
