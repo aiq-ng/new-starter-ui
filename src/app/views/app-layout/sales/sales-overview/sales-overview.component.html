@@ -49,9 +49,98 @@
   </div>
 
 
+   <!-- graph section -->
+   <div class="graph-section flex w-full  gap-8  mt-8">
+    <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
+      <div class="graph-heading flex justify-between basis-1/2">
+        <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
+          Cash Flow
+          <span>
+          <img src="/assets/icons/question.png" class="object-fill" alt="">
+
+          </span>
+        </div>
+
+        <div class="hs-dropdown [--strategy:absolute] [--flip:false] hs-dropdown-example relative inline-flex">
+          <button (click)="toggleCalender()" id="hs-dropdown-example" type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+            This year
+            <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <div *ngIf="calender" class=" transition-[opacity,margin] duration w-32 absolute top-[48px]  z-10 mt-2 min-w-32 bg-white shadow-md rounded-lg p-2" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-example">
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+              2023
+            </a>
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+              2022
+            </a>
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+              2021
+            </a>
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="#">
+              2020
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="graph-body basis-1/2">
+        <p-chart type="line" [data]="data" [options]="options" />
+      </div>
+    </div>
+
+    <div class="event-section p-4  bg-white basis-[35%]">
+      <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
+
+      <div class="flex flex-col gap-4">
+        <ng-container *ngFor="let event of events.data">
+          <div class="event mt-4 flex gap-2">
+            <div class="date flex flex-col items-center max-w-[50px] ">
+              <span class="text-gray-500">{{event.delivery_date | date}}</span>
+              <!-- <span class="text-gray-800 text-xl">15</span> -->
+            </div>
+            <div class="divider h-full border border-dashed border-red-300 min-h-[130px]"></div>
+            <div class="info flex flex-col gap-1">
+              <span class="title text-gray-800">{{event.title}}</span>
+              <span class="order text-gray-500 text-sm">
+                {{event.description}}
+              </span>
+              <span class="text-gray-800 text-sm">{{event.created_at | date}}</span>
+            </div>
+            <div class="view-icon h-full min-h-[130px] flex items-center justify-center">
+              <div class="h-auto ">
+                <div class=" rounded-full h-9 w-9 bg-accent flex justify-center items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="text-primary flex gap-2 w-full justify-center items-center mt-8 cursor-pointer active:scale-95">
+        See All
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </span>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
   <!-- Top selling section -->
   <div class="stocke-section mt-8 w-full flex gap-8 ">
-    <div class="top-selling bg-white p-4 text-sm h-[60vh] rounded-md basis-[100%]">
+    <div class="top-selling bg-white p-4 text-sm max-h-[60vh] overflow-y-auto rounded-md basis-[100%]">
       <div class="heading flex justify-between items-center">
         <div class="title text-base font-bold capitalize text-gray-800">Top Selling Stock</div>
 

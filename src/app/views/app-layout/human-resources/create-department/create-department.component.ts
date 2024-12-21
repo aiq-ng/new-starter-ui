@@ -28,6 +28,7 @@ export class CreateDepartmentComponent {
     this.createDepartmentForm = this.fb.group({
       name: ['', Validators.required],
       salary_type: ['', Validators.required],
+      leave_qualification: ['', Validators.required],
       work_leave_qualification: ['', Validators.required],
       work_leave_period: ['', Validators.required],
       base_type_id: [''],
