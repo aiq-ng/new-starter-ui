@@ -17,244 +17,258 @@
 <p-toast/>
 
 <div class="h-full w-full flex flex-col mt-8 justify-center">
-  <form [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()" class="mx-auto w-full flex justify-center gap-6  " [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()">
-    <div class="details flex flex-col gap-3 max-w-[420px] p-6 px-8 bg-white rounded-lg">
-      <div>
-        <label for="first_name " class=" text-sm text-gray-800">First Name</label>
-        <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="First name">
+  <form [formGroup]="createEmployeeForm" (ngSubmit)="createDepartment()" class="mx-auto w-full" [formGroup]="createEmployeeForm">
+    <div class="w-full flex justify-center gap-6  ">
+      <div class="details flex flex-col gap-3 max-w-[420px] p-6 px-8 bg-white rounded-lg">
+        <div>
+          <label for="first_name " class=" text-sm text-gray-800">First Name</label>
+          <input formControlName="first_name" [ngClass]="{'border-red-400': isSubmitted && f.first_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="First name">
+        </div>
+
+        <div>
+          <label for="last_name " class=" text-sm text-gray-800">Last Name</label>
+          <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
+        </div>
+
+        <div>
+          <label for="email " class=" text-sm text-gray-800">Email</label>
+          <input formControlName="email" [ngClass]="{'border-red-400': isSubmitted && f.email.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
+        </div>
+
+        <div>
+          <label for="residential_address" class=" text-sm text-gray-800">Residential Address</label>
+          <input formControlName="residential_address" [ngClass]="{'border-red-400': isSubmitted && f.residential_address.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Residential Address">
+        </div>
+
+        <div>
+          <label for="next_of_kin " class=" text-sm text-gray-800">Next of Kin</label>
+          <input formControlName="next_of_kin" [ngClass]="{'border-red-400': isSubmitted && f.next_of_kin.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Next of Kin">
+        </div>
+
+        <div class="divider" class="w-full border-b my-4"></div>
+
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Date of Employment</label>
+          <input formControlName="date_of_employment" [ngClass]="{'border-red-400': isSubmitted && f.date_of_employment.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
+        </div>
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Date of Birth</label>
+          <input formControlName="date_of_birth" [ngClass]="{'border-red-400': isSubmitted && f.date_of_birth.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
+        </div>
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Deparment</label>
+          <select formControlName="department" [ngClass]="{'border-red-400': isSubmitted && f.department.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+            <option class="" value="">Select department</option>
+            <ng-container *ngFor="let department of departments?.data">
+              <option value={{department.id}} >{{department.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Position</label>
+          <select formControlName="position" [ngClass]="{'border-red-400': isSubmitted && f.position.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+            <option class="" value="">Select position</option>
+            <ng-container *ngFor="let position of positions?.data">
+              <option value={{position.id}} >{{position.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">No of working days</label>
+          <select formControlName="working_days" [ngClass]="{'border-red-400': isSubmitted && f.working_days.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
+            <option class="" value="">Select month</option>
+            <ng-container *ngFor="let days of workingDays?.data">
+              <option value={{days.id}} >{{days.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+
+
+        <div class="divider" class="w-full border-b my-4"></div>
+
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Bank Details</label>
+          <input formControlName="account_number" [ngClass]="{'border-red-400': isSubmitted && f.account_number.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Account Number">
+        </div>
+
+        <div>
+          <input formControlName="bank_name" [ngClass]="{'border-red-400': isSubmitted && f.bank_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Bank">
+        </div>
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Salary</label>
+          <input formControlName="salary" [ngClass]="{'border-red-400': isSubmitted && f.salary.errors}" type="number" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Salary">
+        </div>
+
+        <div class="divider" class="w-full border-b my-4"></div>
+
+
+        <div>
+          <label for="department " class=" text-sm text-gray-800">Login Details</label>
+          <input formControlName="username" [ngClass]="{'border-red-400': isSubmitted && f.username.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Username">
+        </div>
+
+        <div>
+          <input formControlName="password" [ngClass]="{'border-red-400': isSubmitted && f.password.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Password">
+        </div>
+
       </div>
 
-      <div>
-        <label for="last_name " class=" text-sm text-gray-800">Last Name</label>
-        <input formControlName="last_name" [ngClass]="{'border-red-400': isSubmitted && f.last_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
-      </div>
+      <div class="uploads bg-white flex flex-col gap-8 rounded-2xl p-6">
+        <div class=" ">
+          <div class="file w-full ">
+            <div class="text topic text-sm mb-1 text-gray-500 font-light  ">Upload NIN</div>
+            <div class="div">
 
-      <div>
-        <label for="email " class=" text-sm text-gray-800">Email</label>
-        <input formControlName="email" [ngClass]="{'border-red-400': isSubmitted && f.email.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Last name">
-      </div>
-
-      <div>
-        <label for="residential_address" class=" text-sm text-gray-800">Residential Address</label>
-        <input formControlName="residential_address" [ngClass]="{'border-red-400': isSubmitted && f.residential_address.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Residential Address">
-      </div>
-
-      <div>
-        <label for="next_of_kin " class=" text-sm text-gray-800">Next of Kin</label>
-        <input formControlName="next_of_kin" [ngClass]="{'border-red-400': isSubmitted && f.next_of_kin.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Next of Kin">
-      </div>
-
-      <div class="divider" class="w-full border-b my-4"></div>
-
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Date of Employment</label>
-        <input formControlName="date_of_employment" [ngClass]="{'border-red-400': isSubmitted && f.date_of_employment.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
-      </div>
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Date of Birth</label>
-        <input formControlName="date_of_birth" [ngClass]="{'border-red-400': isSubmitted && f.date_of_birth.errors}" type="date" class="px-3 py-2 text-sm rounded-md border w-full " placeholder="Date of Employement">
-      </div>
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Deparment</label>
-        <select formControlName="department" [ngClass]="{'border-red-400': isSubmitted && f.department.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
-          <option class="" value="">Select department</option>
-          <ng-container *ngFor="let department of departments?.data">
-            <option value={{department.id}} >{{department.name}}</option>
-          </ng-container>
-        </select>
-      </div>
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Position</label>
-        <select formControlName="position" [ngClass]="{'border-red-400': isSubmitted && f.position.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
-          <option class="" value="">Select position</option>
-          <ng-container *ngFor="let position of positions?.data">
-            <option value={{position.id}} >{{position.name}}</option>
-          </ng-container>
-        </select>
-      </div>
-
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">No of working days</label>
-        <select formControlName="working_days" [ngClass]="{'border-red-400': isSubmitted && f.working_days.errors}" type="text" class="px-3 py-2 rounded-md border w-full text-sm ">
-          <option class="" value="">Select month</option>
-          <ng-container *ngFor="let days of workingDays?.data">
-            <option value={{days.id}} >{{days.name}}</option>
-          </ng-container>
-        </select>
-      </div>
-
-
-      <div class="divider" class="w-full border-b my-4"></div>
-
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Bank Details</label>
-        <input formControlName="account_number" [ngClass]="{'border-red-400': isSubmitted && f.account_number.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Account Number">
-      </div>
-
-      <div>
-        <input formControlName="bank_name" [ngClass]="{'border-red-400': isSubmitted && f.bank_name.errors}" type="text" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Bank">
-      </div>
-
-      <div>
-        <label for="department " class=" text-sm text-gray-800">Salary</label>
-        <input formControlName="salary" [ngClass]="{'border-red-400': isSubmitted && f.salary.errors}" type="number" class="px-3 py-2 text-xs rounded-md border w-full " placeholder="Salary">
-      </div>
-
-    </div>
-
-    <div class="uploads bg-white flex flex-col gap-8 rounded-2xl p-6">
-      <div class=" ">
-        <div class="file w-full ">
-          <div class="text topic text-sm mb-1 text-gray-500 font-light  ">Upload NIN</div>
-          <div class="div">
-
-            <div
-            class="w-[420px] mx-auto p-6 border-2 border-dashed  rounded-2xl text-center bg-white"
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onDrop($event)"
-            [class.bg-gray-100]="isDragging"
-          >
-            <div class="flex justify-center items-center h-16 w-16 mx-auto mb-4 bg-gray-100 rounded-full">
-              <svg
-                class="h-6 w-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16 16v6H8v-6m-4 0H4a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h4l2 3h4a2 2 0 012 2v6a2 2 0 01-2 2h-2m-4 0H8m4 0v6"
-                ></path>
-              </svg>
-            </div>
-
-            <p class="text-sm text-gray-500 font-medium mb-2">
-              <span class="text-seccolor text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
-            </p>
-            <p class="text-xs text-gray-400 mb-4">SVG, PNG, JPG or GIF (max. 800×400px)</p>
-
-            <div class="relative flex items-center mb-4">
-              <div class="flex-grow border-t border-gray-300"></div>
-              <span class="flex-shrink mx-2 text-gray-400 text-xs">OR</span>
-              <button class="flex-grow border-t border-gray-300"></button>
-            </div>
-
-            <input
-              type="file"
-              class="hidden"
-              #fileInput
-              (change)="onNinSelected($event)"
-              accept=".svg,.png,.jpg,.gif, .pdf,.docs"
-            />
-            <button
-              type="button"
-              class="px-6 py-2 text-primary text-sm border  bg-red-100 rounded-md hover:bg-seccolor focus:outline-none focus:ring-2 focus:ring-seccolor focus:ring-offset-2"
-              (click)="fileInput.click()"
+              <div
+              class="w-[420px] mx-auto p-6 border-2 border-dashed  rounded-2xl text-center bg-white"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              [class.bg-gray-100]="isDragging"
             >
-              Browse Files
-            </button>
+              <div class="flex justify-center items-center h-16 w-16 mx-auto mb-4 bg-gray-100 rounded-full">
+                <svg
+                  class="h-6 w-6 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16 16v6H8v-6m-4 0H4a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h4l2 3h4a2 2 0 012 2v6a2 2 0 01-2 2h-2m-4 0H8m4 0v6"
+                  ></path>
+                </svg>
+              </div>
+
+              <p class="text-sm text-gray-500 font-medium mb-2">
+                <span class="text-seccolor text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
+              </p>
+              <p class="text-xs text-gray-400 mb-4">SVG, PNG, JPG or GIF (max. 800×400px)</p>
+
+              <div class="relative flex items-center mb-4">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-2 text-gray-400 text-xs">OR</span>
+                <button class="flex-grow border-t border-gray-300"></button>
+              </div>
+
+              <input
+                type="file"
+                class="hidden"
+                #fileInput
+                (change)="onNinSelected($event)"
+                accept=".svg,.png,.jpg,.gif, .pdf,.docs"
+              />
+              <button
+                type="button"
+                class="px-6 py-2 text-primary text-sm border  bg-red-100 rounded-md hover:bg-seccolor focus:outline-none focus:ring-2 focus:ring-seccolor focus:ring-offset-2"
+                (click)="fileInput.click()"
+              >
+                Browse Files
+              </button>
+            </div>
+
+            <div *ngIf="nin" class="mt-6 text-center">
+              <p class="text-sm text-gray-500">Selected File:</p>
+              <p class="text-sm text-gray-800 font-medium">{{ nin.name }}</p>
+            </div>
+
+
+            </div>
           </div>
+        </div>
 
-          <div *ngIf="nin" class="mt-6 text-center">
-            <p class="text-sm text-gray-500">Selected File:</p>
-            <p class="text-sm text-gray-800 font-medium">{{ nin.name }}</p>
-          </div>
+        <div class="">
+          <div class="file w-full ">
+            <div class="text topic text-sm mb-1  text-gray-500 font-light ">Upload Passport</div>
+            <div class="div">
+
+              <div
+              class="w-[420px] mx-auto p-6 border-2 border-dashed  rounded-2xl text-center bg-white"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              [class.bg-gray-100]="isDragging"
+            >
+              <div class="flex justify-center items-center h-16 w-16 mx-auto mb-4 bg-gray-100 rounded-full">
+                <svg
+                  class="h-6 w-6 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16 16v6H8v-6m-4 0H4a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h4l2 3h4a2 2 0 012 2v6a2 2 0 01-2 2h-2m-4 0H8m4 0v6"
+                  ></path>
+                </svg>
+              </div>
+
+              <p class="text-sm text-gray-500 font-medium mb-2">
+                <span class="text-seccolor text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
+              </p>
+              <p class="text-xs text-gray-400 mb-4">SVG, PNG, JPG or GIF (max. 800×400px)</p>
+
+              <div class="relative flex items-center mb-4">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-2 text-gray-400 text-xs">OR</span>
+                <button class="flex-grow border-t border-gray-300"></button>
+              </div>
+
+              <input
+                type="file"
+                class="hidden"
+                #passportInput
+                (change)="onPassportSelected($event)"
+                accept=".svg,.png,.jpg,.gif, .pdf,.docs"
+              />
+              <button
+                type="button"
+                class="px-6 py-2 text-primary text-sm border  bg-red-100 rounded-md hover:bg-seccolor focus:outline-none focus:ring-2 focus:ring-seccolor focus:ring-offset-2"
+                (click)="passportInput.click()"
+              >
+                Browse Files
+              </button>
+            </div>
+
+            <div *ngIf="passport" class="mt-6 text-center">
+              <p class="text-sm text-gray-500">Selected File:</p>
+              <p class="text-sm text-gray-800 font-medium">{{passport.name}}</p>
+            </div>
 
 
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="">
-        <div class="file w-full ">
-          <div class="text topic text-sm mb-1  text-gray-500 font-light ">Upload Passport</div>
-          <div class="div">
-
-            <div
-            class="w-[420px] mx-auto p-6 border-2 border-dashed  rounded-2xl text-center bg-white"
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onDrop($event)"
-            [class.bg-gray-100]="isDragging"
-          >
-            <div class="flex justify-center items-center h-16 w-16 mx-auto mb-4 bg-gray-100 rounded-full">
-              <svg
-                class="h-6 w-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16 16v6H8v-6m-4 0H4a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h4l2 3h4a2 2 0 012 2v6a2 2 0 01-2 2h-2m-4 0H8m4 0v6"
-                ></path>
-              </svg>
-            </div>
-
-            <p class="text-sm text-gray-500 font-medium mb-2">
-              <span class="text-seccolor text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
-            </p>
-            <p class="text-xs text-gray-400 mb-4">SVG, PNG, JPG or GIF (max. 800×400px)</p>
-
-            <div class="relative flex items-center mb-4">
-              <div class="flex-grow border-t border-gray-300"></div>
-              <span class="flex-shrink mx-2 text-gray-400 text-xs">OR</span>
-              <button class="flex-grow border-t border-gray-300"></button>
-            </div>
-
-            <input
-              type="file"
-              class="hidden"
-              #passportInput
-              (change)="onPassportSelected($event)"
-              accept=".svg,.png,.jpg,.gif, .pdf,.docs"
-            />
-            <button
-              type="button"
-              class="px-6 py-2 text-primary text-sm border  bg-red-100 rounded-md hover:bg-seccolor focus:outline-none focus:ring-2 focus:ring-seccolor focus:ring-offset-2"
-              (click)="passportInput.click()"
-            >
-              Browse Files
-            </button>
-          </div>
-
-          <div *ngIf="passport" class="mt-6 text-center">
-            <p class="text-sm text-gray-500">Selected File:</p>
-            <p class="text-sm text-gray-800 font-medium">{{passport.name}}</p>
-          </div>
-
-
-          </div>
-        </div>
-      </div>
     </div>
 
+    <div class="bg-white px-6 py-6 mt-8 flex gap-4">
+      <button (click)="goBack()" class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
+      <button type="submit" class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md hover:bg-secondary  bg-primary text-white">
+        <span *ngIf="!loading">Continue</span>
+          <span class="w-full flex justify-center items-center gap-2" *ngIf="loading">
+            <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i> Continue
+          </span>
+      </button>
 
+    </div>
 
   </form>
 
 </div>
 
-<div class="bg-white px-6 py-6 mt-8 flex gap-4">
-  <button class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
-  <button (click)="createDepartment()" class="px-4 py-2 border active:bg-primary/85 text-sm rounded-md hover:bg-secondary  bg-primary text-white">
-    <span *ngIf="!loading">Continue</span>
-      <span class="w-full flex justify-center items-center gap-2" *ngIf="loading">
-        <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i> Continue
-      </span>
-  </button>
 
-</div>

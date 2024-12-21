@@ -13,10 +13,13 @@ export class CreateDepartmentComponent {
   saveDeparment:any;
   pageLoading:any;
   positions:any;
+  leaveQualification:any;
+  workingDays:any;
   baseSalaryType:any;
   isSubmitted:boolean = false;
   loading:boolean = false;
   salarytype:any;
+  roles:any;
 
   constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
 
@@ -25,14 +28,18 @@ export class CreateDepartmentComponent {
     this.createDepartmentForm = this.fb.group({
       name: ['', Validators.required],
       salary_type: ['', Validators.required],
+      work_leave_qualification: ['', Validators.required],
+      work_leave_period: ['', Validators.required],
       base_type_id: [''],
       base_salary: [''],
       base_rate: [''],
-      description: [''],
+      description: ['']
     });
 
     this.getPositions();
     this.getBaseSalaryType()
+    this.getLeaveQualification()
+    this.getNoOfWorkDays()
   }
 
   goBack(){
@@ -85,6 +92,32 @@ export class CreateDepartmentComponent {
     this.api.get('roles').subscribe(
       res=>{
         this.positions = res;
+        this.pageLoading = false;
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+  }
+
+  getLeaveQualification(){
+    this.pageLoading = true;
+    this.api.get('work_leave_qualifications').subscribe(
+      res=>{
+        this.leaveQualification = res;
+        this.pageLoading = false;
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+  }
+
+  getNoOfWorkDays(){
+    this.pageLoading = true;
+    this.api.get('no_of_working_days').subscribe(
+      res=>{
+        this.workingDays = res;
         this.pageLoading = false;
       },
       err=>{

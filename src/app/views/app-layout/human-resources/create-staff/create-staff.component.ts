@@ -38,6 +38,8 @@ export class CreateStaffComponent {
       account_number: ['', [Validators.required]],
       bank_name: ['', [Validators.required]],
       salary: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
 
     });
 
@@ -96,6 +98,12 @@ export class CreateStaffComponent {
       return;
     }
 
+    if(!this.nin && !this.passport ){
+      this.showError('Passport and NIN is required')
+      this.loading = false;
+      return;
+    }
+
     let formData:any = new FormData();
 
     // Append other form data
@@ -116,6 +124,8 @@ export class CreateStaffComponent {
     formData.append('bank_name', this.createEmployeeForm.get('bank_name')?.value);
 
     formData.append('salary', this.createEmployeeForm.get('salary')?.value);
+    formData.append('username', this.createEmployeeForm.get('username')?.value);
+    formData.append('password', this.createEmployeeForm.get('password')?.value);
 
     // File uploads (ensure you have File input in the form)
     formData.append('nin', this.nin);
@@ -131,7 +141,8 @@ export class CreateStaffComponent {
       },
       err => {
         console.log(err);
-        this.showError('Failed to create product, please try again');
+        this.loading = false;
+        this.showError('Failed to create employee, please try again');
       }
     );
   }
