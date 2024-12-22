@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpServiceService } from '../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,17 +14,19 @@ export class DashboardComponent {
     data: any;
     options: any=null;
     metrics: any=null;
-    events:any;
+    events:any = [];
     cashFlow:any;
     TopSellingProduct: any= [];
     lowQuantityStock: any=[];
     pageLoading:boolean=false;
     loading:boolean=false;
     calender:boolean=false;
-    chartData:any[]=[]
+    chartData:any=[]
+
 
 
     constructor(
+                private router:Router,
                 private api:HttpServiceService,
                 private messageService:MessageService,
               ){}
@@ -89,6 +92,7 @@ export class DashboardComponent {
           const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
           cashFlowData = res;
+          this.chartData = cashFlowData.data;
           let month = this.getMonth(cashFlowData.data)
           let cashFlow = this.transCashFlow(cashFlowData.data)
           console.log('month', month, 'cashflow', cashFlow)
@@ -170,7 +174,9 @@ export class DashboardComponent {
       return monthNames[month - 1] || 'INVALID MONTH';
     }
 
-
+    route(page:any){
+      this.router.navigate([page])
+    }
 
     getLowQuantityStock(){
       this.api.get('dashboard/products/lowstock').subscribe(

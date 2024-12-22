@@ -134,7 +134,7 @@ export class CreateStaffComponent {
     this.api.post('human-resources/employees', formData).subscribe(
       res => {
         console.log(res);
-        this.showSuccess('Product created successfully');
+        this.showSuccess('Employee created successfully');
         this.createEmployeeForm.reset();
         this.loading = false;
         this.isSubmitted = false;

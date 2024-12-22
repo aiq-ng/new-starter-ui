@@ -1,12 +1,12 @@
 <div class="section">
   <div class="metrics flex flex-col gap-6 bg-white rounded-lg border p-4">
     <div class="title text-sm">Todays Order</div>
-    <div class="data text-sm flex justify-between">
+    <div class="data text-sm flex flex-col md:flex-col lg:flex-row justify-between">
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-blue-600 ">Total Revenue</div>
         <div *ngIf="!laoding" class="data text-gray-800 text-base font-semibold">
-          ₦{{salesOverview.data.total_revenue | number:'1.0-2'}} <br>
-        <span class="text-xs text-blue-400 mt-1">{{salesOverview.data.total_revenue_percentage}}% from yesterday</span>
+          ₦{{salesOverview?.data.total_revenue | number:'1.0-2'}} <br>
+        <span class="text-xs text-blue-400 mt-1">{{salesOverview?.data.total_revenue_percentage}}% from yesterday</span>
         </div>
         <div *ngIf="laoding" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
@@ -16,8 +16,8 @@
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-yellow-600 ">Total Order</div>
         <div *ngIf="!laoding" class="data text-gray-800 text-base font-semibold">
-          {{salesOverview.data.total_orders}} <br>
-          <span class="text-xs text-blue-400 mt-1">{{salesOverview.data.total_orders_percentage}}% from yesterday</span>
+          {{salesOverview?.data.total_orders}} <br>
+          <span class="text-xs text-blue-400 mt-1">{{salesOverview?.data.total_orders_percentage}}% from yesterday</span>
         </div>
         <div *ngIf="laoding" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
@@ -27,8 +27,8 @@
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-purple-600 ">Product Sold</div>
         <div *ngIf="!laoding" class="data text-gray-800 text-base font-semibold">
-          {{salesOverview.data.products_sold}} <br>
-          <span class="text-xs text-blue-400 mt-1">{{salesOverview.data.products_sold_percentage}}% from yesterday</span>
+          {{salesOverview?.data.products_sold}} <br>
+          <span class="text-xs text-blue-400 mt-1">{{salesOverview?.data.products_sold_percentage}}% from yesterday</span>
         </div>
         <div *ngIf="laoding" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
@@ -38,8 +38,8 @@
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-primary ">Customers</div>
         <div *ngIf="!laoding" class="data text-gray-800 text-base font-semibold">
-          {{salesOverview.data.total_customers}} <br>
-          <span class="text-xs text-blue-400 mt-1">{{salesOverview.data.total_customers_percentage}}% from yesterday</span>
+          {{salesOverview?.data.total_customers}} <br>
+          <span class="text-xs text-blue-400 mt-1">{{salesOverview?.data.total_customers_percentage}}% from yesterday</span>
         </div>
         <div *ngIf="laoding" class="data text-gray-800 text-base font-semibold">
           <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
@@ -50,7 +50,7 @@
 
 
    <!-- graph section -->
-   <div class="graph-section flex w-full  gap-8  mt-8">
+   <div class="graph-section flex flex-col md:flex-col lg:flex-row w-full  gap-8  mt-8">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
       <div class="graph-heading flex justify-between basis-1/2">
         <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
@@ -88,15 +88,25 @@
       </div>
 
       <div class="graph-body basis-1/2">
-        <p-chart type="line" [data]="data" [options]="options" />
+        <div *ngIf="chartData?.length > 0 && !laoding">
+          <p-chart type="line" [data]="data" [options]="options" />
+        </div>
+
+        <div *ngIf="chartData?.length <=0 && laoding" class="w-full flex justify-center items-center h-[50vh]">
+        <app-spinner></app-spinner>
+      </div>
+
+      <div *ngIf="chartData?.data?.length<=0 && !laoding ">
+        <app-empty-list></app-empty-list>
+       </div>
       </div>
     </div>
 
-    <div class="event-section p-4  bg-white basis-[35%]">
+    <div class="event-section p-4 f-full min-h-[50vh] bg-white basis-[35%]">
       <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
 
-      <div class="flex flex-col gap-4">
-        <ng-container *ngFor="let event of events.data">
+      <div *ngIf="events?.length >0 && eventsLoading" class="flex flex-col gap-4">
+        <ng-container *ngFor="let event of events?.data">
           <div class="event mt-4 flex gap-2">
             <div class="date flex flex-col items-center max-w-[50px] ">
               <span class="text-gray-500">{{event.delivery_date | date}}</span>
@@ -122,6 +132,14 @@
           </div>
         </ng-container>
       </div>
+
+      <div *ngIf="events?.length <=0 && eventsLoading" class="w-full flex justify-center items-center h-[50vh]">
+        <app-spinner></app-spinner>
+      </div>
+
+      <div *ngIf="events?.data?.length<=0 && !eventsLoading ">
+        <app-empty-list></app-empty-list>
+       </div>
 
       <div class="text-primary flex gap-2 w-full justify-center items-center mt-8 cursor-pointer active:scale-95">
         See All
@@ -203,7 +221,7 @@
         </thead>
 
         <tbody class="divide-y divide-gray-200">
-          <ng-container *ngFor="let item of topSellingStock.data">
+          <ng-container *ngFor="let item of topSellingStock?.data">
             <tr>
               <td class="size-px  px-6 py-3">
                   <p class="text-sm text-gray-500">{{item.name}}</p>

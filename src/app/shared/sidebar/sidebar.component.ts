@@ -141,11 +141,14 @@ export class SidebarComponent {
     this.router.navigate([page]);
     console.log('url', this.url)
     console.log('page', page)
+
   }
 
   toggleDropdown(id:any){
     this.currentId = id;
     this.dropdown =!this.dropdown;
+    console.log(this.dropdown)
+    console.log(this.currentId)
   }
 
   toggleSubmenu(menu:string){

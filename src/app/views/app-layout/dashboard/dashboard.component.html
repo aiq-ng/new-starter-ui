@@ -67,7 +67,7 @@
   </div>
 
   <!-- graph section -->
-  <div class="graph-section flex w-full  gap-8  mt-8">
+  <div class="graph-section flex flex-col md:flex-col lg:flex-row w-full h-full overflow-y-auto gap-8  mt-8">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
       <div class="graph-heading flex justify-between basis-1/2">
         <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
@@ -104,16 +104,20 @@
 
       </div>
 
-      <div class="graph-body basis-1/2">
+      <div *ngIf="chartData?.length >0 && !pageLoading" class="graph-body basis-1/2">
         <p-chart type="line" [data]="data" [options]="options" />
+      </div>
+
+      <div *ngIf="chartData?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+        <app-spinner></app-spinner>
       </div>
     </div>
 
-    <div class="event-section p-4  bg-white basis-[35%]">
+    <div class="event-section p-4 h-full bg-white min-h-[50vh] basis-[35%]">
       <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
 
       <div class="flex flex-col gap-4">
-        <ng-container *ngFor="let event of events.data">
+        <ng-container *ngFor="let event of events?.data">
           <div class="event mt-4 flex gap-2">
             <div class="date flex flex-col items-center max-w-[50px] ">
               <span class="text-gray-500">{{event.delivery_date | date}}</span>
@@ -140,6 +144,14 @@
         </ng-container>
       </div>
 
+      <div *ngIf="events?.length <=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+        <app-spinner></app-spinner>
+      </div>
+
+      <div *ngIf="events?.data?.length<=0 && !pageLoading ">
+        <app-empty-list></app-empty-list>
+       </div>
+
       <div class="text-primary flex gap-2 w-full justify-center items-center mt-8 cursor-pointer active:scale-95">
         See All
         <span>
@@ -156,7 +168,7 @@
 
 
   <!-- stocks section -->
-   <div class="stocke-section mt-8 w-full flex gap-8 ">
+   <div class="stocke-section mt-8 w-full flex flex-col md:flex-col lg:flex-row gap-8 ">
     <div class="top-selling bg-white p-4 rounded-md basis-[60%] h-[60vh] overflow-y-auto">
       <div class="heading flex justify-between items-center">
         <div class="title text-lg capitalize text-gray-800">Top Selling</div>
@@ -205,6 +217,7 @@
         <tbody class="divide-y divide-gray-200 w-full">
           <ng-container *ngFor="let stock of TopSellingProduct.data">
             <tr>
+              <!-- <tr (click)="route('/app/prochurement/items/' + stock.id)"> -->
               <td class="size-px px-6 py-3">
                 <p class="text-sm text-gray-500">{{stock.item_name}}</p>
               </td>
@@ -252,7 +265,7 @@
 
       <div class="flex flex-col gap-4 h-full overflow-y-auto">
         <ng-container *ngFor="let stock of lowQuantityStock.data">
-          <div class="low-items flex gap-4 items-center w-full mt-4">
+          <div (click)="route('/app/prochurement/items/' + stock.id)" class="low-items flex gap-4 items-center w-full mt-4">
             <div class="image">
               <img src={{stock.media[0]}} class="w-12 h-12 object-contain" alt="">
             </div>

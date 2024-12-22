@@ -17,19 +17,38 @@ export class OverviewComponent {
   tabMenu = ['Expenses','Bills']
 
 
-  tableHeader = ['Name', 'BuyingPrice', 'Quantity', 'Threshold Value', 'Expiry Date', 'SKU', 'Availability']
+  tableView: any = 'expenses';
+  pageLoading: boolean = false;
+  tableData: any;
+  billsData: any;
+  tableHeader = [
+    "expense Id",
+    "date",
+    "Payment Method",
+    "Category",
+    "Department",
+    "Amount",
+  ]
+
+  billsTableHeader = [
+    "Ref Id",
+    "Date",
+    "Due Date",
+    "Vendor's Name",
+    "order Number",
+    "Amount",
+    "status",
+
+  ]
+  orderDetail!: boolean;
 
   constructor(private api:HttpServiceService, private messageService:MessageService){}
 
     ngOnInit() {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
       this.getGraphData()
-
-
+      this.getExpense()
+      this.getBills();
 
     }
 
@@ -54,6 +73,7 @@ export class OverviewComponent {
           this.graphData = res;
           let month = this.getMonth(this.graphData.data)
           let revenue = this.transRevenue(this.graphData.data)
+          let expense = this.transformExpense(this.graphData.data)
           console.log('month', month, 'cashflow', revenue)
 
           this.data = {
@@ -61,13 +81,21 @@ export class OverviewComponent {
             datasets: [
 
                 {
-                    label: 'Cash Flow',
+                    label: 'Revenue',
                     data: revenue,
                     fill: false,
                     borderColor: documentStyle.getPropertyValue('--orange-500'),
                     tension: 0.4,
                     backgroundColor: 'rgba(255,167,38,0.2)'
-                }
+                },
+                {
+                  label: 'Expenses',
+                  data: expense,
+                  fill: false,
+                  borderColor: documentStyle.getPropertyValue('--green-500'),
+                  tension: 0.4,
+                  backgroundColor: 'rgba(255,167,38,0.2)'
+              }
             ]
         };
 
@@ -124,7 +152,7 @@ export class OverviewComponent {
 
     transformExpense(data:any){
       console.log('expense transform', data)
-      return data.map((item: any) => item.revenue)
+      return data.map((item: any) => item.expenses)
     }
 
     transformMonth(month: number): string {
@@ -135,6 +163,52 @@ export class OverviewComponent {
 
       // Return the corresponding month name or a fallback
       return monthNames[month - 1] || 'INVALID MONTH';
+    }
+
+    filterInventory(value:any){
+      console.log(value.toLowerCase())
+      if(value.toLowerCase()=='expenses'){
+        this.tableView = 'expenses';
+      }else if(value.toLowerCase()=='bills'){
+        this.tableView = 'bills'
+      }else {
+        this.tableView = 'expenses'
+      }
+    }
+
+    getExpense(){
+      this.pageLoading= true;
+      return this.api.get(`accounting/expenses?page=1&page_size=10`).subscribe(
+        res =>{
+          let response:any = res
+          this.tableData = response.data
+          this.pageLoading=false;
+        }, err=>{
+          console.log(err)
+          this.pageLoading=false;
+        }
+      )
+
+    }
+
+    toggleOrderDetail(id:any){
+      this.orderDetail = !this.orderDetail;
+    }
+
+    getBills(){
+      this.pageLoading= true;
+      return this.api.get(`accounting/bills?page=1&page_size=10&start_date=2022-01-01`).subscribe(
+        res =>{
+          let response:any = res
+          this.billsData = response.data
+          console.log(this.billsData)
+          this.pageLoading=false;
+        }, err=>{
+          console.log(err)
+          this.pageLoading=false;
+        }
+      )
+
     }
 
 }

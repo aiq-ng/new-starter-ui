@@ -154,7 +154,8 @@
 
       <div class="flex flex-col gap-4 h-[50vh] overflow-y-auto">
         <ng-container *ngFor="let stock of lowQuantityStock.data">
-          <div class="low-items flex gap-4 items-center w-full mt-4">
+            <tr (click)="route('/app/prochurement/items/' + stock.id)">
+              <div  class="low-items flex gap-4 items-center w-full mt-4">
             <div class="image">
               <img src={{stock.media[0]}} class="w-12 h-12 object-contain" alt="">
             </div>

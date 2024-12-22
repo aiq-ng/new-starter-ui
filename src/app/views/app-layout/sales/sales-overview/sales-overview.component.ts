@@ -13,9 +13,11 @@ export class SalesOverviewComponent {
   purchaseLoading:boolean = false;
   vendorLoading:boolean = false;
   topSellingStock:any;
-  events:any;
+  events:any = [];
+  eventsLoading:boolean = false;
   data: any;
   options: any=null;
+  chartData:any;
   graphFilter:any;
   currentFilter:any = 'year';
 
@@ -55,6 +57,7 @@ export class SalesOverviewComponent {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         let revenueData:any = res;
+        this.chartData = revenueData;
         let period = this.getPeriod(revenueData.data, this.currentFilter)
         let revenue = this.transCashFlow(revenueData.data)
         console.log('month', period, 'cashflow', revenue)
@@ -168,10 +171,14 @@ export class SalesOverviewComponent {
 
   }
 
+
   getEvents(){
+    this.eventsLoading = true;
     this.api.get('sales/upcoming-events?page=1&page_size=2').subscribe(
       res=>{
         this.events = res;
+        this.eventsLoading = false;
+
         console.log(this.events)
       },
       err=>{
