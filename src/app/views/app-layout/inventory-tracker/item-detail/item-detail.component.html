@@ -24,7 +24,7 @@
 
       <div class=" mt-12 bg-white py-4 px-4">
 
-        <div class="title text-xl text-gray-800 font-medium">{{itemDetail?.item_name}}</div>
+        <div class="title text-xl text-gray-800 font-medium">{{itemDetail?.name}}</div>
 
       <app-tab-menu [navigation]="tabMenu" (tabAction)="navigate($event)"></app-tab-menu>
 
@@ -34,14 +34,14 @@
             <div class="details flex flex-col gap-8 mt-6 w-full ">
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Item name</p>
-                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.item_name}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.name}}</p>
                     <p *ngIf="pageLoading" class="text-gray-800 ">
                       <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
                     </p>
                 </div>
                 <div class="flex justify-between max-w-[350px]">
                     <p class="text-gray-600 text-sm">Item ID</p>
-                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.item_id}}</p>
+                    <p *ngIf="!pageLoading" class="text-gray-800 ">{{itemDetail?.id}}</p>
                     <p *ngIf="pageLoading" class="text-gray-800 ">
                       <i class="pi pi-spin pi-spinner" style="font-size: 1.25rem"></i>
                     </p>
