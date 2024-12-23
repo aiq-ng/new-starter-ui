@@ -2,11 +2,13 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { HttpServiceService } from '../../services/http-service.service';
 import { StorageService } from '../../services/storage.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  providers: [MessageService]  // Import MessageService to use it in the component
 })
 export class HeaderComponent {
 
@@ -45,7 +47,12 @@ export class HeaderComponent {
       }
     ]
 
-  constructor(private router: Router, private api:HttpServiceService, private storage:StorageService){}
+  constructor(
+              private router: Router,
+              private api:HttpServiceService,
+              private storage:StorageService,
+              private messageService:MessageService
+            ){}
 
   ngOnInit() {
     this.getUser()
@@ -57,6 +64,16 @@ export class HeaderComponent {
 
   showDropDown(){
     this.dropDown = !this.dropDown
+  }
+
+  logout(){
+    this.api.get('auth/logout').subscribe(
+      res=>{
+        this.showSuccess('logged out successfully!')
+      }, err=>{
+        this.showError('error logging out, Please try again')
+      }
+    )
   }
 
   getUser(){
@@ -73,4 +90,15 @@ export class HeaderComponent {
     console.log('show mobile menu');
     this.showMobileMenu =!this.showMobileMenu;
   }
+
+  showSuccess(message: string) {
+    console.log('showSuccess')
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+  }
+
+  showError(message: string) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+  }
+
+
 }

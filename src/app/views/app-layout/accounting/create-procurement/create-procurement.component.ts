@@ -42,6 +42,10 @@ export class CreateProcurementComponent {
     this.getVendors()
   }
 
+  goBack(){
+    window.history.back();
+  }
+
   getDepartment(){
     this.pageLoading = true;
     this.api.get('departments').subscribe(
