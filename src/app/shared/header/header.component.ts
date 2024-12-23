@@ -70,6 +70,7 @@ export class HeaderComponent {
     this.api.get('auth/logout').subscribe(
       res=>{
         this.showSuccess('logged out successfully!')
+        this.route('/auth/login')
       }, err=>{
         this.showError('error logging out, Please try again')
       }

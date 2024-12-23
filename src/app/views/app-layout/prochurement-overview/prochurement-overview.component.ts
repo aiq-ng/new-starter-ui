@@ -36,7 +36,7 @@ export class ProchurementOverviewComponent {
 
     this.getLowQuantityStock()
     this.getMostPurchasedProduct()
-    this.getTopVendors()
+    this.getTopVendors(1)
     this.getOverallInventory()
   }
 
@@ -48,9 +48,9 @@ export class ProchurementOverviewComponent {
     this.location.back();
   }
 
-  getTopVendors(){
+  getTopVendors(page:any){
     this.vendorLoading = true;
-    this.api.get('vendors?page=1&page_size=5&sort_by=total_transaction&sort_order=desc&status=').subscribe(
+    this.api.get(`vendors?page=${page}&page_size=5&sort_by=total_transaction&sort_order=desc&status=`).subscribe(
       res=>{
         this.vendors = res;
         console.log(this.lowQuantityStock)
@@ -62,6 +62,11 @@ export class ProchurementOverviewComponent {
       }
     )
 
+  }
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getTopVendors(page)
   }
 
   getMostPurchasedProduct(){

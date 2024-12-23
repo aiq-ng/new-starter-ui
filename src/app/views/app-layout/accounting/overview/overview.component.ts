@@ -84,7 +84,7 @@ export class OverviewComponent {
                     label: 'Revenue',
                     data: revenue,
                     fill: false,
-                    borderColor: documentStyle.getPropertyValue('--orange-500'),
+                    borderColor: documentStyle.getPropertyValue('--green-500'),
                     tension: 0.4,
                     backgroundColor: 'rgba(255,167,38,0.2)'
                 },
@@ -92,7 +92,7 @@ export class OverviewComponent {
                   label: 'Expenses',
                   data: expense,
                   fill: false,
-                  borderColor: documentStyle.getPropertyValue('--green-500'),
+                  borderColor: documentStyle.getPropertyValue('--orange-500'),
                   tension: 0.4,
                   backgroundColor: 'rgba(255,167,38,0.2)'
               }

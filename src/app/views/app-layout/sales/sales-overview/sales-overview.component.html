@@ -1,6 +1,6 @@
 <div class="section">
   <div class="metrics flex flex-col gap-6 bg-white rounded-lg border p-4">
-    <div class="title text-sm">Todays Order</div>
+    <div class="title text-sm font-semibold">Todays Order</div>
     <div class="data text-sm flex flex-col md:flex-col lg:flex-row justify-between">
       <div class="category w-full px-4 flex flex-col gap-4 border-r-2 ">
         <div class="label text-blue-600 ">Total Revenue</div>
@@ -53,7 +53,7 @@
    <div class="graph-section flex flex-col md:flex-col lg:flex-row w-full  gap-8  mt-8">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
       <div class="graph-heading flex justify-between basis-1/2">
-        <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
+        <div class="title flex items-center capitalize gap-2 text-xl font-semibold text-gray-800">
           Cash Flow
           <span>
           <img src="/assets/icons/question.png" class="object-fill" alt="">
@@ -103,7 +103,7 @@
     </div>
 
     <div class="event-section p-4 f-full min-h-[50vh] bg-white basis-[35%]">
-      <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
+      <div class="title text-xl font-semibold apitalize text-gray-800">Upcoming Events</div>
 
       <div *ngIf="!eventsLoading" class="flex flex-col gap-4">
         <ng-container *ngFor="let event of events?.data">
@@ -160,7 +160,7 @@
   <div class="stocke-section mt-8 w-full flex gap-8 ">
     <div class="top-selling bg-white p-4 text-sm max-h-[60vh] overflow-y-auto rounded-md basis-[100%]">
       <div class="heading flex justify-between items-center">
-        <div class="title text-base font-bold capitalize text-gray-800">Top Selling Stock</div>
+        <div class="title text-xl font-semibold capitalize text-gray-800">Top Selling Stock</div>
 
         <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
           <div class="hs-dropdown text-sm [--strategy:absolute] [--flip:false] hs-dropdown-example relative inline-flex">

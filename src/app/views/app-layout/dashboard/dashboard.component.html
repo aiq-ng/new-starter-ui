@@ -70,7 +70,7 @@
   <div class="graph-section flex flex-col md:flex-col lg:flex-row w-full h-full overflow-y-auto gap-8  mt-8">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[65%]">
       <div class="graph-heading flex justify-between basis-1/2">
-        <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
+        <div class="title flex items-center capitalize gap-2 text-xl font-semibold text-gray-800">
           Cash Flow
           <span>
           <img src="/assets/icons/question.png" class="object-fill" alt="">
@@ -114,7 +114,7 @@
     </div>
 
     <div class="event-section p-4 h-full bg-white min-h-[50vh] basis-[35%]">
-      <div class="title text-lg capitalize text-gray-800">Upcoming Events</div>
+      <div class="title text-xl font-semibold capitalize text-gray-800">Upcoming Events</div>
 
       <div class="flex flex-col gap-4">
         <ng-container *ngFor="let event of events?.data">
@@ -171,15 +171,15 @@
    <div class="stocke-section mt-8 w-full flex flex-col md:flex-col lg:flex-row gap-8 ">
     <div class="top-selling bg-white p-4 rounded-md basis-[60%] h-[60vh] overflow-y-auto">
       <div class="heading flex justify-between items-center">
-        <div class="title text-lg capitalize text-gray-800">Top Selling</div>
+        <div class="title text-xl font-semibold capitalize text-gray-800">Top Selling</div>
 
-        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
-          <!-- See All
+        <div (click)="route('app/prochurement/inventory')" class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
+          See All
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
             </svg>
-          </span> -->
+          </span>
         </div>
       </div>
 
@@ -251,15 +251,15 @@
 
     <div class="out-of-stock bg-white p-4 rounded-md basis-[40%] h-[60vh]">
       <div class="heading heading flex justify-between items-center">
-        <div class="title text-lg capitalize text-gray-800">Low Quality Stock</div>
+        <div class="title text-xl font-semibold capitalize text-gray-800">Low Quality Stock</div>
 
-        <div class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
-          <!-- See All
+        <div (click)="route('app/prochurement/inventory')" class="text-primary flex gap-2 text-sm cursor-pointer active:scale-95">
+          See All
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
             </svg>
-          </span> -->
+          </span>
         </div>
       </div>
 

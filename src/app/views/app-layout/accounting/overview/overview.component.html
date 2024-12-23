@@ -1,6 +1,6 @@
 <div class="section">
   <div class="heading-section flex items-center justify-between">
-    <div class="title text-2xl text-gray-800">Overview</div>
+    <div class="title text-2xl font-bold text-gray-800">Overview</div>
 
     <div class="hs-dropdown [--strategy:absolute] [--flip:false] hs-dropdown-example relative inline-flex">
       <button (click)="toggleCalender()" id="hs-dropdown-example" type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
@@ -32,7 +32,7 @@
    <div class="graph-section flex w-full flex-col-reverse md:flex-col-reverse lg:flex-row  mt-8 bg-white">
     <div class="graph bg-white shadow-sm rounded-md p-4 basis-[75%]">
       <div class="graph-heading flex justify-between basis-1/2">
-        <div class="title flex items-center capitalize gap-2 text-lg text-gray-800">
+        <div class="title flex items-center capitalize gap-2 text-xl font-semibold text-gray-800">
           Cash Flow
           <span>
           <img src="/assets/icons/question.png" class="object-fill" alt="">
@@ -60,13 +60,13 @@
         <div class="metric flex flex-col gap-1">
           <!-- <div class="label  text-gray-500">Cash at hand</div> -->
           <div class="label  text-gray-500">Total Expense</div>
-          <div class="data text-xl text-green-600">₦{{graphData?.meta.total_expenses | number}}</div>
+          <div class="data text-xl text-red-600 ">₦{{graphData?.meta.total_expenses | number}}</div>
         </div>
 
         <div class="metric flex flex-col gap-1">
           <!-- <div class="label  text-gray-500">Outgoing</div> -->
           <div class="label  text-gray-500">Highest revenue</div>
-          <div class="data text-xl text-red-600">₦{{graphData?.meta.highest_revenue | number}}</div>
+          <div class="data text-xl text-green-600 ">₦{{graphData?.meta.highest_revenue | number}}</div>
         </div>
 
         <div class="metric flex flex-col gap-1">
@@ -90,7 +90,7 @@
   <!-- Table Section -->
   <div class=" mt-12">
 
-    <div class="title">Recent Transaction</div>
+    <div class="title text-xl font-semibold">Recent Transaction</div>
 
     <app-tab-menu [navigation]="tabMenu" (tabAction)="filterInventory($event)"></app-tab-menu>
 
