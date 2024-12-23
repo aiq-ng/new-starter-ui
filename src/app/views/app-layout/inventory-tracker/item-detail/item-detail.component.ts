@@ -208,8 +208,7 @@ navigate(value:any){
   }
 
   editItemToggle(){
-    this.showError('Edit feture coming soon')
-    // this.route('/app/prochurement/edit-item/1');
+    this.route('/app/prochurement/edit-item/'+ this.item_id);
   }
 
 

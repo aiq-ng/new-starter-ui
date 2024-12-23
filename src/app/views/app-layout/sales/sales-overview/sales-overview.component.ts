@@ -47,6 +47,7 @@ export class SalesOverviewComponent {
   }
 
   getRevenue(filter:string){
+    this.laoding = true ;
     this.currentFilter = filter;
     this.api.get(`sales/graph?period=${filter}`).subscribe(
       res=>{
@@ -61,6 +62,7 @@ export class SalesOverviewComponent {
         let period = this.getPeriod(revenueData.data, this.currentFilter)
         let revenue = this.transCashFlow(revenueData.data)
         console.log('month', period, 'cashflow', revenue)
+        this.laoding=false;
 
         this.data = {
           labels: period,

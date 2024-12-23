@@ -93,7 +93,7 @@
 
 
 <div class="bg-white px-6 py-6 mt-8 flex gap-4">
-  <button class="px-4 py-2 border active:bg-primary/85 rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
+  <button (click)="goBack()" class="px-4 py-2 border active:bg-primary/85 rounded-md text-gray-500 hover:bg-primary hover:text-white ">Cancel</button>
   <button (click)="savePriceList()" type="submit" class="px-4 py-2 border active:bg-primary/85 rounded-md hover:bg-secondary  bg-primary text-white">
     <span *ngIf="!loading">Continue</span>
     <span class="w-full flex justify-center items-center gap-2" *ngIf="loading">

@@ -1,5 +1,16 @@
 
 <p-toast/>
+
+<div (click)="goBack()" class="mb-2 px-2 cursor-pointer hover:text-primary hover:bg-primary/45 py-2 rounded-md text-sm max-w-[100px] flex items-center gap-2">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </span>
+  <span class="text-gray-500 hover:text-primary font-normal">Back</span>
+</div>
+
+
 <!-- create product modal -->
 <div>
   <div class="h-full w-full max-w-[1000px] flex flex-col mt-0 md:mt-0 lg:mt-[60px]  mb-[60px]  bg-white border shadow-sm rounded-xl pointer-events-auto">
@@ -12,46 +23,46 @@
         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button> -->
     </div>
-  
-    <form [formGroup]="createProductForm" class="bg-gray-50" (ngSubmit)="save()">
+
+    <form [formGroup]="productDetailForm" class="bg-gray-50" (ngSubmit)="update()">
       <div class="p-4 overflow-y-auto">
-  
+
         <div>
           <div class="section-title font-bold ">Basic information</div>
-  
+
           <div>
             <!-- Basic information -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 border-b py-2 pb-8">
-  
-  
+
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Item Name
                 <span class="text-red-500">*</span>
               </label>
-              <input formControlName="productName" type="text" [ngClass]="{'border-red-400': isSubmitted && f.productName.errors}" class="block w-full border px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Product Name">
+              <input formControlName="name" type="text" [ngClass]="{'border-red-400': isSubmitted && f.name.errors}" class="block w-full border px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Product Name">
             </div>
-  
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Department
                 <span class="text-red-500">*</span>
               </label>
-              <select [ngClass]="{'border-red-400': isSubmitted && f.warehouse.errors}" formControlName="warehouse" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+              <select [ngClass]="{'border-red-400': isSubmitted && f.department_id.errors}" formControlName="department_id" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
                 <option value="">Select Department</option>
                 <!-- dynamically fetched categories -->
-                <ng-container *ngFor="let department of departments">
+                <ng-container *ngFor="let department of departments?.data">
                   <option value={{department.id}} >{{department.name}}</option>
                 </ng-container>
               </select>
             </div>
-  
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Item Category
                 <span class="text-red-500">*</span>
               </label>
-              <select formControlName="vendor" [ngClass]="{'border-red-400': isSubmitted && f.vendor.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+              <select formControlName="category_id" [ngClass]="{'border-red-400': isSubmitted && f.category_id.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
                 <option value="">Select Category</option>
                 <!-- dynamically fetched categories -->
                  <ng-container *ngFor="let category of categories?.data">
@@ -59,29 +70,29 @@
                  </ng-container>
               </select>
             </div>
-  
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Date recieved
               </label>
-              <p class="text-red-700 mt-2 text-sm" *ngIf="isSubmitted && f.code.errors " >field required </p>
-              <input formControlName="code" [ngClass]="{'border-red-400': isSubmitted && f.code.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="date" id="birthday" name="birthday">
+              <!-- <p class="text-red-700 mt-2 text-sm" *ngIf="isSubmitted && f.date_recieved.errors " >field required </p> -->
+              <input formControlName="date_recieved" [ngClass]="{'border-red-400': isSubmitted && f.date_recieved.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="date" id="birthday" name="birthday">
             </div>
-  
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Expiry date
                 <span class="text-red-500">*</span>
               </label>
-              <input formControlName="code" [ngClass]="{'border-red-400': isSubmitted && f.code.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="date" id="birthday" name="birthday">
+              <input formControlName="expiry_date" [ngClass]="{'border-red-400': isSubmitted && f.expiry_date.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="date" id="birthday" name="birthday">
             </div>
-  
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Brand/Manufacturer
                 <span class="text-red-500">*</span>
               </label>
-              <select formControlName="vendor" [ngClass]="{'border-red-400': isSubmitted && f.vendor.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+              <select formControlName="manufacturer_id" [ngClass]="{'border-red-400': isSubmitted && f.manufacturer_id.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
                 <option value="">Select manufacturer</option>
                 <!-- dynamically fetched categories -->
                  <ng-container *ngFor="let manufacturer of manufacturers?.data">
@@ -89,21 +100,38 @@
                  </ng-container>
               </select>
             </div>
-  
-  
+
+            <div>
+              <label class="block text-gray-600 text-sm font-medium">
+                Description
+                <span class="text-red-500">*</span>
+              </label>
+              <textarea formControlName="description" [ngClass]="{'border-red-400': isSubmitted && f.description.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="text" id="birthday" name="birthday"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-gray-600 text-sm font-medium">
+                Price
+                <span class="text-red-500">*</span>
+              </label>
+              <input formControlName="price" [ngClass]="{'border-red-400': isSubmitted && f.price.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" type="number" id="birthday" name="birthday">
+            </div>
+
+
+
           </div>
         </div>
-  
+
         <!-- Upload Media section -->
         <div class="py-4 mt-4 border-b pb-8">
           <div class="section-title font-bold">Media  <span class="text-sm">(Images, video)</span></div>
-  
+
           <div class="mt-4 flex gap-4">
             <div [ngClass]="{'border-red-400': isSubmitted && f.image.errors}" class="p-6 h-[100px] w-[150px] border border-dashed ">
               <img *ngIf="!imageSrc" src="assets/images/image.png" alt="">
               <img *ngIf="imageSrc" src={{imageSrc}} class="h-[60px]" alt="">
             </div>
-  
+
             <label  for="productImage" class="p-4 w-[120px] border border-dashed flex items-center justify-center">
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -112,18 +140,18 @@
               </span>
             </label>
           </div>
-  
+
           <input formControlName="image" id="productImage" type="file"  (change)="onFileSelected($event)" class="hidden">
-  
+
         </div>
-  
+
         <!-- Inventory section -->
         <div class="py-4">
           <div class="section-title font-bold">Inventory</div>
-  
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-2 pb-4">
-  
-  
+
+
             <div>
               <label class="block text-gray-600 text-sm font-medium">
                 Quantity
@@ -131,15 +159,15 @@
               </label>
                 <input formControlName="quantity" [ngClass]="{'border-red-400': isSubmitted && f.quantity.errors}" type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Quantity">
             </div>
-  
+
             <div>
-  
+
               <div>
                 <label class="block text-gray-600 text-sm font-medium">
                   Unit
                   <span class="text-red-500">*</span>
                 </label>
-                <select formControlName="unit" [ngClass]="{'border-red-400': isSubmitted && f.image.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
+                <select formControlName="unit_id" [ngClass]="{'border-red-400': isSubmitted && f.unit_id.errors}" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm">
                   <option value="">Select Unit</option>
                   <!-- dynamically fetched categories -->
                    <ng-container *ngFor="let unit of units?.data">
@@ -147,7 +175,7 @@
                    </ng-container>
                 </select>
               </div>
-  
+
             </div>
 
             <div>
@@ -155,26 +183,31 @@
                 Threshold value
                 <span class="text-red-500">*</span>
               </label>
-                <input formControlName="quantity" [ngClass]="{'border-red-400': isSubmitted && f.quantity.errors}" type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Quantity">
+                <input formControlName="threshold_value" [ngClass]="{'border-red-400': isSubmitted && f.threshold_value.errors}" type="number" class="block border w-full px-3 py-2 bg-gray-100 focus:outline-none focus:ring-black-500 focus:border-black-500 sm:text-sm" placeholder="Enter Quantity">
             </div>
-  
+
           </div>
-  
+
         </div>
           </div>
-  
-  
-  
-  
+
+
+
+
       </div>
-  
+
       <div class=" flex w-full justify-end  items-center gap-x-2 py-4 px-4 border-t">
-  
+
         <div>
-          <p-button class="py-3 rounded-md px-4 border text-gray-500 text-sm" label="Discard" ></p-button>
+          <button (click)="goBack()" class="py-3 rounded-md px-4 border text-gray-500 text-sm" >Discard</button>
         </div>
         <button type="submit" >
-          <p-button class="py-3 rounded-md px-4 bg-primary text-white text-sm" [loading]="loading"  label="Update Item" ></p-button>
+          <button class="py-3 rounded-md px-4 bg-primary text-white text-sm">
+            <span *ngIf="!loading">Add Item</span>
+            <span class="w-full flex justify-center items-center gap-2" *ngIf="loading">
+              <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i> Add Item
+            </span>
+          </button>
         </button>
       </div>
     </form>
