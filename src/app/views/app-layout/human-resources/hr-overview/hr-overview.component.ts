@@ -54,18 +54,22 @@ export class HrOverviewComponent {
 
 
   ngOnInit(){
-
     this.getMetrics()
     this.getDepartments();
-    this.getEmployess('')
+    this.getEmployess('', 1)
+  }
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getEmployess('', page);
   }
 
   filterEmployees(value:any){
     console.log(value)
     if(value=='All'){
-      this.getEmployess('')
+      this.getEmployess('', 1)
     }else {
-      this.getEmployess(value)
+      this.getEmployess(value, 1)
     }
   }
 
@@ -106,6 +110,7 @@ export class HrOverviewComponent {
          let response:any = res;
         for(let department of response.data){
           this.tabMenu.push(department.name)
+          this.loading = false;
         }
       },
       err=>{
@@ -115,20 +120,17 @@ export class HrOverviewComponent {
     )
   }
 
-  getEmployess(filterValue:string){
+  getEmployess(filterValue:string, page:any){
     this.pageLoading = true;
-    this.api.get('human-resources/employees?page=1&page_size=10&department=' + filterValue).subscribe(
+    this.api.get(`human-resources/employees?page=${page}&page_size=10&department=` + filterValue).subscribe(
       res =>{
         this.employees = res
-        this.employees = this.employees.data
+        this.employees = this.employees
         console.log('employess', this.employees)
         this.pageLoading = false;
       }
     )
   }
-
-
-
 
   showSuccess(message: string) {
     console.log('showSuccess')

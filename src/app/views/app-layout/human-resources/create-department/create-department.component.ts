@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-department',
@@ -21,7 +22,10 @@ export class CreateDepartmentComponent {
   salarytype:any;
   roles:any;
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
+  constructor(private fb:FormBuilder,
+              private api:HttpServiceService,
+              private messageService: MessageService,
+              private router:Router){}
 
 
   ngOnInit(){
@@ -79,6 +83,7 @@ export class CreateDepartmentComponent {
         this.isSubmitted =false;
         this.createDepartmentForm.reset();
         this.loading=false;
+        this.router.navigate(['/app/human-resources'])
       },
       err=>{
         console.log(err)

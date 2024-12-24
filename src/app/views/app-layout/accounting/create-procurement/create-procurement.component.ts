@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-procurement',
@@ -19,7 +20,10 @@ export class CreateProcurementComponent {
   loading:boolean = false;
   isSubmitted:boolean = false;
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
+  constructor(private fb:FormBuilder,
+              private api:HttpServiceService,
+              private messageService: MessageService,
+              private router:Router){}
 
 
   ngOnInit(){
@@ -118,6 +122,8 @@ export class CreateProcurementComponent {
         this.showSuccess('Expense saved successfully')
         this.createExpenseForm.reset();
         this.isSubmitted=false;
+        this.router.navigate(['/app/accounting/prochurement'])
+
       },
       err=>{
         this.loading = false;

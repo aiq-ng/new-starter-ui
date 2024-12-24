@@ -47,8 +47,8 @@ export class OverviewComponent {
     ngOnInit() {
 
       this.getGraphData()
-      this.getExpense()
-      this.getBills();
+      this.getExpense(1)
+      this.getBills(1);
 
     }
 
@@ -139,6 +139,15 @@ export class OverviewComponent {
 
     }
 
+    paginate(page:any){
+      console.log('page', page)
+      if(this.tableView=='expenses'){
+        this.getExpense(page);
+      }
+      if(this.tableView=='bills'){
+        this.getBills(page);
+      }
+    }
     getMonth(data: any[]): string[] {
       const months = data.map((item: any) => this.transformMonth(item.month));
 
@@ -176,12 +185,12 @@ export class OverviewComponent {
       }
     }
 
-    getExpense(){
+    getExpense(page:any){
       this.pageLoading= true;
-      return this.api.get(`accounting/expenses?page=1&page_size=10`).subscribe(
+      return this.api.get(`accounting/expenses?page=${page}&page_size=10`).subscribe(
         res =>{
           let response:any = res
-          this.tableData = response.data
+          this.tableData = response
           this.pageLoading=false;
         }, err=>{
           console.log(err)
@@ -195,9 +204,9 @@ export class OverviewComponent {
       this.orderDetail = !this.orderDetail;
     }
 
-    getBills(){
+    getBills(page:any){
       this.pageLoading= true;
-      return this.api.get(`accounting/bills?page=1&page_size=10&start_date=2022-01-01`).subscribe(
+      return this.api.get(`accounting/bills?page=${page}&page_size=10&start_date=2022-01-01`).subscribe(
         res =>{
           let response:any = res
           this.billsData = response.data

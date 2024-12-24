@@ -47,7 +47,12 @@ export class PurchasesComponent {
 
   ngOnInit(){
     console.log('purchaseService')
-    this.getPurchases('')
+    this.getPurchases('', 1)
+  }
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getPurchases('', page);
   }
 
   goBack(): void {
@@ -57,9 +62,9 @@ export class PurchasesComponent {
   filterPurchases(value:any){
     console.log(value.toLowerCase())
     if(value=='All'){
-      this.getPurchases('')
+      this.getPurchases('', 1)
     }else {
-      this.getPurchases(value.toLowerCase())
+      this.getPurchases(value.toLowerCase(), 1)
     }
   }
 
@@ -68,10 +73,10 @@ export class PurchasesComponent {
   }
 
 
-  getPurchases(filterValue: string){
+  getPurchases(filterValue: string, page:any){
     this.pageLoading=true;
     console.log(this.pageLoading)
-    this.api.get(`purchases/orders?status=${filterValue}&start_date=2024-11-27&end_date`).subscribe(
+    this.api.get(`purchases/orders?status=&start_date=&end_date&page=${page}&page_size=10`).subscribe(
       res=>{
         this.purchasesData = res;
         this.pageLoading=false;
@@ -157,7 +162,7 @@ tableHeader = [
         console.log(res);
         this.loading = false;
         this.resetForm()
-        this.getPurchases('');
+        this.getPurchases('', 1);
         this.showSuccess('purchase added successfully!')
       },
       err=>{

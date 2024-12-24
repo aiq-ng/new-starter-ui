@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-staff',
@@ -20,7 +21,10 @@ export class CreateStaffComponent {
   nin: any;
   passport:any
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService: MessageService){}
+  constructor(private fb:FormBuilder,
+              private api:HttpServiceService,
+              private messageService: MessageService,
+              private router:Router){}
 
 
   ngOnInit(): void {
@@ -138,6 +142,8 @@ export class CreateStaffComponent {
         this.createEmployeeForm.reset();
         this.loading = false;
         this.isSubmitted = false;
+        this.router.navigate(['/app/human-resources'])
+
       },
       err => {
         console.log(err);

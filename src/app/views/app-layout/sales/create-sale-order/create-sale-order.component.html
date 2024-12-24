@@ -184,7 +184,7 @@
                   <select formControlName="item_id" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary">
                     <option value="">Select Item</option>
                     <ng-container *ngFor="let item of iventoryItems?.data">
-                      <option [value]="item.id">{{ item.name }}</option>
+                      <option [value]="item.id">{{ item.item_category }}</option>
                     </ng-container>
                   </select>
                 </td>
@@ -241,7 +241,7 @@
             <div class="h-full"></div>
 
             <div class="flex flex-col gap-1 ">
-                <label for="" class="text-sm text-gray-500">Vendor Notes</label>
+                <label for="" class="text-sm text-gray-500">Customers Notes</label>
                 <textarea formControlName="customer_note" [ngClass]="{'border-red-400': isSubmitted && f.customer_note.errors}" id="hs-about-contacts-1" name="hs-about-contacts-1" rows="4" class="py-3 bg-white px-4 block w-full min-w-[300px]  border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary disabled:opacity-50 disabled:pointer-events-none"></textarea>
             </div>
         </div>
@@ -265,16 +265,16 @@
             </div>
 
             <div class="mt-12 flex justify-between">
-                <div class="basis-[33%] text-sm text-gray-500">
-                <span>Delivery charges</span>
-                </div>
-                <div class="basis-[33%] text-sm text-gray-500">
-                <input formControlName="delivery_charge" (input)="calculateTotalToPay()" [ngClass]="{'border-red-400': isSubmitted && f.shipping_charge.errors}" type="text" class="border-2 py-1 px-2 rounded-md">
-                </div>
-                <div class="basis-[33%] text-sm text-gray-500 flex justify-end">
-                <span>0.00</span>
-                </div>
-            </div>
+              <div class="basis-[33%] text-sm text-gray-500">
+              <span>Delivery charges</span>
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500">
+              <input formControlName="delivery_charge" (input)="calculateTotalToPay()" [ngClass]="{'border-red-400': isSubmitted && f.discount.errors}" type="text" class="border-2 py-1 px-2 rounded-md">
+              </div>
+              <div class="basis-[33%] text-sm text-gray-500 flex justify-end">
+              <span>0.00</span>
+              </div>
+          </div>
 
 
             <div class="divider w-full my-6 border-b"></div>

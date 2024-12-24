@@ -38,28 +38,33 @@ export class PriceListComponent {
 
       ngOnInit(){
 
-        this.getPriceList('', '')
+        this.getPriceList(1)
 
       }
 
-
-      filterInventory(value:any){
-        console.log(value.toLowerCase())
-        if(value=='All'){
-          this.getPriceList('', '')
-        }else if(value=='Services'){
-          this.getPriceList('', value.toLowerCase())
-        }else {
-          this.getPriceList(value.toLowerCase(), '')
-        }
+      paginate(page:any){
+        console.log('page', page)
+        this.getPriceList(page);
       }
 
-      getPriceList(status:string, order_type:string){
+
+      // filterInventory(value:any){
+      //   console.log(value.toLowerCase())
+      //   if(value=='All'){
+      //     this.getPriceList(1)
+      //   }else if(value=='Services'){
+      //     this.getPriceList('', value.toLowerCase())
+      //   }else {
+      //     this.getPriceList(value.toLowerCase(), '')
+      //   }
+      // }
+
+      getPriceList(page:any){
         this.pageLoading= true;
-        return this.api.get(`sales/price-list`).subscribe(
+        return this.api.get(`sales/price-list?page=${page}&page_size=10`).subscribe(
           res =>{
             let response:any = res
-            this.priceList = response.data
+            this.priceList = response
             console.log(this.priceList)
             this.pageLoading=false;
           }, err=>{

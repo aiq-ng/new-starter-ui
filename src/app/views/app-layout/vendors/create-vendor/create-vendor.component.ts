@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
@@ -22,7 +23,10 @@ export class CreateVendorComponent {
   vendors:any;
   vendoCategories:any;
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService:MessageService) { }
+  constructor(private fb:FormBuilder,
+              private api:HttpServiceService,
+              private messageService:MessageService,
+              private router:Router) { }
 
   ngOnInit(){
     this.createVendorForm = this.fb.group({
@@ -137,6 +141,7 @@ export class CreateVendorComponent {
         this.showSuccess('Vendor added successfully')
         this.isSubmitted = false
         this.loading = false;
+        this.goBack()
       }, err=>{
         console.log(err);
         this.showError('Failed to add vendor ')

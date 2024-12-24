@@ -56,9 +56,14 @@ export class VendorsComponent {
 
 
   ngOnInit(){
-    this.getVendors()
+    this.getVendors(1)
 
 
+  }
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getVendors(page);
   }
 
   toggleAddSale(){
@@ -73,9 +78,9 @@ export class VendorsComponent {
     }
   }
 
-  getVendors(){
+  getVendors(page:any){
     this.pageLoading = true;
-    this.api.get('vendors?page=1&page_size=10&sort_by=total_transaction&sort_order=DESC&status=').subscribe(
+    this.api.get(`vendors?page=${page}&page_size=10&sort_by=total_transaction&sort_order=DESC&status=`).subscribe(
       res=>{
         this.vendors = res;
         this.pageLoading = false;
@@ -110,7 +115,7 @@ export class VendorsComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getVendors()
+        this.getVendors(1)
         this.showSuccess('Sale added successfully');
       },
       err=>{

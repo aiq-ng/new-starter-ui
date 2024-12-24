@@ -108,7 +108,7 @@
             </tr>
           </thead>
           <tbody  class="divide-y divide-gray-200">
-            <ng-container *ngFor="let data of employees">
+            <ng-container *ngFor="let data of employees?.data">
               <tr (click)="route('app/human-resources/employee-profile/' + data.id)" >
                   <td class="w-10 whitespace-nowrap">
                     <div class="ps-2 py-4">
@@ -139,8 +139,8 @@
 
                     <td class="px-2 py-2">
                       <div  class="flex flex-col font-light justify-center gap-x-3 text-sm text-gray-500">
-                        {{data.bank_details.account_number}}
-                          <span class="text-gray-800">{{data.bank_details.bank_name}}</span>
+                        {{data.bank_details?.account_number}}
+                          <span class="text-gray-800">{{data.bank_details?.bank_name}}</span>
                       </div>
                     </td>
 
@@ -150,7 +150,7 @@
                       </div>
                     </td>
 
-                  </tr>
+                </tr>
                 </ng-container>
 
             <!-- <tr *ngFor="let item of tableData">
@@ -161,11 +161,11 @@
         <!-- End Table -->
 
 
-        <div *ngIf="employees?.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
+        <div *ngIf="employees?.data?.length<=0 && pageLoading" class="w-full flex justify-center items-center h-[50vh]">
           <app-spinner></app-spinner>
         </div>
 
-        <div *ngIf="employees?.length<=0 && !pageLoading " class="py-4">
+        <div *ngIf="employees?.data?.length<=0 && !pageLoading " class="py-4">
           <app-empty-list (add)="route('app/human-resources/add-employee')" message="there are no employees added click on the button to add employees" buttonName="Add Employee" buttonIcon="/assets/icons/add.png"></app-empty-list>
          </div>
 
@@ -173,18 +173,18 @@
         <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
           <div>
             <p class="text-sm text-gray-600">
-              <span class="font-semibold text-gray-800">12</span> results
+              <span class="font-semibold text-gray-800">{{employees.meta.total_data}}</span> results
             </p>
           </div>
 
           <div>
             <div class="inline-flex gap-x-2">
-              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+              <button (click)="paginate(employees.meta.previous_page)" type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 Prev
               </button>
 
-              <button type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
+              <button (click)="paginate(employees.meta.next_page)" type="button" class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50">
                 Next
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </button>

@@ -38,10 +38,10 @@
             <label for="vendor" class="w-full  text-sm max-w-[400px]">Branch</label>
             <div class="w-full flex  gap-2  rounded-large mt-6">
                 <select formControlName="branch_id" [ngClass]="{'border-red-400': isSubmitted && f.branch_id.errors}" class="w-full min-w-[300px] px-4 text-sm border py-2  bg-gray-200 outline-none" name="" id="">
-                    <option formControlName="branch_id" value="">Select branch</option>
+                    <option value="">Select branch</option>
 
                     <ng-container *ngFor="let branch of branches?.data">
-                      <option value={{branch.id}} >{{branch.name}}</option>
+                      <option [value]="branch.id" >{{branch.name}}</option>
                     </ng-container>
                 </select>
             </div>
@@ -114,7 +114,7 @@
               <tbody formArrayName="items">
                 <tr class="" *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
                   <td class="py-2">
-                    <select formControlName="item_id" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary">
+                    <select formControlName="id" class="py-2 px-4 block w-full  bg-gray-100 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-primary">
                       <option value="">Select Item</option>
                       <ng-container *ngFor="let item of iventoryItems?.data">
                         <option [value]="item.id">{{ item.name }}</option>

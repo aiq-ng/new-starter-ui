@@ -56,9 +56,14 @@ export class CustomersComponent {
 
 
   ngOnInit(){
-    this.getCustomers()
+    this.getCustomers(1)
 
 
+  }
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getCustomers(page);
   }
 
   toggleAddSale(){
@@ -73,9 +78,9 @@ export class CustomersComponent {
     }
   }
 
-  getCustomers(){
+  getCustomers(page:any){
     this.pageLoading = true;
-    this.api.get('customers?page=1&page_size=10&sort_by=total_transaction&sort_order=desc&status').subscribe(
+    this.api.get(`customers?page=${page}&page_size=10&sort_by=total_transaction&sort_order=desc&status`).subscribe(
       res=>{
         this.vendors = res;
         this.pageLoading = false;
@@ -110,7 +115,7 @@ export class CustomersComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getCustomers()
+        this.getCustomers(1)
         this.showSuccess('Sale added successfully');
       },
       err=>{

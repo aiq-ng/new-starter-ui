@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-sale-order',
@@ -31,7 +32,10 @@ export class CreateSaleOrderComponent {
 
 
 
-    constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService:MessageService){}
+    constructor(private fb:FormBuilder,
+                private api:HttpServiceService,
+                private messageService:MessageService,
+                private router:Router){}
 
     ngOnInit(): void {
       this.purchaseOrderForm = this.fb.group({
@@ -43,8 +47,8 @@ export class CreateSaleOrderComponent {
         delivery_option: ['', Validators.required],
         assigned_driver_id: ['', Validators.required],
         delivery_date: ['', Validators.required],
-        additional_note: ['', Validators.required],
-        customer_note: ['', Validators.required],
+        additional_note: [''],
+        customer_note: [''],
         discount: ['', Validators.required],
         delivery_charge: ['', Validators.required],
         total: [], // Readonly total
@@ -71,14 +75,28 @@ export class CreateSaleOrderComponent {
 
     // Add new row
     addRow(): void {
-      this.items.push(this.fb.group({
+      const newRow = this.fb.group({
         item_id: ['', Validators.required],
         quantity: [0, [Validators.required]],
         price: [0, [Validators.required]],
         tax_id: [''],
         amount: []
-      }));
+      });
+
+      // Subscribe to changes in the item_id control to populate price
+      newRow.get('item_id')?.valueChanges.subscribe(itemId => {
+        console.log('item', this.iventoryItems.data, 'item', itemId);
+        const selectedItem = this.iventoryItems.data?.filter((item:any) => item.id == itemId);
+        console.log(selectedItem)
+        if (selectedItem) {
+          console.log('selected item', selectedItem[0].unit_price)
+          newRow.patchValue({ price: selectedItem[0].unit_price });
+        }
+      });
+
+      this.items.push(newRow);
     }
+
 
 
     get f(){return this.purchaseOrderForm.controls}
@@ -92,7 +110,7 @@ export class CreateSaleOrderComponent {
       if(this.purchaseOrderForm.invalid){
         console.log(this.purchaseOrderForm.value)
         console.log('invalid order form')
-
+        this.loading = false;
         return;
       }
       // save purchase order data
@@ -106,6 +124,8 @@ export class CreateSaleOrderComponent {
           this.showSuccess('purchase order added successfully')
           this.isSubmitted = false
           this.loading = false;
+          // this.purchaseOrderForm.formArray.clear();
+          this.router.navigate(['app/sales/orders'])
         }, err=>{
           console.log(err);
           this.showError('Failed to add purchase order')
@@ -169,15 +189,25 @@ export class CreateSaleOrderComponent {
 
     getItems(){
       this.pageLoading = true;
-      this.api.get('inventory').subscribe(
+      this.api.get('sales/price-list').subscribe(
         res=>{
           this.iventoryItems = res;
           this.pageLoading = false;
+          console.log('price list ', this.iventoryItems)
         },
         err=>{
           console.log(err)
         }
       )
+    }
+
+    populatePrice(index:number, price:any){
+      const row = this.items.at(index);
+      const priceToAdd = row.get('price')?.value || 1;
+      const itemPrice = price;
+
+      row.patchValue({ price: itemPrice });
+      console.log('purchased order', this.purchaseOrderForm.get('items').value)
     }
 
     getPaymentTerms(){
@@ -238,7 +268,7 @@ export class CreateSaleOrderComponent {
       this.purchaseOrderForm.patchValue({ total:total });
 
       console.log('value from form', this.purchaseOrderForm.get('total').value);
-
+      this.totalToPay = total
 
     }
 

@@ -34,26 +34,31 @@ export class InventoryTrackerComponent {
 
   ngOnInit(){
 
-    this.getInventoryPlan('')
+    this.getInventoryPlan('', 1)
 
   }
 
+
+  paginate(page:any){
+    console.log('page', page)
+    this.getInventoryPlan('', page);
+  }
 
   filterInventory(value:any){
     console.log(value.toLowerCase())
     if(value=='All'){
-      this.getInventoryPlan('')
+      this.getInventoryPlan('', 1)
     }else {
-      this.getInventoryPlan(value.toLowerCase())
+      this.getInventoryPlan(value.toLowerCase(), 1)
     }
   }
 
-  getInventoryPlan(filterValue:string){
+  getInventoryPlan(filterValue:string, page:any){
     this.pageLoading= true;
-    return this.api.get(`inventory?page=1&page_size=5&availability=${filterValue}&sort=DESC`).subscribe(
+    return this.api.get(`inventory?page=${page}&page_size=10&availability=${filterValue}&sort=DESC`).subscribe(
       res =>{
         let response:any = res
-        this.inventoryData = response.data
+        this.inventoryData = response
         console.log(this.inventoryData)
         this.pageLoading=false;
       }, err=>{

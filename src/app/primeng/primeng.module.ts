@@ -13,6 +13,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -29,7 +30,8 @@ const primeNG: any = [
   MultiSelectModule,
   CalendarModule,
   DialogModule,
-  SidebarModule
+  SidebarModule,
+  DropdownModule
 ]
 
 

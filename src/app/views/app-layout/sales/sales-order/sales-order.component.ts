@@ -43,30 +43,33 @@ export class SalesOrderComponent {
 
     ngOnInit(){
 
-      this.getSales('', '')
+      this.getSales('', '', 1)
 
     }
 
 
-
+    paginate(page:any){
+      console.log('page', page)
+      this.getSales('', '', page);
+    }
 
     filterInventory(value:any){
       console.log(value.toLowerCase())
       if(value=='All'){
-        this.getSales('', '')
+        this.getSales('', '', 1)
       }else if(value=='Services'){
-        this.getSales('', value.toLowerCase())
+        this.getSales('', value.toLowerCase(), 1)
       }else {
-        this.getSales(value.toLowerCase(), '')
+        this.getSales(value.toLowerCase(), '', 1)
       }
     }
 
-    getSales(status:string, order_type:string){
+    getSales(status:string, order_type:string, page:any){
       this.pageLoading= true;
-      return this.api.get(`sales/orders?page=1&page_size=10&status=${status}&order_type=${order_type}&start_date=&end_date`).subscribe(
+      return this.api.get(`sales/orders?page=${page}&page_size=10&status=${status}&order_type=${order_type}&start_date=&end_date`).subscribe(
         res =>{
           let response:any = res
-          this.inventoryData = response.data
+          this.inventoryData = response
           console.log(this.inventoryData)
           this.pageLoading=false;
         }, err=>{

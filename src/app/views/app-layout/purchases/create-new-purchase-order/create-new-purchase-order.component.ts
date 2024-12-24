@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../../../services/http-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-purchase-order',
@@ -26,7 +27,10 @@ export class CreateNewPurchaseOrderComponent {
 
 
 
-  constructor(private fb:FormBuilder, private api:HttpServiceService, private messageService:MessageService){}
+  constructor(private fb:FormBuilder,
+              private api:HttpServiceService,
+              private messageService:MessageService,
+              private router:Router){}
 
   ngOnInit(): void {
     this.purchaseOrderForm = this.fb.group({
@@ -63,16 +67,23 @@ export class CreateNewPurchaseOrderComponent {
   // Add new row
   addRow(): void {
     this.items.push(this.fb.group({
-      item_id: ['', Validators.required],
+      id: ['', Validators.required],
       quantity: [0, [Validators.required]],
       price: [0, [Validators.required]],
-      tax_id: [''],
+      tax_id: [null],
       amount: []
     }));
   }
 
 
   get f(){return this.purchaseOrderForm.controls}
+
+  // verifyItems(items:any){
+  //   for(let item of items){
+  //     if(item.tax_id == '')
+  //   }
+  // }
+
 
 
 
@@ -83,7 +94,7 @@ export class CreateNewPurchaseOrderComponent {
     if(this.purchaseOrderForm.invalid){
       console.log(this.purchaseOrderForm.value)
       console.log('invalid purchase order form')
-
+      this.loading = false;
       return;
     }
     // save purchase order data
@@ -97,6 +108,7 @@ export class CreateNewPurchaseOrderComponent {
         this.showSuccess('purchase order added successfully')
         this.isSubmitted = false
         this.loading = false;
+        this.router.navigate(['/app/prochurement/purchases'])
       }, err=>{
         console.log(err);
         this.showError('Failed to add purchase order')
@@ -186,7 +198,7 @@ export class CreateNewPurchaseOrderComponent {
     const total = this.items.controls.reduce((sum, row) => {
       return sum + (row.get('amount')?.value || 0);
     }, 0);
-
+    this.totalToPay = total
     this.purchaseOrderForm.patchValue({ total });
   }
 

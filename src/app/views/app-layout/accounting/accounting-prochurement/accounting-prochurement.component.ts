@@ -22,6 +22,7 @@ export class AccountingProchurementComponent {
           saleDetailHeader = ['Expenses', 'Bills']
           tableHeader = [
             "expense Id",
+            "expense Title",
             "date",
             "Payment Method",
             "Category",
@@ -72,9 +73,19 @@ export class AccountingProchurementComponent {
 
 
           ngOnInit(){
-            this.getExpense()
+            this.getExpense(1)
             this.getProducts()
-            this.getBills()
+            this.getBills(1)
+          }
+
+          paginate(page:any){
+            console.log('page', page)
+            if(this.tableView=='expenses'){
+              this.getExpense(page);
+            }
+            if(this.tableView=='bills'){
+              this.getBills(page);
+            }
           }
 
           getParamsId(){
@@ -114,12 +125,12 @@ export class AccountingProchurementComponent {
             }
           }
 
-          getExpense(){
+          getExpense(page:any){
             this.pageLoading= true;
-            return this.api.get(`accounting/expenses?page=1&page_size=10`).subscribe(
+            return this.api.get(`accounting/expenses?page=${page}&page_size=10`).subscribe(
               res =>{
                 let response:any = res
-                this.tableData = response.data
+                this.tableData = response
                 console.log(this.sales)
                 this.pageLoading=false;
               }, err=>{
@@ -131,12 +142,12 @@ export class AccountingProchurementComponent {
           }
 
 
-          getBills(){
+          getBills(page:any){
             this.pageLoading= true;
-            return this.api.get(`accounting/bills?page=1&page_size=10&start_date=2022-01-01`).subscribe(
+            return this.api.get(`accounting/bills?page=${page}&page_size=10&start_date=2022-01-01`).subscribe(
               res =>{
                 let response:any = res
-                this.billsData = response.data
+                this.billsData = response
                 console.log(this.billsData)
                 this.pageLoading=false;
               }, err=>{
@@ -200,7 +211,7 @@ export class AccountingProchurementComponent {
                 console.log(res)
                 this.salesForm.reset();
                 this.isAddSale = false;
-                this.getExpense()
+                this.getExpense(1)
                 this.showSuccess('Sale added successfully');
               },
               err=>{

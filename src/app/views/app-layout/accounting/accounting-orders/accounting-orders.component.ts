@@ -62,10 +62,14 @@ export class AccountingOrdersComponent {
 
 
   ngOnInit(){
-    this.getSales('', '')
+    this.getOders('', '', 1)
     this.getProducts()
   }
 
+  paginate(page:any){
+    console.log('page', page)
+    this.getOders('', '', page);
+  }
   getParamsId(){
     const url = window.location.href;
     console.log('url', url);
@@ -75,7 +79,7 @@ export class AccountingOrdersComponent {
     return this.item_id;
   }
 
-  getSalesInvoice(id:any){
+  getOdersInvoice(id:any){
     this.pageLoading= true;
     return this.api.get('accounting/sales-orders/' + id).subscribe(
       res =>{
@@ -95,20 +99,20 @@ export class AccountingOrdersComponent {
   filterInventory(value:any){
     console.log(value.toLowerCase())
     if(value=='All'){
-      this.getSales('', '')
+      this.getOders('', '', 1)
     }else if(value=='Services'){
-      this.getSales('', value.toLowerCase())
+      this.getOders('', value.toLowerCase(), 1)
     }else {
-      this.getSales(value.toLowerCase(), '')
+      this.getOders(value.toLowerCase(), '', 1)
     }
   }
 
-  getSales(status:string, order_type:string){
+  getOders(status:string, order_type:string, page:any){
     this.pageLoading= true;
-    return this.api.get(`sales/orders?page=1&page_size=10&status=${status}&order_type=${order_type}&start_date=&end_date`).subscribe(
+    return this.api.get(`sales/orders?page=${page}&page_size=10&status=${status}&order_type=${order_type}&start_date=&end_date`).subscribe(
       res =>{
         let response:any = res
-        this.sales = response.data
+        this.sales = response
         console.log(this.sales)
         this.pageLoading=false;
       }, err=>{
@@ -162,7 +166,7 @@ export class AccountingOrdersComponent {
 
   toggleOrderDetail(id:any){
     this.orderDetail = !this.orderDetail;
-    this.getSalesInvoice(id)
+    this.getOdersInvoice(id)
   }
 
   route(page:string){
@@ -185,7 +189,7 @@ export class AccountingOrdersComponent {
         console.log(res)
         this.salesForm.reset();
         this.isAddSale = false;
-        this.getSales('', '')
+        this.getOders('', '', 1)
         this.showSuccess('Sale added successfully');
       },
       err=>{
